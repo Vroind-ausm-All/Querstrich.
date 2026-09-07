@@ -1,62 +1,98 @@
 # querstrich.
 
-Webauftritt der Einzelagentur **querstrich** — Gestaltung und Entwicklung aus einer Hand.
+> **quer** denken. **strich** ziehen. **punkt.**
+
+Webauftritt der Einzelagentur **querstrich** — Marke, Website und Technik aus einer Hand.
 
 Eine einzelne Datei: [`index.html`](index.html). Kein Build, kein Framework, keine
-Abhängigkeit außer den Schriften. Einfach im Browser öffnen oder auf einen beliebigen
-Webspace legen.
+Abhängigkeit außer den Schriften. Im Browser öffnen oder auf einen beliebigen Webspace
+legen.
 
 ---
+
+## Zwei Ansichten
+
+Die Seite startet **hell** und lässt sich oben rechts auf **dunkel** umschalten. Die Wahl
+merkt sich der Browser (`localStorage`), die Systemvorgabe wird bewusst nicht übernommen —
+hell ist der Standard.
+
+Technisch hängt alles an einem Satz semantischer Tokens (`--papier`, `--tinte`, `--akzent`
+…), die unter `[data-thema="dunkel"]` umkippen. Ein einzelner Abschnitt kann sich über die
+Klasse `.invers` gegen die aktuelle Ansicht stellen — das Fragen-Modul nutzt das und ist
+dadurch immer der dunkle Block auf der hellen Seite (und umgekehrt).
 
 ## Aufbau
 
 | Abschnitt | Inhalt |
 |---|---|
-| Hero | Scroll-gesteuerte Typografie, mehrschichtige Parallaxe |
+| Hero | „quer denken. strich ziehen. punkt." mit Wörterbuch-Glossar |
 | Manifest | Positionierung, Wort-für-Wort-Aufbau |
-| Arbeiten | Drei Projekte mit aufklappbarer Fallakte |
+| Arbeiten | Drei Projekte, überlappende Ebenen, aufklappbare Fallakte |
+| **Fragen** | **Interaktiv: Was ein Generator fragt — und was ich frage** |
 | Leistungen | Vier Bereiche als Akkordeon |
 | Ablauf | Fünf Schritte mit mitlaufender Schiene |
-| Preise | Richtwert-Rechner, drei Pakete, Betreuung |
-| Vergleich | Generator gegen Zusammenarbeit |
-| Person, FAQ, Kontakt | |
+| Preise | Baukasten mit Live-Aufstellung, drei Pakete |
+| Person | Porträt und Textkarte überlappend |
+| Kontakt | Abschluss |
+| Fuß | FAQ als Fenster, nur über Klick erreichbar |
+
+## Das Fragen-Modul
+
+Der wichtigste Abschnitt. Statt einer statischen Gegenüberstellung wählt der Besucher
+seine Branche (Handwerk, Praxis, Gastronomie, Handel, Beratung, Verein) und sieht:
+
+- links, gedämpft und gestrichelt: die zwei Fragen, die ein Generator stellt
+- rechts: fünf Fragen, die aus dem jeweiligen Gewerbe kommen, jede antippbar
+
+Jeder Treffer füllt einen Zähler. Ab dem ersten erscheint eine persönliche Antwort mit
+Porträt und Unterschrift — und der Knopf **„diese Fragen mitschicken"** baut eine
+`mailto:`-Nachricht, die die ausgewählten Fragen und die Branche bereits enthält. Wer
+klickt, hat sein Erstgespräch damit halb vorbereitet.
+
+## Der Baukasten
+
+Fünf Gruppen — Umfang, Gestaltung, Texte, Bausteine, Betreuung. Rechts läuft eine
+Aufstellung mit, die jede Position einzeln ausweist; die Betreuung wird als Monatsbetrag
+getrennt geführt. Ab **9.500 €** springt der Hinweis an, dass es ein *individuell*-Projekt
+mit eigener Konzeptphase wird — dieselbe Schwelle wie beim Paketpreis. Die Vorauswahl
+ergibt exakt die 4.900 € des *business*-Pakets. Auch hier trägt der Anfrage-Knopf die
+komplette Konfiguration in die Mail.
+
+## Bewegung und Überlappung
+
+Ein einziger `requestAnimationFrame`-Takt für alle Scroll-Effekte:
+
+- **`data-par`** — feste Ebenen im Hero, gebunden an `scrollY`
+- **`data-drift`** — Elemente im Fluss, gebunden an ihren Abstand zur Bildschirmmitte.
+  Der Bezugspunkt ist immer das **Elternelement**; misst ein Element seine eigene,
+  bereits verschobene Position, schaukelt sich die Rechnung auf.
+- Überlappende Ebenen in Arbeiten (Textkarte über dem Mock-Up), Person (Porträt und Text),
+  Baukasten, Fragen-Säulen — jeweils mit unterschiedlichen Geschwindigkeiten
+- Geisterwörter hinter den Abschnittsköpfen, angeschnitten per `overflow-x: clip`
+  (nicht `hidden` — das würde `position: sticky` lahmlegen)
+
+**`prefers-reduced-motion: reduce`** schaltet alles ab: kein Vorhang, keine Parallaxe,
+kein Glitch. Die Seite bleibt vollständig lesbar, der Hero wird ein normaler Abschnitt.
 
 ## Portfolio
 
 Die drei Projekte werden nicht als Screenshot gezeigt, sondern als **Mock-Up in reinem
-CSS** — jedes in der eigenen Farb- und Schriftwelt des Projekts. Kein Bildmaterial, keine
-Ladezeit, scharf auf jedem Display.
+CSS** — jedes in der eigenen Farb- und Schriftwelt des Projekts:
 
-- **Coaching with Maria** — ADHS- und Karrierecoaching, Amsterdam & Stuttgart
-  (`--akz:#E4503C`, coaching-withmaria.com)
-- **Sharemics** — Keramiklabel mit Shop und Kursbuchung, Sunrise Edition (`--akz:#CD714E`)
-- **33ter Sonnenstrahl** — Einladungs-Website zu einem Outdoor-Geburtstag (`--akz:#B8BC3A`)
+- **Coaching with Maria** — ADHS- und Karrierecoaching (`#E4503C`, coaching-withmaria.com)
+- **Sharemics** — Keramiklabel mit Shop und Kursbuchung (`#CD714E`)
+- **33ter Sonnenstrahl** — Einladungs-Website zu einem Outdoor-Geburtstag (`#8E9122`)
 
-Beim Überfahren nimmt die Hintergrundglut der Seite die Akzentfarbe des jeweiligen
-Projekts an.
-
-## Bewegung
-
-Alles handgeschrieben, ein einziger `requestAnimationFrame`-Takt für sämtliche
-Scroll-Effekte:
-
-- Hero mit `position:sticky` — Zeile 1 füllt sich beim Eintritt, Zeile 2 und 3 beim
-  Scrollen (`clip-path`), der orangene Querstrich wächst mit
-- Parallaxe über `data-par` (feste Ebenen) und `data-par-innen` (Elemente im Fluss)
-- Glitch-Geister auf den Hero-Zeilen und der Wortmarke, Filmkorn als SVG-Rauschen
-- Eigener Cursor mit „ansehen"-Zustand über den Projekten, magnetische Knöpfe
-- Laufbänder, Reveal-Staffelung, hochzählende Kennzahlen
-
-**`prefers-reduced-motion: reduce`** schaltet alles ab: kein Vorhang, keine Parallaxe,
-kein Glitch, keine Laufbänder. Die Seite bleibt vollständig lesbar und der Hero wird zu
-einem normalen Abschnitt.
+Beim Überfahren nimmt die Hintergrundglut der Seite die Akzentfarbe des Projekts an.
 
 ## Bedienbarkeit
 
 - Sprungmarke zum Inhalt, sichtbarer Fokusrahmen auf allem Bedienbaren
-- Fallakten und Akkordeons mit `aria-expanded`, per Tastatur bedienbar
+- Fallakten, Akkordeons, Fragen und Filter mit `aria-expanded` / `aria-pressed`,
+  vollständig per Tastatur bedienbar
+- FAQ als echtes `<dialog>` — Escape schließt, Fokus wandert hinein
 - Dekoration durchgehend `aria-hidden`
-- Ohne JavaScript bleibt die Seite vollständig lesbar (`<noscript>`-Rückfall)
+- Ohne JavaScript bleibt die Seite lesbar (`<noscript>`-Rückfall)
 
 ---
 
@@ -64,10 +100,13 @@ einem normalen Abschnitt.
 
 1. **Schriften lokal einbinden** statt von Google laden (DSGVO). Archivo, Instrument Sans
    und DM Mono stehen unter der SIL Open Font License.
-2. **Platzhalter ersetzen:** `[Vorname Nachname]`, `[Straße]`, `[PLZ Stadt]`, `[Stadt]`,
-   `[telefonnummer]`, das Porträtfoto und die Mailadresse `hallo@querstrich.de`.
+2. **Platzhalter ersetzen:** `[Vorname Nachname]`, `[Vorname]`, `[Straße]`, `[PLZ Stadt]`,
+   `[Stadt]`, `[telefonnummer]`, `[Porträt]`, das Porträtfoto und die Mailadresse
+   `hallo@querstrich.de`.
 3. **Impressum und Datenschutzerklärung** anlegen (`/impressum`, `/datenschutz` sind
    bereits verlinkt).
 4. **`og:image` und Favicon** ergänzen.
 5. Die Ergebniszeilen der Projekte beschreiben, **was gebaut wurde** — keine erfundenen
    Kennzahlen. Sobald echte Zahlen vorliegen, gehören sie an diese Stelle.
+6. **Preise prüfen.** Baukasten, Pakete und die 9.500-€-Schwelle sind aufeinander
+   abgestimmt — wer eine Zahl ändert, sollte die anderen mitziehen.

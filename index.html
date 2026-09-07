@@ -42,15 +42,15 @@
   --papier:#F5F3EE;
   --papier-2:#FFFFFF;
   --papier-3:#EBE8E0;
-  --tinte:#111113;
-  --tinte-2:#4E4D47;
+  --tinte:#0D0D0F;
+  --tinte-2:#46453F;
   --tinte-3:#7C7B72;
-  --linie:rgba(17,17,19,.14);
-  --linie-s:rgba(17,17,19,.065);
+  --linie:rgba(13,13,15,.16);
+  --linie-s:rgba(13,13,15,.07);
   --akzent:#FF4A0F;
   --akzent-text:#C63A05;
   --auf-akzent:#FFFFFF;
-  --glut:rgba(255,74,15,.11);
+  --glut:rgba(255,74,15,.07);
   --korn-opa:.04;
   --korn-mix:multiply;
   --schatten:0 26px 64px -34px rgba(17,17,19,.45);
@@ -85,23 +85,6 @@
   --schatten:0 26px 70px -30px rgba(0,0,0,.85);
   --schatten-s:0 10px 34px -18px rgba(0,0,0,.8);
 }
-/* Umbruch: dreht die Ansicht innerhalb eines Abschnitts um */
-.invers{
-  --papier:#0B0B0D; --papier-2:#131317; --papier-3:#1B1B21;
-  --tinte:#F4F3EF; --tinte-2:#A8A79E; --tinte-3:#78776F;
-  --linie:rgba(244,243,239,.15); --linie-s:rgba(244,243,239,.07);
-  --akzent:#FF5A22; --akzent-text:#FF7C4A; --auf-akzent:#0B0B0D;
-  --schatten:0 26px 70px -30px rgba(0,0,0,.85);
-  background:var(--papier);color:var(--tinte);
-}
-[data-thema="dunkel"] .invers{
-  --papier:#F5F3EE; --papier-2:#FFFFFF; --papier-3:#EBE8E0;
-  --tinte:#111113; --tinte-2:#4E4D47; --tinte-3:#7C7B72;
-  --linie:rgba(17,17,19,.14); --linie-s:rgba(17,17,19,.065);
-  --akzent:#FF4A0F; --akzent-text:#C63A05; --auf-akzent:#FFFFFF;
-  --schatten:0 26px 64px -34px rgba(17,17,19,.45);
-}
-
 /* ═══════════════════════════════════════════════════════════
    2 — BASIS
    ═══════════════════════════════════════════════════════════ */
@@ -326,7 +309,7 @@ main,header,footer{position:relative;z-index:2}
 /* ═══════════════════════════════════════════════════════════
    8 — HERO: quer. strich. punkt.
    ═══════════════════════════════════════════════════════════ */
-.hero{height:165vh;position:relative}
+.hero{height:145vh;position:relative}
 .hero-fest{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding-top:4.5rem}
 .hero-geist{
   position:absolute;left:50%;top:50%;translate:-50% -50%;z-index:0;
@@ -345,8 +328,8 @@ main,header,footer{position:relative;z-index:2}
 .satz{margin:0 0 clamp(1.2rem,3vh,2rem);display:flex;flex-direction:column;align-items:flex-start}
 .satz-zeile{
   position:relative;display:block;cursor:default;
-  font-family:var(--display);font-weight:800;font-stretch:78%;text-transform:lowercase;
-  font-size:clamp(2.6rem,9.6vw,8.8rem);line-height:.85;letter-spacing:-.045em;
+  font-family:var(--display);font-weight:800;font-stretch:78%;
+  font-size:clamp(1.85rem,7.2vw,7.4rem);line-height:.9;letter-spacing:-.04em;
   transition:transform .5s var(--ease-out);
 }
 .satz-zeile:hover{transform:translateX(.5rem)}
@@ -390,7 +373,7 @@ main,header,footer{position:relative;z-index:2}
 .hero-hinweis i{display:block;width:1px;height:2.2rem;background:linear-gradient(var(--akzent),transparent);animation:tropf 1.8s var(--ease) infinite}
 @keyframes tropf{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 @media (max-width:52rem){
-  .hero{height:155vh}
+  .hero{height:140vh}
   .hero-geist{font-size:46vw}
   .hero-zahlen{width:100%;justify-content:space-between;gap:1rem}
   .hero-hinweis{display:none}
@@ -607,87 +590,95 @@ main,header,footer{position:relative;z-index:2}
 /* ═══════════════════════════════════════════════════════════
    13 — FRAGEN-MODUL (Warum nicht KI)
    ═══════════════════════════════════════════════════════════ */
-.fragen{overflow:hidden}
-.branchen{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:clamp(2rem,4vh,3rem)}
+/* Getönt statt umgedreht: in der hellen Ansicht ein warmer Grund,
+   in der dunklen derselbe Ton auf dunklem Papier. */
+.getoent{
+  background:color-mix(in srgb,var(--akzent) 6%,var(--papier));
+  border-top:1px solid color-mix(in srgb,var(--akzent) 22%,transparent);
+  border-bottom:1px solid color-mix(in srgb,var(--akzent) 22%,transparent);
+}
+[data-thema="dunkel"] .getoent{background:color-mix(in srgb,var(--akzent) 9%,var(--papier))}
+
+.branchen{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:clamp(1.75rem,3.5vh,2.5rem)}
 .branchen button{
   font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
-  padding:.65rem 1.1rem;border:1px solid var(--linie);color:var(--tinte-3);
+  padding:.65rem 1.1rem;border:1px solid var(--linie);color:var(--tinte-2);background:var(--papier-2);
   transition:color .3s,border-color .3s,background .3s,transform .3s var(--ease-out);
 }
 .branchen button:hover{color:var(--tinte);border-color:var(--tinte);transform:translateY(-2px)}
 .branchen button[aria-pressed="true"]{background:var(--akzent);border-color:var(--akzent);color:var(--auf-akzent)}
 
-.duell{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(1.25rem,3vw,2.5rem);align-items:start}
-@media (max-width:64rem){.duell{grid-template-columns:1fr}}
+.fragen-gitter{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);gap:clamp(1.5rem,3vw,3rem);align-items:start}
+@media (max-width:64rem){.fragen-gitter{grid-template-columns:1fr}}
 
-.saeule{border:1px solid var(--linie);padding:clamp(1.25rem,2.4vw,2rem);background:var(--papier-2)}
-.saeule--maschine{background:transparent;border-style:dashed;opacity:.72}
-.saeule--mensch{box-shadow:var(--schatten);will-change:transform}
-.saeule-kopf{display:flex;align-items:center;gap:.7rem;margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid var(--linie)}
-.saeule-kopf h3{font-family:var(--display);font-weight:800;font-stretch:86%;text-transform:lowercase;font-size:clamp(1.15rem,2vw,1.6rem);letter-spacing:-.03em;line-height:1}
-.saeule--mensch .saeule-kopf h3{color:var(--akzent-text)}
-.saeule-marke{width:1.9rem;height:1.9rem;flex:none;display:grid;place-items:center;border:1px solid var(--linie);font-family:var(--mono);font-size:.6rem}
-.saeule--mensch .saeule-marke{background:var(--akzent);border-color:var(--akzent);color:var(--auf-akzent)}
+.fragenliste{list-style:none;border-top:1px solid var(--linie)}
+.qfrage{border-bottom:1px solid var(--linie)}
+.qfrage-kopf{
+  width:100%;display:grid;grid-template-columns:2.4rem 1fr 1.4rem;gap:1rem;align-items:start;
+  text-align:left;padding:1.15rem .25rem;transition:padding .35s var(--ease),color .3s;
+}
+.qfrage-kopf:hover{padding-left:.75rem;color:var(--akzent-text)}
+.qfrage-nr{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--akzent-text);padding-top:.28rem}
+.qfrage-txt{font-family:var(--display);font-weight:700;font-stretch:92%;font-size:clamp(1.05rem,1.7vw,1.3rem);line-height:1.2;letter-spacing:-.02em}
+.qfrage-plus{position:relative;width:1.15rem;height:1.15rem;margin-top:.35rem;justify-self:end}
+.qfrage-plus::before,.qfrage-plus::after{content:"";position:absolute;background:var(--akzent);transition:transform .4s var(--ease)}
+.qfrage-plus::before{left:0;right:0;top:50%;height:2px;translate:0 -50%}
+.qfrage-plus::after{top:0;bottom:0;left:50%;width:2px;translate:-50% 0}
+.qfrage.auf .qfrage-plus::after{transform:scaleY(0)}
+.qfrage.auf .qfrage-kopf{color:var(--akzent-text)}
 
-.frageliste{list-style:none;display:flex;flex-direction:column;gap:.5rem}
-.frage-maschine{
-  display:grid;grid-template-columns:1.2rem 1fr;gap:.7rem;padding:.75rem 0;
-  border-bottom:1px solid var(--linie-s);color:var(--tinte-3);font-size:.9375rem;line-height:1.5;
-}
-.frage-maschine b{font-family:var(--mono);font-weight:400;font-size:.75rem}
-.saeule--maschine .fussnote{margin-top:1.25rem;font-size:.8125rem;color:var(--tinte-3);line-height:1.5}
+.qfrage-koerper{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease)}
+.qfrage.auf .qfrage-koerper{grid-template-rows:1fr}
+.qfrage-koerper > div{overflow:hidden;min-height:0}
+.qpaar{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--linie);margin:0 0 1.35rem;border:1px solid var(--linie)}
+@media (max-width:52rem){.qpaar{grid-template-columns:1fr}}
+.qantwort{padding:1.1rem 1.2rem;background:var(--papier-2)}
+.qantwort b{display:block;font-family:var(--mono);font-weight:400;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.6rem}
+.qantwort p{font-size:.9375rem;line-height:1.55;max-width:44ch}
+.qantwort--ki{background:color-mix(in srgb,var(--tinte) 4%,var(--papier))}
+.qantwort--ki b{color:var(--tinte-3)}
+.qantwort--ki p{color:var(--tinte-3)}
+.qantwort--ich{background:var(--papier-2);box-shadow:inset 3px 0 0 var(--akzent)}
+.qantwort--ich b{color:var(--akzent-text)}
+.qantwort--ich p{color:var(--tinte)}
 
-.frage{
-  width:100%;display:grid;grid-template-columns:1.6rem 1fr auto;gap:.85rem;align-items:start;
-  text-align:left;padding:.9rem .8rem;border:1px solid transparent;
-  transition:border-color .3s,background .3s,transform .3s var(--ease-out);
-  font-size:.9375rem;line-height:1.5;color:var(--tinte);
+.bilanz{
+  position:sticky;top:clamp(6rem,14vh,8rem);
+  border:1px solid var(--linie);background:var(--papier-2);
+  padding:clamp(1.25rem,2.4vw,1.85rem);box-shadow:var(--schatten);
 }
-.frage:hover{border-color:var(--linie);background:var(--papier-3);transform:translateX(.25rem)}
-.frage-nr{font-family:var(--mono);font-size:.66rem;color:var(--akzent-text);padding-top:.15rem}
-.frage-haken{
-  width:1.15rem;height:1.15rem;flex:none;border:1px solid var(--linie);position:relative;margin-top:.15rem;
-  transition:background .3s,border-color .3s;
+.bilanz-kopf{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--tinte-3);margin-bottom:1rem}
+.bilanz-zahl{display:flex;align-items:baseline;gap:.5rem;margin-bottom:.85rem}
+.bilanz-zahl b{font-family:var(--display);font-weight:800;font-stretch:88%;font-size:2.6rem;line-height:1;letter-spacing:-.035em}
+.bilanz-zahl span{font-size:.875rem;color:var(--tinte-2)}
+.bilanz-balken{height:2px;background:var(--linie);position:relative;overflow:hidden;margin-bottom:1.25rem}
+.bilanz-balken i{position:absolute;inset:0;background:var(--akzent);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.bilanz p{font-size:.9375rem;line-height:1.55;color:var(--tinte-2);margin-bottom:1.25rem}
+.bilanz-person{display:flex;align-items:center;gap:.8rem;border-top:1px solid var(--linie);padding-top:1rem;margin-bottom:1.25rem}
+.bilanz-portrait{
+  width:2.9rem;height:2.9rem;flex:none;border:1px solid var(--linie);
+  display:grid;place-items:center;text-align:center;
+  background-image:repeating-linear-gradient(45deg,var(--linie-s) 0 1px,transparent 1px 8px);
+  font-family:var(--mono);font-size:.4rem;letter-spacing:.08em;text-transform:uppercase;color:var(--tinte-3);
 }
-.frage-haken::after{
-  content:"";position:absolute;left:.3rem;top:.12rem;width:.28rem;height:.55rem;
-  border:solid var(--auf-akzent);border-width:0 1.5px 1.5px 0;transform:rotate(45deg) scale(0);
-  transition:transform .3s var(--ease-out);
-}
-.frage[aria-pressed="true"]{border-color:var(--akzent);background:color-mix(in srgb,var(--akzent) 8%,transparent)}
-.frage[aria-pressed="true"] .frage-haken{background:var(--akzent);border-color:var(--akzent)}
-.frage[aria-pressed="true"] .frage-haken::after{transform:rotate(45deg) scale(1)}
+.bilanz-person span{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tinte-2);line-height:1.5}
+.bilanz-aktionen{display:flex;flex-direction:column;gap:.7rem;align-items:flex-start}
+@media (max-width:64rem){.bilanz{position:static}}
 
-.zaehler{
-  display:flex;align-items:center;gap:1rem;margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--linie);
-  font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tinte-3);
+.mehrwert{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--linie);
+  border:1px solid var(--linie);margin-top:clamp(2.5rem,5vh,4rem);
 }
-.zaehler-balken{flex:1;height:2px;background:var(--linie);position:relative;overflow:hidden}
-.zaehler-balken i{position:absolute;inset:0;background:var(--akzent);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
-
-.antwort{
-  display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease),margin .6s var(--ease);
-  margin-top:0;
+@media (max-width:64rem){.mehrwert{grid-template-columns:1fr 1fr}}
+@media (max-width:46rem){.mehrwert{grid-template-columns:1fr}}
+.mehrwert div{background:var(--papier);padding:clamp(1.25rem,2.2vw,1.75rem);transition:background .35s ease}
+.mehrwert div:hover{background:var(--papier-2)}
+.mehrwert h3{
+  font-family:var(--display);font-weight:800;font-stretch:88%;font-size:1.1875rem;line-height:1.05;
+  letter-spacing:-.025em;margin-bottom:.7rem;
 }
-.antwort.da{grid-template-rows:1fr;margin-top:1.5rem}
-.antwort > div{overflow:hidden;min-height:0}
-.antwort-karte{
-  display:grid;grid-template-columns:auto 1fr;gap:1.25rem;align-items:start;
-  border:1px solid var(--akzent);padding:clamp(1.1rem,2vw,1.6rem);background:color-mix(in srgb,var(--akzent) 7%,transparent);
-}
-.antwort-portrait{
-  width:4.5rem;height:5.6rem;flex:none;border:1px solid var(--linie);
-  display:grid;place-items:center;text-align:center;padding:.4rem;
-  background-image:repeating-linear-gradient(45deg,var(--linie-s) 0 1px,transparent 1px 9px);
-  font-family:var(--mono);font-size:.46rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinte-3);
-}
-.antwort-karte p{font-size:.9375rem;line-height:1.55;color:var(--tinte);max-width:52ch}
-.antwort-karte .unterschrift{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--akzent-text);margin-top:.8rem;display:block}
-.antwort-aktionen{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.1rem}
-@media (max-width:46rem){
-  .antwort-karte{grid-template-columns:1fr}
-  .antwort-portrait{width:100%;height:3.5rem}
-}
+.mehrwert h3 em{font-style:normal;color:var(--akzent-text);display:block;font-family:var(--mono);font-weight:400;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.5rem}
+.mehrwert p{font-size:.875rem;line-height:1.55;color:var(--tinte-2)}
 
 /* ═══════════════════════════════════════════════════════════
    14 — ABLAUF
@@ -966,21 +957,18 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
         <p class="label">Marke <span aria-hidden="true">\</span> Website <span aria-hidden="true">\</span> Technik</p>
 
         <h1 class="satz" id="satz">
-          <span class="satz-zeile" data-teil="quer" data-glitch-ziel>
-            <span class="satz-teil">quer</span>
-            <span class="satz-verb"><span class="v-aus" aria-hidden="true">denken.</span><span class="v-voll" id="fuell0">denken.</span></span>
-          </span>
+          <span class="satz-zeile" data-teil="quer" data-glitch-ziel><span class="satz-teil">Quer</span><span class="satz-verb"><span class="v-aus" aria-hidden="true">verbindung finden.</span><span class="v-voll" id="fuell0">verbindung finden.</span></span></span>
           <span class="satz-zeile" data-teil="strich" data-glitch-ziel>
-            <span class="satz-teil">strich</span>
+            <span class="satz-teil">Strich</span>
             <span class="satz-verb"><span class="v-aus" aria-hidden="true">ziehen.</span><span class="v-voll" id="fuell1">ziehen.</span></span>
           </span>
           <span class="satz-zeile" data-teil="punkt" data-glitch-ziel>
-            <span class="satz-teil" id="fuell2">punkt</span><span class="satz-punkt" id="punktSq" aria-hidden="true"></span><span class="nur-sr">.</span>
+            <span class="satz-teil" id="fuell2">Punkt</span><span class="satz-punkt" id="punktSq" aria-hidden="true"></span><span class="nur-sr">.</span>
           </span>
         </h1>
 
         <dl class="glossar" id="glossar">
-          <div data-teil="quer"><dt>quer <span aria-hidden="true">—</span> Richtung</dt><dd>Nicht dorthin, wo alle laufen. Ihr Wettbewerb sieht aus wie Ihr Wettbewerb.</dd></div>
+          <div data-teil="quer"><dt>quer <span aria-hidden="true">—</span> Verbindung</dt><dd>Zwischen dem, was Sie können, und dem, was Ihr Kunde sucht. Die Verbindung ist selten die naheliegende.</dd></div>
           <div data-teil="strich"><dt>strich <span aria-hidden="true">—</span> Auswahl</dt><dd>Der Strich unter dem, was weg kann. Das ist der teure Teil, nicht das Bauen.</dd></div>
           <div data-teil="punkt"><dt>punkt <span aria-hidden="true">—</span> Ende</dt><dd>Eine Seite, die eine Sache tut. Kein „und außerdem“. Punkt.</dd></div>
         </dl>
@@ -1214,61 +1202,47 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
   </section>
 
   <!-- ═══════════ FRAGEN-MODUL ═══════════ -->
-  <section class="bereich invers fragen" id="fragen">
+  <section class="bereich getoent fragen" id="fragen">
     <span class="geistwort geistwort--links" data-drift="-6" aria-hidden="true">fragen</span>
     <div class="wrap ueber">
       <div class="kopfzeile rev">
         <div>
           <p class="label">Warum nicht einfach KI?</p>
-          <h2 class="d2">Der Unterschied<br>sind die Fragen.</h2>
+          <h2 class="d2">Die Fragen, die kein<br>Generator stellt.</h2>
         </div>
-        <p>Eine KI baut Ihnen eine Website in zwei Stunden — ich arbeite selbst mit diesen Werkzeugen. Nur: sie baut exakt das, was Sie hineingeben. Wählen Sie Ihre Branche und sehen Sie, was gefragt wird — von einem Generator und von mir.</p>
+        <p>Eine KI baut die Seite — ich arbeite selbst mit diesen Werkzeugen. Sie entscheidet nur nicht, was draufkommt. Wählen Sie Ihre Branche, öffnen Sie eine Frage: Sie sehen sofort, was ein Generator daraus macht und was ich daraus mache.</p>
       </div>
 
       <div class="branchen rev" role="group" aria-label="Branche wählen" id="branchen"></div>
 
-      <div class="duell">
-        <div class="saeule saeule--maschine rev" data-drift="-2">
-          <div class="saeule-kopf">
-            <span class="saeule-marke" aria-hidden="true">KI</span>
-            <h3>der generator fragt</h3>
-          </div>
-          <ul class="frageliste" id="maschinenFragen"></ul>
-          <p class="fussnote">Beides sind gute Fragen — für die Oberfläche. Keine davon entscheidet, ob am Montag jemand anruft.</p>
-        </div>
+      <div class="fragen-gitter">
+        <ol class="fragenliste rev" id="fragenListe" data-drift="1"></ol>
 
-        <div class="saeule saeule--mensch rev" data-drift="3">
-          <div class="saeule-kopf">
-            <span class="saeule-marke" aria-hidden="true">\</span>
-            <h3>ich frage Sie</h3>
+        <aside class="bilanz rev" data-drift="-1">
+          <p class="bilanz-kopf">Ihre Bilanz</p>
+          <p class="bilanz-zahl"><b id="bilanzZahl">0</b><span id="bilanzVon">von 4 Fragen geöffnet</span></p>
+          <span class="bilanz-balken" aria-hidden="true"><i id="bilanzBalken"></i></span>
+          <p id="bilanzTxt">Öffnen Sie eine Frage. Sie bekommen die Antwort sofort — nicht erst im Angebot.</p>
+          <div class="bilanz-person">
+            <span class="bilanz-portrait" aria-hidden="true">[Foto]</span>
+            <span>[Vorname]<br>querstrich</span>
           </div>
-          <ul class="frageliste" id="meineFragen"></ul>
-
-          <div class="zaehler">
-            <span id="zaehlerTxt">0 von 5 treffen zu</span>
-            <span class="zaehler-balken" aria-hidden="true"><i id="zaehlerBalken"></i></span>
+          <div class="bilanz-aktionen">
+            <a class="knopf knopf--voll knopf--klein knopf--breit" id="bilanzMail" href="mailto:hallo@querstrich.de?subject=Erstgespr%C3%A4ch">gespräch anfragen <span class="pfeil" aria-hidden="true">→</span></a>
+            <button class="tlink" type="button" id="bilanzReset">alle schließen</button>
           </div>
-
-          <div class="antwort" id="antwort">
-            <div>
-              <div class="antwort-karte">
-                <div class="antwort-portrait" aria-hidden="true">[Porträt]</div>
-                <div>
-                  <p id="antwortTxt"></p>
-                  <span class="unterschrift">— [Vorname], querstrich</span>
-                  <div class="antwort-aktionen">
-                    <a class="knopf knopf--voll knopf--klein" id="antwortMail" href="#kontakt">diese fragen mitschicken <span class="pfeil" aria-hidden="true">→</span></a>
-                    <button class="tlink" type="button" id="antwortReset">zurücksetzen</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        </aside>
       </div>
 
-      <p class="klein rev" style="margin-top:clamp(2rem,4vh,3rem);max-width:62ch">
-        Was eine KI nicht kann: in Ihren Betrieb kommen, mit der Bürokraft sprechen, die drei Auftragsarten sehen, die Sie eigentlich nicht mehr wollen — und dann entscheiden, was <em>nicht</em> auf die Seite kommt. Genau das ist die Arbeit. Der Rest ist Handwerk.
+      <div class="mehrwert rev">
+        <div><h3><em>01 — Anwesenheit</em>Jemand, der zu Ihnen kommt</h3><p>Ich sitze einen Vormittag in Ihrem Betrieb und höre den Leuten zu, die die Arbeit machen. Was ich dort höre, steht danach auf der Seite. Ein Werkzeug war nicht dabei.</p></div>
+        <div><h3><em>02 — Auswahl</em>Jemand, der Nein sagt</h3><p>Ein Generator baut alles, was Sie hineingeben. Ich streiche die Hälfte wieder raus. Genau dieser Teil ist die Arbeit — und der Grund, warum die Seite danach funktioniert.</p></div>
+        <div><h3><em>03 — Haftung</em>Jemand, der geradesteht</h3><p>Festpreis schriftlich, zugesagte Funktion, Datenschutz und Barrierearmut inklusive. Wenn am Freitag das Formular klemmt, gibt es eine Nummer, unter der jemand rangeht.</p></div>
+        <div><h3><em>04 — Dauer</em>Jemand, der nächstes Jahr noch da ist</h3><p>Nach drei Monaten schauen wir gemeinsam auf die Zahlen, nach einem Jahr wieder. Eine Website ist nichts, was man einmal abholt und dann liegen lässt.</p></div>
+      </div>
+
+      <p class="klein rev" style="margin-top:clamp(2rem,4vh,3rem);max-width:64ch">
+        Ich arbeite selbst mit KI — beim Recherchieren, beim Sortieren, beim Wegwerfen von Varianten. Das macht mich schneller, und diesen Vorteil geben Sie über den Festpreis weiter. Was dabei nicht herauskommt: die Entscheidung, was <em>nicht</em> auf die Seite kommt.
       </p>
     </div>
   </section>
@@ -1853,100 +1827,119 @@ leistungen.forEach(function(l){
 });
 
 /* ═════════ FRAGEN-MODUL ═════════ */
+/* Jede Frage zeigt beim Öffnen, was ein Generator daraus macht — und was ich
+   daraus mache. Der Mehrwert steht damit vor dem Angebot, nicht darin. */
 var BRANCHEN = [
-  {
-    id:'handwerk', name:'Handwerk & Bau',
-    maschine:['Welche Farben mag Ihr Unternehmen?','Wie viele Unterseiten sollen es werden?'],
-    meine:[
-      'Wie viele Anfragen im Monat wollen Sie eigentlich — und wie viele davon wollen Sie ablehnen?',
-      'Was steht auf dem Zettel, den Ihre Bürokraft am Telefon ausfüllt? Genau das gehört ins Formular.',
-      'Welchen Auftrag nehmen Sie nicht mehr an? Der darf auf der Seite fehlen.',
-      'Wer soll sich bewerben — und was hält ihn gerade davon ab, bei Ihnen anzurufen?',
-      'Wenn ein Kunde im Umkreis von 30 Kilometern vergleicht: Was sieht er bei den anderen, das er bei Ihnen nicht sieht?'
-    ]
-  },
-  {
-    id:'praxis', name:'Praxis & Kanzlei',
-    maschine:['Beschreiben Sie Ihre Dienstleistung.','Bevorzugen Sie modern oder klassisch?'],
-    meine:[
-      'Bei welcher Frage rufen die Leute an — und bei welcher schreiben sie lieber?',
-      'Was fragen Sie im Erstgespräch als Erstes? Diese Frage gehört auf die Startseite.',
-      'Welche Fälle nehmen Sie nicht an? Das spart Ihnen die teuren Rückfragen.',
-      'Wie lange dauert es bis zum Termin — und weiß der Anrufer das vorher?',
-      'Wer entscheidet mit? Der Partner, die Tochter, der überweisende Kollege?'
-    ]
-  },
-  {
-    id:'gastro', name:'Gastronomie',
-    maschine:['Möchten Sie eine Bildergalerie?','Sollen wir Social-Media-Symbole einbauen?'],
-    meine:[
-      'Was sucht jemand um 18:40 Uhr auf dem Handy? Genau das gehört nach oben.',
-      'Welche drei Sachen bestellen die Leute wirklich?',
-      'Wie viele Reservierungen gehen verloren, weil um 15 Uhr niemand ans Telefon geht?',
-      'Ist Ihre Karte ein PDF — oder etwas, das man am Handy lesen kann?',
-      'Wann haben Sie zu? Das ist die meistgesuchte Information auf Ihrer Seite.'
-    ]
-  },
-  {
-    id:'handel', name:'Handel & Shop',
-    maschine:['Wie viele Produkte haben Sie?','Welches Shop-System wünschen Sie sich?'],
-    meine:[
-      'Welches Produkt trägt den Umsatz — und findet man es in zwei Klicks?',
-      'Was bricht den Kauf ab: Versandkosten, Zahlart oder die Registrierung?',
-      'Verkaufen Sie im Laden anders als online? Warum eigentlich?',
-      'Wer packt die Pakete — und wie viele schafft er am Tag?',
-      'Was passiert nach dem Kauf? Da liegt die zweite Bestellung.'
-    ]
-  },
-  {
-    id:'beratung', name:'Coaching & Beratung',
-    maschine:['Wer ist Ihre Zielgruppe?','Möchten Sie ein Kontaktformular?'],
-    meine:[
-      'Mit welchem Satz beschreibt Sie ein zufriedener Kunde am Küchentisch?',
-      'Was muss jemand fühlen, bevor er den Termin bucht — Erleichterung oder Neugier?',
-      'Welche Anfrage sagen Sie ab? Das gehört auf die Seite, bevor sie kommt.',
-      'Was kostet es? Fehlt die Zahl, sortieren die Leute Sie ins Teure.',
-      'Erstgespräch kostenlos oder nicht? Beides ist richtig — aber es muss dastehen.'
-    ]
-  },
-  {
-    id:'verein', name:'Verein & Event',
-    maschine:['Wollen Sie einen Veranstaltungskalender?','Brauchen Sie einen Blog?'],
-    meine:[
-      'Was soll der Besucher in 30 Sekunden getan haben — zusagen, spenden, mitmachen?',
-      'Wer pflegt die Seite, wenn Sie zwei Wochen im Urlaub sind?',
-      'Wie viele Zusagen versanden gerade in der Nachrichtengruppe?',
-      'Was passiert bei Regen? Steht das irgendwo?',
-      'Wer soll neu dazukommen — und was hält ihn ab?'
-    ]
-  }
+  {id:'handwerk', name:'Handwerk & Bau', fragen:[
+    {f:'Wie viele Anfragen wollen Sie im Monat — und welche wollen Sie ablehnen?',
+     ki:'Baut ein Kontaktformular. Für jede Anfrage dasselbe, vom Wasserhahn bis zum Neubau.',
+     ich:'Ich baue zwei Wege: einen für den Auftrag, den Sie wollen, und einen für den, den Sie höflich weiterreichen. Sie sparen die Angebote, die Sie ohnehin nie schreiben wollten.'},
+    {f:'Was steht auf dem Zettel, den Ihre Bürokraft am Telefon ausfüllt?',
+     ki:'Fragt Name, E-Mail und Nachricht ab. Wie überall.',
+     ich:'Genau diese Felder kommen ins Formular — Objekt, Baujahr, Wunschtermin. Die Anfrage liegt dann so vollständig bei Ihnen, dass Sie direkt kalkulieren können.'},
+    {f:'Wer soll sich bewerben — und was hält ihn gerade davon ab, anzurufen?',
+     ki:'Legt eine Seite „Karriere“ an und hängt die Stellenanzeige als PDF daran.',
+     ich:'Drei Felder, kein Anschreiben, Handy zuerst. Und ein Satz darüber, was er verdient — das ist meistens der Grund, warum er nicht anruft.'},
+    {f:'Was sieht ein Kunde bei den anderen im Umkreis, das er bei Ihnen nicht sieht?',
+     ki:'Kennt Ihren Wettbewerb nicht und kann ihn nicht kennen.',
+     ich:'Ich sehe mir die fünf Betriebe an, gegen die Sie antreten. Danach wissen wir, was auf Ihre Startseite gehört — und welchen Satz gerade jeder schreibt.'}
+  ]},
+  {id:'praxis', name:'Praxis & Kanzlei', fragen:[
+    {f:'Bei welcher Frage rufen die Leute an — und bei welcher schreiben sie lieber?',
+     ki:'Setzt Telefonnummer und Formular nebeneinander und überlässt die Wahl dem Besucher.',
+     ich:'Wir trennen die Wege. Dringendes ans Telefon, Erklärungsbedürftiges ins Formular — mit genau den Angaben, die Sie sonst hinterhertelefonieren.'},
+    {f:'Was fragen Sie im Erstgespräch als Allererstes?',
+     ki:'Schreibt „Herzlich willkommen auf unserer Website“.',
+     ich:'Diese Frage wird die erste Zeile der Startseite. Wer sie mit Ja beantwortet, ist Ihr Mandant — und weiß das nach fünf Sekunden.'},
+    {f:'Welche Fälle nehmen Sie nicht an?',
+     ki:'Listet alles auf, was Sie können. Je mehr, desto besser.',
+     ich:'Wir schreiben hin, was Sie nicht machen. Das klingt mutig und spart Ihnen jede Woche zwei Gespräche, aus denen nichts wird.'},
+    {f:'Wie lange dauert es bis zum Termin — und weiß der Anrufer das vorher?',
+     ki:'Baut ein Terminformular, ohne die Wartezeit zu nennen.',
+     ich:'Die Wartezeit steht sichtbar auf der Seite. Wer sie akzeptiert, meldet sich. Wer nicht, sucht weiter — und blockiert Ihre Anmeldung nicht.'}
+  ]},
+  {id:'gastro', name:'Gastronomie', fragen:[
+    {f:'Was sucht jemand um 18:40 Uhr auf dem Handy?',
+     ki:'Baut eine Startseite mit großem Bild und einem Begrüßungstext.',
+     ich:'Öffnungszeiten, Tisch, Karte — in dieser Reihenfolge, ohne einmal zu scrollen. Alles andere kommt darunter.'},
+    {f:'Welche drei Sachen bestellen die Leute wirklich?',
+     ki:'Übernimmt die komplette Karte, so wie sie im Dokument steht.',
+     ich:'Diese drei stehen oben, mit Bild. Der Rest wird eine ruhige Liste. Das verschiebt Ihren Wareneinsatz spürbar.'},
+    {f:'Wie viele Reservierungen gehen verloren, weil um 15 Uhr niemand rangeht?',
+     ki:'Zeigt die Telefonnummer an und ist damit fertig.',
+     ich:'Wir rechnen es einmal durch. Lohnt es sich, kommt eine Buchungsstrecke rein — lohnt es sich nicht, sparen Sie das Geld.'},
+    {f:'Ist Ihre Karte ein PDF?',
+     ki:'Verlinkt das PDF. Fertig.',
+     ich:'Die Karte wird eine Seite, die man am Handy lesen kann und die Google findet. Ein PDF findet niemand, und niemand liest es unterwegs.'}
+  ]},
+  {id:'handel', name:'Handel & Shop', fragen:[
+    {f:'Welches Produkt trägt den Umsatz — und findet man es in zwei Klicks?',
+     ki:'Legt alle Kategorien gleichwertig nebeneinander.',
+     ich:'Der Umsatzträger bekommt den besten Platz auf der Seite. Die anderen ordnen sich darunter ein, nicht daneben.'},
+    {f:'Was bricht den Kauf ab: Versandkosten, Zahlart oder die Registrierung?',
+     ki:'Baut einen Standard-Bestellprozess, wie er überall aussieht.',
+     ich:'Wir sehen in Ihre Zahlen und reparieren den einen Schritt, an dem die Leute aussteigen. Es ist fast immer genau einer.'},
+    {f:'Wer packt die Pakete — und wie viele schafft er am Tag?',
+     ki:'Kennt Ihr Lager nicht und fragt auch nicht danach.',
+     ich:'Der Shop wird so gebaut, dass er nicht mehr Bestellungen erzeugt, als Sie am Tag hinausbekommen. Sonst kaufen Sie sich Ärger statt Umsatz.'},
+    {f:'Was passiert nach dem Kauf?',
+     ki:'Schickt eine Bestellbestätigung. Danach Stille.',
+     ich:'Genau da liegt die zweite Bestellung. Wir bauen den Moment aus, in dem der Kunde am zufriedensten mit Ihnen ist.'}
+  ]},
+  {id:'beratung', name:'Coaching & Beratung', fragen:[
+    {f:'Mit welchem Satz beschreibt Sie ein zufriedener Kunde am Küchentisch?',
+     ki:'Schreibt „ganzheitlich“, „individuell“ und „auf Augenhöhe“.',
+     ich:'Dieser Satz wird Ihre Überschrift. Er klingt nicht nach Beratung — genau deshalb funktioniert er.'},
+    {f:'Was muss jemand fühlen, bevor er den Termin bucht?',
+     ki:'Setzt einen Knopf „Jetzt Termin buchen“ an den Seitenkopf.',
+     ich:'Wir bauen den Weg dorthin: erst erkannt werden, dann verstehen, dann buchen. Ein Knopf allein holt niemanden ab.'},
+    {f:'Was kostet es?',
+     ki:'Lässt den Preis weg, weil Sie ihn nicht mitgeliefert haben.',
+     ich:'Die Zahl kommt auf die Seite. Fehlt sie, sortieren die Leute Sie ins Teure und fragen gar nicht erst nach.'},
+    {f:'Welche Anfrage sagen Sie ab?',
+     ki:'Formuliert Ihr Angebot so breit wie möglich, um niemanden auszuschließen.',
+     ich:'Wir schreiben hin, für wen Sie nicht der Richtige sind. Das kostet Sie drei Anfragen und bringt Ihnen eine, die passt.'}
+  ]},
+  {id:'verein', name:'Verein & Event', fragen:[
+    {f:'Was soll der Besucher in 30 Sekunden getan haben?',
+     ki:'Baut Startseite, Über uns, Termine, Kontakt. Alles gleich wichtig.',
+     ich:'Eine Handlung steht oben — zusagen, spenden oder mitmachen. Alles andere ordnet sich darunter ein.'},
+    {f:'Wer pflegt die Seite, wenn Sie zwei Wochen weg sind?',
+     ki:'Übergibt Ihnen ein System, das Sie noch nie bedient haben.',
+     ich:'Wir bauen nur, was Ihr Vorstand auch pflegen kann. Eine Stunde Schulung, eine Seite Anleitung, fertig.'},
+    {f:'Wie viele Zusagen versanden gerade in der Nachrichtengruppe?',
+     ki:'Legt ein Kontaktformular an, das in ein Postfach schreibt.',
+     ich:'Zusagen laufen in eine Liste, die Sie exportieren können. Sie hören auf, Namen von Hand mitzuzählen.'},
+    {f:'Was passiert bei Regen?',
+     ki:'Steht nicht in Ihrem Text, also steht es nicht auf der Seite.',
+     ich:'Genau solche Sätze fehlen fast überall. Sie beantworten die Hälfte der Anrufe, bevor sie kommen.'}
+  ]}
 ];
-var ANTWORTEN = [
-  'Eine Frage getroffen. Das ist schon mehr, als die meisten Startseiten über ihren eigenen Betrieb wissen.',
-  'Zwei Treffer. Daraus wird meistens die Struktur der Startseite — in dieser Reihenfolge.',
-  'Drei Treffer. Dann haben wir schon ein halbes Erstgespräch geführt, ohne uns zu kennen.',
-  'Vier Treffer. Ehrlich: Da liegt Ihr Problem selten im Design. Es liegt in der Reihenfolge.',
-  'Alle fünf. Dann rufen Sie mich an — die restlichen Fragen stelle ich am Telefon, und das dauert eine halbe Stunde.'
+var BILANZ = [
+  'Öffnen Sie eine Frage. Sie bekommen die Antwort sofort — nicht erst im Angebot.',
+  'Eine Antwort. Genau so läuft ein Erstgespräch, nur dass wir dort bei zwanzig Fragen landen.',
+  'Zwei Antworten. Das ist noch kein Angebot, aber schon mehr, als die meisten Seiten über ihren eigenen Betrieb wissen.',
+  'Drei Antworten, drei Entscheidungen. Genau die stehen am Ende auf Ihrer Startseite — und zwar in dieser Reihenfolge.',
+  'Alle vier. Dann brauchen wir kein Vorgespräch mehr, sondern einen Termin.'
 ];
 
 var branchenBox = document.getElementById('branchen');
-var maschinenBox = document.getElementById('maschinenFragen');
-var meineBox = document.getElementById('meineFragen');
-var zaehlerTxt = document.getElementById('zaehlerTxt');
-var zaehlerBalken = document.getElementById('zaehlerBalken');
-var antwortBox = document.getElementById('antwort');
-var antwortTxt = document.getElementById('antwortTxt');
-var antwortMail = document.getElementById('antwortMail');
-var antwortReset = document.getElementById('antwortReset');
+var fragenListe = document.getElementById('fragenListe');
+var bilanzZahl = document.getElementById('bilanzZahl');
+var bilanzVon = document.getElementById('bilanzVon');
+var bilanzBalken = document.getElementById('bilanzBalken');
+var bilanzTxt = document.getElementById('bilanzTxt');
+var bilanzMail = document.getElementById('bilanzMail');
+var bilanzReset = document.getElementById('bilanzReset');
 var aktiveBranche = BRANCHEN[0];
-var gewaehlt = [];
+var geoeffnet = [];
 
-BRANCHEN.forEach(function(b, i){
+BRANCHEN.forEach(function(br, i){
   var k = document.createElement('button');
-  k.type = 'button'; k.textContent = b.name;
+  k.type = 'button'; k.textContent = br.name;
   k.setAttribute('aria-pressed', String(i === 0));
   k.addEventListener('click', function(){
-    aktiveBranche = b; gewaehlt = [];
+    aktiveBranche = br; geoeffnet = [];
     [].forEach.call(branchenBox.children, function(x){ x.setAttribute('aria-pressed', String(x === k)); });
     fragenZeichnen();
   });
@@ -1954,53 +1947,72 @@ BRANCHEN.forEach(function(b, i){
 });
 
 function fragenZeichnen(){
-  maschinenBox.innerHTML = '';
-  aktiveBranche.maschine.forEach(function(f){
+  fragenListe.innerHTML = '';
+  aktiveBranche.fragen.forEach(function(q, i){
     var li = document.createElement('li');
-    li.className = 'frage-maschine';
-    li.innerHTML = '<b aria-hidden="true">?</b><span></span>';
-    li.lastChild.textContent = f;
-    maschinenBox.appendChild(li);
-  });
+    li.className = 'qfrage';
+    var kid = 'q-' + aktiveBranche.id + '-' + i;
 
-  meineBox.innerHTML = '';
-  aktiveBranche.meine.forEach(function(f, i){
-    var li = document.createElement('li');
-    var b = document.createElement('button');
-    b.type = 'button'; b.className = 'frage';
-    b.setAttribute('aria-pressed','false');
-    b.innerHTML = '<span class="frage-nr" aria-hidden="true">0' + (i+1) + '</span><span class="frage-txt"></span><span class="frage-haken" aria-hidden="true"></span>';
-    b.querySelector('.frage-txt').textContent = f;
-    b.addEventListener('click', function(){
-      var an = b.getAttribute('aria-pressed') !== 'true';
-      b.setAttribute('aria-pressed', String(an));
-      if(an) gewaehlt.push(f); else gewaehlt = gewaehlt.filter(function(x){ return x !== f; });
-      standAktualisieren();
+    var kopf = document.createElement('button');
+    kopf.type = 'button'; kopf.className = 'qfrage-kopf';
+    kopf.setAttribute('aria-expanded','false');
+    kopf.setAttribute('aria-controls', kid);
+    kopf.innerHTML = '<span class="qfrage-nr" aria-hidden="true">0' + (i+1) + '</span>'
+                   + '<span class="qfrage-txt"></span>'
+                   + '<span class="qfrage-plus" aria-hidden="true"></span>';
+    kopf.querySelector('.qfrage-txt').textContent = q.f;
+
+    var koerper = document.createElement('div');
+    koerper.className = 'qfrage-koerper'; koerper.id = kid;
+    var innen = document.createElement('div');
+    var paar = document.createElement('div');
+    paar.className = 'qpaar';
+    paar.innerHTML = '<div class="qantwort qantwort--ki"><b>Was ein Generator daraus macht</b><p></p></div>'
+                   + '<div class="qantwort qantwort--ich"><b>Was ich daraus mache</b><p></p></div>';
+    paar.querySelector('.qantwort--ki p').textContent = q.ki;
+    paar.querySelector('.qantwort--ich p').textContent = q.ich;
+    innen.appendChild(paar); koerper.appendChild(innen);
+
+    kopf.addEventListener('click', function(){
+      var auf = !li.classList.contains('auf');
+      li.classList.toggle('auf', auf);
+      kopf.setAttribute('aria-expanded', String(auf));
+      if(auf) geoeffnet.push(q.f);
+      else geoeffnet = geoeffnet.filter(function(x){ return x !== q.f; });
+      bilanzAktualisieren();
     });
-    li.appendChild(b); meineBox.appendChild(li);
+
+    li.appendChild(kopf); li.appendChild(koerper);
+    fragenListe.appendChild(li);
   });
-  standAktualisieren();
+  bilanzAktualisieren();
 }
 
-function standAktualisieren(){
-  var n = gewaehlt.length, gesamt = aktiveBranche.meine.length;
-  zaehlerTxt.textContent = n + ' von ' + gesamt + (n === 1 ? ' trifft zu' : ' treffen zu');
-  zaehlerBalken.style.transform = 'scaleX(' + (n / gesamt) + ')';
-  antwortBox.classList.toggle('da', n > 0);
-  if(n > 0){
-    antwortTxt.textContent = ANTWORTEN[Math.min(n, ANTWORTEN.length) - 1];
-    var betreff = 'Erstgespräch — ' + aktiveBranche.name;
-    var text = 'Guten Tag,\n\nauf querstrich.de haben mich diese Fragen getroffen:\n\n'
-             + gewaehlt.map(function(f,i){ return (i+1) + '. ' + f; }).join('\n')
-             + '\n\nBranche: ' + aktiveBranche.name
-             + '\n\nDarüber würde ich gern sprechen.\n\nMit freundlichen Grüßen\n';
-    antwortMail.href = 'mailto:hallo@querstrich.de?subject=' + encodeURIComponent(betreff) + '&body=' + encodeURIComponent(text);
+function bilanzAktualisieren(){
+  var anz = geoeffnet.length, gesamt = aktiveBranche.fragen.length;
+  bilanzZahl.textContent = anz;
+  bilanzVon.textContent = 'von ' + gesamt + (anz === 1 ? ' Frage geöffnet' : ' Fragen geöffnet');
+  bilanzBalken.style.transform = 'scaleX(' + (anz / gesamt) + ')';
+  bilanzTxt.textContent = BILANZ[Math.min(anz, BILANZ.length - 1)];
+
+  var betreff = anz ? 'Erstgespräch — ' + aktiveBranche.name : 'Erstgespräch';
+  var text = 'Guten Tag,\n\n';
+  if(anz){
+    text += 'auf querstrich.de haben mich diese Fragen getroffen:\n\n'
+          + geoeffnet.map(function(f,i){ return (i+1) + '. ' + f; }).join('\n')
+          + '\n\nBranche: ' + aktiveBranche.name + '\n\n';
   }
+  text += 'Darüber würde ich gern eine halbe Stunde sprechen.\n\nMit freundlichen Grüßen\n';
+  bilanzMail.href = 'mailto:hallo@querstrich.de?subject=' + encodeURIComponent(betreff) + '&body=' + encodeURIComponent(text);
 }
-antwortReset.addEventListener('click', function(){
-  gewaehlt = [];
-  [].forEach.call(meineBox.querySelectorAll('.frage'), function(b){ b.setAttribute('aria-pressed','false'); });
-  standAktualisieren();
+
+bilanzReset.addEventListener('click', function(){
+  geoeffnet = [];
+  [].forEach.call(fragenListe.querySelectorAll('.qfrage'), function(li){
+    li.classList.remove('auf');
+    li.querySelector('.qfrage-kopf').setAttribute('aria-expanded','false');
+  });
+  bilanzAktualisieren();
 });
 fragenZeichnen();
 
@@ -2092,10 +2104,11 @@ function heroTakt(){
   if(!hero || sanft) return;
   var budget = hero.offsetHeight - innerHeight;
   var p = budget > 0 ? klemme((-hero.getBoundingClientRect().top) / budget, 0, 1) : 1;
-  /* Der Satz steht von Anfang an — das Scrollen zieht die Ebenen auseinander. */
+  /* Der Satz steht von Anfang an und bleibt bis zuletzt lesbar — das Scrollen
+     zieht nur die Ebenen auseinander. Eine Ausblendung wäre auf Papier ein
+     milchiger Schleier statt eines Übergangs. */
   if(heroInhalt){
-    heroInhalt.style.transform = 'translate3d(0,' + (-p * 110).toFixed(1) + 'px,0)';
-    heroInhalt.style.opacity = (1 - fort(p, .5, .96) * .9).toFixed(3);
+    heroInhalt.style.transform = 'translate3d(0,' + (-p * 96).toFixed(1) + 'px,0)';
   }
 }
 

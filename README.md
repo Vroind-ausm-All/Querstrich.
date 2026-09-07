@@ -1,6 +1,6 @@
 # querstrich.
 
-> **quer** denken. **strich** ziehen. **punkt.**
+> **Quer**verbindung finden. **Strich** ziehen. **Punkt.**
 
 Webauftritt der Einzelagentur **querstrich** — Marke, Website und Technik aus einer Hand.
 
@@ -25,10 +25,10 @@ dadurch immer der dunkle Block auf der hellen Seite (und umgekehrt).
 
 | Abschnitt | Inhalt |
 |---|---|
-| Hero | „quer denken. strich ziehen. punkt." mit Wörterbuch-Glossar |
+| Hero | „Querverbindung finden. Strich ziehen. Punkt." mit Wörterbuch-Glossar |
 | Manifest | Positionierung, Wort-für-Wort-Aufbau |
 | Arbeiten | Drei Projekte, überlappende Ebenen, aufklappbare Fallakte |
-| **Fragen** | **Interaktiv: Was ein Generator fragt — und was ich frage** |
+| **Fragen** | **Interaktiv: was ein Generator daraus macht — und was ich daraus mache** |
 | Leistungen | Vier Bereiche als Akkordeon |
 | Ablauf | Fünf Schritte mit mitlaufender Schiene |
 | Preise | Baukasten mit Live-Aufstellung, drei Pakete |
@@ -38,16 +38,24 @@ dadurch immer der dunkle Block auf der hellen Seite (und umgekehrt).
 
 ## Das Fragen-Modul
 
-Der wichtigste Abschnitt. Statt einer statischen Gegenüberstellung wählt der Besucher
-seine Branche (Handwerk, Praxis, Gastronomie, Handel, Beratung, Verein) und sieht:
+Der wichtigste Abschnitt — und der einzige, der farblich hervorgehoben ist: ein warm
+getönter Grund, in der hellen Ansicht hell, in der dunklen dunkel. Kein umgedrehter
+schwarzer Kasten.
 
-- links, gedämpft und gestrichelt: die zwei Fragen, die ein Generator stellt
-- rechts: fünf Fragen, die aus dem jeweiligen Gewerbe kommen, jede antippbar
+Der Besucher wählt seine Branche (Handwerk, Praxis, Gastronomie, Handel, Beratung,
+Verein) und öffnet eine der vier Fragen. Jede Frage zeigt beim Aufklappen zwei Antworten
+nebeneinander:
 
-Jeder Treffer füllt einen Zähler. Ab dem ersten erscheint eine persönliche Antwort mit
-Porträt und Unterschrift — und der Knopf **„diese Fragen mitschicken"** baut eine
-`mailto:`-Nachricht, die die ausgewählten Fragen und die Branche bereits enthält. Wer
-klickt, hat sein Erstgespräch damit halb vorbereitet.
+- **Was ein Generator daraus macht** — gedämpft, konkret, fair
+- **Was ich daraus mache** — mit Akzentbalken, als benannte Entscheidung samt Folge
+
+Damit steht der Mehrwert **vor** dem Angebot, nicht darin: Wer eine Frage öffnet, bekommt
+die Antwort sofort geschenkt. Rechts läuft eine klebende Bilanz mit, die zählt und
+kommentiert; der Anfrage-Knopf trägt die geöffneten Fragen in die Mail.
+
+Darunter beantworten vier Karten die Frage direkt: **Anwesenheit** (jemand, der zu Ihnen
+kommt), **Auswahl** (jemand, der Nein sagt), **Haftung** (jemand, der geradesteht),
+**Dauer** (jemand, der nächstes Jahr noch da ist).
 
 ## Der Baukasten
 
@@ -67,7 +75,9 @@ Ein einziger `requestAnimationFrame`-Takt für alle Scroll-Effekte:
   Der Bezugspunkt ist immer das **Elternelement**; misst ein Element seine eigene,
   bereits verschobene Position, schaukelt sich die Rechnung auf.
 - Überlappende Ebenen in Arbeiten (Textkarte über dem Mock-Up), Person (Porträt und Text),
-  Baukasten, Fragen-Säulen — jeweils mit unterschiedlichen Geschwindigkeiten
+  Baukasten, Fragenliste und Bilanz — jeweils mit unterschiedlichen Geschwindigkeiten
+- Der Hero blendet beim Scrollen **nicht** aus. Auf dunklem Grund verschwindet fadender
+  Text unauffällig, auf Papier bleibt ein milchiger, unlesbarer Schleier stehen.
 - Geisterwörter hinter den Abschnittsköpfen, angeschnitten per `overflow-x: clip`
   (nicht `hidden` — das würde `position: sticky` lahmlegen)
 

@@ -17,9 +17,9 @@ merkt sich der Browser (`localStorage`), die Systemvorgabe wird bewusst nicht ü
 hell ist der Standard.
 
 Technisch hängt alles an einem Satz semantischer Tokens (`--papier`, `--tinte`, `--akzent`
-…), die unter `[data-thema="dunkel"]` umkippen. Ein einzelner Abschnitt kann sich über die
-Klasse `.invers` gegen die aktuelle Ansicht stellen — das Fragen-Modul nutzt das und ist
-dadurch immer der dunkle Block auf der hellen Seite (und umgekehrt).
+…), die unter `[data-thema="dunkel"]` umkippen. Ein Abschnitt kann sich über die Klasse
+`.getoent` hervorheben, ohne die Ansicht umzudrehen: Der Grund wird in beiden Fassungen
+mit dem Akzent getönt — hell auf hell, dunkel auf dunkel.
 
 ## Aufbau
 

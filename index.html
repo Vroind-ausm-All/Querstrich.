@@ -1,0 +1,1914 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>querstrich — Marke, Website und Technik aus einer Hand</title>
+<meta name="description" content="Gestaltung und Entwicklung aus einer Hand. Markenauftritte und Websites, die Anfragen und Bewerbungen bringen. Festpreis, sechs Wochen, ein Ansprechpartner.">
+<meta name="theme-color" content="#0B0B0D">
+<meta name="author" content="querstrich">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="querstrich">
+<meta property="og:title" content="querstrich — Marke, Website und Technik aus einer Hand">
+<meta property="og:description" content="Markenauftritte und Websites für Betriebe, die Anfragen und Bewerbungen brauchen. Festpreis, sechs Wochen, ein Ansprechpartner.">
+
+<!--
+  ────────────────────────────────────────────────────────────
+  VOR DEM LIVEGANG
+  1. Schriften lokal einbinden statt von Google laden (DSGVO).
+  2. Alle [Platzhalter] ersetzen (Name, Telefon, Anschrift, Stadt).
+  3. Impressum und Datenschutzerklärung anlegen und verlinken.
+  4. og:image und Favicon ergänzen.
+  ────────────────────────────────────────────────────────────
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   1 — TOKEN
+   ═══════════════════════════════════════════════════════════ */
+:root{
+  --ink:#0B0B0D;
+  --ink-2:#101014;
+  --ink-3:#17171C;
+  --ink-4:#212128;
+  --paper:#F4F3EF;
+  --paper-2:#EAE8E1;
+  --ash:#9A998F;
+  --ash-2:#6A6A64;
+  --orange:#FF4A0F;
+  --orange-2:#FF7A45;
+  --rule:rgba(244,243,239,.13);
+  --rule-s:rgba(244,243,239,.06);
+  --rule-ink:rgba(11,11,13,.14);
+
+  --display:"Archivo","Arial Narrow",Impact,sans-serif;
+  --sans:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"DM Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+
+  --wrap:78rem;
+  --gutter:clamp(1.25rem,4vw,3rem);
+  --ease:cubic-bezier(.76,0,.24,1);
+  --ease-out:cubic-bezier(.2,.8,.2,1);
+
+  --glow:rgba(255,74,15,.16);   /* wird beim Hover über Projekte umgefärbt */
+}
+
+/* ═══════════════════════════════════════════════════════════
+   2 — BASIS
+   ═══════════════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--sans);
+  font-size:1.0625rem;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+  overflow-x:clip;
+}
+body.gesperrt{overflow:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+::selection{background:var(--orange);color:var(--paper)}
+:focus-visible{outline:2px solid var(--orange);outline-offset:4px;border-radius:2px}
+
+.wrap{width:min(var(--wrap),100% - var(--gutter)*2);margin-inline:auto}
+.wrap--schmal{width:min(50rem,100% - var(--gutter)*2)}
+section{position:relative;scroll-margin-top:5rem}
+.bereich{padding:clamp(4.5rem,11vh,9rem) 0}
+.mitte{text-align:center}
+.nur-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ── Typografie ────────────────────────────────────────── */
+.d1,.d2,.d3{
+  font-family:var(--display);
+  font-weight:800;
+  font-stretch:82%;
+  text-transform:uppercase;
+  line-height:.86;
+  letter-spacing:-.02em;
+}
+.d1{font-size:clamp(2.9rem,10.5vw,10rem)}
+.d2{font-size:clamp(2.3rem,6.6vw,5.6rem)}
+.d3{font-size:clamp(1.6rem,3.2vw,2.6rem);font-stretch:88%;line-height:.94}
+h3{font-family:var(--sans);font-weight:600;font-size:1.1875rem;line-height:1.35}
+p{max-width:62ch}
+.lead{font-size:clamp(1.0625rem,1.5vw,1.3125rem);line-height:1.55;color:#CFCEC6;max-width:46ch}
+.klein{font-size:.9375rem;line-height:1.55;color:var(--ash)}
+.label{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ash);display:inline-flex;align-items:center;gap:.6rem;
+}
+.label::before{content:"";width:1.6rem;height:1px;background:var(--orange);flex:none}
+.label--nackt::before{display:none}
+.o{color:var(--orange)}
+
+/* Querstrich durch ein Wort */
+.strich{position:relative;display:inline-block;white-space:nowrap}
+.strich::after{
+  content:"";position:absolute;left:-.06em;right:-.06em;top:54%;height:.13em;
+  background:var(--orange);transform:scaleX(0);transform-origin:left;
+  transition:transform .7s var(--ease) .35s;
+}
+.in .strich::after,.strich.an::after{transform:scaleX(1)}
+
+/* ═══════════════════════════════════════════════════════════
+   3 — MARKE (Wortmarke + Quadrat)
+   ═══════════════════════════════════════════════════════════ */
+.marke{
+  display:inline-flex;align-items:flex-start;gap:.1em;
+  font-family:var(--display);font-weight:800;font-stretch:100%;
+  letter-spacing:-.035em;line-height:1;text-transform:lowercase;
+  position:relative;
+}
+.marke-q{display:block;position:relative}
+.marke-sq{
+  display:block;width:.24em;height:.24em;background:var(--orange);
+  flex:none;margin-top:.06em;transition:transform .4s var(--ease-out),background .3s;
+}
+.marke:hover .marke-sq{transform:translateY(-.12em) rotate(45deg)}
+
+/* ═══════════════════════════════════════════════════════════
+   4 — ATMOSPHÄRE (feste Ebenen)
+   ═══════════════════════════════════════════════════════════ */
+.glut{
+  position:fixed;z-index:0;pointer-events:none;
+  width:min(120vw,1400px);aspect-ratio:1;left:50%;top:0;
+  transform:translate(-50%,-45%);
+  background:radial-gradient(closest-side,var(--glow),transparent 72%);
+  transition:background .8s ease;
+}
+.koernung{
+  position:fixed;inset:-120px;z-index:6;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:koernen 6s steps(8) infinite;
+}
+@keyframes koernen{
+  0%{transform:translate(0,0)}   12.5%{transform:translate(-14px,9px)}
+  25%{transform:translate(11px,-13px)} 37.5%{transform:translate(-9px,-8px)}
+  50%{transform:translate(13px,12px)}  62.5%{transform:translate(-12px,6px)}
+  75%{transform:translate(8px,-11px)}  87.5%{transform:translate(-6px,13px)}
+}
+.raster{
+  position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(90deg,var(--rule-s) 1px,transparent 1px);
+  background-size:calc(100% / 6) 100%;
+  mask-image:linear-gradient(180deg,transparent,#000 18%,#000 82%,transparent);
+}
+main,header,footer,.leiste{position:relative;z-index:2}
+
+/* Schrägraster-Fläche (Querstrich-Motiv) */
+.schraffur{
+  background-image:repeating-linear-gradient(45deg,var(--rule) 0 1px,transparent 1px 10px);
+}
+.band{
+  height:12px;
+  background-image:repeating-linear-gradient(45deg,var(--orange) 0 3px,transparent 3px 11px);
+}
+.band--leise{background-image:repeating-linear-gradient(45deg,var(--rule) 0 2px,transparent 2px 10px)}
+
+/* ═══════════════════════════════════════════════════════════
+   5 — CURSOR
+   ═══════════════════════════════════════════════════════════ */
+.cur-dot,.cur-ring{position:fixed;top:0;left:0;z-index:90;pointer-events:none;border-radius:50%;opacity:0;transition:opacity .3s}
+body.cursor-an .cur-dot,body.cursor-an .cur-ring{opacity:1}
+.cur-dot{width:6px;height:6px;background:var(--orange);margin:-3px 0 0 -3px}
+.cur-ring{
+  width:38px;height:38px;margin:-19px 0 0 -19px;border:1px solid rgba(244,243,239,.45);
+  display:grid;place-items:center;
+  transition:width .35s var(--ease-out),height .35s var(--ease-out),margin .35s var(--ease-out),
+             background .3s,border-color .3s,opacity .3s;
+}
+.cur-ring span{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink);opacity:0;transform:scale(.7);transition:opacity .25s,transform .25s;white-space:nowrap;
+}
+body.cur-link .cur-ring{width:58px;height:58px;margin:-29px 0 0 -29px;border-color:var(--orange)}
+body.cur-view .cur-ring{
+  width:104px;height:104px;margin:-52px 0 0 -52px;
+  background:var(--orange);border-color:var(--orange);
+}
+body.cur-view .cur-ring span{opacity:1;transform:none}
+body.cur-view .cur-dot{opacity:0}
+@media (pointer:coarse){.cur-dot,.cur-ring{display:none}}
+
+/* ═══════════════════════════════════════════════════════════
+   6 — VORHANG (Intro)
+   ═══════════════════════════════════════════════════════════ */
+#vorhang{
+  position:fixed;inset:0;z-index:120;background:var(--ink);
+  display:grid;place-items:center;cursor:pointer;
+  transition:transform 1s var(--ease),opacity .5s ease;
+}
+#vorhang.raus{transform:translateY(-101%)}
+#vorhang.weg{display:none}
+.vorhang-inner{display:flex;flex-direction:column;align-items:center;gap:1.4rem}
+#vorhang .marke{font-size:clamp(2.2rem,7vw,4.5rem);opacity:0;animation:vAuf .7s var(--ease-out) .15s forwards}
+.vorhang-linie{width:min(46vw,22rem);height:2px;background:var(--rule);position:relative;overflow:hidden}
+.vorhang-linie i{position:absolute;inset:0;background:var(--orange);transform:scaleX(0);transform-origin:left;animation:vLade 1.9s var(--ease) .3s forwards}
+.vorhang-sub{font-family:var(--mono);font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ash-2);opacity:0;animation:vAuf .6s ease 1s forwards}
+@keyframes vAuf{to{opacity:1}}
+@keyframes vLade{0%{transform:scaleX(0)}70%{transform:scaleX(.72)}100%{transform:scaleX(1)}}
+
+/* ═══════════════════════════════════════════════════════════
+   7 — KOPF
+   ═══════════════════════════════════════════════════════════ */
+.kopf{position:fixed;top:0;left:0;right:0;z-index:70;transition:background .4s ease,border-color .4s ease,backdrop-filter .4s}
+.kopf::after{content:"";position:absolute;inset:auto 0 0 0;height:1px;background:transparent;transition:background .4s}
+.kopf.fest{background:rgba(11,11,13,.72);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px)}
+.kopf.fest::after{background:var(--rule)}
+.kopf-inner{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:1.15rem 0;transition:padding .4s ease}
+.kopf.fest .kopf-inner{padding:.75rem 0}
+.kopf .marke{font-size:1.35rem;position:relative;z-index:81}
+.nav{display:flex;align-items:center;gap:1.6rem}
+.nav-liste{display:flex;align-items:center;gap:1.6rem}
+.nav-liste a{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ash);position:relative;padding:.35rem 0;transition:color .3s;
+}
+.nav-liste a::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--orange);
+  transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease);
+}
+.nav-liste a:hover{color:var(--paper)}
+.nav-liste a:hover::after,.nav-liste a.aktiv::after{transform:scaleX(1);transform-origin:left}
+.nav-liste a.aktiv{color:var(--paper)}
+
+.fortschritt{position:absolute;left:0;bottom:0;height:2px;background:var(--orange);width:0;z-index:1}
+
+.burger{display:none;width:2.6rem;height:2.6rem;position:relative;z-index:81;flex:none}
+.burger i{position:absolute;left:.55rem;right:.55rem;height:1.5px;background:var(--paper);transition:transform .4s var(--ease),opacity .3s}
+.burger i:nth-child(1){top:1rem}
+.burger i:nth-child(2){bottom:1rem}
+.burger.auf i:nth-child(1){transform:translateY(.28rem) rotate(45deg)}
+.burger.auf i:nth-child(2){transform:translateY(-.28rem) rotate(-45deg)}
+
+@media (max-width:60rem){
+  .burger{display:block}
+  .nav-liste{
+    position:fixed;inset:0;z-index:80;background:var(--ink-2);
+    flex-direction:column;align-items:flex-start;justify-content:center;
+    gap:0;padding:0 var(--gutter);
+    clip-path:inset(0 0 100% 0);transition:clip-path .7s var(--ease);
+  }
+  .nav-liste.auf{clip-path:inset(0 0 0 0)}
+  .nav-liste a{
+    font-family:var(--display);font-weight:800;font-stretch:82%;
+    font-size:clamp(2.2rem,11vw,4rem);letter-spacing:-.02em;color:var(--paper);
+    width:100%;padding:.5rem 0;border-bottom:1px solid var(--rule-s);
+    opacity:0;transform:translateY(1rem);transition:opacity .5s,transform .5s,color .3s;
+  }
+  .nav-liste.auf a{opacity:1;transform:none;transition-delay:calc(.16s + var(--i) * .06s)}
+  .nav-liste a::after{display:none}
+  .nav-liste a:hover{color:var(--orange)}
+  .kopf .knopf--klein{display:none}
+}
+
+/* ═══════════════════════════════════════════════════════════
+   8 — KNÖPFE
+   ═══════════════════════════════════════════════════════════ */
+.knopf{
+  position:relative;display:inline-flex;align-items:center;gap:.75rem;overflow:hidden;
+  padding:1rem 1.75rem;border:1px solid var(--orange);background:transparent;color:var(--orange);
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  transition:color .3s ease,border-color .3s ease;isolation:isolate;
+}
+.knopf::before{
+  content:"";position:absolute;inset:0;z-index:-1;background:var(--orange);
+  transform:translateY(101%);transition:transform .45s var(--ease);
+}
+.knopf:hover{color:var(--ink)}
+.knopf:hover::before{transform:none}
+.knopf .pfeil{transition:transform .4s var(--ease-out)}
+.knopf:hover .pfeil{transform:translateX(.35rem)}
+.knopf--voll{background:var(--orange);color:var(--ink)}
+.knopf--voll::before{background:var(--paper);}
+.knopf--voll:hover{color:var(--ink);border-color:var(--paper)}
+.knopf--leise{border-color:var(--rule);color:var(--paper)}
+.knopf--leise::before{background:var(--paper)}
+.knopf--leise:hover{color:var(--ink);border-color:var(--paper)}
+.knopf--klein{padding:.65rem 1.1rem;font-size:.66rem}
+.knopf--breit{width:100%;justify-content:center}
+
+/* Textlink mit wachsender Linie */
+.tlink{position:relative;display:inline-flex;align-items:center;gap:.5rem;padding-bottom:.2rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase}
+.tlink::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform-origin:right;transform:scaleX(1);transition:transform .45s var(--ease)}
+.tlink:hover::after{transform:scaleX(0)}
+.tlink .pfeil{transition:transform .4s var(--ease-out)}
+.tlink:hover .pfeil{transform:translate(.3rem,-.3rem)}
+
+/* ═══════════════════════════════════════════════════════════
+   9 — HERO
+   ═══════════════════════════════════════════════════════════ */
+.hero{height:230vh;position:relative}
+.hero-fest{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.hero-geist{
+  position:absolute;left:50%;top:50%;translate:-50% -50%;
+  font-family:var(--display);font-weight:900;font-stretch:62%;text-transform:uppercase;
+  font-size:min(30vw,26rem);line-height:.8;letter-spacing:-.04em;white-space:nowrap;
+  color:transparent;-webkit-text-stroke:1px rgba(244,243,239,.055);
+  z-index:0;pointer-events:none;user-select:none;
+}
+.hero-schraeg{
+  position:absolute;inset:-20% -30%;z-index:0;pointer-events:none;opacity:.55;
+  background-image:repeating-linear-gradient(45deg,var(--rule-s) 0 1px,transparent 1px 14px);
+  mask-image:radial-gradient(60% 60% at 50% 50%,#000,transparent);
+}
+.hero-inhalt{position:relative;z-index:2;width:min(var(--wrap),100% - var(--gutter)*2);margin-inline:auto}
+.hero .label{margin-bottom:clamp(1rem,3vh,2rem)}
+
+.zeilen{margin:0 0 clamp(1.4rem,3vh,2.4rem)}
+.f-zeile{
+  position:relative;display:block;
+  font-family:var(--display);font-weight:800;font-stretch:76%;text-transform:uppercase;
+  font-size:clamp(2.7rem,11.2vw,10.5rem);line-height:.85;letter-spacing:-.028em;
+}
+.f-zeile:nth-child(3){font-size:clamp(1.9rem,7.4vw,7rem);color:var(--orange)}
+.f-aus{display:block;color:transparent;-webkit-text-stroke:1px rgba(244,243,239,.3)}
+.f-zeile:nth-child(3) .f-aus{-webkit-text-stroke-color:rgba(255,74,15,.32)}
+.f-voll{position:absolute;inset:0;display:block;color:var(--paper);clip-path:inset(100% 0 0 0);-webkit-text-stroke:0}
+.f-zeile:nth-child(3) .f-voll{color:var(--orange)}
+
+.los .f-zeile:nth-child(1) .f-voll{animation:fuellen 1.05s var(--ease) .1s both}
+@keyframes fuellen{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+
+.hero-strich{height:10px;background:var(--orange);transform:scaleX(0);transform-origin:left;margin-bottom:clamp(1.4rem,3vh,2.2rem)}
+.hero-unten{display:flex;align-items:flex-end;justify-content:space-between;gap:2.5rem;flex-wrap:wrap}
+.hero-aktionen{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.6rem}
+.hero-zahlen{display:flex;gap:clamp(1.5rem,4vw,3.5rem)}
+.hero-zahlen b{display:block;font-family:var(--display);font-weight:800;font-stretch:88%;font-size:clamp(1.8rem,3.4vw,2.9rem);line-height:1;letter-spacing:-.02em}
+.hero-zahlen span{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ash-2);display:block;margin-top:.5rem;max-width:14ch;overflow-wrap:anywhere}
+.hero-hinweis{
+  position:absolute;left:50%;bottom:1.6rem;translate:-50% 0;z-index:3;
+  display:flex;align-items:center;gap:.6rem;
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ash-2);
+}
+.hero-hinweis i{display:block;width:1px;height:2.2rem;background:linear-gradient(var(--orange),transparent);animation:tropf 1.8s var(--ease) infinite}
+@keyframes tropf{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media (max-width:52rem){
+  .hero{height:190vh}
+  .hero-geist{font-size:44vw;-webkit-text-stroke-color:rgba(244,243,239,.035)}
+  .hero-zahlen{width:100%;justify-content:space-between;gap:1rem}
+  .hero-zahlen span{font-size:.55rem}
+  .hero-hinweis{display:none}
+}
+
+/* Glitch-Geister */
+.geist{position:absolute;inset:0;pointer-events:none;white-space:nowrap;z-index:3;-webkit-text-stroke:0}
+.geist.a{color:var(--orange);animation:geistA .46s steps(2,end) forwards;mix-blend-mode:screen}
+.geist.b{color:#3BE0FF;animation:geistB .46s steps(2,end) forwards;mix-blend-mode:screen}
+@keyframes geistA{0%{clip-path:inset(12% 0 68% 0);transform:translate(-.05em,0)}25%{clip-path:inset(55% 0 22% 0);transform:translate(.05em,-.01em)}50%{clip-path:inset(30% 0 46% 0);transform:translate(-.03em,.01em) skewX(-5deg)}75%{clip-path:inset(74% 0 6% 0);transform:translate(.04em,0)}100%{clip-path:inset(0 0 100% 0)}}
+@keyframes geistB{0%{clip-path:inset(62% 0 14% 0);transform:translate(.05em,.01em)}30%{clip-path:inset(6% 0 78% 0);transform:translate(-.04em,0)}60%{clip-path:inset(70% 0 12% 0);transform:translate(.03em,-.01em)}100%{clip-path:inset(0 0 100% 0)}}
+
+/* ═══════════════════════════════════════════════════════════
+   10 — LAUFBAND
+   ═══════════════════════════════════════════════════════════ */
+.laufband{overflow:hidden;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:1.05rem 0;background:var(--ink-2)}
+.laufband-spur{display:flex;width:max-content;animation:laufen 34s linear infinite}
+.laufband--retour .laufband-spur{animation-direction:reverse;animation-duration:44s}
+.laufband:hover .laufband-spur{animation-play-state:paused}
+.laufband span{
+  font-family:var(--display);font-weight:800;font-stretch:80%;text-transform:uppercase;
+  font-size:clamp(1.1rem,2.1vw,1.7rem);letter-spacing:.01em;padding:0 1.5rem;white-space:nowrap;color:var(--paper);
+}
+.laufband span.sl{color:var(--orange);transform:skewX(-16deg);padding:0 .3rem}
+@keyframes laufen{to{transform:translateX(-50%)}}
+
+/* ═══════════════════════════════════════════════════════════
+   11 — KOPFZEILE / MANIFEST
+   ═══════════════════════════════════════════════════════════ */
+.kopfzeile{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);gap:2.5rem;align-items:end;margin-bottom:clamp(2.5rem,6vh,4.5rem)}
+.kopfzeile .label{margin-bottom:1.5rem}
+.kopfzeile p{color:var(--ash);max-width:42ch}
+@media (max-width:52rem){.kopfzeile{grid-template-columns:1fr;gap:1.5rem;align-items:start}}
+
+.manifest{font-family:var(--display);font-weight:700;font-stretch:88%;font-size:clamp(1.5rem,3.6vw,3.05rem);line-height:1.14;letter-spacing:-.02em;text-transform:none;max-width:22ch}
+.manifest .w{display:inline-block;opacity:.16;transform:translateY(.22em);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.manifest.in .w{opacity:1;transform:none}
+.manifest .w.leucht{color:var(--orange)}
+.manifest-fuss{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:clamp(2.5rem,5vh,4rem);border-top:1px solid var(--rule);padding-top:1.75rem}
+.manifest-fuss div strong{font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:.6rem}
+@media (max-width:52rem){.manifest-fuss{grid-template-columns:1fr;gap:1.25rem}}
+
+/* ═══════════════════════════════════════════════════════════
+   12 — ARBEITEN
+   ═══════════════════════════════════════════════════════════ */
+.filter{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:clamp(2rem,4vh,3rem)}
+.filter button{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  padding:.6rem 1.05rem;border:1px solid var(--rule);color:var(--ash);
+  transition:color .3s,border-color .3s,background .3s;
+}
+.filter button:hover{color:var(--paper);border-color:var(--paper)}
+.filter button[aria-pressed="true"]{background:var(--paper);border-color:var(--paper);color:var(--ink)}
+
+.faelle{display:flex;flex-direction:column;gap:clamp(3rem,8vh,7rem)}
+.fall{
+  display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);
+  gap:clamp(1.5rem,4vw,3.5rem);align-items:center;
+  transition:opacity .5s ease,filter .5s ease;
+}
+.fall.aus{display:none}
+.fall:nth-child(even) .fall-vis{order:2}
+.fall-vis{position:relative;cursor:pointer;will-change:transform}
+.fall-rahmen{
+  position:relative;overflow:hidden;border:1px solid var(--rule);background:var(--ink-2);
+  aspect-ratio:16/11;
+  container-type:inline-size;
+  transition:transform .6s var(--ease-out),border-color .5s,box-shadow .6s;
+  will-change:transform;
+}
+.fall-vis:hover .fall-rahmen{transform:translateY(-8px);border-color:var(--akz,var(--orange));box-shadow:0 30px 70px -30px var(--akz,var(--orange))}
+.fall-buehne{position:absolute;inset:0;transition:transform .8s var(--ease-out),filter .6s ease;filter:saturate(.55) brightness(.86);will-change:transform}
+.fall-vis:hover .fall-buehne{filter:saturate(1) brightness(1);transform:scale(1.025)}
+.fall-wisch{
+  position:absolute;inset:0;z-index:5;pointer-events:none;
+  background:linear-gradient(105deg,transparent 38%,rgba(244,243,239,.16) 50%,transparent 62%);
+  transform:translateX(-110%);transition:transform .9s var(--ease);
+}
+.fall-vis:hover .fall-wisch{transform:translateX(110%)}
+.fall-nr{
+  position:absolute;left:0;top:0;z-index:8;translate:-28% -34%;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;color:var(--ink);
+  background:var(--akz,var(--orange));padding:.45rem .75rem;
+  transition:translate .5s var(--ease-out);
+}
+.fall-vis:hover .fall-nr{translate:-28% -52%}
+.fall-txt{min-width:0}
+.fall-meta{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:1.1rem}
+.fall-meta span{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ash);border:1px solid var(--rule);padding:.3rem .6rem}
+.fall-titel{
+  position:relative;display:inline-block;
+  font-family:var(--display);font-weight:800;font-stretch:84%;text-transform:uppercase;
+  font-size:clamp(1.9rem,4.4vw,3.4rem);line-height:.92;letter-spacing:-.025em;margin-bottom:.4rem;
+  transition:transform .5s var(--ease-out);
+}
+.fall-titel::after{
+  content:"";position:absolute;left:-.02em;right:-.02em;bottom:.02em;height:.08em;background:var(--akz,var(--orange));
+  transform:scaleX(0);transform-origin:left;transition:transform .55s var(--ease);
+}
+.fall:hover .fall-titel{transform:translateX(.4rem)}
+.fall:hover .fall-titel::after{transform:scaleX(1)}
+.fall-sub{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--akz,var(--orange));margin-bottom:1.2rem}
+.fall-txt p{color:var(--ash);max-width:44ch}
+.fall-ergebnis{
+  margin-top:1.4rem;padding-left:1rem;border-left:3px solid var(--akz,var(--orange));
+  font-family:var(--display);font-weight:700;font-stretch:88%;font-size:clamp(1.05rem,1.7vw,1.35rem);
+  line-height:1.2;text-transform:uppercase;letter-spacing:-.01em;color:var(--paper);
+}
+.fall-aktionen{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.6rem}
+
+/* aufklappbare Fallakte */
+.akte{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease),margin .6s var(--ease);margin-top:0}
+.fall.offen .akte{grid-template-rows:1fr;margin-top:1.8rem}
+.akte-inner{overflow:hidden;min-height:0}
+.akte-gitter{display:grid;gap:1.25rem;border-top:1px solid var(--rule);padding-top:1.5rem}
+.akte-gitter dt{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--akz,var(--orange));margin-bottom:.4rem}
+.akte-gitter dd{color:var(--ash);font-size:.9375rem;line-height:1.6;max-width:52ch}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.25rem}
+.chips i{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;font-style:normal;color:var(--ash-2);border:1px solid var(--rule-s);padding:.28rem .55rem}
+
+@media (max-width:60rem){
+  .fall{grid-template-columns:1fr;gap:1.5rem}
+  .fall:nth-child(even) .fall-vis{order:0}
+}
+
+/* ── Mock: gemeinsame Bausteine ───────────────────────── */
+.mk{position:absolute;inset:0;display:flex;flex-direction:column;overflow:hidden;font-family:var(--sans)}
+.mk-bar{display:flex;align-items:center;gap:.5rem;padding:clamp(.5rem,1.4cqw,1rem) clamp(.7rem,1.8cqw,1.3rem);flex:none}
+.mk-nav{display:flex;gap:.5rem;margin-left:auto}
+.mk-nav i{display:block;width:1.5rem;height:.28rem;border-radius:2px;background:currentColor;opacity:.35}
+.mk-pille{border-radius:99px;padding:.3rem .8rem;font-size:.5rem;letter-spacing:.06em;font-weight:600;white-space:nowrap}
+.mk-body{flex:1;display:grid;padding:0 clamp(.7rem,1.8cqw,1.3rem) clamp(.7rem,1.8cqw,1.3rem);min-height:0;overflow:hidden}
+.mk-linie{height:.32rem;border-radius:2px;background:currentColor;opacity:.2}
+.mk-t{font-weight:700;line-height:.94;letter-spacing:-.03em}
+
+/* Mock 1 — Coaching with Maria */
+.mk-maria{background:#EEF1F6;color:#16233A}
+.mk-maria .mk-bar{background:#fff;border-bottom:1px solid rgba(22,35,58,.08)}
+.mk-maria .mk-logo{font-weight:800;font-size:.62rem;letter-spacing:-.02em}
+.mk-maria .mk-pille{background:#E4503C;color:#fff}
+.mk-maria .mk-body{grid-template-columns:1.05fr .95fr;gap:.9rem;align-items:center;padding-top:clamp(.6rem,1.6cqw,1.2rem)}
+.mk-maria .mk-t{font-size:clamp(.85rem,3.4cqw,1.6rem);color:#16233A;margin-bottom:.5rem}
+.mk-maria .mk-t em{font-style:normal;color:#E4503C}
+.mk-maria .mk-lines{display:flex;flex-direction:column;gap:.3rem;margin-bottom:.7rem}
+.mk-maria .mk-lines i{display:block;height:.28rem;border-radius:2px;background:#7A869B;opacity:.4}
+.mk-maria .mk-cta{display:flex;gap:.4rem;align-items:center}
+.mk-maria .mk-cta u{text-decoration:none;white-space:nowrap;font-size:.5rem;border-radius:99px;padding:.3rem .75rem;background:#E4503C;color:#fff;font-weight:600}
+.mk-maria .mk-cta s{text-decoration:none;white-space:nowrap;font-size:.5rem;border-radius:99px;padding:.3rem .75rem;border:1px solid rgba(22,35,58,.18);color:#47566E}
+.mk-maria .mk-chips{display:flex;gap:.25rem;margin-top:.6rem;flex-wrap:wrap}
+.mk-maria .mk-chips b{font-weight:500;font-size:.44rem;padding:.2rem .45rem;border-radius:99px;background:#fff;color:#47566E;border:1px solid rgba(22,35,58,.08)}
+.mk-maria .mk-foto{
+  position:relative;border-radius:.7rem;align-self:stretch;height:100%;min-height:0;
+  background:linear-gradient(150deg,#F2A93B,#E4503C 62%,#1F9188);
+  overflow:hidden;
+}
+.mk-maria .mk-foto::after{content:"";position:absolute;left:14%;right:-6%;bottom:10%;height:38%;border-radius:.5rem;background:rgba(255,255,255,.92)}
+.mk-maria .mk-foto b{position:absolute;left:20%;bottom:26%;z-index:2;width:52%;height:.26rem;border-radius:2px;background:#16233A;opacity:.75}
+.mk-maria .mk-foto i{position:absolute;left:20%;bottom:18%;z-index:2;width:36%;height:.2rem;border-radius:2px;background:#7A869B;opacity:.6}
+
+/* Mock 2 — Sharemics */
+.mk-share{
+  color:#322823;
+  background:
+    radial-gradient(circle at 12% 12%,rgba(255,217,176,.9),transparent 26%),
+    radial-gradient(circle at 86% 14%,rgba(185,213,231,.7),transparent 26%),
+    radial-gradient(circle at 72% 82%,rgba(217,143,137,.34),transparent 28%),
+    linear-gradient(135deg,#f7eee6,#fff7f1 30%,#ffe8d5 60%,#f5ebe8);
+}
+.mk-share .mk-bar{color:#73655e}
+.mk-share .mk-mark{width:1.1rem;height:1.1rem;border-radius:.35rem;background:linear-gradient(140deg,#f2b58b,#b9d5e7);flex:none}
+.mk-share .mk-logo{font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#322823}
+.mk-share .mk-pille{background:linear-gradient(135deg,#cd714e,#d79b52);color:#fff}
+.mk-share .mk-body{grid-template-rows:auto 1fr;gap:.7rem;align-content:center}
+.mk-share .mk-t{
+  font-family:"Iowan Old Style",Palatino,Georgia,serif;font-weight:600;letter-spacing:-.045em;
+  font-size:clamp(.95rem,4.4cqw,2.1rem);line-height:.94;position:relative;z-index:2;
+}
+.mk-share .maeander{position:absolute;left:2%;top:8%;width:44%;opacity:.2;z-index:1;color:#cd714e}
+.mk-share .mk-karten{display:grid;grid-template-columns:repeat(4,1fr);gap:.45rem;align-self:end;align-items:end}
+.mk-share .mk-karte{background:rgba(255,250,246,.9);border:1px solid rgba(77,62,56,.08);border-radius:.6rem;padding:.4rem;display:flex;flex-direction:column;gap:.28rem;box-shadow:0 6px 18px rgba(64,42,37,.06)}
+.mk-share .mk-obj{border-radius:.4rem;aspect-ratio:1;background:#ffd5b3;flex:none}
+.mk-share .mk-karte:nth-child(2) .mk-obj{background:#b9d5e7}
+.mk-share .mk-karte:nth-child(3) .mk-obj{background:#d98f89}
+.mk-share .mk-karte:nth-child(4) .mk-obj{background:#cbbbdc}
+.mk-share .mk-karte i{display:block;height:.2rem;border-radius:2px;background:#73655e;opacity:.35}
+.mk-share .mk-karte i:nth-of-type(2){width:55%;background:#cd714e;opacity:.8}
+
+/* Mock 3 — 33ter Sonnenstrahl */
+.mk-33{background:#0e0f0c;color:#f0efe8;overflow:hidden}
+.mk-33 .mk-sonne{
+  position:absolute;left:50%;bottom:-26%;width:56%;aspect-ratio:1;border-radius:50%;
+  background:#b8bc3a;translate:-50% 0;
+  box-shadow:0 0 90px 24px rgba(184,188,58,.24);
+  transition:translate .9s var(--ease-out);
+}
+.fall-vis:hover .mk-33 .mk-sonne{translate:-50% -18%}
+.mk-33 .mk-bar{position:relative;z-index:2;color:#8a8b7e;border-bottom:1px solid rgba(240,239,232,.1)}
+.mk-33 .mk-logo{font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:#f0efe8}
+.mk-33 .mk-datum{margin-left:auto;font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;color:#b8bc3a}
+.mk-33 .mk-body{position:relative;z-index:2;align-content:center;gap:.1rem}
+.mk-33 .mk-t{
+  font-family:var(--display);font-weight:800;font-stretch:76%;text-transform:uppercase;
+  font-size:clamp(1.1rem,5.4cqw,2.7rem);line-height:.84;letter-spacing:-.03em;
+}
+.mk-33 .mk-t.hohl{color:transparent;-webkit-text-stroke:1px rgba(240,239,232,.55)}
+.mk-33 .mk-fuss{display:flex;gap:.7rem;margin-top:.7rem;font-family:var(--mono);font-size:.46rem;letter-spacing:.2em;text-transform:uppercase;color:#8a8b7e}
+.mk-33 .mk-scan{position:absolute;inset:0;z-index:3;pointer-events:none;background:repeating-linear-gradient(180deg,rgba(240,239,232,.05) 0 1px,transparent 1px 4px);opacity:.5}
+
+/* ═══════════════════════════════════════════════════════════
+   13 — LEISTUNGEN
+   ═══════════════════════════════════════════════════════════ */
+.leistungen{border-top:1px solid var(--rule)}
+.leistung{position:relative;border-bottom:1px solid var(--rule);isolation:isolate}
+.leistung-kopf{
+  width:100%;display:grid;grid-template-columns:4.5rem 1fr auto;gap:1.5rem;align-items:center;
+  padding:clamp(1.4rem,3.4vh,2.4rem) 1rem;text-align:left;position:relative;z-index:2;
+  transition:padding .45s var(--ease),color .35s;
+}
+.leistung::before{
+  content:"";position:absolute;inset:0;z-index:0;background:var(--orange);
+  transform:scaleY(0);transform-origin:bottom;transition:transform .5s var(--ease);
+}
+.leistung:hover::before,.leistung.offen::before{transform:scaleY(1);transform-origin:top}
+.leistung:hover .leistung-kopf,.leistung.offen .leistung-kopf{color:var(--ink);padding-left:1.75rem}
+.leistung-nr{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;color:var(--ash);transition:color .35s}
+.leistung:hover .leistung-nr,.leistung.offen .leistung-nr{color:rgba(11,11,13,.6)}
+.leistung-name{font-family:var(--display);font-weight:800;font-stretch:84%;text-transform:uppercase;font-size:clamp(1.4rem,3.6vw,2.6rem);line-height:.95;letter-spacing:-.025em}
+.leistung-plus{position:relative;width:1.5rem;height:1.5rem;flex:none}
+.leistung-plus::before,.leistung-plus::after{content:"";position:absolute;background:currentColor;transition:transform .45s var(--ease),opacity .3s}
+.leistung-plus::before{left:0;right:0;top:50%;height:1px;translate:0 -50%}
+.leistung-plus::after{top:0;bottom:0;left:50%;width:1px;translate:-50% 0}
+.leistung.offen .leistung-plus::after{transform:scaleY(0)}
+.leistung-koerper{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease);position:relative;z-index:2}
+.leistung.offen .leistung-koerper{grid-template-rows:1fr}
+.leistung-koerper > div{overflow:hidden;min-height:0}
+.leistung-inhalt{
+  display:grid;grid-template-columns:4.5rem 1fr;gap:1.5rem;
+  padding:0 1rem clamp(1.6rem,3.5vh,2.4rem);color:var(--ink);
+}
+.leistung-inhalt p{color:rgba(11,11,13,.72);max-width:52ch}
+.leistung-inhalt ul{list-style:none;display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+.leistung-inhalt li{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(11,11,13,.25);padding:.3rem .6rem}
+@media (max-width:52rem){
+  .leistung-kopf{grid-template-columns:2.6rem 1fr auto;gap:.9rem;padding-inline:.25rem}
+  .leistung:hover .leistung-kopf,.leistung.offen .leistung-kopf{padding-left:.75rem}
+  .leistung-inhalt{grid-template-columns:1fr;padding-inline:.25rem}
+  .leistung-inhalt .leer{display:none}
+}
+
+/* ═══════════════════════════════════════════════════════════
+   14 — ABLAUF
+   ═══════════════════════════════════════════════════════════ */
+.ablauf-gitter{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(2rem,6vw,5rem);align-items:start}
+.ablauf-fest{position:sticky;top:clamp(6rem,14vh,9rem)}
+.schritte{list-style:none;position:relative;padding-left:clamp(1.5rem,4vw,3rem)}
+.schritte::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--rule)}
+.schienen-fuell{position:absolute;left:0;top:0;width:2px;background:var(--orange);height:0;box-shadow:0 0 12px rgba(255,74,15,.5);transition:height .2s linear}
+.schritt{position:relative;padding:clamp(1.4rem,3vh,2.2rem) 0;opacity:.42;transition:opacity .5s ease}
+.schritt.aktiv{opacity:1}
+.schritt::before{
+  content:"";position:absolute;left:calc(clamp(1.5rem,4vw,3rem) * -1);top:calc(clamp(1.4rem,3vh,2.2rem) + .55em);
+  width:10px;height:10px;background:var(--ink);border:1px solid var(--rule);translate:-4px 0;
+  transition:background .4s,border-color .4s,transform .4s var(--ease-out);
+}
+.schritt.aktiv::before{background:var(--orange);border-color:var(--orange);transform:scale(1.3) rotate(45deg)}
+.schritt-nr{font-family:var(--mono);font-size:.65rem;letter-spacing:.2em;color:var(--orange);display:block;margin-bottom:.6rem}
+.schritt h3{margin-bottom:.5rem;font-size:1.375rem}
+.schritt p{color:var(--ash);max-width:48ch}
+.schritt-dauer{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ash-2);margin-top:.8rem;display:block}
+@media (max-width:60rem){
+  .ablauf-gitter{grid-template-columns:1fr;gap:2rem}
+  .ablauf-fest{position:static}
+}
+
+/* ═══════════════════════════════════════════════════════════
+   15 — PREISE (heller Umbruch)
+   ═══════════════════════════════════════════════════════════ */
+.hell{background:var(--paper);color:var(--ink)}
+.hell .label{color:#55554F}
+.hell .kopfzeile p,.hell .klein{color:#5C5B54}
+.hell .knopf{border-color:var(--ink);color:var(--ink)}
+.hell .knopf::before{background:var(--ink)}
+.hell .knopf:hover{color:var(--paper)}
+.hell .knopf--voll{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+.hell .knopf--voll::before{background:var(--ink)}
+.hell .knopf--voll:hover{color:var(--paper);border-color:var(--ink)}
+
+.rechner{
+  border:1px solid var(--rule-ink);display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);
+  gap:clamp(1.5rem,3vw,3rem);padding:clamp(1.5rem,3.5vw,2.5rem);margin-bottom:clamp(2.5rem,5vh,4rem);
+  background:#fff;
+}
+.rechner-felder{display:flex;flex-wrap:wrap;gap:1.25rem 2rem;margin-top:1.5rem}
+.feld{display:flex;flex-direction:column;gap:.45rem;min-width:12rem}
+.feld label{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ash-2)}
+.feld select{
+  border:0;border-bottom:1px solid var(--ink);background:transparent;padding:.5rem 0;
+  font-family:var(--display);font-weight:700;font-stretch:90%;font-size:1.0625rem;
+  border-radius:0;appearance:none;cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,var(--orange) 50%),linear-gradient(135deg,var(--orange) 50%,transparent 50%);
+  background-position:calc(100% - 10px) calc(50% + 1px),calc(100% - 5px) calc(50% + 1px);
+  background-size:5px 5px;background-repeat:no-repeat;padding-right:1.5rem;
+}
+.schalter{display:flex;flex-direction:column;gap:.6rem;width:100%;margin-top:.25rem}
+.schalter label{display:flex;align-items:center;gap:.7rem;cursor:pointer;font-size:.9375rem;transition:color .25s}
+.schalter label:hover{color:var(--orange)}
+.schalter input{
+  appearance:none;width:1.05rem;height:1.05rem;border:1px solid var(--ink);flex:none;position:relative;cursor:pointer;
+  transition:background .25s,border-color .25s;
+}
+.schalter input:checked{background:var(--orange);border-color:var(--orange)}
+.schalter input:checked::after{content:"";position:absolute;inset:.24rem;background:var(--ink)}
+.rechner-ergebnis{border-left:1px solid var(--rule-ink);padding-left:clamp(1.5rem,3vw,2.5rem);display:flex;flex-direction:column;justify-content:center}
+.rechner-ergebnis .zahl{font-family:var(--display);font-weight:800;font-stretch:86%;font-size:clamp(2.4rem,5.5vw,3.6rem);line-height:1;letter-spacing:-.03em;display:block}
+@media (max-width:60rem){
+  .rechner{grid-template-columns:1fr}
+  .rechner-ergebnis{border-left:0;border-top:1px solid var(--rule-ink);padding-left:0;padding-top:1.5rem}
+}
+
+.pakete{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule-ink);border:1px solid var(--rule-ink)}
+.paket{background:var(--paper);padding:clamp(1.5rem,3vw,2.25rem);display:flex;flex-direction:column;position:relative;transition:background .4s ease}
+.paket::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.paket:hover{background:#fff}
+.paket:hover::before{transform:scaleX(1)}
+.paket--top{background:var(--ink);color:var(--paper)}
+.paket--top:hover{background:var(--ink-2)}
+.paket--top::before{transform:scaleX(1)}
+.paket--top .paket-fuer,.paket--top .paket li{color:#B4B3AB}
+.paket-fahne{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:.8rem}
+.paket-name{font-family:var(--display);font-weight:800;font-stretch:86%;text-transform:uppercase;font-size:1.75rem;line-height:1;letter-spacing:-.02em}
+.paket-preis{font-family:var(--display);font-weight:800;font-stretch:86%;font-size:2.6rem;line-height:1.05;letter-spacing:-.03em;margin:.7rem 0 .3rem}
+.paket-fuer{font-size:.9375rem;color:#5C5B54;margin-bottom:1.5rem;min-height:3em}
+.paket ul{list-style:none;margin-bottom:2rem;display:flex;flex-direction:column;gap:.7rem}
+.paket li{display:grid;grid-template-columns:1rem 1fr;gap:.6rem;font-size:.9375rem;line-height:1.45;color:#3A3A36}
+.paket li b{color:var(--orange);font-weight:700}
+.paket .knopf{margin-top:auto}
+.paket--top .knopf{border-color:var(--orange);color:var(--orange)}
+.paket--top .knopf::before{background:var(--orange)}
+.paket--top .knopf:hover{color:var(--ink)}
+@media (max-width:60rem){.pakete{grid-template-columns:1fr}.paket-fuer{min-height:0}}
+
+.betreuung{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:clamp(2rem,4vh,3rem);border-top:1px solid var(--rule-ink);padding-top:2rem}
+.betreuung strong{font-family:var(--display);font-weight:800;font-stretch:88%;font-size:1.5rem;display:block;letter-spacing:-.02em;margin-bottom:.4rem}
+@media (max-width:52rem){.betreuung{grid-template-columns:1fr;gap:1.25rem}}
+
+/* ═══════════════════════════════════════════════════════════
+   16 — VERGLEICH
+   ═══════════════════════════════════════════════════════════ */
+.vergleich{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.vergleich > div{background:var(--ink);padding:clamp(1.5rem,3vw,2.5rem)}
+.vergleich .rechts{background:var(--ink-2)}
+.vergleich h3{font-family:var(--display);font-weight:800;font-stretch:86%;text-transform:uppercase;font-size:1.5rem;letter-spacing:-.02em;margin-bottom:1.5rem}
+.vergleich .rechts h3{color:var(--orange)}
+.vergleich ul{list-style:none;display:flex;flex-direction:column}
+.vergleich li{
+  display:grid;grid-template-columns:1.3rem 1fr;gap:.7rem;padding:.85rem 0;
+  border-top:1px solid var(--rule-s);font-size:.9375rem;line-height:1.5;
+  transition:transform .35s var(--ease-out),color .35s;
+}
+.vergleich li:first-child{border-top:0}
+.vergleich li:hover{transform:translateX(.3rem)}
+.vergleich .links li{color:var(--ash-2)}
+.vergleich .links li:hover{color:var(--ash)}
+.vergleich .rechts li{color:#CFCEC6}
+.vergleich .rechts li:hover{color:var(--paper)}
+.vergleich .zk{font-family:var(--display);font-weight:800;color:var(--ash-2);transform:skewX(-16deg)}
+.vergleich .rechts .zk{color:var(--orange)}
+@media (max-width:60rem){.vergleich{grid-template-columns:1fr}}
+
+/* ═══════════════════════════════════════════════════════════
+   17 — PERSON
+   ═══════════════════════════════════════════════════════════ */
+.person{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(2rem,5vw,4rem);align-items:center}
+.portrait{position:relative;aspect-ratio:4/5;overflow:hidden;border:1px solid var(--rule);background:var(--ink-2)}
+.portrait-inner{
+  position:absolute;inset:-11%;display:grid;place-items:center;text-align:center;padding:2rem;
+  background-image:repeating-linear-gradient(45deg,var(--rule-s) 0 1px,transparent 1px 12px);
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ash-2);
+  will-change:transform;
+}
+.portrait::after{content:"";position:absolute;right:1.1rem;top:1.1rem;width:1.6rem;height:1.6rem;background:var(--orange)}
+.person-zitat{font-family:var(--display);font-weight:700;font-stretch:88%;font-size:clamp(1.3rem,2.6vw,2rem);line-height:1.15;letter-spacing:-.02em;margin-bottom:1.75rem}
+.person p{color:var(--ash);margin-bottom:1.1em}
+.person-liste{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.7rem 1.5rem;margin-top:1.75rem;border-top:1px solid var(--rule);padding-top:1.5rem}
+.person-liste li{display:grid;grid-template-columns:1rem 1fr;gap:.6rem;font-size:.9375rem;color:var(--ash)}
+.person-liste b{color:var(--orange)}
+@media (max-width:60rem){.person{grid-template-columns:1fr}.person-liste{grid-template-columns:1fr}}
+
+/* ═══════════════════════════════════════════════════════════
+   18 — FAQ
+   ═══════════════════════════════════════════════════════════ */
+.faq details{border-top:1px solid var(--rule)}
+.faq details:last-of-type{border-bottom:1px solid var(--rule)}
+.faq summary{
+  list-style:none;cursor:pointer;padding:1.4rem 0;display:grid;grid-template-columns:1fr 1.5rem;gap:1.5rem;
+  align-items:start;font-weight:600;font-size:1.0625rem;transition:color .3s,padding-left .4s var(--ease);
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:var(--orange);padding-left:.6rem}
+.faq summary i{
+  justify-self:end;width:1rem;height:1rem;position:relative;margin-top:.35rem;
+}
+.faq summary i::before,.faq summary i::after{content:"";position:absolute;background:var(--orange);transition:transform .4s var(--ease)}
+.faq summary i::before{left:0;right:0;top:50%;height:1px;translate:0 -50%}
+.faq summary i::after{top:0;bottom:0;left:50%;width:1px;translate:-50% 0}
+.faq details[open] summary i::after{transform:scaleY(0)}
+.faq details[open] summary{color:var(--orange)}
+.faq details p{padding:0 0 1.5rem;color:var(--ash);max-width:60ch}
+.faq details[open] p{animation:faqAuf .5s var(--ease-out) both}
+@keyframes faqAuf{from{opacity:0;transform:translateY(-.4rem)}}
+
+/* ═══════════════════════════════════════════════════════════
+   19 — ABSCHLUSS & FUSS
+   ═══════════════════════════════════════════════════════════ */
+.abschluss{position:relative;overflow:hidden;text-align:center;padding:clamp(5rem,14vh,10rem) 0}
+.abschluss::before{
+  content:"";position:absolute;left:50%;top:50%;translate:-50% -50%;
+  width:min(140vw,1200px);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(255,74,15,.16),transparent 70%);pointer-events:none;
+}
+.abschluss > *{position:relative;z-index:1}
+.abschluss p{margin-inline:auto}
+.abschluss .d1{margin:1.5rem 0}
+.kontaktzeile{display:flex;flex-direction:column;gap:.5rem;align-items:center;margin-top:2.5rem}
+.kontaktzeile a{
+  font-family:var(--display);font-weight:700;font-stretch:88%;font-size:clamp(1.1rem,2.6vw,1.9rem);
+  letter-spacing:-.02em;position:relative;padding-bottom:.15rem;
+}
+.kontaktzeile a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.kontaktzeile a:hover::after{transform:scaleX(1)}
+
+.fuss{padding:3rem 0 3.5rem;border-top:1px solid var(--rule)}
+.fuss-oben{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;flex-wrap:wrap}
+.fuss .marke{font-size:1.6rem}
+.fuss-nav{display:flex;gap:1.5rem;flex-wrap:wrap}
+.fuss-nav a{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ash);transition:color .3s}
+.fuss-nav a:hover{color:var(--orange)}
+.fuss-unten{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:2.5rem;border-top:1px solid var(--rule-s);padding-top:1.5rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ash-2)}
+.hoch{display:inline-flex;align-items:center;gap:.5rem;transition:color .3s}
+.hoch:hover{color:var(--orange)}
+
+/* ═══════════════════════════════════════════════════════════
+   20 — KLEBELEISTE
+   ═══════════════════════════════════════════════════════════ */
+.leiste{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:.8rem var(--gutter);background:rgba(11,11,13,.86);backdrop-filter:blur(12px);
+  border-top:1px solid var(--rule);
+  transform:translateY(110%);transition:transform .5s var(--ease);
+}
+.leiste.da{transform:none}
+.leiste p{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ash);margin:0}
+@media (max-width:52rem){.leiste{justify-content:center}.leiste p{display:none}}
+
+/* ═══════════════════════════════════════════════════════════
+   21 — REVEAL & BEWEGUNG
+   ═══════════════════════════════════════════════════════════ */
+.rev{opacity:0;transform:translateY(1.6rem);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
+.rev.in{opacity:1;transform:none}
+[data-verzoegern]{transition-delay:calc(var(--v,0) * 90ms)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .rev{opacity:1;transform:none}
+  .manifest .w{opacity:1;transform:none}
+  .f-voll{position:static;clip-path:none!important}
+  .f-aus{display:none}
+  .hero{height:auto}
+  .hero-fest{position:relative;height:auto;padding:9rem 0 5rem}
+  .hero-strich{transform:scaleX(1)!important}
+  .koernung,.laufband-spur{animation:none}
+  .laufband-spur{transform:none}
+}
+</style>
+<noscript><style>#vorhang{display:none}.rev{opacity:1;transform:none}.f-aus{display:none}.f-voll{position:static;clip-path:none}.manifest .w{opacity:1;transform:none}</style></noscript>
+</head>
+<body>
+<!-- ═══════════ VORHANG ═══════════ -->
+<div id="vorhang" role="button" tabindex="0" aria-label="Intro überspringen">
+  <div class="vorhang-inner">
+    <span class="marke"><span class="marke-q">querstrich</span><span class="marke-sq" aria-hidden="true"></span></span>
+    <span class="vorhang-linie" aria-hidden="true"><i></i></span>
+    <span class="vorhang-sub">Gestaltung &amp; Technik</span>
+  </div>
+</div>
+
+<!-- ═══════════ ATMOSPHÄRE ═══════════ -->
+<div class="glut" id="glut" aria-hidden="true"></div>
+<div class="raster" aria-hidden="true"></div>
+<div class="koernung" aria-hidden="true"></div>
+<div class="cur-ring" id="curRing" aria-hidden="true"><span>ansehen</span></div>
+<div class="cur-dot" id="curDot" aria-hidden="true"></div>
+
+<a class="nur-sr" href="#inhalt">Zum Inhalt springen</a>
+
+<!-- ═══════════ KOPF ═══════════ -->
+<header class="kopf" id="kopf">
+  <div class="wrap kopf-inner">
+    <a class="marke" href="#oben" data-glitch aria-label="querstrich — zur Startseite">
+      <span class="marke-q">querstrich</span><span class="marke-sq" aria-hidden="true"></span>
+    </a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <div class="nav-liste" id="navListe">
+        <a href="#arbeiten" style="--i:0">arbeiten</a>
+        <a href="#leistungen" style="--i:1">leistungen</a>
+        <a href="#ablauf" style="--i:2">ablauf</a>
+        <a href="#preise" style="--i:3">preise</a>
+        <a href="#kontakt" style="--i:4">kontakt</a>
+      </div>
+      <a class="knopf knopf--klein" href="#kontakt" data-magnet>gespräch <span class="pfeil" aria-hidden="true">→</span></a>
+      <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navListe"><i></i><i></i></button>
+    </nav>
+  </div>
+  <div class="fortschritt" id="fortschritt" aria-hidden="true"></div>
+</header>
+
+<main id="oben">
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero" id="inhalt" aria-label="querstrich — Gestaltung und Technik aus einer Hand">
+    <div class="hero-fest">
+      <div class="hero-schraeg" data-par="-6" aria-hidden="true"></div>
+      <div class="hero-geist" data-par="14" aria-hidden="true">querstrich</div>
+
+      <div class="hero-inhalt">
+        <p class="label">Marke <span aria-hidden="true">\</span> Website <span aria-hidden="true">\</span> Technik</p>
+
+        <h1 class="zeilen">
+          <span class="f-zeile" data-glitch-ziel><span class="f-aus" aria-hidden="true">Gestaltung</span><span class="f-voll" id="fuell0">Gestaltung</span></span>
+          <span class="f-zeile" data-glitch-ziel><span class="f-aus" aria-hidden="true">und Technik,</span><span class="f-voll" id="fuell1">und Technik,</span></span>
+          <span class="f-zeile" data-glitch-ziel><span class="f-aus" aria-hidden="true">die zusammengehören.</span><span class="f-voll" id="fuell2">die zusammengehören.</span></span>
+        </h1>
+
+        <div class="hero-strich" id="heroStrich" aria-hidden="true"></div>
+
+        <div class="hero-unten">
+          <div>
+            <p class="lead">Ich baue Markenauftritte und Websites für Betriebe, die Anfragen und Bewerbungen brauchen — nicht nur eine <span class="strich an">hübsche Seite</span>.</p>
+            <div class="hero-aktionen">
+              <a class="knopf knopf--voll" href="#arbeiten" data-magnet>arbeiten ansehen <span class="pfeil" aria-hidden="true">→</span></a>
+              <a class="knopf knopf--leise" href="#preise" data-magnet>preise</a>
+            </div>
+          </div>
+          <div class="hero-zahlen">
+            <div><b data-zahl="10" data-suffix=" J">0</b><span>Jahre Gestaltung</span></div>
+            <div><b data-zahl="6" data-suffix=" W">0</b><span>Wochen bis Livegang</span></div>
+            <div><b data-zahl="1" data-suffix="">0</b><span>Ansprech&shy;partner</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-hinweis" aria-hidden="true"><i></i> scrollen</div>
+    </div>
+  </section>
+
+  <!-- ═══════════ LAUFBAND ═══════════ -->
+  <div class="laufband" aria-hidden="true">
+    <div class="laufband-spur" data-laufband>
+      <span>Markenauftritt</span><span class="sl">\</span>
+      <span>Website</span><span class="sl">\</span>
+      <span>Shop &amp; Buchung</span><span class="sl">\</span>
+      <span>Karriereseite</span><span class="sl">\</span>
+      <span>Text &amp; Struktur</span><span class="sl">\</span>
+      <span>Technik &amp; Betreuung</span><span class="sl">\</span>
+    </div>
+  </div>
+
+  <!-- ═══════════ MANIFEST ═══════════ -->
+  <section class="bereich">
+    <div class="wrap">
+      <div class="kopfzeile rev">
+        <div>
+          <p class="label">Das eigentliche Problem</p>
+          <p class="manifest" data-worte>Die meisten Websites scheitern nicht am Aussehen. Sie scheitern daran, dass niemand entschieden hat, <em class="leucht">was sie tun sollen</em>.</p>
+        </div>
+        <div>
+          <p>Es steht alles drauf, was der Betrieb kann. Nichts davon ist priorisiert. Der Besucher soll sich zurechtfinden, statt geführt zu werden. Und weil sich niemand zuständig fühlt, ändert sich seit 2019 nichts mehr.</p>
+          <p style="margin-top:1.1em;color:var(--paper)"><strong>Meine Arbeit beginnt vor dem Gestalten: bei der Frage, wer diese Seite besucht und was er als Nächstes tun soll.</strong></p>
+        </div>
+      </div>
+
+      <div class="manifest-fuss">
+        <div class="rev" data-verzoegern style="--v:0"><strong>01 — Entscheiden</strong><p class="klein">Was auf die Startseite gehört und was weg kann. Das ist der teure Teil, nicht das Bauen.</p></div>
+        <div class="rev" data-verzoegern style="--v:1"><strong>02 — Gestalten</strong><p class="klein">Ein Erscheinungsbild, das auf dem Transporter, dem Bauschild und im Browser dasselbe sagt.</p></div>
+        <div class="rev" data-verzoegern style="--v:2"><strong>03 — Bauen</strong><p class="klein">Handgeschrieben, schnell, datenschutzfest. Kein Baukasten, den in zwei Jahren niemand mehr anfassen will.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ ARBEITEN ═══════════ -->
+  <section class="bereich" id="arbeiten">
+    <div class="wrap">
+      <div class="kopfzeile rev">
+        <div>
+          <p class="label">Ausgewählte Arbeiten</p>
+          <h2 class="d2">Drei Projekte,<br>drei Tonlagen.</h2>
+        </div>
+        <p>Ein Coaching-Auftritt, ein Keramiklabel mit Shop und Kursen, eine Einladung, die wie eine Nacht funktioniert. Jedes mit dem Ergebnis, das dahintersteht — nicht mit dem Adjektiv, das dazu passt.</p>
+      </div>
+
+      <div class="filter rev" role="group" aria-label="Arbeiten filtern">
+        <button type="button" data-filter="alle" aria-pressed="true">alle</button>
+        <button type="button" data-filter="website" aria-pressed="false">website</button>
+        <button type="button" data-filter="shop" aria-pressed="false">shop &amp; buchung</button>
+        <button type="button" data-filter="event" aria-pressed="false">event</button>
+      </div>
+
+      <div class="faelle" id="faelle">
+
+        <!-- ── Fall 1: Coaching with Maria ── -->
+        <article class="fall rev" data-kat="website" style="--akz:#E4503C">
+          <div class="fall-vis" data-par-innen="3" data-cursor="view" data-akte-schalter role="button" tabindex="0" aria-expanded="false" aria-controls="akte-maria" aria-label="Fallakte Coaching with Maria öffnen">
+            <span class="fall-nr">01</span>
+            <div class="fall-rahmen">
+              <div class="fall-buehne">
+                <div class="mk mk-maria" aria-hidden="true">
+                  <div class="mk-bar">
+                    <span class="mk-logo">coaching with maria</span>
+                    <span class="mk-nav"><i></i><i></i><i></i></span>
+                    <span class="mk-pille">Erstgespräch</span>
+                  </div>
+                  <div class="mk-body">
+                    <div>
+                      <p class="mk-t">Coaching für Köpfe, die <em>anders ticken</em>.</p>
+                      <span class="mk-lines"><i style="width:92%"></i><i style="width:78%"></i><i style="width:58%"></i></span>
+                      <span class="mk-cta"><u>Erstgespräch sichern</u><s>Angebote</s></span>
+                      <span class="mk-chips"><b>ADHS</b><b>Karriere</b><b>Business</b><b>NL / DE</b></span>
+                    </div>
+                    <div class="mk-foto"><b></b><i></i></div>
+                  </div>
+                </div>
+              </div>
+              <span class="fall-wisch" aria-hidden="true"></span>
+            </div>
+          </div>
+
+          <div class="fall-txt">
+            <div class="fall-meta"><span>Coaching</span><span>Website</span><span>SEO &amp; Struktur</span></div>
+            <h3 class="fall-titel">Coaching with Maria</h3>
+            <p class="fall-sub">Amsterdam &amp; Stuttgart <span aria-hidden="true">\</span> coaching-withmaria.com</p>
+            <p>Wirtschaftspsychologin, ADHS-Coaching, Karriere und Business — drei Angebote, die im Kopf der Suchenden zu einem werden mussten. Die Seite beginnt deshalb nicht bei der Methode, sondern bei der Situation: antippbare Karten führen von „Kennst du das?“ direkt zum Ergebnis.</p>
+            <p class="fall-ergebnis">Ein Weg statt sechs</p>
+
+            <div class="fall-aktionen">
+              <a class="tlink" href="https://www.coaching-withmaria.com/" target="_blank" rel="noopener noreferrer">Seite öffnen <span class="pfeil" aria-hidden="true">↗</span></a>
+              <button class="tlink" type="button" data-akte-schalter aria-expanded="false" aria-controls="akte-maria">Fallakte</button>
+            </div>
+
+            <div class="akte" id="akte-maria">
+              <div class="akte-inner">
+                <dl class="akte-gitter">
+                  <div><dt>Ausgangslage</dt><dd>Ein Angebot zwischen ADHS-Coaching, beruflicher Neuorientierung und Selbstständigkeit. Fachlich klar, für Suchende aber schwer einzuordnen — und in zwei Ländern auffindbar zu machen.</dd></div>
+                  <div><dt>Eingriff</dt><dd>Struktur vom Leser her gedacht: Resonanz zuerst, Angebot danach, Erstgespräch als einziger Hauptweg. Dazu ein interaktives Modul, das Ausgangslage und Ergebnis gegenüberstellt, transparente Pakete, Ablauf, Stimmen und ein FAQ, das die teuren Rückfragen vorwegnimmt.</dd></div>
+                  <div><dt>Technik</dt><dd>Handgebautes, semantisches Markup, strukturierte Daten für Rich Results, Open Graph, zwei Standorte plus online, durchgehend zweisprachig gedacht.</dd></div>
+                </dl>
+                <div class="chips"><i>Struktur</i><i>Text</i><i>Gestaltung</i><i>JSON-LD</i><i>Open Graph</i><i>Formularstrecke</i></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── Fall 2: Sharemics ── -->
+        <article class="fall rev" data-kat="website shop" style="--akz:#CD714E">
+          <div class="fall-vis" data-par-innen="3" data-cursor="view" data-akte-schalter role="button" tabindex="0" aria-expanded="false" aria-controls="akte-share" aria-label="Fallakte Sharemics öffnen">
+            <span class="fall-nr">02</span>
+            <div class="fall-rahmen">
+              <div class="fall-buehne">
+                <div class="mk mk-share" aria-hidden="true">
+                  <div class="mk-bar">
+                    <span class="mk-mark"></span>
+                    <span class="mk-logo">Sharemics</span>
+                    <span class="mk-nav"><i></i><i></i><i></i></span>
+                    <span class="mk-pille">Kurs buchen</span>
+                  </div>
+                  <div class="mk-body">
+                    <div style="position:relative">
+                      <svg class="maeander" viewBox="0 0 120 40" fill="none" stroke="currentColor" stroke-width="4">
+                        <path d="M4 36V12h24v16h-12v-8h16v24M56 36V12h24v16H68v-8h16v24M108 12v24"/>
+                      </svg>
+                      <p class="mk-t">Keramik mit<br>ruhiger Seele.</p>
+                    </div>
+                    <div class="mk-karten">
+                      <div class="mk-karte"><span class="mk-obj"></span><i></i><i></i></div>
+                      <div class="mk-karte"><span class="mk-obj"></span><i></i><i></i></div>
+                      <div class="mk-karte"><span class="mk-obj"></span><i></i><i></i></div>
+                      <div class="mk-karte"><span class="mk-obj"></span><i></i><i></i></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <span class="fall-wisch" aria-hidden="true"></span>
+            </div>
+          </div>
+
+          <div class="fall-txt">
+            <div class="fall-meta"><span>Keramik</span><span>Shop</span><span>Kursbuchung</span></div>
+            <h3 class="fall-titel">Sharemics</h3>
+            <p class="fall-sub">Sunrise Edition <span aria-hidden="true">\</span> Label, Shop &amp; Atelier</p>
+            <p>Ein Keramiklabel mit Shop, Wochenendkursen und Journal. Die Inhalte waren da, die Ordnung fehlte. Entstanden ist ein helles, modulares System: Sonnenaufgangsfarben, viel Weißraum, Mäander als grafische Signatur — und Produktkarten, die sich so weit zurücknehmen, dass Material und Form vorn stehen.</p>
+            <p class="fall-ergebnis">Vollständig, auch im Ausbau</p>
+
+            <div class="fall-aktionen">
+              <button class="tlink" type="button" data-akte-schalter aria-expanded="false" aria-controls="akte-share">Fallakte <span class="pfeil" aria-hidden="true">→</span></button>
+              <span class="klein">Auf Anfrage vorführbar</span>
+            </div>
+
+            <div class="akte" id="akte-share">
+              <div class="akte-inner">
+                <dl class="akte-gitter">
+                  <div><dt>Ausgangslage</dt><dd>Shop, Kurse, Journal, Pflegehinweise, Material — viele Rubriken, von denen die Hälfte noch nicht fertig war. Eine Seite mit leeren Unterseiten wirkt unfertig, egal wie gut der Rest ist.</dd></div>
+                  <div><dt>Eingriff</dt><dd>Ein Farb- und Formsystem von Sonnenaufgang bis Sonnenuntergang, umschaltbar als Stimmung. Der Kurskalender wurde zur klaren Buchungsstrecke: Termin wählen, Platz anfragen, fertig. Und jede unfertige Rubrik bekam eine gestaltete Präsenz statt einer leeren Seite.</dd></div>
+                  <div><dt>Spielraum</dt><dd>Kleine Interaktionen, die die Ruhe nicht stören: bewegter Hintergrund, verschiebbare Illustrationen, Shuffle für die Kollektion, Mood-Switch. Ornament statt Effekt.</dd></div>
+                </dl>
+                <div class="chips"><i>Markensystem</i><i>Shop-Layout</i><i>Kurskalender</i><i>Mood-Switch</i><i>Ornamentik</i><i>Newsletter</i></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── Fall 3: 33ter Sonnenstrahl ── -->
+        <article class="fall rev" data-kat="event website" style="--akz:#B8BC3A">
+          <div class="fall-vis" data-par-innen="3" data-cursor="view" data-akte-schalter role="button" tabindex="0" aria-expanded="false" aria-controls="akte-33" aria-label="Fallakte 33ter Sonnenstrahl öffnen">
+            <span class="fall-nr">03</span>
+            <div class="fall-rahmen">
+              <div class="fall-buehne">
+                <div class="mk mk-33" aria-hidden="true">
+                  <span class="mk-sonne"></span>
+                  <div class="mk-bar">
+                    <span class="mk-logo">33ter Sonnenstrahl</span>
+                    <span class="mk-datum">11 · 09 · 26</span>
+                  </div>
+                  <div class="mk-body">
+                    <p class="mk-t">Draussen</p>
+                    <p class="mk-t hohl">Aufwachsen</p>
+                    <p class="mk-t">Tanzen</p>
+                    <span class="mk-fuss"><span>Line-up</span><span>Zusage</span><span>Anreise</span></span>
+                  </div>
+                  <span class="mk-scan"></span>
+                </div>
+              </div>
+              <span class="fall-wisch" aria-hidden="true"></span>
+            </div>
+          </div>
+
+          <div class="fall-txt">
+            <div class="fall-meta"><span>Event</span><span>Einladung</span><span>RSVP</span></div>
+            <h3 class="fall-titel">33ter Sonnenstrahl</h3>
+            <p class="fall-sub">Gronau <span aria-hidden="true">\</span> 11.09.2026, bis zum ersten Strahl</p>
+            <p>Eine Einladung, die in der Gruppe untergeht — oder eine Website, die sich anfühlt wie die Nacht, zu der sie einlädt. Der Scroll treibt die Sonne über den Berg, das Line-up liest sich wie ein Plakat, und die Zusage dauert drei Schritte.</p>
+            <p class="fall-ergebnis">Zusage in 30 Sekunden</p>
+
+            <div class="fall-aktionen">
+              <button class="tlink" type="button" data-akte-schalter aria-expanded="false" aria-controls="akte-33">Fallakte <span class="pfeil" aria-hidden="true">→</span></button>
+              <span class="klein">Private Veranstaltung</span>
+            </div>
+
+            <div class="akte" id="akte-33">
+              <div class="akte-inner">
+                <dl class="akte-gitter">
+                  <div><dt>Ausgangslage</dt><dd>Ein Geburtstag draußen, ab 18 Uhr, mit Anreise, Parken, Übernachtung und der Frage, wer was mitbringt. Alles Dinge, die in einer Nachrichtengruppe innerhalb von zwei Tagen verschwinden.</dd></div>
+                  <div><dt>Eingriff</dt><dd>Eine Seite als Abend: Intro-Sequenz, ein scroll-gesteuerter Sonnenaufgang, Eckdaten, Line-up, Anreise mit Karte und Warnhinweisen. Die Zusage läuft in drei sichtbaren Schritten — inklusive Geschenke, Übernachtung und Mitbringseln.</dd></div>
+                  <div><dt>Handschrift</dt><dd>Filmkorn, flackernde Glitch-Ebenen und aufgebrochene Typografie geben dem Ganzen die Rauheit des Ortes. Alles rein im Browser gebaut, ohne Bibliothek, und vollständig abschaltbar für alle, die keine Bewegung wollen.</dd></div>
+                </dl>
+                <div class="chips"><i>Art Direction</i><i>Scroll-Choreografie</i><i>Canvas</i><i>RSVP-Strecke</i><i>Karte</i><i>Reduced Motion</i></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="klein rev" style="margin-top:clamp(2.5rem,5vh,4rem);border-top:1px solid var(--rule);padding-top:1.5rem">
+        Sie wollen Ihr Projekt an dieser Stelle sehen? <a class="tlink" href="#kontakt" style="margin-left:.5rem">Gespräch anfragen <span class="pfeil" aria-hidden="true">→</span></a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════ LEISTUNGEN ═══════════ -->
+  <section class="bereich" id="leistungen">
+    <div class="wrap">
+      <div class="kopfzeile rev">
+        <div>
+          <p class="label">Leistungen</p>
+          <h2 class="d2">Vier Dinge.<br>Richtig.</h2>
+        </div>
+        <p>Ich mache nicht alles. Was ich mache, verantworte ich von der ersten Skizze bis zum Server — deshalb geht zwischen Gestaltung und Umsetzung nichts verloren.</p>
+      </div>
+
+      <div class="leistungen rev">
+        <div class="leistung">
+          <button class="leistung-kopf" type="button" aria-expanded="false" aria-controls="l1">
+            <span class="leistung-nr">01</span>
+            <span class="leistung-name">Marke &amp; Erscheinungsbild</span>
+            <span class="leistung-plus" aria-hidden="true"></span>
+          </button>
+          <div class="leistung-koerper" id="l1"><div><div class="leistung-inhalt">
+            <span class="leer" aria-hidden="true"></span>
+            <div>
+              <p>Wortmarke, Farbe, Schrift, Bildsprache — und die Regeln, die dafür sorgen, dass es auf dem Transporter, dem Bauschild und im Browser dasselbe sagt. Wiedererkennung entsteht nicht auf der Website, sondern davor.</p>
+              <ul><li>Logo &amp; Wortmarke</li><li>Farb- &amp; Schriftsystem</li><li>Geschäftsausstattung</li><li>Fahrzeug &amp; Druck</li><li>Kurzleitfaden</li></ul>
+            </div>
+          </div></div></div>
+        </div>
+
+        <div class="leistung">
+          <button class="leistung-kopf" type="button" aria-expanded="false" aria-controls="l2">
+            <span class="leistung-nr">02</span>
+            <span class="leistung-name">Websites &amp; Shops</span>
+            <span class="leistung-plus" aria-hidden="true"></span>
+          </button>
+          <div class="leistung-koerper" id="l2"><div><div class="leistung-inhalt">
+            <span class="leer" aria-hidden="true"></span>
+            <div>
+              <p>Von der einseitigen Visitenkarte bis zum Shop mit Buchungsstrecke. Handgeschrieben statt zusammengeklickt: unter zwei Sekunden am Handy, bedienbar mit der Tastatur, ohne fremde Skripte, die Ihre Besucher an Dritte melden.</p>
+              <ul><li>Struktur &amp; Prototyp</li><li>Individuelle Gestaltung</li><li>Shop &amp; Buchung</li><li>Karriereseite</li><li>Barrierearmut</li><li>Ladezeit</li></ul>
+            </div>
+          </div></div></div>
+        </div>
+
+        <div class="leistung">
+          <button class="leistung-kopf" type="button" aria-expanded="false" aria-controls="l3">
+            <span class="leistung-nr">03</span>
+            <span class="leistung-name">Text &amp; Struktur</span>
+            <span class="leistung-plus" aria-hidden="true"></span>
+          </button>
+          <div class="leistung-koerper" id="l3"><div><div class="leistung-inhalt">
+            <span class="leer" aria-hidden="true"></span>
+            <div>
+              <p>Die alte Seite erklärt, was das Fachgebiet ist. Die neue erklärt, wann man anruft. Ich komme in den Betrieb, spreche mit den Leuten, die die Arbeit machen, und schreibe daraus die Seite — inklusive der Entscheidung, was wegfällt.</p>
+              <ul><li>Interview im Betrieb</li><li>Seitenstruktur</li><li>Texte</li><li>Auffindbarkeit</li><li>Strukturierte Daten</li></ul>
+            </div>
+          </div></div></div>
+        </div>
+
+        <div class="leistung">
+          <button class="leistung-kopf" type="button" aria-expanded="false" aria-controls="l4">
+            <span class="leistung-nr">04</span>
+            <span class="leistung-name">Technik &amp; Betreuung</span>
+            <span class="leistung-plus" aria-hidden="true"></span>
+          </button>
+          <div class="leistung-koerper" id="l4"><div><div class="leistung-inhalt">
+            <span class="leer" aria-hidden="true"></span>
+            <div>
+              <p>Hosting in Deutschland, Sicherung, Updates, Überwachung. Ein Monatsbericht, den man in zwei Minuten liest. Und eine Nummer, unter der jemand rangeht, wenn das Formular am Freitagnachmittag nicht mehr ankommt.</p>
+              <ul><li>Umzug &amp; Livegang</li><li>Datenschutz</li><li>Sicherung &amp; Updates</li><li>Monatsbericht</li><li>Schulung</li></ul>
+            </div>
+          </div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="laufband laufband--retour" aria-hidden="true">
+    <div class="laufband-spur" data-laufband>
+      <span>Festpreis</span><span class="sl">\</span>
+      <span>Sechs Wochen</span><span class="sl">\</span>
+      <span>Ein Ansprechpartner</span><span class="sl">\</span>
+      <span>Kein Baukasten</span><span class="sl">\</span>
+      <span>Ihre Dateien gehören Ihnen</span><span class="sl">\</span>
+    </div>
+  </div>
+
+  <!-- ═══════════ ABLAUF ═══════════ -->
+  <section class="bereich" id="ablauf">
+    <div class="wrap ablauf-gitter">
+      <div class="ablauf-fest rev">
+        <p class="label">Ablauf</p>
+        <h2 class="d2" style="margin-bottom:1.5rem">So läuft es ab.</h2>
+        <p class="klein" style="max-width:34ch">Fünf Schritte, sechs Wochen. Der einzige Punkt, an dem Projekte regelmäßig kippen, sind Ihre Inhalte — deshalb steht er im Angebot mit Datum.</p>
+        <a class="knopf knopf--voll" href="#kontakt" style="margin-top:2rem" data-magnet>gespräch anfragen <span class="pfeil" aria-hidden="true">→</span></a>
+      </div>
+
+      <ol class="schritte" id="schritte">
+        <span class="schienen-fuell" id="schiene" aria-hidden="true"></span>
+        <li class="schritt"><span class="schritt-nr">01</span><h3>Gespräch</h3><p>Dreißig Minuten, telefonisch oder bei Ihnen im Betrieb. Ich frage, was Sie verkaufen, wen Sie suchen und was bisher nicht funktioniert.</p><span class="schritt-dauer">30 Minuten <span aria-hidden="true">\</span> kostenlos</span></li>
+        <li class="schritt"><span class="schritt-nr">02</span><h3>Angebot</h3><p>Festpreis, Terminplan und eine Liste dessen, was Sie liefern müssen. Was nicht drinsteht, ist nicht enthalten — das schützt uns beide.</p><span class="schritt-dauer">Woche 1</span></li>
+        <li class="schritt"><span class="schritt-nr">03</span><h3>Entwurf</h3><p>Sie sehen zuerst die Startseite. Erst nach Ihrer Freigabe baue ich weiter. Zwei Korrekturrunden je Phase sind enthalten.</p><span class="schritt-dauer">Woche 2 bis 3</span></li>
+        <li class="schritt"><span class="schritt-nr">04</span><h3>Umsetzung &amp; Prüfung</h3><p>Aufbau, Test auf echten Geräten, Ladezeit, Formulare, Datenschutz. Sie bekommen jede Woche einen kurzen Stand.</p><span class="schritt-dauer">Woche 3 bis 5</span></li>
+        <li class="schritt"><span class="schritt-nr">05</span><h3>Livegang &amp; danach</h3><p>Freischaltung, eine Stunde Schulung, schriftliche Anleitung. Nach drei Monaten schauen wir gemeinsam auf die Zahlen.</p><span class="schritt-dauer">Woche 6 <span aria-hidden="true">\</span> und danach</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ═══════════ PREISE (heller Umbruch) ═══════════ -->
+  <section class="bereich hell" id="preise">
+    <div class="wrap">
+      <div class="kopfzeile rev">
+        <div>
+          <p class="label">Preise</p>
+          <h2 class="d2">Sie wissen vorher,<br>was es kostet.</h2>
+        </div>
+        <p>Alle Preise netto, Festpreis statt Stundenzettel. Der Rechner gibt Ihnen in dreißig Sekunden einen Richtwert — verbindlich wird er nach dem Erstgespräch.</p>
+      </div>
+
+      <div class="rechner rev">
+        <div>
+          <p class="label label--nackt" style="color:var(--orange)">Richtwert-Rechner</p>
+          <h3 style="font-size:1.375rem;margin-top:.5rem">Was kostet mein Projekt ungefähr?</h3>
+          <div class="rechner-felder">
+            <div class="feld">
+              <label for="seiten">Umfang</label>
+              <select id="seiten">
+                <option value="2900">bis 5 Seiten</option>
+                <option value="6500" selected>8 bis 12 Seiten</option>
+                <option value="9800">mehr als 12 Seiten</option>
+              </select>
+            </div>
+            <div class="feld">
+              <label for="design">Gestaltung</label>
+              <select id="design">
+                <option value="0">Vorlage anpassen</option>
+                <option value="1200" selected>individuell</option>
+                <option value="2600">individuell, mit Markenauftritt</option>
+              </select>
+            </div>
+            <div class="schalter">
+              <label><input type="checkbox" id="texte" checked> Texte von mir <span class="klein">(+900 €)</span></label>
+              <label><input type="checkbox" id="karriere"> Karriere- und Bewerbungsstrecke <span class="klein">(+800 €)</span></label>
+              <label><input type="checkbox" id="shop"> Shop oder Buchung <span class="klein">(+4.500 €)</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="rechner-ergebnis">
+          <span class="label label--nackt">Richtwert netto</span>
+          <span class="zahl" id="summe" aria-live="polite">8.600 €</span>
+          <p class="klein" style="margin:.6rem 0 1.25rem">Verbindlich nach dem Erstgespräch.</p>
+          <a class="knopf knopf--voll knopf--breit" href="#kontakt" data-magnet>angebot anfragen <span class="pfeil" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+
+      <div class="pakete rev">
+        <div class="paket">
+          <p class="paket-fahne">Einstieg</p>
+          <p class="paket-name">check</p>
+          <p class="paket-preis">490 €</p>
+          <p class="paket-fuer">Für Betriebe, die erst wissen wollen, wo sie stehen.</p>
+          <ul>
+            <li><b>\</b> Prüfung von Ladezeit, Mobilbedienung, Auffindbarkeit</li>
+            <li><b>\</b> Datenschutz- und Abmahnrisiken</li>
+            <li><b>\</b> Schriftliches Ergebnis, 30 Minuten Gespräch</li>
+            <li><b>\</b> Wird bei Beauftragung angerechnet</li>
+          </ul>
+          <a class="knopf" href="#kontakt">check buchen</a>
+        </div>
+
+        <div class="paket paket--top">
+          <p class="paket-fahne">Am häufigsten gewählt</p>
+          <p class="paket-name">business</p>
+          <p class="paket-preis">6.500 €</p>
+          <p class="paket-fuer">Für Betriebe, die über die Seite Anfragen und Bewerbungen bekommen wollen.</p>
+          <ul>
+            <li><b>\</b> 8 bis 12 Seiten, individuell gestaltet</li>
+            <li><b>\</b> Texte von mir, nach einem Gespräch im Betrieb</li>
+            <li><b>\</b> Ladezeit unter zwei Sekunden am Handy</li>
+            <li><b>\</b> Rechtssichere Einbindung, Formulare, Schulung</li>
+            <li><b>\</b> Drei Monate Betreuung inklusive</li>
+          </ul>
+          <a class="knopf" href="#kontakt">gespräch anfragen <span class="pfeil" aria-hidden="true">→</span></a>
+        </div>
+
+        <div class="paket">
+          <p class="paket-fahne">Größer</p>
+          <p class="paket-name">individuell</p>
+          <p class="paket-preis">ab 12.000 €</p>
+          <p class="paket-fuer">Für Shop, Buchung, Konfigurator oder Anbindung an Ihre Software.</p>
+          <ul>
+            <li><b>\</b> Konzeptphase mit eigenem Budget</li>
+            <li><b>\</b> Klickbarer Prototyp vor der Umsetzung</li>
+            <li><b>\</b> Festpreis nach der Konzeptphase</li>
+            <li><b>\</b> Übergabe mit Dokumentation</li>
+          </ul>
+          <a class="knopf" href="#kontakt">projekt besprechen</a>
+        </div>
+      </div>
+
+      <div class="betreuung rev">
+        <div><strong>149 € / Monat</strong><p class="klein">Updates, Sicherung, Überwachung, Monatsbericht.</p></div>
+        <div><strong>290 € / Monat</strong><p class="klein">Zusätzlich eine Stunde Änderungen im Monat.</p></div>
+        <div><strong>490 € / Monat</strong><p class="klein">Zusätzlich drei Stunden Änderungen und laufende Optimierung.</p></div>
+      </div>
+      <p class="klein rev" style="margin-top:1.5rem">Betreuung ist freiwillig. Die Website gehört nach vollständiger Zahlung Ihnen — mit allen Dateien und Zugängen.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ VERGLEICH ═══════════ -->
+  <section class="bereich">
+    <div class="wrap">
+      <div class="kopfzeile rev">
+        <div>
+          <p class="label">Die ehrliche Frage</p>
+          <h2 class="d2">Warum nicht<br>einfach KI?</h2>
+        </div>
+        <p>Weil Sie das längst tun können. Die Frage ist nicht, ob eine KI eine Website bauen kann — sondern was davon in einem Jahr noch steht.</p>
+      </div>
+
+      <div class="vergleich rev">
+        <div class="links">
+          <h3>Aus dem Generator</h3>
+          <ul>
+            <li><span class="zk" aria-hidden="true">\</span><span>In zwei Stunden fertig. Sieht am ersten Tag gut aus.</span></li>
+            <li><span class="zk" aria-hidden="true">\</span><span>Baut exakt das, was Sie hineingeben — inklusive der Fragen, die Sie sich nicht gestellt haben.</span></li>
+            <li><span class="zk" aria-hidden="true">\</span><span>Kennt Ihren Wettbewerb im Umkreis von 30 Kilometern nicht.</span></li>
+            <li><span class="zk" aria-hidden="true">\</span><span>Bindet Schriften und Karten häufig so ein, dass es abmahnfähig ist.</span></li>
+            <li><span class="zk" aria-hidden="true">\</span><span>Haftet nicht. Für nichts.</span></li>
+            <li><span class="zk" aria-hidden="true">\</span><span>Ist in einem Jahr eine Seite, die niemand mehr anfassen will.</span></li>
+          </ul>
+        </div>
+        <div class="rechts">
+          <h3>Mit mir</h3>
+          <ul>
+            <li><span class="zk" aria-hidden="true">\</span><span>Ich komme in Ihren Betrieb und spreche mit den Leuten, die die Arbeit machen.</span></li>
+            <li><span class="zk" aria-hidden="true">\</span><span>Wir entscheiden gemeinsam, was weg kann. Das ist der teure Teil, nicht das Bauen.</span></li>
+            <li><span class="zk" aria-hidden="true">\</span><span>Zehn Jahre Gestaltung. Ich sehe, wenn etwas aussieht wie von allen anderen.</span></li>
+            <li><span class="zk" aria-hidden="true">\</span><span>Datenschutz, Barrierearmut und Ladezeit sind Teil der Leistung, kein Zusatzpaket.</span></li>
+            <li><span class="zk" aria-hidden="true">\</span><span>Vertraglich zugesagte Funktion. Sie haben jemanden, den Sie anrufen können.</span></li>
+            <li><span class="zk" aria-hidden="true">\</span><span>In einem Jahr sitzen wir zusammen und schauen auf die Zahlen.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="rev" style="margin-top:2.5rem;color:var(--ash);max-width:58ch">Ich arbeite selbst mit KI-Werkzeugen. Sie machen mich schneller, und diesen Vorteil geben Sie über den Festpreis weiter. Was sie nicht ersetzen: die Entscheidung, wofür Ihre Seite da ist — und die Person, die dafür geradesteht.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ PERSON ═══════════ -->
+  <section class="bereich" id="person">
+    <div class="wrap person">
+      <div class="portrait rev">
+        <div class="portrait-inner" data-par-innen="6">[Porträtfoto einsetzen — Werkstatt oder Arbeitsplatz, kein Studiohintergrund]</div>
+      </div>
+      <div class="rev">
+        <p class="label">Wer hier arbeitet</p>
+        <p class="person-zitat">Ich gestalte nichts, das jemand anderes irgendwie umsetzen muss — und baue nichts, das gestalterisch niemand verantwortet hat.</p>
+        <p>Gelernter Grafikdesigner, seit zehn Jahren in der Gestaltung, dazu eine Weiterbildung zum Webentwickler. Selbstständig in [Stadt], als <strong style="color:var(--paper)">querstrich</strong>.</p>
+        <p>Sie arbeiten mit mir. Nicht mit einem Projektleiter, der Ihre Frage weitergibt und in vier Tagen zurückruft.</p>
+        <ul class="person-liste">
+          <li><b>\</b> Gestaltung &amp; Entwicklung in einer Hand</li>
+          <li><b>\</b> Festpreis, schriftlich, vor dem Start</li>
+          <li><b>\</b> Erreichbar Mo–Fr, 8 bis 17 Uhr</li>
+          <li><b>\</b> Zwei Kollegen als Vertretung im Notfall</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ FAQ ═══════════ -->
+  <section class="bereich">
+    <div class="wrap wrap--schmal faq">
+      <div class="rev" style="margin-bottom:clamp(2rem,4vh,3rem)">
+        <p class="label">Damit Sie nicht fragen müssen</p>
+        <h2 class="d2" style="margin-top:1.25rem">Häufige Fragen.</h2>
+      </div>
+
+      <div class="rev">
+        <details>
+          <summary>Kann ich das nicht mit KI selbst machen? <i aria-hidden="true"></i></summary>
+          <p>Können Sie, und für ein Nebenprojekt würde ich es Ihnen sogar raten. Bei einem Betrieb, für den die Website Aufträge oder Personal bringen soll, fehlt Ihnen dabei genau das Teure: die Entscheidung, was auf die Startseite gehört und was weg kann. Das Bauen ist der einfache Teil geworden. Das Entscheiden nicht.</p>
+        </details>
+        <details>
+          <summary>Warum 6.500 € und nicht 1.500 €? <i aria-hidden="true"></i></summary>
+          <p>Für 1.500 € bekommen Sie eine angepasste Vorlage. Das ist manchmal genau richtig — dann verkaufe ich Ihnen das kleinere Paket und wir sind beide zufrieden. Der Unterschied liegt in Gestaltung, Texten und der Frage, ob die Seite arbeitet oder nur existiert.</p>
+        </details>
+        <details>
+          <summary>Wie lange dauert es wirklich? <i aria-hidden="true"></i></summary>
+          <p>Sechs Wochen, wenn Ihre Inhalte in Woche zwei bei mir sind. Das ist der einzige Punkt, an dem Projekte regelmäßig kippen, deshalb steht er im Angebot mit Datum.</p>
+        </details>
+        <details>
+          <summary>Was passiert, wenn Sie krank werden? <i aria-hidden="true"></i></summary>
+          <p>Eine berechtigte Frage bei einem Einzelunternehmer. Alle Zugänge, Dateien und Inhalte liegen bei Ihnen, nicht nur bei mir. Für den Notfall arbeite ich mit zwei Kollegen zusammen, die übernehmen können.</p>
+        </details>
+        <details>
+          <summary>Gehört mir die Website danach? <i aria-hidden="true"></i></summary>
+          <p>Ja. Nach vollständiger Zahlung gehören Ihnen Gestaltung, Texte und Quelldateien. Sie sind an keinen Wartungsvertrag gebunden und können jederzeit zu jemand anderem wechseln.</p>
+        </details>
+        <details>
+          <summary>Was, wenn mir der Entwurf nicht gefällt? <i aria-hidden="true"></i></summary>
+          <p>Dann überarbeite ich ihn. Zwei Korrekturrunden je Phase sind enthalten. Gefällt Ihnen nach der ersten Phase gar nichts, können Sie das Projekt beenden — die erste Rate deckt die bis dahin geleistete Arbeit ab, weitere Kosten entstehen nicht.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ ABSCHLUSS ═══════════ -->
+  <section class="abschluss" id="kontakt">
+    <div class="wrap">
+      <p class="label label--nackt rev" style="justify-content:center">Der erste Schritt</p>
+      <h2 class="d1 rev">Reden wir<br>eine halbe<br>Stunde.</h2>
+      <p class="lead rev" style="margin-inline:auto">Kein Verkaufsgespräch. Ich höre zu, stelle Fragen und sage Ihnen ehrlich, ob ich der Richtige bin. Wenn nicht, empfehle ich Ihnen jemanden.</p>
+
+      <p class="rev" style="margin-top:2.5rem">
+        <a class="knopf knopf--voll" href="mailto:hallo@querstrich.de?subject=Erstgespr%C3%A4ch" data-magnet>gespräch anfragen <span class="pfeil" aria-hidden="true">→</span></a>
+      </p>
+
+      <div class="kontaktzeile rev">
+        <a href="mailto:hallo@querstrich.de">hallo@querstrich.de</a>
+        <a href="tel:+49">[telefonnummer]</a>
+      </div>
+      <p class="klein rev" style="margin-top:2rem">Montag bis Freitag, 8 bis 17 Uhr <span aria-hidden="true">\</span> Rückruf am selben Werktag</p>
+    </div>
+  </section>
+
+</main>
+
+<div class="band" aria-hidden="true"></div>
+
+<!-- ═══════════ FUSS ═══════════ -->
+<footer class="fuss">
+  <div class="wrap">
+    <div class="fuss-oben">
+      <div>
+        <a class="marke" href="#oben" data-glitch aria-label="querstrich — nach oben">
+          <span class="marke-q">querstrich</span><span class="marke-sq" aria-hidden="true"></span>
+        </a>
+        <p class="klein" style="margin-top:1rem;max-width:26ch">Gestaltung und Entwicklung aus einer Hand. [Vorname Nachname] <span aria-hidden="true">\</span> [Straße] <span aria-hidden="true">\</span> [PLZ Stadt]</p>
+      </div>
+      <nav class="fuss-nav" aria-label="Fußzeile">
+        <a href="#arbeiten">arbeiten</a>
+        <a href="#leistungen">leistungen</a>
+        <a href="#preise">preise</a>
+        <a href="/impressum">impressum</a>
+        <a href="/datenschutz">datenschutz</a>
+      </nav>
+    </div>
+    <div class="fuss-unten">
+      <span>© <span id="jahr">2026</span> querstrich <span aria-hidden="true">\</span> Alle Rechte vorbehalten</span>
+      <a class="hoch" href="#oben">nach oben <span aria-hidden="true">↑</span></a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════ KLEBELEISTE ═══════════ -->
+<div class="leiste" id="leiste">
+  <p>Website-Check für 490 € — bei Beauftragung angerechnet</p>
+  <a class="knopf knopf--voll knopf--klein" href="#kontakt" data-magnet>jetzt anfragen <span class="pfeil" aria-hidden="true">→</span></a>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+var sanft = matchMedia('(prefers-reduced-motion: reduce)').matches;
+var feinerZeiger = matchMedia('(pointer: fine)').matches;
+var klemme = function(v,a,b){ return v < a ? a : (v > b ? b : v); };
+var fort = function(v,s,e){ return klemme((v - s) / (e - s), 0, 1); };
+
+/* ─────────────────────────────────────────────
+   VORHANG
+   ───────────────────────────────────────────── */
+var vorhang = document.getElementById('vorhang');
+function vorhangWeg(){
+  if(!vorhang || vorhang.classList.contains('raus')) return;
+  vorhang.classList.add('raus');
+  document.body.classList.remove('gesperrt');
+  document.body.classList.add('los');
+  setTimeout(function(){ vorhang.classList.add('weg'); }, 1100);
+}
+if(sanft){
+  vorhang.classList.add('weg');
+  document.body.classList.add('los');
+}else{
+  document.body.classList.add('gesperrt');
+  setTimeout(vorhangWeg, 2100);
+  vorhang.addEventListener('click', vorhangWeg);
+  addEventListener('keydown', vorhangWeg, {once:true});
+  addEventListener('wheel', vorhangWeg, {once:true, passive:true});
+  addEventListener('touchstart', vorhangWeg, {once:true, passive:true});
+}
+
+document.getElementById('jahr').textContent = new Date().getFullYear();
+
+/* ─────────────────────────────────────────────
+   CURSOR + MAGNETISCHE KNÖPFE
+   ───────────────────────────────────────────── */
+var maus = {x: innerWidth/2, y: innerHeight/2};
+if(feinerZeiger && !sanft){
+  var dot = document.getElementById('curDot');
+  var ring = document.getElementById('curRing');
+  var rx = maus.x, ry = maus.y;
+
+  addEventListener('mousemove', function(e){
+    maus.x = e.clientX; maus.y = e.clientY;
+    dot.style.transform = 'translate3d(' + e.clientX + 'px,' + e.clientY + 'px,0)';
+    if(!document.body.classList.contains('cursor-an')) document.body.classList.add('cursor-an');
+  }, {passive:true});
+
+  (function ringLauf(){
+    rx += (maus.x - rx) * 0.16;
+    ry += (maus.y - ry) * 0.16;
+    ring.style.transform = 'translate3d(' + rx.toFixed(2) + 'px,' + ry.toFixed(2) + 'px,0)';
+    requestAnimationFrame(ringLauf);
+  })();
+
+  document.addEventListener('mouseover', function(e){
+    var view = e.target.closest('[data-cursor="view"]');
+    var link = e.target.closest('a, button, summary, select, input, label');
+    document.body.classList.toggle('cur-view', !!view);
+    document.body.classList.toggle('cur-link', !view && !!link);
+  });
+  addEventListener('mouseout', function(e){
+    if(!e.relatedTarget) document.body.classList.remove('cursor-an');
+  });
+
+  /* Magnet */
+  [].forEach.call(document.querySelectorAll('[data-magnet]'), function(el){
+    el.addEventListener('mousemove', function(e){
+      var r = el.getBoundingClientRect();
+      var x = (e.clientX - r.left - r.width/2) * 0.28;
+      var y = (e.clientY - r.top - r.height/2) * 0.4;
+      el.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px)';
+    });
+    el.addEventListener('mouseleave', function(){ el.style.transform = ''; });
+  });
+}
+
+/* ─────────────────────────────────────────────
+   NAVIGATION
+   ───────────────────────────────────────────── */
+var burger = document.getElementById('burger');
+var navListe = document.getElementById('navListe');
+burger.addEventListener('click', function(){
+  var auf = navListe.classList.toggle('auf');
+  burger.classList.toggle('auf', auf);
+  burger.setAttribute('aria-expanded', String(auf));
+  burger.setAttribute('aria-label', auf ? 'Menü schließen' : 'Menü öffnen');
+  document.body.classList.toggle('gesperrt', auf);
+});
+[].forEach.call(navListe.querySelectorAll('a'), function(a){
+  a.addEventListener('click', function(){
+    navListe.classList.remove('auf');
+    burger.classList.remove('auf');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('gesperrt');
+  });
+});
+
+/* aktiver Navipunkt */
+var navZiele = {};
+[].forEach.call(navListe.querySelectorAll('a'), function(a){
+  var id = a.getAttribute('href').slice(1);
+  var ziel = document.getElementById(id);
+  if(ziel) navZiele[id] = a;
+});
+if('IntersectionObserver' in window){
+  var navBeo = new IntersectionObserver(function(eintraege){
+    eintraege.forEach(function(e){
+      if(e.isIntersecting){
+        for(var k in navZiele) navZiele[k].classList.remove('aktiv');
+        var a = navZiele[e.target.id];
+        if(a) a.classList.add('aktiv');
+      }
+    });
+  }, {rootMargin: '-45% 0px -50% 0px'});
+  for(var id in navZiele) navBeo.observe(document.getElementById(id));
+}
+
+/* ─────────────────────────────────────────────
+   REVEAL
+   ───────────────────────────────────────────── */
+if('IntersectionObserver' in window){
+  var revBeo = new IntersectionObserver(function(eintraege){
+    eintraege.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); revBeo.unobserve(e.target); }
+    });
+  }, {threshold: 0.12, rootMargin: '0px 0px -8% 0px'});
+  [].forEach.call(document.querySelectorAll('.rev'), function(el){ revBeo.observe(el); });
+}else{
+  [].forEach.call(document.querySelectorAll('.rev'), function(el){ el.classList.add('in'); });
+}
+
+/* ─────────────────────────────────────────────
+   MANIFEST — Wort für Wort
+   ───────────────────────────────────────────── */
+[].forEach.call(document.querySelectorAll('[data-worte]'), function(el){
+  var teile = [];
+  [].forEach.call(el.childNodes, function(k){
+    if(k.nodeType === 3){
+      k.textContent.split(/(\s+)/).forEach(function(w){
+        if(!w.trim()){ teile.push(document.createTextNode(w)); return; }
+        var s = document.createElement('span'); s.className = 'w'; s.textContent = w; teile.push(s);
+      });
+    }else if(k.nodeType === 1){
+      var hell = k.classList.contains('leucht');
+      k.textContent.split(/(\s+)/).forEach(function(w){
+        if(!w.trim()){ teile.push(document.createTextNode(w)); return; }
+        var s = document.createElement('span'); s.className = 'w' + (hell ? ' leucht' : ''); s.textContent = w; teile.push(s);
+      });
+    }
+  });
+  el.innerHTML = '';
+  teile.forEach(function(t){ el.appendChild(t); });
+  [].forEach.call(el.querySelectorAll('.w'), function(w, i){
+    w.style.transitionDelay = (i * 26) + 'ms';
+  });
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es, o){
+      es.forEach(function(e){ if(e.isIntersecting){ el.classList.add('in'); o.disconnect(); } });
+    }, {threshold: 0.3}).observe(el);
+  }else{ el.classList.add('in'); }
+});
+
+/* ─────────────────────────────────────────────
+   ZAHLEN HOCHZÄHLEN
+   ───────────────────────────────────────────── */
+[].forEach.call(document.querySelectorAll('[data-zahl]'), function(el){
+  var ziel = parseFloat(el.dataset.zahl);
+  var suffix = el.dataset.suffix || '';
+  if(sanft || !('IntersectionObserver' in window)){ el.textContent = ziel + suffix; return; }
+  new IntersectionObserver(function(es, o){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      o.disconnect();
+      var start = performance.now(), dauer = 1100;
+      (function tick(t){
+        var p = klemme((t - start) / dauer, 0, 1);
+        var e2 = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(ziel * e2) + suffix;
+        if(p < 1) requestAnimationFrame(tick);
+      })(start);
+    });
+  }, {threshold: 0.6}).observe(el);
+});
+
+/* ─────────────────────────────────────────────
+   LAUFBÄNDER verdoppeln
+   ───────────────────────────────────────────── */
+[].forEach.call(document.querySelectorAll('[data-laufband]'), function(spur){
+  spur.innerHTML = spur.innerHTML + spur.innerHTML;
+});
+
+/* ─────────────────────────────────────────────
+   GLITCH (Handschrift aus dem 33ter-Projekt)
+   ───────────────────────────────────────────── */
+function glitch(el, text){
+  if(sanft || !el || el.querySelector('.geist')) return;
+  var quelle = text || el.textContent;
+  ['a','b'].forEach(function(k){
+    var g = document.createElement('span');
+    g.className = 'geist ' + k;
+    g.textContent = quelle;
+    g.setAttribute('aria-hidden','true');
+    el.appendChild(g);
+  });
+  setTimeout(function(){
+    [].forEach.call(el.querySelectorAll('.geist'), function(g){ g.remove(); });
+  }, 470);
+}
+[].forEach.call(document.querySelectorAll('[data-glitch]'), function(el){
+  var wort = el.querySelector('.marke-q') || el;
+  el.addEventListener('mouseenter', function(){ glitch(wort); });
+});
+
+var heroZeilen = [].slice.call(document.querySelectorAll('[data-glitch-ziel]'));
+if(!sanft && heroZeilen.length){
+  (function heroGlitch(){
+    if(scrollY < innerHeight * 2.2 && !document.hidden){
+      var n = Math.random() < 0.3 ? 2 : 1;
+      for(var i = 0; i < n; i++){
+        var z = heroZeilen[Math.floor(Math.random() * heroZeilen.length)];
+        glitch(z, z.querySelector('.f-voll').textContent);
+      }
+    }
+    setTimeout(heroGlitch, 2600 + Math.random() * 4200);
+  })();
+}
+
+/* ─────────────────────────────────────────────
+   ARBEITEN — Filter, Fallakten, Farbstimmung
+   ───────────────────────────────────────────── */
+var filterKnoepfe = [].slice.call(document.querySelectorAll('.filter button'));
+var faelle = [].slice.call(document.querySelectorAll('.fall'));
+filterKnoepfe.forEach(function(k){
+  k.addEventListener('click', function(){
+    var wahl = k.dataset.filter;
+    filterKnoepfe.forEach(function(x){ x.setAttribute('aria-pressed', String(x === k)); });
+    faelle.forEach(function(f){
+      var passt = wahl === 'alle' || (' ' + f.dataset.kat + ' ').indexOf(' ' + wahl + ' ') > -1;
+      f.classList.toggle('aus', !passt);
+      if(passt){ f.classList.remove('in'); requestAnimationFrame(function(){ f.classList.add('in'); }); }
+    });
+  });
+});
+
+function akteSchalten(fall){
+  var offen = fall.classList.toggle('offen');
+  [].forEach.call(fall.querySelectorAll('[data-akte-schalter]'), function(s){
+    s.setAttribute('aria-expanded', String(offen));
+  });
+}
+[].forEach.call(document.querySelectorAll('[data-akte-schalter]'), function(s){
+  s.addEventListener('click', function(){ akteSchalten(s.closest('.fall')); });
+  if(s.getAttribute('role') === 'button'){
+    s.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); akteSchalten(s.closest('.fall')); }
+    });
+  }
+});
+
+/* Hintergrundglut nimmt die Projektfarbe an */
+var glut = document.getElementById('glut');
+function hexZuRgb(h){
+  h = h.trim().replace('#','');
+  if(h.length === 3) h = h[0]+h[0]+h[1]+h[1]+h[2]+h[2];
+  var n = parseInt(h, 16);
+  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+}
+var glutStandard = 'rgba(255,74,15,.16)';
+faelle.forEach(function(f){
+  var akz = f.style.getPropertyValue('--akz');
+  if(!akz) return;
+  var rgb = hexZuRgb(akz);
+  var farbe = 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',.2)';
+  f.addEventListener('mouseenter', function(){ document.documentElement.style.setProperty('--glow', farbe); });
+  f.addEventListener('mouseleave', function(){ document.documentElement.style.setProperty('--glow', glutStandard); });
+});
+
+/* ─────────────────────────────────────────────
+   LEISTUNGEN — Akkordeon
+   ───────────────────────────────────────────── */
+var leistungen = [].slice.call(document.querySelectorAll('.leistung'));
+leistungen.forEach(function(l){
+  var kopf = l.querySelector('.leistung-kopf');
+  kopf.addEventListener('click', function(){
+    var offen = !l.classList.contains('offen');
+    leistungen.forEach(function(x){
+      x.classList.remove('offen');
+      x.querySelector('.leistung-kopf').setAttribute('aria-expanded','false');
+    });
+    l.classList.toggle('offen', offen);
+    kopf.setAttribute('aria-expanded', String(offen));
+  });
+});
+
+/* ─────────────────────────────────────────────
+   PREISRECHNER
+   ───────────────────────────────────────────── */
+var seiten = document.getElementById('seiten');
+var design = document.getElementById('design');
+var texte = document.getElementById('texte');
+var karriere = document.getElementById('karriere');
+var shop = document.getElementById('shop');
+var summe = document.getElementById('summe');
+function rechne(){
+  var wert = Number(seiten.value) + Number(design.value);
+  if(texte.checked) wert += 900;
+  if(karriere.checked) wert += 800;
+  if(shop.checked) wert += 4500;
+  summe.textContent = wert.toLocaleString('de-DE') + ' €';
+}
+[seiten, design, texte, karriere, shop].forEach(function(f){ f.addEventListener('change', rechne); });
+rechne();
+
+/* ─────────────────────────────────────────────
+   SCROLL-MASCHINE (ein rAF für alles)
+   ───────────────────────────────────────────── */
+var kopf = document.getElementById('kopf');
+var fortschritt = document.getElementById('fortschritt');
+var leiste = document.getElementById('leiste');
+var arbeiten = document.getElementById('arbeiten');
+var hero = document.querySelector('.hero');
+var heroStrich = document.getElementById('heroStrich');
+var fuellungen = [1,2].map(function(i){ return document.getElementById('fuell' + i); });
+var fenster = [[.05,.34],[.26,.60]];
+var parEls = [].slice.call(document.querySelectorAll('[data-par]'));
+var parInnen = [].slice.call(document.querySelectorAll('[data-par-innen]'));
+var schritte = [].slice.call(document.querySelectorAll('.schritt'));
+var schiene = document.getElementById('schiene');
+var schritteListe = document.getElementById('schritte');
+
+function heroTakt(){
+  if(!hero || sanft) return;
+  var budget = hero.offsetHeight - innerHeight;
+  var p = budget > 0 ? klemme((-hero.getBoundingClientRect().top) / budget, 0, 1) : 1;
+  fuellungen.forEach(function(el, i){
+    var f = fort(p, fenster[i][0], fenster[i][1]);
+    el.style.clipPath = 'inset(' + ((1 - f) * 100).toFixed(2) + '% 0 0 0)';
+  });
+  heroStrich.style.transform = 'scaleX(' + fort(p, .44, .74).toFixed(3) + ')';
+}
+
+function parallaxTakt(){
+  if(sanft) return;
+  var y = scrollY;
+  parEls.forEach(function(el){
+    var s = parseFloat(el.dataset.par) / 100;
+    el.style.transform = 'translate3d(0,' + (y * s).toFixed(1) + 'px,0)';
+  });
+  var mitte = innerHeight / 2;
+  parInnen.forEach(function(el){
+    var r = el.parentElement.getBoundingClientRect();
+    if(r.bottom < -240 || r.top > innerHeight + 240) return;
+    var s = parseFloat(el.dataset.parInnen) / 100;
+    var d = (r.top + r.height / 2 - mitte) * s;
+    el.style.translate = '0 ' + d.toFixed(1) + 'px';
+  });
+}
+
+function ablaufTakt(){
+  if(!schritteListe) return;
+  var r = schritteListe.getBoundingClientRect();
+  var p = klemme((innerHeight * 0.62 - r.top) / r.height, 0, 1);
+  schiene.style.height = (p * 100).toFixed(2) + '%';
+  var letzter = -1;
+  schritte.forEach(function(s, i){
+    if(s.getBoundingClientRect().top < innerHeight * 0.58) letzter = i;
+  });
+  schritte.forEach(function(s, i){ s.classList.toggle('aktiv', i === letzter); });
+}
+
+function kopfTakt(){
+  var y = scrollY;
+  kopf.classList.toggle('fest', y > 40);
+  var hoehe = document.documentElement.scrollHeight - innerHeight;
+  fortschritt.style.width = (hoehe > 0 ? (y / hoehe) * 100 : 0).toFixed(2) + '%';
+  if(arbeiten){
+    var zeigen = arbeiten.getBoundingClientRect().top < 0 && y < (document.documentElement.scrollHeight - innerHeight - 700);
+    leiste.classList.toggle('da', zeigen);
+  }
+}
+
+var laeuft = false;
+function beiScroll(){
+  if(laeuft) return;
+  laeuft = true;
+  requestAnimationFrame(function(){
+    kopfTakt(); heroTakt(); parallaxTakt(); ablaufTakt();
+    laeuft = false;
+  });
+}
+addEventListener('scroll', beiScroll, {passive:true});
+addEventListener('resize', beiScroll);
+beiScroll();
+
+/* Glut folgt sanft dem Zeiger */
+if(feinerZeiger && !sanft){
+  var gx = 0, gy = 0, zx = 0, zy = 0;
+  addEventListener('mousemove', function(e){
+    zx = (e.clientX / innerWidth - .5) * 90;
+    zy = (e.clientY / innerHeight - .5) * 60;
+  }, {passive:true});
+  (function glutLauf(){
+    gx += (zx - gx) * 0.05;
+    gy += (zy - gy) * 0.05;
+    glut.style.transform = 'translate3d(calc(-50% + ' + gx.toFixed(1) + 'px), calc(-45% + ' + gy.toFixed(1) + 'px), 0)';
+    requestAnimationFrame(glutLauf);
+  })();
+}
+
+})();
+</script>
+
+</body>
+</html>

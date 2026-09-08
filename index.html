@@ -1,0 +1,2094 @@
+<!DOCTYPE html>
+<html lang="de" data-thema="hell">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>querstrich — Querverbindung finden. Strich ziehen. Punkt.</title>
+<meta name="description" content="Marke, Website und Technik aus einer Hand. Ich baue Auftritte, die eine Sache tun: Anfragen und Bewerbungen bringen. Festpreis, sechs Wochen, ein Ansprechpartner.">
+<meta name="theme-color" content="#F5F3EE">
+<meta name="author" content="querstrich">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cstyle%3E.b%7Bfill:%23141416%7D.s%7Bfill:%23F7F5F0%7D@media(prefers-color-scheme:dark)%7B.b%7Bfill:%23F4F3EF%7D.s%7Bfill:%230B0B0D%7D%7D%3C/style%3E%3Cpath class='b' d='M32 4C17 4 6 15.4 6 30.2s11 26.2 26 26.2c3.9 0 7.6-.8 10.9-2.3l7.7 4.4c2.6 1.5 5.6-1.4 4.1-4l-4.1-7.1C55.1 42.6 58 36.8 58 30.2 58 15.4 47 4 32 4Z'/%3E%3Cg class='s' transform='skewX(-14)'%3E%3Crect x='28.5' y='16' width='8.6' height='30' rx='2.4'/%3E%3Crect x='42' y='16' width='8.6' height='30' rx='2.4'/%3E%3C/g%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="querstrich">
+<meta property="og:title" content="querstrich — Querverbindung finden. Strich ziehen. Punkt.">
+<meta property="og:description" content="Marke, Website und Technik aus einer Hand. Festpreis, sechs Wochen, ein Ansprechpartner.">
+
+<!--
+  ────────────────────────────────────────────────────────────
+  VOR DEM LIVEGANG
+  1. Schriften lokal einbinden statt von Google laden (DSGVO).
+  2. Alle [Platzhalter] ersetzen (Name, Telefon, Anschrift, Stadt, Monat, Porträt).
+  3. Impressum und Datenschutzerklärung anlegen und verlinken.
+  4. og:image und Favicon ergänzen.
+  ────────────────────────────────────────────────────────────
+-->
+<script>
+/* Ansicht vor dem ersten Anstrich setzen — kein Aufblitzen der falschen Fassung. */
+(function(){try{var t=localStorage.getItem('qs-thema');if(t==='hell'||t==='dunkel')document.documentElement.dataset.thema=t;}catch(e){}})();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   1 — TOKEN & ANSICHTEN
+   ═══════════════════════════════════════════════════════════ */
+:root{
+  --geist-linie:rgba(17,17,19,.05);
+  /* helle Fassung (Standard) */
+  --papier:#F5F3EE;
+  --papier-2:#FFFFFF;
+  --papier-3:#EBE8E0;
+  --tinte:#0D0D0F;
+  --tinte-2:#46453F;
+  --tinte-3:#7C7B72;
+  --linie:rgba(13,13,15,.16);
+  --linie-s:rgba(13,13,15,.07);
+  --akzent:#FF4A0F;
+  --akzent-text:#C63A05;
+  --auf-akzent:#FFFFFF;
+  --glut:rgba(255,74,15,.07);
+  --korn-opa:.04;
+  --korn-mix:multiply;
+  --schatten:0 26px 64px -34px rgba(17,17,19,.45);
+  --schatten-s:0 10px 30px -18px rgba(17,17,19,.4);
+
+  --display:"Archivo","Arial Narrow",Impact,sans-serif;
+  --sans:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"DM Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+
+  --wrap:80rem;
+  --gutter:clamp(1.25rem,4vw,3rem);
+  --kopf-luft:clamp(.7rem,1.6vw,1.15rem);
+  --kopf-hoehe:4.2rem;
+  --ease:cubic-bezier(.76,0,.24,1);
+  --ease-out:cubic-bezier(.2,.8,.2,1);
+}
+/* dunkle Fassung */
+[data-thema="dunkel"]{
+  --geist-linie:rgba(244,243,239,.07);
+  --papier:#0B0B0D;
+  --papier-2:#131317;
+  --papier-3:#1B1B21;
+  --tinte:#F4F3EF;
+  --tinte-2:#A8A79E;
+  --tinte-3:#78776F;
+  --linie:rgba(244,243,239,.15);
+  --linie-s:rgba(244,243,239,.07);
+  --akzent:#FF5A22;
+  --akzent-text:#FF7C4A;
+  --auf-akzent:#0B0B0D;
+  --glut:rgba(255,74,15,.17);
+  --korn-opa:.05;
+  --korn-mix:screen;
+  --schatten:0 26px 70px -30px rgba(0,0,0,.85);
+  --schatten-s:0 10px 34px -18px rgba(0,0,0,.8);
+}
+/* ═══════════════════════════════════════════════════════════
+   2 — BASIS
+   ═══════════════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;background:var(--papier);overflow-x:clip}
+body{
+  background:var(--papier);color:var(--tinte);
+  font-family:var(--sans);font-size:1.0625rem;line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;overflow-x:clip;
+  transition:background .5s ease,color .5s ease;
+}
+body.gesperrt{overflow:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+::selection{background:var(--akzent);color:var(--auf-akzent)}
+:focus-visible{outline:2px solid var(--akzent);outline-offset:4px;border-radius:2px}
+
+.wrap{width:min(var(--wrap),100% - var(--gutter)*2);margin-inline:auto;position:relative}
+.wrap--schmal{width:min(52rem,100% - var(--gutter)*2)}
+section{position:relative;scroll-margin-top:5.5rem;overflow-x:clip}
+/* overflow-x:clip beschneidet die Geisterwörter, ohne position:sticky zu brechen —
+   overflow:hidden würde hier den Hero und die Ablaufspalte lahmlegen. */
+.bereich{padding:clamp(4.5rem,12vh,9.5rem) 0}
+.nur-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ── Typografie ────────────────────────────────────────── */
+.d1,.d2,.d3{font-family:var(--display);font-weight:800;line-height:.88;letter-spacing:-.03em}
+.d1{font-size:clamp(2.6rem,8.5vw,7.5rem);font-stretch:84%}
+.d2{font-size:clamp(2.1rem,5.6vw,4.6rem);font-stretch:86%}
+.d3{font-size:clamp(1.5rem,2.8vw,2.3rem);font-stretch:90%;line-height:.98}
+h3{font-family:var(--sans);font-weight:600;font-size:1.1875rem;line-height:1.35}
+p{max-width:64ch}
+.lead{font-size:clamp(1.0625rem,1.45vw,1.3125rem);line-height:1.55;color:var(--tinte-2);max-width:48ch}
+.klein{font-size:.9375rem;line-height:1.55;color:var(--tinte-2)}
+.mini{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--tinte-3)}
+.label{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--tinte-3);display:inline-flex;align-items:center;gap:.65rem;
+}
+.label::before{content:"";width:1.7rem;height:2px;background:var(--akzent);flex:none}
+.label--nackt::before{display:none}
+.o{color:var(--akzent-text)}
+strong{font-weight:600;color:var(--tinte)}
+
+/* Querstrich durch ein Wort */
+.strich{position:relative;display:inline-block;white-space:nowrap}
+.strich::after{
+  content:"";position:absolute;left:-.06em;right:-.06em;top:54%;height:.12em;
+  background:var(--akzent);transform:scaleX(0);transform-origin:left;
+  transition:transform .7s var(--ease) .3s;
+}
+.strich.an::after,.in .strich::after{transform:scaleX(1)}
+
+/* ═══════════════════════════════════════════════════════════
+   3 — MARKE & ANSICHTSSCHALTER
+   ═══════════════════════════════════════════════════════════ */
+.marke{
+  display:inline-flex;align-items:flex-start;gap:.08em;
+  font-family:var(--display);font-weight:800;font-stretch:100%;
+  letter-spacing:-.04em;line-height:1;text-transform:lowercase;
+}
+.marke-q{display:block;position:relative}
+.marke-sq{
+  display:block;width:.23em;height:.23em;background:var(--akzent);flex:none;margin-top:.05em;
+  transition:transform .45s var(--ease-out);
+}
+.marke:hover .marke-sq{transform:translateY(-.14em) rotate(45deg)}
+
+.schalter{
+  display:inline-flex;align-items:center;gap:.5rem;padding:.3rem;
+  border:1px solid var(--linie);flex:none;
+}
+.schalter-spur{position:relative;width:2.6rem;height:1.15rem;background:var(--papier-3);flex:none}
+.schalter-knopf{
+  position:absolute;top:.15rem;left:.15rem;width:.85rem;height:.85rem;background:var(--akzent);
+  transition:transform .38s var(--ease);
+}
+[data-thema="dunkel"] .schalter-knopf{transform:translateX(1.45rem)}
+.schalter-txt{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tinte-3);min-width:3.4rem}
+.schalter:hover{border-color:var(--tinte)}
+.schalter:hover .schalter-txt{color:var(--tinte)}
+
+/* ═══════════════════════════════════════════════════════════
+   4 — ATMOSPHÄRE
+   ═══════════════════════════════════════════════════════════ */
+.glut{
+  position:fixed;z-index:0;pointer-events:none;
+  width:min(130vw,1500px);aspect-ratio:1;left:50%;top:0;translate:-50% -48%;
+  background:radial-gradient(closest-side,var(--glut),transparent 70%);
+  transition:background .9s ease;
+}
+.korn{
+  position:fixed;inset:-140px;z-index:6;pointer-events:none;
+  opacity:var(--korn-opa);mix-blend-mode:var(--korn-mix);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:koernen 6s steps(8) infinite;
+}
+@keyframes koernen{
+  0%{transform:translate(0,0)}12.5%{transform:translate(-14px,9px)}25%{transform:translate(11px,-13px)}
+  37.5%{transform:translate(-9px,-8px)}50%{transform:translate(13px,12px)}62.5%{transform:translate(-12px,6px)}
+  75%{transform:translate(8px,-11px)}87.5%{transform:translate(-6px,13px)}
+}
+main,header,footer{position:relative;z-index:2}
+
+/* Geisterwort hinter Abschnittsköpfen — die Ebene, die überlappt */
+.geistwort{
+  position:absolute;left:50%;top:0;translate:-50% -46%;z-index:0;
+  font-family:var(--display);font-weight:900;font-stretch:64%;text-transform:lowercase;
+  font-size:min(21vw,17rem);line-height:.8;letter-spacing:-.045em;white-space:nowrap;
+  color:transparent;-webkit-text-stroke:1px var(--geist-linie);
+  pointer-events:none;user-select:none;will-change:transform;
+}
+.geistwort--rechts{left:auto;right:-6vw;translate:0 -46%}
+.geistwort--links{left:-6vw;translate:0 -46%}
+.ueber{position:relative;z-index:1}
+
+/* ═══════════════════════════════════════════════════════════
+   5 — VORHANG
+   ═══════════════════════════════════════════════════════════ */
+#vorhang{
+  position:fixed;inset:0;z-index:120;background:var(--papier);
+  display:grid;place-items:center;cursor:pointer;
+  transition:transform 1s var(--ease),opacity .5s ease;
+}
+#vorhang.raus{transform:translateY(-101%)}
+#vorhang.weg{display:none}
+.vorhang-inner{display:flex;flex-direction:column;align-items:center;gap:1.5rem}
+#vorhang .marke{font-size:clamp(2rem,6.5vw,4rem);opacity:0;animation:vAuf .7s var(--ease-out) .1s forwards}
+.vorhang-linie{width:min(46vw,22rem);height:2px;background:var(--linie);position:relative;overflow:hidden}
+.vorhang-linie i{position:absolute;inset:0;background:var(--akzent);transform:scaleX(0);transform-origin:left;animation:vLade 1.8s var(--ease) .25s forwards}
+.vorhang-claim{display:flex;flex-direction:column;align-items:center;gap:.15rem;text-align:center;max-width:none}
+.vorhang-claim span{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--tinte-3);
+  opacity:0;animation:vAuf .5s ease forwards;
+}
+.vorhang-claim span:nth-child(1){animation-delay:.75s}
+.vorhang-claim span:nth-child(2){animation-delay:.95s}
+.vorhang-claim span:nth-child(3){animation-delay:1.15s;color:var(--akzent-text)}
+@keyframes vAuf{to{opacity:1}}
+@keyframes vLade{0%{transform:scaleX(0)}70%{transform:scaleX(.72)}100%{transform:scaleX(1)}}
+
+/* ═══════════════════════════════════════════════════════════
+   6 — KOPF
+   ═══════════════════════════════════════════════════════════ */
+.kopf{
+  position:fixed;z-index:70;
+  top:var(--kopf-luft);left:var(--kopf-luft);right:var(--kopf-luft);
+  transition:top .4s var(--ease);
+}
+.kopf-inner{
+  position:relative;isolation:isolate;
+  display:flex;align-items:center;justify-content:space-between;gap:1.25rem;
+  padding:.7rem clamp(.85rem,2vw,1.4rem);
+}
+/* Das Milchglas liegt auf einer eigenen Ebene. backdrop-filter macht sein Element
+   zum Bezugsrahmen für position:fixed — läge der Filter auf .kopf-inner, klappte
+   das Mobilmenü in die Kopfleiste zusammen, statt den Bildschirm zu füllen. */
+.kopf-glas{
+  position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:color-mix(in srgb,var(--papier) 62%,transparent);
+  backdrop-filter:blur(20px) saturate(1.6);
+  -webkit-backdrop-filter:blur(20px) saturate(1.6);
+  border:1px solid color-mix(in srgb,var(--tinte) 10%,transparent);
+  box-shadow:0 10px 34px -22px rgba(0,0,0,.5);
+  transition:background .4s ease,box-shadow .4s ease;
+}
+@supports not (backdrop-filter:blur(1px)){
+  .kopf-glas{background:color-mix(in srgb,var(--papier) 95%,transparent)}
+}
+.kopf.fest .kopf-glas{
+  background:color-mix(in srgb,var(--papier) 76%,transparent);
+  box-shadow:0 14px 40px -24px rgba(0,0,0,.6);
+}
+.kopf .marke{font-size:1.25rem;position:relative;z-index:81}
+.nav{display:flex;align-items:center;gap:1.35rem}
+.nav-liste{display:flex;align-items:center;gap:1.5rem}
+.nav-liste a{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--tinte-3);position:relative;padding:.35rem 0;transition:color .3s;
+}
+.nav-liste a::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--akzent);
+  transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease);
+}
+.nav-liste a:hover{color:var(--tinte)}
+.nav-liste a:hover::after,.nav-liste a.aktiv::after{transform:scaleX(1);transform-origin:left}
+.nav-liste a.aktiv{color:var(--tinte)}
+.fortschritt{position:absolute;left:0;bottom:-1px;height:2px;background:var(--akzent);width:0;z-index:1;max-width:100%}
+
+.burger{display:none;width:2.6rem;height:2.6rem;position:relative;z-index:81;flex:none}
+.burger i{position:absolute;left:.55rem;right:.55rem;height:1.5px;background:var(--tinte);transition:transform .4s var(--ease)}
+.burger i:nth-child(1){top:1rem}
+.burger i:nth-child(2){bottom:1rem}
+.burger.auf i:nth-child(1){transform:translateY(.28rem) rotate(45deg)}
+.burger.auf i:nth-child(2){transform:translateY(-.28rem) rotate(-45deg)}
+
+@media (max-width:64rem){
+  .burger{display:block}
+  .kopf .knopf--klein,.kopf .schalter-txt{display:none}
+  .nav-liste{
+    position:fixed;inset:0;z-index:80;background:var(--papier);
+    flex-direction:column;align-items:flex-start;justify-content:center;gap:0;
+    padding:calc(var(--kopf-hoehe) + var(--kopf-luft)) var(--gutter) 2rem;
+    clip-path:inset(0 0 100% 0);transition:clip-path .7s var(--ease);
+    overflow-y:auto;
+  }
+  .nav-liste.auf{clip-path:inset(0 0 0 0)}
+  .nav-liste a{
+    font-family:var(--display);font-weight:800;font-stretch:84%;text-transform:lowercase;
+    font-size:clamp(2.2rem,11vw,4rem);letter-spacing:-.03em;color:var(--tinte);
+    width:100%;padding:.5rem 0;border-bottom:1px solid var(--linie-s);
+    opacity:0;transform:translateY(1rem);transition:opacity .5s,transform .5s,color .3s;
+  }
+  .nav-liste.auf a{opacity:1;transform:none;transition-delay:calc(.16s + var(--i) * .06s)}
+  .nav-liste a::after{display:none}
+  .nav-liste a:hover{color:var(--akzent-text)}
+}
+
+/* ═══════════════════════════════════════════════════════════
+   7 — KNÖPFE
+   ═══════════════════════════════════════════════════════════ */
+.knopf{
+  position:relative;display:inline-flex;align-items:center;gap:.75rem;overflow:hidden;isolation:isolate;
+  padding:1rem 1.75rem;border:1px solid var(--tinte);background:transparent;color:var(--tinte);
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  transition:color .3s ease,border-color .3s ease;
+}
+.knopf::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--tinte);transform:translateY(101%);transition:transform .45s var(--ease)}
+.knopf:hover{color:var(--papier)}
+.knopf:hover::before{transform:none}
+.knopf .pfeil{transition:transform .4s var(--ease-out)}
+.knopf:hover .pfeil{transform:translateX(.35rem)}
+.knopf--voll{background:var(--akzent);border-color:var(--akzent);color:var(--auf-akzent)}
+.knopf--voll::before{background:var(--tinte)}
+.knopf--voll:hover{color:var(--papier);border-color:var(--tinte)}
+.knopf--klein{padding:.62rem 1.05rem;font-size:.66rem}
+.knopf--breit{width:100%;justify-content:center}
+
+.tlink{position:relative;display:inline-flex;align-items:center;gap:.5rem;padding-bottom:.2rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase}
+.tlink::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform-origin:right;transition:transform .45s var(--ease)}
+.tlink:hover::after{transform:scaleX(0)}
+.tlink .pfeil{transition:transform .4s var(--ease-out)}
+.tlink:hover .pfeil{transform:translate(.3rem,-.3rem)}
+
+/* ═══════════════════════════════════════════════════════════
+   8 — HERO: quer. strich. punkt.
+   ═══════════════════════════════════════════════════════════ */
+/* Die Landung ist eine Bühne aus fünf Ebenen: Raster, Geisterschrift, Querstrich,
+   Satz, Laufband. Das Skript setzt daran nur drei Zahlen — --p (Scrollfortschritt
+   der Bühne, 0 bis 1), --mx/--my (geglätteter Zeiger) und --v (Schwung). Wie weit
+   welche Ebene wandert, entscheidet ab hier das Stylesheet. */
+.hero{position:relative;height:185vh;--p:0;--mx:0px;--my:0px;--v:0}
+.hero-fest{
+  position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;
+  display:flex;flex-direction:column;
+  padding:calc(var(--kopf-hoehe) + var(--kopf-luft) * 2) 0 0;
+}
+.hero-schraeg{
+  position:absolute;inset:-25% -30%;z-index:0;pointer-events:none;
+  background-image:repeating-linear-gradient(45deg,var(--linie-s) 0 1px,transparent 1px 15px);
+  -webkit-mask-image:radial-gradient(58% 58% at 50% 50%,#000,transparent);
+  mask-image:radial-gradient(58% 58% at 50% 50%,#000,transparent);
+  transform:translate3d(calc(var(--mx) * -.5),calc(var(--p) * 120px),0);
+}
+
+/* ── Geisterschrift: drei Tiefen, drei Tempi ──────────────── */
+.hero-ebenen{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;user-select:none}
+.hero-geist{
+  position:absolute;white-space:nowrap;
+  font-family:var(--display);font-weight:900;text-transform:lowercase;
+  line-height:.8;letter-spacing:-.045em;
+  color:transparent;-webkit-text-stroke:1px var(--geist-linie);
+  will-change:transform;
+}
+.hero-geist--1{
+  left:50%;top:50%;translate:-50% -50%;font-size:min(30vw,26rem);font-stretch:62%;
+  transform:translate3d(calc(var(--mx) * 1.4),calc(var(--p) * -130px + var(--my) * 1.1),0);
+}
+.hero-geist--2{
+  left:-9vw;top:9%;font-size:min(16vw,12rem);font-stretch:66%;
+  transform:translate3d(calc(var(--p) * 280px + var(--mx) * -2.4),calc(var(--p) * -34px),0);
+}
+.hero-geist--3{
+  right:-7vw;bottom:16%;font-size:min(14vw,10rem);font-stretch:66%;
+  transform:translate3d(calc(var(--p) * -320px + var(--mx) * 2.8),calc(var(--p) * 44px),0);
+}
+
+/* ── Kopfzeile der Bühne ──────────────────────────────────── */
+.hero-kopfzeile{
+  position:relative;z-index:2;flex:none;
+  width:min(var(--wrap),100% - var(--gutter)*2);margin-inline:auto;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem 2rem;flex-wrap:wrap;
+  padding-bottom:clamp(.9rem,3vh,2rem);
+  transform:translate3d(0,calc(var(--p) * -46px),0);
+  opacity:calc(1 - var(--p) * 2.2);
+}
+.hero-kopfzeile .mini{display:inline-flex;align-items:center;gap:.55rem}
+.frei{color:var(--tinte-2)}
+.frei i{width:.42rem;height:.42rem;background:var(--akzent);flex:none;animation:pochen 2.6s var(--ease) infinite}
+@keyframes pochen{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.75)}}
+
+.hero-inhalt{
+  position:relative;z-index:2;flex:1;min-height:0;
+  display:flex;flex-direction:column;justify-content:center;
+  width:min(var(--wrap),100% - var(--gutter)*2);margin-inline:auto;
+  transform:translate3d(0,calc(var(--p) * -48px),0);
+  will-change:transform;
+}
+/* Vorspann und Wörterbuch treten ab, sobald der Satz aufsteigt. */
+.hero .label{margin-bottom:clamp(.9rem,3vh,2rem);opacity:calc(1 - var(--p) * 2.4)}
+
+/* ── Der Satz: jede Zeile eine eigene Ebene ───────────────── */
+.satz{margin:0;display:flex;flex-direction:column;align-items:flex-start}
+.satz-zeile{
+  position:relative;display:block;cursor:default;
+  font-family:var(--display);font-weight:800;font-stretch:76%;
+  font-size:clamp(2.2rem,8vw,8rem);line-height:.88;letter-spacing:-.042em;
+  transform:translate3d(
+    calc(var(--zug,0px) * var(--p) + var(--mx) * var(--f,1)),
+    calc(var(--hub,0px) * var(--p) + var(--my) * var(--f,1) * .35),0);
+  transition:translate .5s var(--ease-out);
+  will-change:transform;
+}
+/* Der Nahstups liegt auf translate, damit er sich mit dem Parallax-transform
+   überlagert, statt ihn zu überschreiben. */
+.satz-zeile:hover{translate:.5rem 0}
+.satz-teil{color:var(--akzent);position:relative;display:inline-block}
+.satz-verb{position:relative;display:inline-block}
+.satz-verb .v-aus{color:transparent;-webkit-text-stroke:1px var(--linie)}
+.satz-verb .v-voll{position:absolute;inset:0;color:var(--tinte);clip-path:inset(0 0 0 0);-webkit-text-stroke:0}
+.los .satz-zeile:nth-child(1) .v-voll{animation:fuellen .85s var(--ease) .05s backwards}
+.los .satz-zeile:nth-child(2) .v-voll{animation:fuellen .85s var(--ease) .32s backwards}
+.los .satz-zeile:nth-child(3) .satz-teil{animation:wischen .7s var(--ease) .6s backwards}
+.los .satz-punkt{animation:punktRein .55s var(--ease-out) 1.2s backwards}
+@keyframes fuellen{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes wischen{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes punktRein{from{transform:scale(0) rotate(90deg)}to{transform:none}}
+/* der Punkt ist das Quadrat aus der Wortmarke */
+.satz-punkt{
+  display:inline-block;width:.19em;height:.19em;background:var(--akzent);
+  vertical-align:baseline;margin-left:.07em;
+  transition:transform .5s var(--ease-out);
+}
+.satz-zeile:hover .satz-punkt{transform:rotate(45deg) scale(1.15)}
+
+/* Der Strich selbst — randlos durchs Bild, zieht sich beim Aufschlag einmal
+   von links durch und wandert danach mit dem Scroll aus dem Bild. */
+.satz-strich{
+  display:block;position:relative;left:calc(50% - 50vw);width:100vw;height:2px;z-index:1;
+  margin:clamp(1rem,2.6vh,1.9rem) 0 clamp(1.1rem,3vh,2rem);
+  background:linear-gradient(90deg,var(--akzent),var(--akzent) 56%,transparent);
+  transform:translate3d(calc(var(--p) * -240px),0,0);
+}
+.los .satz-strich{animation:strichZieh 1s var(--ease) .5s backwards}
+@keyframes strichZieh{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+
+/* ── Wörterbuch-Zeilen unter dem Strich ───────────────────── */
+.glossar{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4rem 2rem;max-width:64rem;
+  transform:translate3d(calc(var(--p) * 70px),0,0);
+  opacity:calc(1 - var(--p) * 1.3);
+}
+.glossar div{
+  display:flex;flex-direction:column;gap:.25rem;
+  transition:opacity .35s ease,transform .35s var(--ease-out);
+}
+.glossar dt{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--akzent-text)}
+.glossar dd{font-size:.875rem;line-height:1.5;color:var(--tinte-2);max-width:32ch}
+.satz-hover .glossar div{opacity:.3}
+.satz-hover .glossar div.an{opacity:1;transform:translateX(.3rem)}
+
+.hero-unten{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem 2.5rem;flex-wrap:wrap;
+  margin-top:clamp(1.5rem,4vh,2.8rem);
+  transform:translate3d(0,calc(var(--p) * -20px),0);
+}
+.hero-aktionen{display:flex;gap:.75rem;flex-wrap:wrap}
+.hero-zahlen{display:flex;gap:clamp(1rem,3vw,2.6rem)}
+.hero-zahlen div{padding-left:clamp(1rem,3vw,2.6rem);border-left:1px solid var(--linie)}
+.hero-zahlen div:first-child{padding-left:0;border-left:0}
+.hero-zahlen b{display:block;font-family:var(--display);font-weight:800;font-stretch:88%;font-size:clamp(1.6rem,3vw,2.6rem);line-height:1;letter-spacing:-.03em}
+.hero-zahlen span{font-family:var(--mono);font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--tinte-3);display:block;margin-top:.45rem;max-width:14ch;overflow-wrap:anywhere}
+
+/* ── Laufband: die letzte Schriftebene, läuft immer ───────── */
+.hero-fuss{
+  position:relative;z-index:2;flex:none;display:flex;align-items:stretch;
+  border-top:1px solid var(--linie);
+  background:color-mix(in srgb,var(--papier) 72%,transparent);
+}
+.laufband{flex:1;min-width:0;overflow:hidden;display:flex;align-items:center}
+/* Schub und Lauf liegen auf zwei Elementen: die Endlosschleife darf sich den
+   transform nicht mit Scrollversatz und Neigung teilen. */
+.laufband-schub{
+  display:flex;width:max-content;
+  transform:translate3d(calc(var(--p) * -300px),0,0) skewX(calc(var(--v) * 1deg));
+}
+.laufband-spur{display:flex;width:max-content;animation:laufen 38s linear infinite}
+.laufband-spur span{
+  display:block;white-space:nowrap;padding:.85rem 0;
+  font-family:var(--display);font-weight:800;font-stretch:70%;text-transform:lowercase;
+  font-size:clamp(1.05rem,2.1vw,1.8rem);letter-spacing:-.02em;
+  color:transparent;-webkit-text-stroke:1px color-mix(in srgb,var(--tinte) 32%,transparent);
+}
+.laufband-spur b{font-weight:800;color:var(--akzent);-webkit-text-stroke:0}
+@keyframes laufen{to{transform:translateX(-50%)}}
+.hero-hinweis{
+  flex:none;display:flex;align-items:center;gap:.6rem;padding:0 clamp(.9rem,2vw,1.4rem);
+  border-left:1px solid var(--linie);
+  font-family:var(--mono);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:var(--tinte-3);
+}
+.hero-hinweis i{display:block;width:1px;height:1.3rem;background:linear-gradient(var(--akzent),transparent);animation:tropf 1.8s var(--ease) infinite}
+@keyframes tropf{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* Flache Fenster: lieber das Wörterbuch opfern als den Satz beschneiden. */
+@media (min-width:52rem) and (max-height:46rem){
+  .hero-kopfzeile{display:none}
+  .glossar dd{display:none}
+  .satz-zeile{font-size:clamp(2rem,6vw,4.8rem)}
+}
+/* Am Handy läuft die Bühne nicht fest: sie wächst mit dem Inhalt, --p bleibt 0. */
+@media (max-width:52rem){
+  .hero{height:auto}
+  .hero-fest{position:relative;height:auto;min-height:100svh}
+  .hero-geist--1{font-size:52vw}
+  .hero-geist--2,.hero-geist--3{display:none}
+  .glossar{grid-template-columns:1fr;gap:.7rem}
+  .glossar dd{font-size:.85rem}
+  .hero-zahlen{width:100%;justify-content:space-between;gap:.75rem}
+  .hero-zahlen div{padding-left:0;border-left:0}
+  .hero-hinweis{display:none}
+}
+
+/* Glitch-Geister */
+.geist{position:absolute;inset:0;pointer-events:none;white-space:nowrap;z-index:3;-webkit-text-stroke:0}
+.geist.a{color:var(--akzent);opacity:.65;animation:geistA .46s steps(2,end) forwards}
+.geist.b{color:#12C2E9;opacity:.4;animation:geistB .46s steps(2,end) forwards}
+@keyframes geistA{0%{clip-path:inset(12% 0 68% 0);transform:translate(-.05em,0)}25%{clip-path:inset(55% 0 22% 0);transform:translate(.05em,-.01em)}50%{clip-path:inset(30% 0 46% 0);transform:translate(-.03em,.01em) skewX(-5deg)}75%{clip-path:inset(74% 0 6% 0);transform:translate(.04em,0)}100%{clip-path:inset(0 0 100% 0)}}
+@keyframes geistB{0%{clip-path:inset(62% 0 14% 0);transform:translate(.05em,.01em)}30%{clip-path:inset(6% 0 78% 0);transform:translate(-.04em,0)}60%{clip-path:inset(70% 0 12% 0);transform:translate(.03em,-.01em)}100%{clip-path:inset(0 0 100% 0)}}
+
+/* ═══════════════════════════════════════════════════════════
+   9 — ABSCHNITTSKOPF
+   ═══════════════════════════════════════════════════════════ */
+.kopfzeile{margin-bottom:clamp(2.5rem,6vh,4.5rem);max-width:56rem}
+.kopfzeile .label{margin-bottom:1.4rem}
+.kopfzeile > p{color:var(--tinte-2);max-width:52ch;margin-top:1.5rem}
+
+/* ═══════════════════════════════════════════════════════════
+   10 — MANIFEST
+   ═══════════════════════════════════════════════════════════ */
+.manifest{font-family:var(--display);font-weight:700;font-stretch:88%;font-size:clamp(1.5rem,3.4vw,2.9rem);line-height:1.14;letter-spacing:-.025em;max-width:22ch}
+.manifest .w{display:inline-block;opacity:.18;transform:translateY(.2em);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.manifest.in .w{opacity:1;transform:none}
+.manifest .w.leucht{color:var(--akzent)}
+/* ═══════════════════════════════════════════════════════════
+   11 — ARBEITEN: der Verweis
+   ═══════════════════════════════════════════════════════════ */
+/* Kein Schaufenster, sondern eine Zeile pro Projekt. Die Tiefe trägt hier die
+   Überschrift, nicht die Liste: eine versetzte linke Kante wäre kein Effekt,
+   sondern ein Fehler. */
+.werkliste{list-style:none;border-top:1px solid var(--linie);margin-top:clamp(1rem,3vh,2.25rem)}
+.werk{position:relative;border-bottom:1px solid var(--linie);isolation:isolate}
+.werk::before{
+  content:"";position:absolute;inset:0;z-index:0;background:var(--akzent);
+  transform:scaleY(0);transform-origin:bottom;transition:transform .5s var(--ease);
+}
+.werk:hover::before,.werk:focus-within::before{transform:scaleY(1);transform-origin:top}
+.werk-innen{
+  position:relative;z-index:1;display:grid;
+  grid-template-columns:3.4rem minmax(0,1fr) auto;gap:.75rem 1.5rem;align-items:center;
+  padding:clamp(1.15rem,3.2vh,2.1rem) 1rem;
+  transition:padding-left .45s var(--ease),color .35s ease;
+}
+.werk:hover .werk-innen,.werk:focus-within .werk-innen{padding-left:1.75rem;color:var(--auf-akzent)}
+.werk-nr{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;color:var(--tinte-3);transition:color .35s}
+.werk:hover .werk-nr{color:color-mix(in srgb,var(--auf-akzent) 62%,transparent)}
+.werk-name{
+  display:block;font-family:var(--display);font-weight:800;font-stretch:84%;text-transform:lowercase;
+  font-size:clamp(1.45rem,3.6vw,2.7rem);line-height:.95;letter-spacing:-.035em;
+}
+.werk-meta{
+  display:block;margin-top:.5rem;
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--tinte-3);transition:color .35s;
+}
+.werk:hover .werk-meta{color:color-mix(in srgb,var(--auf-akzent) 68%,transparent)}
+.werk-status{
+  display:inline-flex;align-items:center;gap:.5rem;white-space:nowrap;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--tinte-3);transition:color .35s;
+}
+.werk:hover .werk-status{color:var(--auf-akzent)}
+.werk .pfeil{transition:transform .4s var(--ease-out)}
+.werk:hover .pfeil{transform:translate(.3rem,-.3rem)}
+.werk--offen .werk-name{color:var(--akzent-text);transition:color .35s}
+.werk--offen:hover .werk-name{color:var(--auf-akzent)}
+.werk-fuss{margin-top:clamp(1.5rem,3.5vh,2.5rem);max-width:62ch}
+@media (max-width:44rem){
+  .werk-innen{grid-template-columns:2.6rem minmax(0,1fr);padding-left:.25rem}
+  .werk:hover .werk-innen,.werk:focus-within .werk-innen{padding-left:1rem}
+  .werk-status{grid-column:2;justify-self:start}
+}
+
+/* ═══════════════════════════════════════════════════════════
+   12 — LEISTUNGEN
+   ═══════════════════════════════════════════════════════════ */
+.leistungen{border-top:1px solid var(--linie)}
+.leistung{position:relative;border-bottom:1px solid var(--linie);isolation:isolate}
+.leistung-kopf{
+  width:100%;display:grid;grid-template-columns:4.5rem 1fr auto;gap:1.5rem;align-items:center;
+  padding:clamp(1.4rem,3.4vh,2.4rem) 1rem;text-align:left;position:relative;z-index:2;
+  transition:padding .45s var(--ease),color .35s;
+}
+.leistung::before{content:"";position:absolute;inset:0;z-index:0;background:var(--akzent);transform:scaleY(0);transform-origin:bottom;transition:transform .5s var(--ease)}
+.leistung:hover::before,.leistung.offen::before{transform:scaleY(1);transform-origin:top}
+.leistung:hover .leistung-kopf,.leistung.offen .leistung-kopf{color:var(--auf-akzent);padding-left:1.75rem}
+.leistung-nr{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;color:var(--tinte-3);transition:color .35s}
+.leistung:hover .leistung-nr,.leistung.offen .leistung-nr{color:color-mix(in srgb,var(--auf-akzent) 65%,transparent)}
+.leistung-name{font-family:var(--display);font-weight:800;font-stretch:84%;text-transform:lowercase;font-size:clamp(1.4rem,3.4vw,2.5rem);line-height:.95;letter-spacing:-.035em}
+.leistung-plus{position:relative;width:1.5rem;height:1.5rem;flex:none}
+.leistung-plus::before,.leistung-plus::after{content:"";position:absolute;background:currentColor;transition:transform .45s var(--ease)}
+.leistung-plus::before{left:0;right:0;top:50%;height:1px;translate:0 -50%}
+.leistung-plus::after{top:0;bottom:0;left:50%;width:1px;translate:-50% 0}
+.leistung.offen .leistung-plus::after{transform:scaleY(0)}
+.leistung-koerper{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease);position:relative;z-index:2}
+.leistung.offen .leistung-koerper{grid-template-rows:1fr}
+.leistung-koerper > div{overflow:hidden;min-height:0}
+.leistung-inhalt{display:grid;grid-template-columns:4.5rem 1fr;gap:1.5rem;padding:0 1rem clamp(1.6rem,3.5vh,2.4rem);color:var(--auf-akzent)}
+.leistung-inhalt p{color:color-mix(in srgb,var(--auf-akzent) 78%,transparent);max-width:52ch}
+.leistung-inhalt ul{list-style:none;display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+.leistung-inhalt li{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid color-mix(in srgb,var(--auf-akzent) 35%,transparent);padding:.3rem .6rem}
+@media (max-width:52rem){
+  .leistung-kopf{grid-template-columns:2.4rem 1fr auto;gap:.9rem;padding-inline:.25rem}
+  .leistung:hover .leistung-kopf,.leistung.offen .leistung-kopf{padding-left:.75rem}
+  .leistung-inhalt{grid-template-columns:1fr;padding-inline:.25rem}
+  .leistung-inhalt .leer{display:none}
+}
+
+/* ═══════════════════════════════════════════════════════════
+   13 — FRAGEN-MODUL (Warum nicht KI)
+   ═══════════════════════════════════════════════════════════ */
+/* Getönt statt umgedreht: in der hellen Ansicht ein warmer Grund,
+   in der dunklen derselbe Ton auf dunklem Papier. */
+.getoent{
+  background:color-mix(in srgb,var(--akzent) 6%,var(--papier));
+  border-top:1px solid color-mix(in srgb,var(--akzent) 22%,transparent);
+  border-bottom:1px solid color-mix(in srgb,var(--akzent) 22%,transparent);
+}
+[data-thema="dunkel"] .getoent{background:color-mix(in srgb,var(--akzent) 9%,var(--papier))}
+
+.branchen{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:clamp(1.75rem,3.5vh,2.5rem)}
+.branchen button{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:.65rem 1.1rem;border:1px solid var(--linie);color:var(--tinte-2);background:var(--papier-2);
+  transition:color .3s,border-color .3s,background .3s,transform .3s var(--ease-out);
+}
+.branchen button:hover{color:var(--tinte);border-color:var(--tinte);transform:translateY(-2px)}
+.branchen button[aria-pressed="true"]{background:var(--akzent);border-color:var(--akzent);color:var(--auf-akzent)}
+
+.fragen-gitter{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);gap:clamp(1.5rem,3vw,3rem);align-items:start}
+@media (max-width:64rem){.fragen-gitter{grid-template-columns:1fr}}
+
+.fragenliste{list-style:none;border-top:1px solid var(--linie)}
+.qfrage{border-bottom:1px solid var(--linie)}
+.qfrage-kopf{
+  width:100%;display:grid;grid-template-columns:2.4rem 1fr 1.4rem;gap:1rem;align-items:start;
+  text-align:left;padding:1.15rem .25rem;transition:padding .35s var(--ease),color .3s;
+}
+.qfrage-kopf:hover{padding-left:.75rem;color:var(--akzent-text)}
+.qfrage-nr{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--akzent-text);padding-top:.28rem}
+.qfrage-txt{font-family:var(--display);font-weight:700;font-stretch:92%;font-size:clamp(1.05rem,1.7vw,1.3rem);line-height:1.2;letter-spacing:-.02em}
+.qfrage-plus{position:relative;width:1.15rem;height:1.15rem;margin-top:.35rem;justify-self:end}
+.qfrage-plus::before,.qfrage-plus::after{content:"";position:absolute;background:var(--akzent);transition:transform .4s var(--ease)}
+.qfrage-plus::before{left:0;right:0;top:50%;height:2px;translate:0 -50%}
+.qfrage-plus::after{top:0;bottom:0;left:50%;width:2px;translate:-50% 0}
+.qfrage.auf .qfrage-plus::after{transform:scaleY(0)}
+.qfrage.auf .qfrage-kopf{color:var(--akzent-text)}
+
+.qfrage-koerper{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease)}
+.qfrage.auf .qfrage-koerper{grid-template-rows:1fr}
+.qfrage-koerper > div{overflow:hidden;min-height:0}
+.qpaar{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--linie);margin:0 0 1.35rem;border:1px solid var(--linie)}
+@media (max-width:52rem){.qpaar{grid-template-columns:1fr}}
+.qantwort{padding:1.1rem 1.2rem;background:var(--papier-2)}
+.qantwort b{display:block;font-family:var(--mono);font-weight:400;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.6rem}
+.qantwort p{font-size:.9375rem;line-height:1.55;max-width:44ch}
+.qantwort--ki{background:color-mix(in srgb,var(--tinte) 4%,var(--papier))}
+.qantwort--ki b{color:var(--tinte-3)}
+.qantwort--ki p{color:var(--tinte-3)}
+.qantwort--ich{background:var(--papier-2);box-shadow:inset 3px 0 0 var(--akzent)}
+.qantwort--ich b{color:var(--akzent-text)}
+.qantwort--ich p{color:var(--tinte)}
+
+.bilanz{
+  position:sticky;top:clamp(6rem,14vh,8rem);
+  border:1px solid var(--linie);background:var(--papier-2);
+  padding:clamp(1.25rem,2.4vw,1.85rem);box-shadow:var(--schatten);
+}
+.bilanz-kopf{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--tinte-3);margin-bottom:1rem}
+.bilanz-zahl{display:flex;align-items:baseline;gap:.5rem;margin-bottom:.85rem}
+.bilanz-zahl b{font-family:var(--display);font-weight:800;font-stretch:88%;font-size:2.6rem;line-height:1;letter-spacing:-.035em}
+.bilanz-zahl span{font-size:.875rem;color:var(--tinte-2)}
+.bilanz-balken{height:2px;background:var(--linie);position:relative;overflow:hidden;margin-bottom:1.25rem}
+.bilanz-balken i{position:absolute;inset:0;background:var(--akzent);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.bilanz p{font-size:.9375rem;line-height:1.55;color:var(--tinte-2);margin-bottom:1.25rem}
+.bilanz-person{display:flex;align-items:center;gap:.8rem;border-top:1px solid var(--linie);padding-top:1rem;margin-bottom:1.25rem}
+.bilanz-portrait{
+  width:2.9rem;height:2.9rem;flex:none;border:1px solid var(--linie);
+  display:grid;place-items:center;text-align:center;
+  background-image:repeating-linear-gradient(45deg,var(--linie-s) 0 1px,transparent 1px 8px);
+  font-family:var(--mono);font-size:.4rem;letter-spacing:.08em;text-transform:uppercase;color:var(--tinte-3);
+}
+.bilanz-person span{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tinte-2);line-height:1.5}
+.bilanz-aktionen{display:flex;flex-direction:column;gap:.7rem;align-items:flex-start}
+@media (max-width:64rem){.bilanz{position:static}}
+
+.mehrwert{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--linie);
+  border:1px solid var(--linie);margin-top:clamp(2.5rem,5vh,4rem);
+}
+@media (max-width:64rem){.mehrwert{grid-template-columns:1fr 1fr}}
+@media (max-width:46rem){.mehrwert{grid-template-columns:1fr}}
+.mehrwert div{background:var(--papier);padding:clamp(1.25rem,2.2vw,1.75rem);transition:background .35s ease}
+.mehrwert div:hover{background:var(--papier-2)}
+.mehrwert h3{
+  font-family:var(--display);font-weight:800;font-stretch:88%;font-size:1.1875rem;line-height:1.05;
+  letter-spacing:-.025em;margin-bottom:.7rem;
+}
+.mehrwert h3 em{font-style:normal;color:var(--akzent-text);display:block;font-family:var(--mono);font-weight:400;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.5rem}
+.mehrwert p{font-size:.875rem;line-height:1.55;color:var(--tinte-2)}
+
+/* ═══════════════════════════════════════════════════════════
+   14 — ABLAUF
+   ═══════════════════════════════════════════════════════════ */
+.ablauf-gitter{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(2rem,6vw,5rem);align-items:start}
+.ablauf-fest{position:sticky;top:clamp(6rem,15vh,9rem)}
+.schritte{list-style:none;position:relative;padding-left:clamp(1.5rem,4vw,3rem)}
+.schritte::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--linie)}
+.schienen-fuell{position:absolute;left:0;top:0;width:2px;background:var(--akzent);height:0;transition:height .2s linear}
+.schritt{position:relative;padding:clamp(1.4rem,3vh,2.2rem) 0;opacity:.4;transition:opacity .5s ease}
+.schritt.aktiv{opacity:1}
+.schritt::before{
+  content:"";position:absolute;left:calc(clamp(1.5rem,4vw,3rem) * -1);top:calc(clamp(1.4rem,3vh,2.2rem) + .55em);
+  width:10px;height:10px;background:var(--papier);border:1px solid var(--linie);translate:-4px 0;
+  transition:background .4s,border-color .4s,transform .4s var(--ease-out);
+}
+.schritt.aktiv::before{background:var(--akzent);border-color:var(--akzent);transform:scale(1.3) rotate(45deg)}
+.schritt-nr{font-family:var(--mono);font-size:.65rem;letter-spacing:.2em;color:var(--akzent-text);display:block;margin-bottom:.55rem}
+.schritt h3{margin-bottom:.5rem;font-size:1.375rem}
+.schritt p{color:var(--tinte-2);max-width:48ch}
+.schritt-dauer{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--tinte-3);margin-top:.8rem;display:block}
+@media (max-width:64rem){.ablauf-gitter{grid-template-columns:1fr;gap:2rem}.ablauf-fest{position:static}}
+
+/* ═══════════════════════════════════════════════════════════
+   15 — PREISE & BAUKASTEN
+   ═══════════════════════════════════════════════════════════ */
+.baukasten{
+  display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:0;
+  border:1px solid var(--linie);background:var(--papier-2);box-shadow:var(--schatten);
+  margin-bottom:clamp(2.5rem,5vh,4rem);will-change:transform;
+}
+.baukasten-felder{padding:clamp(1.5rem,3vw,2.5rem);display:flex;flex-direction:column;gap:1.6rem}
+.bk-gruppe{border-top:1px solid var(--linie-s);padding-top:1.25rem}
+.bk-gruppe:first-of-type{border-top:0;padding-top:0}
+.bk-titel{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.85rem}
+.bk-titel h3{font-family:var(--mono);font-weight:400;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--tinte-3)}
+.bk-titel span{font-family:var(--mono);font-size:.62rem;color:var(--akzent-text)}
+.bk-reihe{display:flex;flex-wrap:wrap;gap:.45rem}
+.bk-opt{position:relative}
+.bk-opt input{position:absolute;opacity:0;width:100%;height:100%;left:0;top:0;cursor:pointer;margin:0}
+.bk-opt span{
+  display:block;padding:.6rem 1rem;border:1px solid var(--linie);
+  font-size:.875rem;line-height:1.3;transition:.28s var(--ease-out);cursor:pointer;
+}
+.bk-opt span b{display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--tinte-3);margin-top:.2rem;font-weight:400;transition:color .28s}
+.bk-opt:hover span{border-color:var(--tinte);transform:translateY(-2px)}
+.bk-opt input:checked + span{background:var(--tinte);border-color:var(--tinte);color:var(--papier)}
+.bk-opt input:checked + span b{color:color-mix(in srgb,var(--papier) 62%,transparent)}
+.bk-opt input:focus-visible + span{outline:2px solid var(--akzent);outline-offset:3px}
+.bk-hinweis{font-size:.8125rem;color:var(--tinte-3);margin-top:.7rem;line-height:1.5;max-width:52ch}
+
+.bk-summe{
+  padding:clamp(1.5rem,3vw,2.5rem);border-left:1px solid var(--linie);
+  background:var(--papier-3);display:flex;flex-direction:column;
+  position:sticky;top:0;align-self:start;
+}
+.bk-liste{list-style:none;display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.25rem;min-height:9rem}
+.bk-liste li{display:flex;justify-content:space-between;gap:1rem;font-size:.8125rem;color:var(--tinte-2);padding-bottom:.4rem;border-bottom:1px solid var(--linie-s);animation:bkAuf .35s var(--ease-out) both}
+.bk-liste li b{font-family:var(--mono);font-weight:400;color:var(--tinte);white-space:nowrap}
+@keyframes bkAuf{from{opacity:0;transform:translateY(-.25rem)}}
+.bk-zahl{font-family:var(--display);font-weight:800;font-stretch:86%;font-size:clamp(2.2rem,5vw,3.2rem);line-height:1;letter-spacing:-.035em;display:block;margin-top:auto}
+.bk-monat{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--akzent-text);margin-top:.5rem;display:block}
+.bk-fuss{font-size:.8125rem;color:var(--tinte-3);margin:.7rem 0 1.25rem;line-height:1.5}
+.bk-warnung{border:1px solid var(--akzent);padding:.7rem .85rem;font-size:.8125rem;line-height:1.5;color:var(--tinte);margin-bottom:1.1rem;display:none}
+.bk-warnung.da{display:block;animation:bkAuf .4s var(--ease-out) both}
+@media (max-width:64rem){
+  .baukasten{grid-template-columns:1fr}
+  .bk-summe{border-left:0;border-top:1px solid var(--linie);position:static}
+  .bk-liste{min-height:0}
+}
+
+.pakete{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--linie);border:1px solid var(--linie)}
+.paket{background:var(--papier);padding:clamp(1.5rem,3vw,2.25rem);display:flex;flex-direction:column;position:relative;transition:background .4s ease}
+.paket::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--akzent);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.paket:hover{background:var(--papier-2)}
+.paket:hover::before{transform:scaleX(1)}
+.paket--top{background:var(--tinte);color:var(--papier)}
+.paket--top::before{transform:scaleX(1)}
+.paket--top:hover{background:var(--tinte)}
+.paket--top .paket-fuer,.paket--top li{color:color-mix(in srgb,var(--papier) 72%,transparent)}
+.paket-fahne{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--akzent-text);margin-bottom:.8rem}
+.paket--top .paket-fahne{color:var(--akzent)}
+.paket-name{font-family:var(--display);font-weight:800;font-stretch:86%;text-transform:lowercase;font-size:1.75rem;line-height:1;letter-spacing:-.035em}
+.paket-preis{font-family:var(--display);font-weight:800;font-stretch:86%;font-size:2.5rem;line-height:1.05;letter-spacing:-.035em;margin:.7rem 0 .3rem}
+.paket-fuer{font-size:.9375rem;color:var(--tinte-2);margin-bottom:1.5rem;min-height:3em}
+.paket ul{list-style:none;margin-bottom:2rem;display:flex;flex-direction:column;gap:.7rem}
+.paket li{display:grid;grid-template-columns:1rem 1fr;gap:.6rem;font-size:.9375rem;line-height:1.45;color:var(--tinte-2)}
+.paket li b{color:var(--akzent);font-weight:700}
+.paket .knopf{margin-top:auto}
+.paket--top .knopf{border-color:var(--akzent);color:var(--akzent)}
+.paket--top .knopf::before{background:var(--akzent)}
+.paket--top .knopf:hover{color:var(--auf-akzent)}
+@media (max-width:64rem){.pakete{grid-template-columns:1fr}.paket-fuer{min-height:0}}
+
+.betreuung{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:clamp(2rem,4vh,3rem);border-top:1px solid var(--linie);padding-top:2rem}
+.betreuung strong{font-family:var(--display);font-weight:800;font-stretch:88%;font-size:1.5rem;display:block;letter-spacing:-.03em;margin-bottom:.4rem}
+@media (max-width:60rem){.betreuung{grid-template-columns:1fr;gap:1.25rem}}
+
+/* ═══════════════════════════════════════════════════════════
+   16 — PERSON (überlappend)
+   ═══════════════════════════════════════════════════════════ */
+.person{display:grid;grid-template-columns:repeat(12,1fr);align-items:center}
+.person-bild{grid-row:1;grid-column:1 / span 5;position:relative;z-index:1;will-change:transform}
+.portrait{position:relative;aspect-ratio:4/5;overflow:hidden;border:1px solid var(--linie);background:var(--papier-3)}
+.portrait-inner{
+  position:absolute;inset:-14%;display:grid;place-items:center;text-align:center;padding:2rem;
+  background-image:repeating-linear-gradient(45deg,var(--linie-s) 0 1px,transparent 1px 12px);
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--tinte-3);
+  will-change:transform;
+}
+.portrait::after{content:"";position:absolute;right:1.1rem;top:1.1rem;width:1.6rem;height:1.6rem;background:var(--akzent)}
+.person-txt{
+  grid-row:1;grid-column:5 / span 8;position:relative;z-index:2;
+  background:var(--papier-2);border:1px solid var(--linie);box-shadow:var(--schatten);
+  padding:clamp(1.5rem,3vw,2.75rem);will-change:transform;
+}
+.person-zitat{font-family:var(--display);font-weight:700;font-stretch:88%;font-size:clamp(1.25rem,2.4vw,1.9rem);line-height:1.15;letter-spacing:-.025em;margin-bottom:1.6rem}
+.person-txt p{color:var(--tinte-2);margin-bottom:1.05em;font-size:.9375rem}
+.person-liste{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.65rem 1.5rem;margin-top:1.6rem;border-top:1px solid var(--linie);padding-top:1.4rem}
+.person-liste li{display:grid;grid-template-columns:1rem 1fr;gap:.6rem;font-size:.875rem;color:var(--tinte-2)}
+.person-liste b{color:var(--akzent)}
+@media (max-width:64rem){
+  .person{grid-template-columns:1fr}
+  .person-bild{grid-row:1;grid-column:1;max-width:22rem}
+  .person-txt{grid-row:2;grid-column:1;margin:-3rem 0 0 1.5rem}
+  .person-liste{grid-template-columns:1fr}
+}
+@media (max-width:36rem){.person-txt{margin:-1.5rem 0 0 0}}
+
+/* ═══════════════════════════════════════════════════════════
+   17 — ABSCHLUSS & FUSS
+   ═══════════════════════════════════════════════════════════ */
+.abschluss{position:relative;overflow:hidden;text-align:center;padding:clamp(5rem,15vh,10rem) 0}
+.abschluss::before{
+  content:"";position:absolute;left:50%;top:50%;translate:-50% -50%;
+  width:min(140vw,1200px);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--akzent) 14%,transparent),transparent 70%);pointer-events:none;
+}
+.abschluss > *{position:relative;z-index:1}
+.abschluss p{margin-inline:auto}
+.abschluss .d1{margin:1.4rem 0}
+.abschluss-satz span{display:block;will-change:transform}
+.kontaktzeile{display:flex;flex-direction:column;gap:.4rem;align-items:center;margin-top:2.25rem}
+.kontaktzeile a{font-family:var(--display);font-weight:700;font-stretch:88%;font-size:clamp(1.05rem,2.4vw,1.8rem);letter-spacing:-.03em;position:relative;padding-bottom:.15rem}
+.kontaktzeile a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--akzent);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.kontaktzeile a:hover::after{transform:scaleX(1)}
+
+.fuss{padding:3rem 0 3.5rem;border-top:1px solid var(--linie)}
+.fuss-oben{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;flex-wrap:wrap}
+.fuss .marke{font-size:1.6rem}
+.fuss-nav{display:flex;gap:1.4rem;flex-wrap:wrap;align-items:center}
+.fuss-nav a,.fuss-nav button{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--tinte-3);transition:color .3s}
+.fuss-nav a:hover,.fuss-nav button:hover{color:var(--akzent-text)}
+.fuss-nav .betont{color:var(--tinte);border-bottom:1px solid var(--akzent);padding-bottom:.15rem}
+.fuss-unten{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:2.5rem;border-top:1px solid var(--linie-s);padding-top:1.5rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tinte-3)}
+.hoch{display:inline-flex;align-items:center;gap:.5rem;transition:color .3s}
+.hoch:hover{color:var(--akzent-text)}
+
+/* ═══════════════════════════════════════════════════════════
+   18 — FAQ-FENSTER
+   ═══════════════════════════════════════════════════════════ */
+dialog.faq{
+  width:min(52rem,calc(100vw - 2rem));max-width:none;max-height:min(86vh,58rem);
+  border:1px solid var(--linie);background:var(--papier);color:var(--tinte);
+  padding:0;box-shadow:0 40px 100px -40px rgba(0,0,0,.6);
+}
+dialog.faq::backdrop{background:color-mix(in srgb,var(--tinte) 62%,transparent);backdrop-filter:blur(6px)}
+dialog.faq[open]{animation:faqRein .45s var(--ease-out)}
+@keyframes faqRein{from{opacity:0;transform:translateY(1.5rem)}}
+.faq-kopf{
+  position:sticky;top:0;z-index:2;display:flex;align-items:flex-start;justify-content:space-between;gap:1.5rem;
+  padding:clamp(1.5rem,3vw,2.25rem) clamp(1.25rem,3vw,2.25rem) 1.25rem;
+  background:var(--papier);border-bottom:1px solid var(--linie);
+}
+.faq-koerper{padding:0 clamp(1.25rem,3vw,2.25rem) clamp(1.5rem,3vw,2.25rem);overflow-y:auto}
+.faq-zu{width:2.5rem;height:2.5rem;flex:none;border:1px solid var(--linie);position:relative;transition:border-color .3s,background .3s}
+.faq-zu::before,.faq-zu::after{content:"";position:absolute;left:.65rem;right:.65rem;top:50%;height:1px;background:var(--tinte)}
+.faq-zu::before{transform:rotate(45deg)}
+.faq-zu::after{transform:rotate(-45deg)}
+.faq-zu:hover{background:var(--akzent);border-color:var(--akzent)}
+.faq-zu:hover::before,.faq-zu:hover::after{background:var(--auf-akzent)}
+dialog.faq details{border-top:1px solid var(--linie)}
+dialog.faq details:last-of-type{border-bottom:1px solid var(--linie)}
+dialog.faq summary{
+  list-style:none;cursor:pointer;padding:1.25rem 0;display:grid;grid-template-columns:1fr 1.25rem;gap:1.25rem;
+  align-items:start;font-weight:600;font-size:1rem;transition:color .3s,padding-left .4s var(--ease);
+}
+dialog.faq summary::-webkit-details-marker{display:none}
+dialog.faq summary:hover{color:var(--akzent-text);padding-left:.5rem}
+dialog.faq summary i{justify-self:end;width:1rem;height:1rem;position:relative;margin-top:.3rem}
+dialog.faq summary i::before,dialog.faq summary i::after{content:"";position:absolute;background:var(--akzent);transition:transform .4s var(--ease)}
+dialog.faq summary i::before{left:0;right:0;top:50%;height:1px;translate:0 -50%}
+dialog.faq summary i::after{top:0;bottom:0;left:50%;width:1px;translate:-50% 0}
+dialog.faq details[open] summary i::after{transform:scaleY(0)}
+dialog.faq details[open] summary{color:var(--akzent-text)}
+dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem;max-width:62ch}
+
+/* ═══════════════════════════════════════════════════════════
+   19 — REVEAL & BEWEGUNG
+   ═══════════════════════════════════════════════════════════ */
+.rev{opacity:0;transform:translateY(1.5rem);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
+.rev.in{opacity:1;transform:none}
+[data-verzoegern]{transition-delay:calc(var(--v,0) * 90ms)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .rev{opacity:1;transform:none}
+  .manifest .w{opacity:1;transform:none}
+  .satz-verb .v-voll{position:static;clip-path:none!important}
+  .satz-verb .v-aus{display:none}
+  .hero{height:auto}
+  .hero-fest{position:relative;height:auto;padding:9rem 0 0}
+  .korn{animation:none}
+  .geistwort,.hero-geist{display:none}
+  .hero-fuss{display:none}
+  .frei i{animation:none}
+}
+</style>
+<noscript><style>
+  #vorhang{display:none}
+  .hero{height:auto}
+  .hero-fest{position:relative;height:auto;min-height:100svh}
+  .rev{opacity:1;transform:none}
+  .satz-verb .v-aus{display:none}
+  .satz-verb .v-voll{position:static;clip-path:none}
+  .manifest .w{opacity:1;transform:none}
+</style></noscript>
+</head>
+<body>
+<!-- ═══════════ VORHANG ═══════════ -->
+<div id="vorhang" role="button" tabindex="0" aria-label="Intro überspringen">
+  <div class="vorhang-inner">
+    <span class="marke"><span class="marke-q">querstrich</span><span class="marke-sq" aria-hidden="true"></span></span>
+    <span class="vorhang-linie" aria-hidden="true"><i></i></span>
+    <p class="vorhang-claim"><span>Querverbindung finden.</span><span>Strich ziehen.</span><span>Punkt.</span></p>
+  </div>
+</div>
+
+<!-- ═══════════ ATMOSPHÄRE ═══════════ -->
+<div class="glut" id="glut" aria-hidden="true"></div>
+<div class="korn" aria-hidden="true"></div>
+
+<a class="nur-sr" href="#inhalt">Zum Inhalt springen</a>
+
+<!-- ═══════════ KOPF ═══════════ -->
+<header class="kopf" id="kopf">
+  <div class="wrap kopf-inner">
+    <span class="kopf-glas" aria-hidden="true"></span>
+    <a class="marke" href="#oben" data-glitch aria-label="querstrich — zur Startseite">
+      <span class="marke-q">querstrich</span><span class="marke-sq" aria-hidden="true"></span>
+    </a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <div class="nav-liste" id="navListe">
+        <a href="#fragen" style="--i:0">fragen</a>
+        <a href="#leistungen" style="--i:1">leistungen</a>
+        <a href="#arbeiten" style="--i:2">arbeiten</a>
+        <a href="#preise" style="--i:3">preise</a>
+        <a href="#kontakt" style="--i:4">kontakt</a>
+      </div>
+      <button class="schalter" id="schalter" type="button" aria-pressed="false" aria-label="Auf dunkle Ansicht wechseln">
+        <span class="schalter-spur" aria-hidden="true"><span class="schalter-knopf"></span></span>
+        <span class="schalter-txt" id="schalterTxt" aria-hidden="true">hell</span>
+      </button>
+      <a class="knopf knopf--klein" href="#kontakt">gespräch <span class="pfeil" aria-hidden="true">→</span></a>
+      <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navListe"><i></i><i></i></button>
+    </nav>
+  </div>
+  <div class="fortschritt" id="fortschritt" aria-hidden="true"></div>
+</header>
+
+<main id="oben">
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero" id="inhalt" aria-label="querstrich — Querverbindung finden, Strich ziehen, Punkt">
+    <div class="hero-fest">
+      <div class="hero-schraeg" aria-hidden="true"></div>
+      <div class="hero-ebenen" aria-hidden="true">
+        <span class="hero-geist hero-geist--1">querstrich</span>
+        <span class="hero-geist hero-geist--2">quer</span>
+        <span class="hero-geist hero-geist--3">punkt</span>
+      </div>
+
+      <div class="hero-kopfzeile">
+        <p class="mini">Marke <span aria-hidden="true">\</span> Website <span aria-hidden="true">\</span> Technik</p>
+        <p class="mini frei"><i aria-hidden="true"></i> Nächster freier Start <span aria-hidden="true">\</span> [Monat]</p>
+      </div>
+
+      <div class="hero-inhalt">
+        <p class="label">Für Betriebe, die Anfragen brauchen</p>
+
+        <h1 class="satz" id="satz">
+          <span class="satz-zeile" data-teil="quer" style="--zug:-14px;--hub:-56px;--f:.8"><span class="satz-teil">Quer</span><span class="satz-verb"><span class="v-aus" aria-hidden="true">verbindung finden.</span><span class="v-voll">verbindung finden.</span></span></span>
+          <span class="satz-zeile" data-teil="strich" style="--zug:62px;--hub:-8px;--f:1.4">
+            <span class="satz-teil">Strich</span>
+            <span class="satz-verb"><span class="v-aus" aria-hidden="true">ziehen.</span><span class="v-voll">ziehen.</span></span>
+          </span>
+          <span class="satz-zeile" data-teil="punkt" style="--zug:146px;--hub:20px;--f:2.1">
+            <span class="satz-teil">Punkt</span><span class="satz-punkt" aria-hidden="true"></span><span class="nur-sr">.</span>
+          </span>
+        </h1>
+
+        <span class="satz-strich" aria-hidden="true"></span>
+
+        <dl class="glossar" id="glossar">
+          <div data-teil="quer"><dt>quer <span aria-hidden="true">—</span> Verbindung</dt><dd>Zwischen dem, was Sie können, und dem, was Ihr Kunde sucht.</dd></div>
+          <div data-teil="strich"><dt>strich <span aria-hidden="true">—</span> Auswahl</dt><dd>Unter dem, was weg kann. Der teure Teil — nicht das Bauen.</dd></div>
+          <div data-teil="punkt"><dt>punkt <span aria-hidden="true">—</span> Ende</dt><dd>Eine Seite, die eine Sache tut. Kein „und außerdem“.</dd></div>
+        </dl>
+
+        <div class="hero-unten">
+          <div class="hero-aktionen">
+            <a class="knopf knopf--voll" href="#kontakt">gespräch anfragen <span class="pfeil" aria-hidden="true">→</span></a>
+            <a class="knopf" href="#arbeiten">arbeiten &amp; referenzen</a>
+          </div>
+          <div class="hero-zahlen">
+            <div><b data-zahl="10" data-suffix=" J">0</b><span>Jahre Gestaltung</span></div>
+            <div><b data-zahl="6" data-suffix=" W">0</b><span>Wochen bis Livegang</span></div>
+            <div><b data-zahl="1" data-suffix="">0</b><span>Ansprech&shy;partner</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-fuss">
+        <div class="laufband" aria-hidden="true">
+          <div class="laufband-schub">
+            <div class="laufband-spur">
+              <span>marke — website — shop &amp; buchung — texte — struktur — karriere — technik — betreuung — <b>querstrich</b> — </span>
+              <span>marke — website — shop &amp; buchung — texte — struktur — karriere — technik — betreuung — <b>querstrich</b> — </span>
+            </div>
+          </div>
+        </div>
+        <span class="hero-hinweis" aria-hidden="true"><i></i>scrollen</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ MANIFEST ═══════════ -->
+  <section class="bereich">
+    <span class="geistwort geistwort--links" data-drift="-16" data-zug="8" aria-hidden="true">problem</span>
+    <div class="wrap ueber">
+      <div class="kopfzeile rev">
+        <div>
+          <p class="label">Das eigentliche Problem</p>
+          <p class="lead" style="margin:1.25rem 0 1.75rem">Marke, Website und Technik aus einer Hand — für Betriebe, die Anfragen und Bewerbungen brauchen, nicht nur eine <span class="strich">hübsche Seite</span>.</p>
+          <p class="manifest" data-worte>Die meisten Websites scheitern nicht am Aussehen. Sie scheitern daran, dass niemand entschieden hat, <em class="leucht">was sie tun sollen</em>.</p>
+        </div>
+        <div>
+          <p>Es steht alles drauf, was der Betrieb kann. Nichts davon ist priorisiert. Der Besucher soll sich zurechtfinden, statt geführt zu werden. Und weil sich niemand zuständig fühlt, ändert sich seit 2019 nichts mehr.</p>
+          <p style="margin-top:1.1em"><strong>Meine Arbeit beginnt vor dem Gestalten: bei der Frage, wer diese Seite besucht und was er als Nächstes tun soll.</strong></p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ FRAGEN-MODUL ═══════════ -->
+  <section class="bereich getoent fragen" id="fragen">
+    <span class="geistwort geistwort--links" data-drift="-14" data-zug="7" aria-hidden="true">fragen</span>
+    <div class="wrap ueber">
+      <div class="kopfzeile rev">
+        <div>
+          <p class="label">Warum nicht einfach KI?</p>
+          <h2 class="d2" data-zug="-3">Die Fragen, die kein<br>Generator stellt.</h2>
+        </div>
+        <p>Eine KI baut die Seite — ich arbeite selbst mit diesen Werkzeugen. Sie entscheidet nur nicht, was draufkommt. Wählen Sie Ihre Branche, öffnen Sie eine Frage: Sie sehen sofort, was ein Generator daraus macht und was ich daraus mache.</p>
+      </div>
+
+      <div class="branchen rev" role="group" aria-label="Branche wählen" id="branchen"></div>
+
+      <div class="fragen-gitter">
+        <ol class="fragenliste rev" id="fragenListe" data-drift="4"></ol>
+
+        <aside class="bilanz rev" data-drift="-4">
+          <p class="bilanz-kopf">Ihre Bilanz</p>
+          <p class="bilanz-zahl"><b id="bilanzZahl">0</b><span id="bilanzVon">von 4 Fragen geöffnet</span></p>
+          <span class="bilanz-balken" aria-hidden="true"><i id="bilanzBalken"></i></span>
+          <p id="bilanzTxt">Öffnen Sie eine Frage. Sie bekommen die Antwort sofort — nicht erst im Angebot.</p>
+          <div class="bilanz-person">
+            <span class="bilanz-portrait" aria-hidden="true">[Foto]</span>
+            <span>[Vorname]<br>querstrich</span>
+          </div>
+          <div class="bilanz-aktionen">
+            <a class="knopf knopf--voll knopf--klein knopf--breit" id="bilanzMail" href="mailto:hallo@querstrich.de?subject=Erstgespr%C3%A4ch">gespräch anfragen <span class="pfeil" aria-hidden="true">→</span></a>
+            <button class="tlink" type="button" id="bilanzReset">alle schließen</button>
+          </div>
+        </aside>
+      </div>
+
+      <div class="mehrwert rev">
+        <div><h3><em>01 — Anwesenheit</em>Jemand, der zu Ihnen kommt</h3><p>Ich sitze einen Vormittag in Ihrem Betrieb und höre den Leuten zu, die die Arbeit machen. Was ich dort höre, steht danach auf der Seite. Ein Werkzeug war nicht dabei.</p></div>
+        <div><h3><em>02 — Auswahl</em>Jemand, der Nein sagt</h3><p>Ein Generator baut alles, was Sie hineingeben. Ich streiche die Hälfte wieder raus. Genau dieser Teil ist die Arbeit — und der Grund, warum die Seite danach funktioniert.</p></div>
+        <div><h3><em>03 — Haftung</em>Jemand, der geradesteht</h3><p>Festpreis schriftlich, zugesagte Funktion, Datenschutz und Barrierearmut inklusive. Wenn am Freitag das Formular klemmt, gibt es eine Nummer, unter der jemand rangeht.</p></div>
+        <div><h3><em>04 — Dauer</em>Jemand, der nächstes Jahr noch da ist</h3><p>Nach drei Monaten schauen wir gemeinsam auf die Zahlen, nach einem Jahr wieder. Eine Website ist nichts, was man einmal abholt und dann liegen lässt.</p></div>
+      </div>
+
+      <p class="klein rev" style="margin-top:clamp(2rem,4vh,3rem);max-width:64ch">
+        Ich arbeite selbst mit KI — beim Recherchieren, beim Sortieren, beim Wegwerfen von Varianten. Das macht mich schneller, und diesen Vorteil geben Sie über den Festpreis weiter. Was dabei nicht herauskommt: die Entscheidung, was <em>nicht</em> auf die Seite kommt.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════ LEISTUNGEN ═══════════ -->
+  <section class="bereich" id="leistungen">
+    <span class="geistwort geistwort--rechts" data-drift="16" data-zug="-8" aria-hidden="true">leistungen</span>
+    <div class="wrap ueber">
+      <div class="kopfzeile rev">
+        <div>
+          <p class="label">Leistungen</p>
+          <h2 class="d2" data-zug="4">Vier Dinge.<br>Richtig.</h2>
+        </div>
+        <p>Ich mache nicht alles. Was ich mache, verantworte ich von der ersten Skizze bis zum Server — deshalb geht zwischen Gestaltung und Umsetzung nichts verloren.</p>
+      </div>
+
+      <div class="leistungen rev">
+        <div class="leistung">
+          <button class="leistung-kopf" type="button" aria-expanded="false" aria-controls="l1">
+            <span class="leistung-nr">01</span>
+            <span class="leistung-name">marke &amp; erscheinungsbild</span>
+            <span class="leistung-plus" aria-hidden="true"></span>
+          </button>
+          <div class="leistung-koerper" id="l1"><div><div class="leistung-inhalt">
+            <span class="leer" aria-hidden="true"></span>
+            <div>
+              <p>Wortmarke, Farbe, Schrift, Bildsprache — und die Regeln, die dafür sorgen, dass es auf dem Transporter, dem Bauschild und im Browser dasselbe sagt. Wiedererkennung entsteht nicht auf der Website, sondern davor.</p>
+              <ul><li>Logo &amp; Wortmarke</li><li>Farb- &amp; Schriftsystem</li><li>Geschäftsausstattung</li><li>Fahrzeug &amp; Druck</li><li>Kurzleitfaden</li></ul>
+            </div>
+          </div></div></div>
+        </div>
+
+        <div class="leistung">
+          <button class="leistung-kopf" type="button" aria-expanded="false" aria-controls="l2">
+            <span class="leistung-nr">02</span>
+            <span class="leistung-name">websites &amp; shops</span>
+            <span class="leistung-plus" aria-hidden="true"></span>
+          </button>
+          <div class="leistung-koerper" id="l2"><div><div class="leistung-inhalt">
+            <span class="leer" aria-hidden="true"></span>
+            <div>
+              <p>Von der einseitigen Visitenkarte bis zum Shop mit Buchungsstrecke. Handgeschrieben statt zusammengeklickt: unter zwei Sekunden am Handy, bedienbar mit der Tastatur, ohne fremde Skripte, die Ihre Besucher an Dritte melden.</p>
+              <ul><li>Struktur &amp; Prototyp</li><li>Individuelle Gestaltung</li><li>Shop &amp; Buchung</li><li>Karriereseite</li><li>Barrierearmut</li><li>Ladezeit</li></ul>
+            </div>
+          </div></div></div>
+        </div>
+
+        <div class="leistung">
+          <button class="leistung-kopf" type="button" aria-expanded="false" aria-controls="l3">
+            <span class="leistung-nr">03</span>
+            <span class="leistung-name">text &amp; struktur</span>
+            <span class="leistung-plus" aria-hidden="true"></span>
+          </button>
+          <div class="leistung-koerper" id="l3"><div><div class="leistung-inhalt">
+            <span class="leer" aria-hidden="true"></span>
+            <div>
+              <p>Die alte Seite erklärt, was das Fachgebiet ist. Die neue erklärt, wann man anruft. Ich komme in den Betrieb, spreche mit den Leuten, die die Arbeit machen, und schreibe daraus die Seite — inklusive der Entscheidung, was wegfällt.</p>
+              <ul><li>Interview im Betrieb</li><li>Seitenstruktur</li><li>Texte</li><li>Auffindbarkeit</li><li>Strukturierte Daten</li></ul>
+            </div>
+          </div></div></div>
+        </div>
+
+        <div class="leistung">
+          <button class="leistung-kopf" type="button" aria-expanded="false" aria-controls="l4">
+            <span class="leistung-nr">04</span>
+            <span class="leistung-name">technik &amp; betreuung</span>
+            <span class="leistung-plus" aria-hidden="true"></span>
+          </button>
+          <div class="leistung-koerper" id="l4"><div><div class="leistung-inhalt">
+            <span class="leer" aria-hidden="true"></span>
+            <div>
+              <p>Hosting in Deutschland, Sicherung, Updates, Überwachung. Ein Monatsbericht, den man in zwei Minuten liest. Und eine Nummer, unter der jemand rangeht, wenn das Formular am Freitagnachmittag nicht mehr ankommt.</p>
+              <ul><li>Umzug &amp; Livegang</li><li>Datenschutz</li><li>Sicherung &amp; Updates</li><li>Monatsbericht</li><li>Schulung</li></ul>
+            </div>
+          </div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ ARBEITEN — DER VERWEIS ═══════════ -->
+  <section class="bereich" id="arbeiten">
+    <span class="geistwort geistwort--rechts" data-drift="15" data-zug="-7" aria-hidden="true">arbeiten</span>
+    <div class="wrap ueber">
+      <div class="kopfzeile rev">
+        <div>
+          <p class="label">Arbeiten</p>
+          <h2 class="d2" data-zug="3">Keine Galerie.<br>Ein Verweis.</h2>
+        </div>
+        <p>Eine Übersicht mit Kacheln beantwortet die falsche Frage: Sie zeigt, was mir gefallen hat, nicht was Ihnen hilft. Im Gespräch zeige ich Ihnen die zwei, drei Projekte, die zu Ihrer Lage passen — mit der Entscheidung dahinter, den Zahlen danach und dem, was nicht funktioniert hat. Das dauert zehn Minuten und sagt mehr als jede Kachel.</p>
+      </div>
+
+      <ol class="werkliste rev">
+        <li class="werk">
+          <a class="werk-innen" href="https://www.coaching-withmaria.com/" target="_blank" rel="noopener noreferrer">
+            <span class="werk-nr">01</span>
+            <span class="werk-haupt">
+              <span class="werk-name">coaching with maria</span>
+              <span class="werk-meta">Website <span aria-hidden="true">\</span> Struktur &amp; Text <span aria-hidden="true">\</span> zwei Länder</span>
+            </span>
+            <span class="werk-status">live ansehen <span class="pfeil" aria-hidden="true">↗</span></span>
+          </a>
+        </li>
+        <li class="werk">
+          <div class="werk-innen">
+            <span class="werk-nr">02</span>
+            <span class="werk-haupt">
+              <span class="werk-name">sharemics</span>
+              <span class="werk-meta">Markensystem <span aria-hidden="true">\</span> Shop <span aria-hidden="true">\</span> Kursbuchung</span>
+            </span>
+            <span class="werk-status">auf Anfrage vorführbar</span>
+          </div>
+        </li>
+        <li class="werk">
+          <div class="werk-innen">
+            <span class="werk-nr">03</span>
+            <span class="werk-haupt">
+              <span class="werk-name">33ter sonnenstrahl</span>
+              <span class="werk-meta">Einladung <span aria-hidden="true">\</span> Scroll-Choreografie <span aria-hidden="true">\</span> Zusage</span>
+            </span>
+            <span class="werk-status">private Veranstaltung</span>
+          </div>
+        </li>
+        <li class="werk werk--offen">
+          <a class="werk-innen" href="#kontakt">
+            <span class="werk-nr">04</span>
+            <span class="werk-haupt">
+              <span class="werk-name">ihr betrieb</span>
+              <span class="werk-meta">frei ab [Monat] <span aria-hidden="true">\</span> sechs Wochen bis zum Livegang</span>
+            </span>
+            <span class="werk-status">gespräch anfragen <span class="pfeil" aria-hidden="true">→</span></span>
+          </a>
+        </li>
+      </ol>
+
+      <p class="klein rev werk-fuss">Ältere Arbeiten, Zwischenstände und die Zahlen danach liegen bereit — sagen Sie im Erstgespräch, aus welcher Branche Sie kommen, dann schicke ich Ihnen vorher das Passende.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ ABLAUF ═══════════ -->
+  <section class="bereich" id="ablauf">
+    <div class="wrap ablauf-gitter ueber">
+      <div class="ablauf-fest rev">
+        <p class="label">Ablauf</p>
+        <h2 class="d2" data-zug="3" style="margin:1.25rem 0 1.5rem">So läuft es ab.</h2>
+        <p class="klein" style="max-width:34ch">Fünf Schritte, sechs Wochen. Der einzige Punkt, an dem Projekte regelmäßig kippen, sind Ihre Inhalte — deshalb steht er im Angebot mit Datum.</p>
+        <a class="knopf knopf--voll" href="#kontakt" style="margin-top:2rem">gespräch anfragen <span class="pfeil" aria-hidden="true">→</span></a>
+      </div>
+
+      <ol class="schritte" id="schritte">
+        <span class="schienen-fuell" id="schiene" aria-hidden="true"></span>
+        <li class="schritt"><span class="schritt-nr">01</span><h3>Gespräch</h3><p>Dreißig Minuten, telefonisch oder bei Ihnen im Betrieb. Ich frage, was Sie verkaufen, wen Sie suchen und was bisher nicht funktioniert.</p><span class="schritt-dauer">30 Minuten <span aria-hidden="true">\</span> kostenlos</span></li>
+        <li class="schritt"><span class="schritt-nr">02</span><h3>Angebot</h3><p>Festpreis, Terminplan und eine Liste dessen, was Sie liefern müssen. Was nicht drinsteht, ist nicht enthalten — das schützt uns beide.</p><span class="schritt-dauer">Woche 1</span></li>
+        <li class="schritt"><span class="schritt-nr">03</span><h3>Entwurf</h3><p>Sie sehen zuerst die Startseite. Erst nach Ihrer Freigabe baue ich weiter. Zwei Korrekturrunden je Phase sind enthalten.</p><span class="schritt-dauer">Woche 2 bis 3</span></li>
+        <li class="schritt"><span class="schritt-nr">04</span><h3>Umsetzung &amp; Prüfung</h3><p>Aufbau, Test auf echten Geräten, Ladezeit, Formulare, Datenschutz. Sie bekommen jede Woche einen kurzen Stand.</p><span class="schritt-dauer">Woche 3 bis 5</span></li>
+        <li class="schritt"><span class="schritt-nr">05</span><h3>Livegang &amp; danach</h3><p>Freischaltung, eine Stunde Schulung, schriftliche Anleitung. Nach drei Monaten schauen wir gemeinsam auf die Zahlen.</p><span class="schritt-dauer">Woche 6 <span aria-hidden="true">\</span> und danach</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ═══════════ PREISE ═══════════ -->
+  <section class="bereich" id="preise">
+    <span class="geistwort geistwort--links" data-drift="-15" data-zug="9" aria-hidden="true">preise</span>
+    <div class="wrap ueber">
+      <div class="kopfzeile rev">
+        <div>
+          <p class="label">Preise</p>
+          <h2 class="d2" data-zug="-3">Sie wissen vorher,<br>was es kostet.</h2>
+        </div>
+        <p>Alle Preise netto, Festpreis statt Stundenzettel. Stellen Sie sich Ihr Projekt zusammen — der Baukasten rechnet mit denselben Zahlen, mit denen ich das Angebot schreibe.</p>
+      </div>
+
+      <div class="baukasten rev" data-drift="-5">
+        <div class="baukasten-felder">
+
+          <div class="bk-gruppe">
+            <div class="bk-titel"><h3>01 <span aria-hidden="true">\</span> Umfang</h3></div>
+            <div class="bk-reihe" role="radiogroup" aria-label="Umfang">
+              <label class="bk-opt"><input type="radio" name="umfang" value="1200" data-bez="Einseiter"><span>Einseiter<b>1.200 €</b></span></label>
+              <label class="bk-opt"><input type="radio" name="umfang" value="2200" data-bez="bis 5 Seiten"><span>bis 5 Seiten<b>2.200 €</b></span></label>
+              <label class="bk-opt"><input type="radio" name="umfang" value="3350" data-bez="8 bis 12 Seiten" checked><span>8 bis 12 Seiten<b>3.350 €</b></span></label>
+              <label class="bk-opt"><input type="radio" name="umfang" value="5400" data-bez="mehr als 12 Seiten"><span>mehr als 12 Seiten<b>5.400 €</b></span></label>
+            </div>
+          </div>
+
+          <div class="bk-gruppe">
+            <div class="bk-titel"><h3>02 <span aria-hidden="true">\</span> Gestaltung</h3></div>
+            <div class="bk-reihe" role="radiogroup" aria-label="Gestaltung">
+              <label class="bk-opt"><input type="radio" name="design" value="0" data-bez="Vorlage angepasst"><span>Vorlage anpassen<b>inklusive</b></span></label>
+              <label class="bk-opt"><input type="radio" name="design" value="900" data-bez="Individuelle Gestaltung" checked><span>individuell<b>+ 900 €</b></span></label>
+              <label class="bk-opt"><input type="radio" name="design" value="2200" data-bez="Gestaltung mit Markenauftritt"><span>mit Markenauftritt<b>+ 2.200 €</b></span></label>
+            </div>
+          </div>
+
+          <div class="bk-gruppe">
+            <div class="bk-titel"><h3>03 <span aria-hidden="true">\</span> Texte</h3></div>
+            <div class="bk-reihe" role="radiogroup" aria-label="Texte">
+              <label class="bk-opt"><input type="radio" name="texte" value="0" data-bez="Texte von Ihnen"><span>Sie liefern sie<b>inklusive</b></span></label>
+              <label class="bk-opt"><input type="radio" name="texte" value="400" data-bez="Textüberarbeitung"><span>ich überarbeite Ihre<b>+ 400 €</b></span></label>
+              <label class="bk-opt"><input type="radio" name="texte" value="650" data-bez="Texte von mir" checked><span>ich schreibe sie<b>+ 650 €</b></span></label>
+            </div>
+            <p class="bk-hinweis">Geschrieben nach einem Gespräch bei Ihnen — mit Ihren Sätzen, Ihren Zahlen und dem, was Ihre Leute am Telefon wirklich gefragt werden. Keine Textwüste aus dem Generator, und keine Füllsätze, die man beim zweiten Lesen wegstreichen will.</p>
+          </div>
+
+          <div class="bk-gruppe">
+            <div class="bk-titel"><h3>04 <span aria-hidden="true">\</span> Bausteine</h3><span id="bkExtraZahl">keine gewählt</span></div>
+            <div class="bk-reihe">
+              <label class="bk-opt"><input type="checkbox" name="extra" value="600" data-bez="Karriere- &amp; Bewerbungsstrecke"><span>Karriere &amp; Bewerbung<b>+ 600 €</b></span></label>
+              <label class="bk-opt"><input type="checkbox" name="extra" value="2900" data-bez="Shop oder Buchung"><span>Shop oder Buchung<b>+ 2.900 €</b></span></label>
+              <label class="bk-opt"><input type="checkbox" name="extra" value="900" data-bez="Zweite Sprache"><span>zweite Sprache<b>+ 900 €</b></span></label>
+              <label class="bk-opt"><input type="checkbox" name="extra" value="700" data-bez="Fotos vor Ort"><span>Fotos vor Ort<b>+ 700 €</b></span></label>
+              <label class="bk-opt"><input type="checkbox" name="extra" value="450" data-bez="Karriereseite mit Stellenpflege"><span>Stellenpflege<b>+ 450 €</b></span></label>
+              <label class="bk-opt"><input type="checkbox" name="extra" value="300" data-bez="Umzug &amp; Einrichtung"><span>Umzug &amp; Einrichtung<b>+ 300 €</b></span></label>
+            </div>
+          </div>
+
+          <div class="bk-gruppe">
+            <div class="bk-titel"><h3>05 <span aria-hidden="true">\</span> Betreuung danach</h3><span>monatlich, jederzeit kündbar</span></div>
+            <div class="bk-reihe" role="radiogroup" aria-label="Betreuung">
+              <label class="bk-opt"><input type="radio" name="pflege" value="0" data-bez="Keine Betreuung" checked><span>keine<b>0 €</b></span></label>
+              <label class="bk-opt"><input type="radio" name="pflege" value="89" data-bez="Betreuung klein"><span>Updates &amp; Sicherung<b>89 € / Monat</b></span></label>
+              <label class="bk-opt"><input type="radio" name="pflege" value="190" data-bez="Betreuung mittel"><span>+ 1 Std. Änderungen<b>190 € / Monat</b></span></label>
+              <label class="bk-opt"><input type="radio" name="pflege" value="340" data-bez="Betreuung groß"><span>+ 3 Std. &amp; Optimierung<b>340 € / Monat</b></span></label>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="bk-summe">
+          <p class="label label--nackt">Ihr Baukasten</p>
+          <ul class="bk-liste" id="bkListe"></ul>
+          <div class="bk-warnung" id="bkWarnung">
+            Ab hier wird es ein <strong>individuell</strong>-Projekt: eigene Konzeptphase, klickbarer Prototyp, Festpreis danach.
+          </div>
+          <span class="bk-zahl" id="bkZahl" aria-live="polite">4.900 €</span>
+          <span class="bk-monat" id="bkMonat" hidden></span>
+          <p class="bk-fuss">Einmalig, netto. Richtwert — verbindlich nach dem Erstgespräch.</p>
+          <a class="knopf knopf--voll knopf--breit" id="bkMail" href="#kontakt">angebot anfragen <span class="pfeil" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+
+      <div class="pakete rev">
+        <div class="paket">
+          <p class="paket-fahne">Einstieg</p>
+          <p class="paket-name">check</p>
+          <p class="paket-preis">390 €</p>
+          <p class="paket-fuer">Für Betriebe, die erst wissen wollen, wo sie stehen.</p>
+          <ul>
+            <li><b>\</b> Prüfung von Ladezeit, Mobilbedienung, Auffindbarkeit</li>
+            <li><b>\</b> Datenschutz- und Abmahnrisiken</li>
+            <li><b>\</b> Schriftliches Ergebnis, 30 Minuten Gespräch</li>
+            <li><b>\</b> Wird bei Beauftragung angerechnet</li>
+          </ul>
+          <a class="knopf" href="#kontakt">check buchen</a>
+        </div>
+
+        <div class="paket paket--top">
+          <p class="paket-fahne">Am häufigsten gewählt</p>
+          <p class="paket-name">business</p>
+          <p class="paket-preis">4.900 €</p>
+          <p class="paket-fuer">Für Betriebe, die über die Seite Anfragen und Bewerbungen bekommen wollen.</p>
+          <ul>
+            <li><b>\</b> 8 bis 12 Seiten, individuell gestaltet</li>
+            <li><b>\</b> Texte von mir, nach einem Gespräch im Betrieb</li>
+            <li><b>\</b> Ladezeit unter zwei Sekunden am Handy</li>
+            <li><b>\</b> Rechtssichere Einbindung, Formulare, Schulung</li>
+            <li><b>\</b> Drei Monate Betreuung inklusive</li>
+          </ul>
+          <a class="knopf" href="#kontakt">gespräch anfragen <span class="pfeil" aria-hidden="true">→</span></a>
+        </div>
+
+        <div class="paket">
+          <p class="paket-fahne">Größer</p>
+          <p class="paket-name">individuell</p>
+          <p class="paket-preis">ab 9.500 €</p>
+          <p class="paket-fuer">Für Shop, Buchung, Konfigurator oder Anbindung an Ihre Software.</p>
+          <ul>
+            <li><b>\</b> Konzeptphase mit eigenem Budget</li>
+            <li><b>\</b> Klickbarer Prototyp vor der Umsetzung</li>
+            <li><b>\</b> Festpreis nach der Konzeptphase</li>
+            <li><b>\</b> Übergabe mit Dokumentation</li>
+          </ul>
+          <a class="knopf" href="#kontakt">projekt besprechen</a>
+        </div>
+      </div>
+
+      <p class="klein rev" style="margin-top:1.75rem">Betreuung ist freiwillig. Die Website gehört nach vollständiger Zahlung Ihnen — mit allen Dateien und Zugängen.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ PERSON ═══════════ -->
+  <section class="bereich" id="person">
+    <div class="wrap person ueber">
+      <div class="person-bild rev" data-drift="11">
+        <div class="portrait">
+          <div class="portrait-inner" data-drift-innen="9">[Porträtfoto einsetzen — Werkstatt oder Arbeitsplatz, kein Studiohintergrund]</div>
+        </div>
+      </div>
+      <div class="person-txt rev" data-drift="-6">
+        <p class="label">Wer hier arbeitet</p>
+        <p class="person-zitat" style="margin-top:1.25rem">Ich gestalte nichts, das jemand anderes irgendwie umsetzen muss — und baue nichts, das gestalterisch niemand verantwortet hat.</p>
+        <p>Gelernter Grafikdesigner, seit zehn Jahren in der Gestaltung, dazu eine Weiterbildung zum Webentwickler. Selbstständig in [Stadt], als <strong>querstrich</strong>.</p>
+        <p>Sie arbeiten mit mir. Nicht mit einem Projektleiter, der Ihre Frage weitergibt und in vier Tagen zurückruft.</p>
+        <ul class="person-liste">
+          <li><b>\</b> Gestaltung &amp; Entwicklung in einer Hand</li>
+          <li><b>\</b> Festpreis, schriftlich, vor dem Start</li>
+          <li><b>\</b> Erreichbar Mo–Fr, 8 bis 17 Uhr</li>
+          <li><b>\</b> Zwei Kollegen als Vertretung im Notfall</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ ABSCHLUSS ═══════════ -->
+  <section class="abschluss" id="kontakt">
+    <span class="geistwort" data-drift="13" data-zug="-6" aria-hidden="true">punkt.</span>
+    <div class="wrap ueber">
+      <p class="label label--nackt rev" style="justify-content:center">Der erste Schritt</p>
+      <h2 class="d1 rev abschluss-satz">
+        <span data-zug="-5">Reden wir</span>
+        <span data-zug="7">eine halbe</span>
+        <span data-zug="-9">Stunde.</span>
+      </h2>
+      <p class="lead rev">Kein Verkaufsgespräch. Ich höre zu, stelle Fragen und sage Ihnen ehrlich, ob ich der Richtige bin. Wenn nicht, empfehle ich Ihnen jemanden.</p>
+
+      <p class="rev" style="margin-top:2.25rem">
+        <a class="knopf knopf--voll" href="mailto:hallo@querstrich.de?subject=Erstgespr%C3%A4ch">gespräch anfragen <span class="pfeil" aria-hidden="true">→</span></a>
+      </p>
+
+      <div class="kontaktzeile rev">
+        <a href="mailto:hallo@querstrich.de">hallo@querstrich.de</a>
+        <a href="tel:+49">[telefonnummer]</a>
+      </div>
+      <p class="klein rev" style="margin-top:1.75rem">Montag bis Freitag, 8 bis 17 Uhr <span aria-hidden="true">\</span> Rückruf am selben Werktag</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══════════ FUSS ═══════════ -->
+<footer class="fuss">
+  <div class="wrap">
+    <div class="fuss-oben">
+      <div>
+        <a class="marke" href="#oben" data-glitch aria-label="querstrich — nach oben">
+          <span class="marke-q">querstrich</span><span class="marke-sq" aria-hidden="true"></span>
+        </a>
+        <p class="klein" style="margin-top:1rem;max-width:28ch">quer denken, Strich ziehen, Punkt. [Vorname Nachname] <span aria-hidden="true">\</span> [Straße] <span aria-hidden="true">\</span> [PLZ Stadt]</p>
+      </div>
+      <nav class="fuss-nav" aria-label="Fußzeile">
+        <a href="#leistungen">leistungen</a>
+        <a href="#arbeiten">arbeiten</a>
+        <a href="#ablauf">ablauf</a>
+        <a href="#preise">preise</a>
+        <button type="button" id="faqAuf" class="betont" aria-haspopup="dialog">häufige fragen</button>
+        <a href="/impressum">impressum</a>
+        <a href="/datenschutz">datenschutz</a>
+      </nav>
+    </div>
+    <div class="fuss-unten">
+      <span>© <span id="jahr">2026</span> querstrich <span aria-hidden="true">\</span> Alle Rechte vorbehalten</span>
+      <a class="hoch" href="#oben">nach oben <span aria-hidden="true">↑</span></a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════ FAQ-FENSTER ═══════════ -->
+<dialog class="faq" id="faqFenster" aria-labelledby="faqTitel">
+  <div class="faq-kopf">
+    <div>
+      <p class="label label--nackt">Damit Sie nicht fragen müssen</p>
+      <h2 class="d3" id="faqTitel" style="margin-top:.6rem">Häufige Fragen.</h2>
+    </div>
+    <button class="faq-zu" type="button" id="faqZu" aria-label="Fragen schließen"></button>
+  </div>
+  <div class="faq-koerper">
+    <details>
+      <summary>Kann ich das nicht mit KI selbst machen? <i aria-hidden="true"></i></summary>
+      <p>Können Sie, und für ein Nebenprojekt würde ich es Ihnen sogar raten. Bei einem Betrieb, für den die Website Aufträge oder Personal bringen soll, fehlt Ihnen dabei genau das Teure: die Entscheidung, was auf die Startseite gehört und was weg kann. Das Bauen ist der einfache Teil geworden. Das Entscheiden nicht.</p>
+    </details>
+    <details>
+      <summary>Warum 4.900 € und nicht 1.500 €? <i aria-hidden="true"></i></summary>
+      <p>Für 1.500 € bekommen Sie eine angepasste Vorlage. Das ist manchmal genau richtig — dann verkaufe ich Ihnen das kleinere Paket und wir sind beide zufrieden. Der Unterschied liegt in Gestaltung, Texten und der Frage, ob die Seite arbeitet oder nur existiert.</p>
+    </details>
+    <details>
+      <summary>Wie lange dauert es wirklich? <i aria-hidden="true"></i></summary>
+      <p>Sechs Wochen, wenn Ihre Inhalte in Woche zwei bei mir sind. Das ist der einzige Punkt, an dem Projekte regelmäßig kippen, deshalb steht er im Angebot mit Datum.</p>
+    </details>
+    <details>
+      <summary>Was passiert, wenn Sie krank werden? <i aria-hidden="true"></i></summary>
+      <p>Eine berechtigte Frage bei einem Einzelunternehmer. Alle Zugänge, Dateien und Inhalte liegen bei Ihnen, nicht nur bei mir. Für den Notfall arbeite ich mit zwei Kollegen zusammen, die übernehmen können.</p>
+    </details>
+    <details>
+      <summary>Gehört mir die Website danach? <i aria-hidden="true"></i></summary>
+      <p>Ja. Nach vollständiger Zahlung gehören Ihnen Gestaltung, Texte und Quelldateien. Sie sind an keinen Wartungsvertrag gebunden und können jederzeit zu jemand anderem wechseln.</p>
+    </details>
+    <details>
+      <summary>Was, wenn mir der Entwurf nicht gefällt? <i aria-hidden="true"></i></summary>
+      <p>Dann überarbeite ich ihn. Zwei Korrekturrunden je Phase sind enthalten. Gefällt Ihnen nach der ersten Phase gar nichts, können Sie das Projekt beenden — die erste Rate deckt die bis dahin geleistete Arbeit ab, weitere Kosten entstehen nicht.</p>
+    </details>
+    <details>
+      <summary>Arbeiten Sie mit KI? <i aria-hidden="true"></i></summary>
+      <p>Ja, als Werkzeug — beim Recherchieren, beim Sortieren, beim Wegwerfen von Varianten. Das macht mich schneller, und diesen Vorteil geben Sie über den Festpreis weiter. Was nicht aus einem Generator kommt: die Struktur, die Entscheidung, was wegfällt, und die Texte. Die entstehen im Gespräch bei Ihnen.</p>
+    </details>
+    <details>
+      <summary>Was kostet die Betreuung — und muss ich sie nehmen? <i aria-hidden="true"></i></summary>
+      <p>89, 190 oder 340 € im Monat, je nachdem, wie viel Änderung Sie erwarten. Nehmen müssen Sie sie nicht. Wenn Sie jemanden im Haus haben, der das kann, zeige ich ihm in einer Stunde, wie es geht.</p>
+    </details>
+  </div>
+</dialog>
+
+<script>
+(function(){
+"use strict";
+
+var sanft = matchMedia('(prefers-reduced-motion: reduce)').matches;
+var klemme = function(v,a,b){ return v < a ? a : (v > b ? b : v); };
+var fort = function(v,s,e){ return klemme((v - s) / (e - s), 0, 1); };
+var eur = function(n){ return n.toLocaleString('de-DE') + ' €'; };
+
+/* ═════════ ANSICHT: hell / dunkel ═════════ */
+var schalter = document.getElementById('schalter');
+var schalterTxt = document.getElementById('schalterTxt');
+function ansichtSetzen(t, merken){
+  document.documentElement.dataset.thema = t;
+  var dunkel = t === 'dunkel';
+  schalter.setAttribute('aria-pressed', String(dunkel));
+  schalter.setAttribute('aria-label', dunkel ? 'Auf helle Ansicht wechseln' : 'Auf dunkle Ansicht wechseln');
+  schalterTxt.textContent = dunkel ? 'dunkel' : 'hell';
+  var meta = document.querySelector('meta[name="theme-color"]');
+  if(meta) meta.setAttribute('content', dunkel ? '#0B0B0D' : '#F5F3EE');
+  if(merken){ try{ localStorage.setItem('qs-thema', t); }catch(e){} }
+}
+ansichtSetzen(document.documentElement.dataset.thema === 'dunkel' ? 'dunkel' : 'hell', false);
+schalter.addEventListener('click', function(){
+  ansichtSetzen(document.documentElement.dataset.thema === 'dunkel' ? 'hell' : 'dunkel', true);
+});
+
+/* ═════════ VORHANG ═════════ */
+var vorhang = document.getElementById('vorhang');
+function vorhangWeg(){
+  if(!vorhang || vorhang.classList.contains('raus')) return;
+  vorhang.classList.add('raus');
+  document.body.classList.remove('gesperrt');
+  document.body.classList.add('los');
+  setTimeout(function(){ vorhang.classList.add('weg'); }, 1100);
+}
+if(sanft){
+  vorhang.classList.add('weg');
+  document.body.classList.add('los');
+}else{
+  document.body.classList.add('gesperrt');
+  setTimeout(vorhangWeg, 1600);
+  vorhang.addEventListener('click', vorhangWeg);
+  addEventListener('keydown', vorhangWeg, {once:true});
+  addEventListener('wheel', vorhangWeg, {once:true, passive:true});
+  addEventListener('touchstart', vorhangWeg, {once:true, passive:true});
+}
+document.getElementById('jahr').textContent = new Date().getFullYear();
+
+/* ═════════ NAVIGATION ═════════ */
+var burger = document.getElementById('burger');
+var navListe = document.getElementById('navListe');
+burger.addEventListener('click', function(){
+  var auf = navListe.classList.toggle('auf');
+  burger.classList.toggle('auf', auf);
+  burger.setAttribute('aria-expanded', String(auf));
+  burger.setAttribute('aria-label', auf ? 'Menü schließen' : 'Menü öffnen');
+  document.body.classList.toggle('gesperrt', auf);
+});
+[].forEach.call(navListe.querySelectorAll('a'), function(a){
+  a.addEventListener('click', function(){
+    navListe.classList.remove('auf');
+    burger.classList.remove('auf');
+    burger.setAttribute('aria-expanded','false');
+    document.body.classList.remove('gesperrt');
+  });
+});
+
+var navZiele = {};
+[].forEach.call(navListe.querySelectorAll('a'), function(a){
+  var ziel = document.getElementById(a.getAttribute('href').slice(1));
+  if(ziel) navZiele[ziel.id] = a;
+});
+if('IntersectionObserver' in window){
+  var navBeo = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      for(var k in navZiele) navZiele[k].classList.remove('aktiv');
+      if(navZiele[e.target.id]) navZiele[e.target.id].classList.add('aktiv');
+    });
+  }, {rootMargin:'-45% 0px -50% 0px'});
+  for(var nid in navZiele) navBeo.observe(document.getElementById(nid));
+}
+
+/* ═════════ REVEAL ═════════ */
+if('IntersectionObserver' in window){
+  var revBeo = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); revBeo.unobserve(e.target); } });
+  }, {threshold:0.1, rootMargin:'0px 0px -8% 0px'});
+  [].forEach.call(document.querySelectorAll('.rev'), function(el){ revBeo.observe(el); });
+}else{
+  [].forEach.call(document.querySelectorAll('.rev'), function(el){ el.classList.add('in'); });
+}
+
+/* ═════════ MANIFEST — Wort für Wort ═════════ */
+[].forEach.call(document.querySelectorAll('[data-worte]'), function(el){
+  var teile = [];
+  [].forEach.call(el.childNodes, function(k){
+    var leucht = k.nodeType === 1 && k.classList.contains('leucht');
+    (k.textContent || '').split(/(\s+)/).forEach(function(w){
+      if(!w.trim()){ teile.push(document.createTextNode(w)); return; }
+      var s = document.createElement('span');
+      s.className = 'w' + (leucht ? ' leucht' : '');
+      s.textContent = w; teile.push(s);
+    });
+  });
+  el.innerHTML = '';
+  teile.forEach(function(t){ el.appendChild(t); });
+  [].forEach.call(el.querySelectorAll('.w'), function(w,i){ w.style.transitionDelay = (i*26)+'ms'; });
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es,o){
+      es.forEach(function(e){ if(e.isIntersecting){ el.classList.add('in'); o.disconnect(); } });
+    }, {threshold:0.3}).observe(el);
+  }else{ el.classList.add('in'); }
+});
+
+/* ═════════ ZAHLEN ═════════ */
+[].forEach.call(document.querySelectorAll('[data-zahl]'), function(el){
+  var ziel = parseFloat(el.dataset.zahl), suffix = el.dataset.suffix || '';
+  if(sanft || !('IntersectionObserver' in window)){ el.textContent = ziel + suffix; return; }
+  new IntersectionObserver(function(es,o){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      o.disconnect();
+      var start = performance.now();
+      (function tick(t){
+        var p = klemme((t - start)/1100, 0, 1);
+        el.textContent = Math.round(ziel * (1 - Math.pow(1-p,3))) + suffix;
+        if(p < 1) requestAnimationFrame(tick);
+      })(start);
+    });
+  }, {threshold:0.6}).observe(el);
+});
+
+/* ═════════ GLITCH ═════════ */
+function glitch(el, text){
+  if(sanft || !el || el.querySelector('.geist')) return;
+  var quelle = text || el.textContent;
+  ['a','b'].forEach(function(k){
+    var g = document.createElement('span');
+    g.className = 'geist ' + k; g.textContent = quelle;
+    g.setAttribute('aria-hidden','true'); el.appendChild(g);
+  });
+  setTimeout(function(){ [].forEach.call(el.querySelectorAll('.geist'), function(g){ g.remove(); }); }, 470);
+}
+[].forEach.call(document.querySelectorAll('[data-glitch]'), function(el){
+  var wort = el.querySelector('.marke-q') || el;
+  el.addEventListener('mouseenter', function(){ glitch(wort); });
+});
+/* ═════════ HERO — Glossar folgt der Zeile ═════════ */
+var satz = document.getElementById('satz');
+var glossar = document.getElementById('glossar');
+if(satz && glossar){
+  var glossarTeile = {};
+  [].forEach.call(glossar.children, function(d){ glossarTeile[d.dataset.teil] = d; });
+  [].forEach.call(satz.querySelectorAll('.satz-zeile'), function(z){
+    z.addEventListener('mouseenter', function(){
+      satz.parentElement.classList.add('satz-hover');
+      for(var k in glossarTeile) glossarTeile[k].classList.toggle('an', k === z.dataset.teil);
+    });
+    z.addEventListener('mouseleave', function(){
+      satz.parentElement.classList.remove('satz-hover');
+      for(var k in glossarTeile) glossarTeile[k].classList.remove('an');
+    });
+  });
+}
+
+/* ═════════ LEISTUNGEN ═════════ */
+var leistungen = [].slice.call(document.querySelectorAll('.leistung'));
+leistungen.forEach(function(l){
+  var kopf = l.querySelector('.leistung-kopf');
+  kopf.addEventListener('click', function(){
+    var offen = !l.classList.contains('offen');
+    leistungen.forEach(function(x){
+      x.classList.remove('offen');
+      x.querySelector('.leistung-kopf').setAttribute('aria-expanded','false');
+    });
+    l.classList.toggle('offen', offen);
+    kopf.setAttribute('aria-expanded', String(offen));
+  });
+});
+
+/* ═════════ FRAGEN-MODUL ═════════ */
+/* Jede Frage zeigt beim Öffnen, was ein Generator daraus macht — und was ich
+   daraus mache. Der Mehrwert steht damit vor dem Angebot, nicht darin. */
+var BRANCHEN = [
+  {id:'handwerk', name:'Handwerk & Bau', fragen:[
+    {f:'Wie viele Anfragen wollen Sie im Monat — und welche wollen Sie ablehnen?',
+     ki:'Baut ein Kontaktformular. Für jede Anfrage dasselbe, vom Wasserhahn bis zum Neubau.',
+     ich:'Ich baue zwei Wege: einen für den Auftrag, den Sie wollen, und einen für den, den Sie höflich weiterreichen. Sie sparen die Angebote, die Sie ohnehin nie schreiben wollten.'},
+    {f:'Was steht auf dem Zettel, den Ihre Bürokraft am Telefon ausfüllt?',
+     ki:'Fragt Name, E-Mail und Nachricht ab. Wie überall.',
+     ich:'Genau diese Felder kommen ins Formular — Objekt, Baujahr, Wunschtermin. Die Anfrage liegt dann so vollständig bei Ihnen, dass Sie direkt kalkulieren können.'},
+    {f:'Wer soll sich bewerben — und was hält ihn gerade davon ab, anzurufen?',
+     ki:'Legt eine Seite „Karriere“ an und hängt die Stellenanzeige als PDF daran.',
+     ich:'Drei Felder, kein Anschreiben, Handy zuerst. Und ein Satz darüber, was er verdient — das ist meistens der Grund, warum er nicht anruft.'},
+    {f:'Was sieht ein Kunde bei den anderen im Umkreis, das er bei Ihnen nicht sieht?',
+     ki:'Kennt Ihren Wettbewerb nicht und kann ihn nicht kennen.',
+     ich:'Ich sehe mir die fünf Betriebe an, gegen die Sie antreten. Danach wissen wir, was auf Ihre Startseite gehört — und welchen Satz gerade jeder schreibt.'}
+  ]},
+  {id:'praxis', name:'Praxis & Kanzlei', fragen:[
+    {f:'Bei welcher Frage rufen die Leute an — und bei welcher schreiben sie lieber?',
+     ki:'Setzt Telefonnummer und Formular nebeneinander und überlässt die Wahl dem Besucher.',
+     ich:'Wir trennen die Wege. Dringendes ans Telefon, Erklärungsbedürftiges ins Formular — mit genau den Angaben, die Sie sonst hinterhertelefonieren.'},
+    {f:'Was fragen Sie im Erstgespräch als Allererstes?',
+     ki:'Schreibt „Herzlich willkommen auf unserer Website“.',
+     ich:'Diese Frage wird die erste Zeile der Startseite. Wer sie mit Ja beantwortet, ist Ihr Mandant — und weiß das nach fünf Sekunden.'},
+    {f:'Welche Fälle nehmen Sie nicht an?',
+     ki:'Listet alles auf, was Sie können. Je mehr, desto besser.',
+     ich:'Wir schreiben hin, was Sie nicht machen. Das klingt mutig und spart Ihnen jede Woche zwei Gespräche, aus denen nichts wird.'},
+    {f:'Wie lange dauert es bis zum Termin — und weiß der Anrufer das vorher?',
+     ki:'Baut ein Terminformular, ohne die Wartezeit zu nennen.',
+     ich:'Die Wartezeit steht sichtbar auf der Seite. Wer sie akzeptiert, meldet sich. Wer nicht, sucht weiter — und blockiert Ihre Anmeldung nicht.'}
+  ]},
+  {id:'gastro', name:'Gastronomie', fragen:[
+    {f:'Was sucht jemand um 18:40 Uhr auf dem Handy?',
+     ki:'Baut eine Startseite mit großem Bild und einem Begrüßungstext.',
+     ich:'Öffnungszeiten, Tisch, Karte — in dieser Reihenfolge, ohne einmal zu scrollen. Alles andere kommt darunter.'},
+    {f:'Welche drei Sachen bestellen die Leute wirklich?',
+     ki:'Übernimmt die komplette Karte, so wie sie im Dokument steht.',
+     ich:'Diese drei stehen oben, mit Bild. Der Rest wird eine ruhige Liste. Das verschiebt Ihren Wareneinsatz spürbar.'},
+    {f:'Wie viele Reservierungen gehen verloren, weil um 15 Uhr niemand rangeht?',
+     ki:'Zeigt die Telefonnummer an und ist damit fertig.',
+     ich:'Wir rechnen es einmal durch. Lohnt es sich, kommt eine Buchungsstrecke rein — lohnt es sich nicht, sparen Sie das Geld.'},
+    {f:'Ist Ihre Karte ein PDF?',
+     ki:'Verlinkt das PDF. Fertig.',
+     ich:'Die Karte wird eine Seite, die man am Handy lesen kann und die Google findet. Ein PDF findet niemand, und niemand liest es unterwegs.'}
+  ]},
+  {id:'handel', name:'Handel & Shop', fragen:[
+    {f:'Welches Produkt trägt den Umsatz — und findet man es in zwei Klicks?',
+     ki:'Legt alle Kategorien gleichwertig nebeneinander.',
+     ich:'Der Umsatzträger bekommt den besten Platz auf der Seite. Die anderen ordnen sich darunter ein, nicht daneben.'},
+    {f:'Was bricht den Kauf ab: Versandkosten, Zahlart oder die Registrierung?',
+     ki:'Baut einen Standard-Bestellprozess, wie er überall aussieht.',
+     ich:'Wir sehen in Ihre Zahlen und reparieren den einen Schritt, an dem die Leute aussteigen. Es ist fast immer genau einer.'},
+    {f:'Wer packt die Pakete — und wie viele schafft er am Tag?',
+     ki:'Kennt Ihr Lager nicht und fragt auch nicht danach.',
+     ich:'Der Shop wird so gebaut, dass er nicht mehr Bestellungen erzeugt, als Sie am Tag hinausbekommen. Sonst kaufen Sie sich Ärger statt Umsatz.'},
+    {f:'Was passiert nach dem Kauf?',
+     ki:'Schickt eine Bestellbestätigung. Danach Stille.',
+     ich:'Genau da liegt die zweite Bestellung. Wir bauen den Moment aus, in dem der Kunde am zufriedensten mit Ihnen ist.'}
+  ]},
+  {id:'beratung', name:'Coaching & Beratung', fragen:[
+    {f:'Mit welchem Satz beschreibt Sie ein zufriedener Kunde am Küchentisch?',
+     ki:'Schreibt „ganzheitlich“, „individuell“ und „auf Augenhöhe“.',
+     ich:'Dieser Satz wird Ihre Überschrift. Er klingt nicht nach Beratung — genau deshalb funktioniert er.'},
+    {f:'Was muss jemand fühlen, bevor er den Termin bucht?',
+     ki:'Setzt einen Knopf „Jetzt Termin buchen“ an den Seitenkopf.',
+     ich:'Wir bauen den Weg dorthin: erst erkannt werden, dann verstehen, dann buchen. Ein Knopf allein holt niemanden ab.'},
+    {f:'Was kostet es?',
+     ki:'Lässt den Preis weg, weil Sie ihn nicht mitgeliefert haben.',
+     ich:'Die Zahl kommt auf die Seite. Fehlt sie, sortieren die Leute Sie ins Teure und fragen gar nicht erst nach.'},
+    {f:'Welche Anfrage sagen Sie ab?',
+     ki:'Formuliert Ihr Angebot so breit wie möglich, um niemanden auszuschließen.',
+     ich:'Wir schreiben hin, für wen Sie nicht der Richtige sind. Das kostet Sie drei Anfragen und bringt Ihnen eine, die passt.'}
+  ]},
+  {id:'verein', name:'Verein & Event', fragen:[
+    {f:'Was soll der Besucher in 30 Sekunden getan haben?',
+     ki:'Baut Startseite, Über uns, Termine, Kontakt. Alles gleich wichtig.',
+     ich:'Eine Handlung steht oben — zusagen, spenden oder mitmachen. Alles andere ordnet sich darunter ein.'},
+    {f:'Wer pflegt die Seite, wenn Sie zwei Wochen weg sind?',
+     ki:'Übergibt Ihnen ein System, das Sie noch nie bedient haben.',
+     ich:'Wir bauen nur, was Ihr Vorstand auch pflegen kann. Eine Stunde Schulung, eine Seite Anleitung, fertig.'},
+    {f:'Wie viele Zusagen versanden gerade in der Nachrichtengruppe?',
+     ki:'Legt ein Kontaktformular an, das in ein Postfach schreibt.',
+     ich:'Zusagen laufen in eine Liste, die Sie exportieren können. Sie hören auf, Namen von Hand mitzuzählen.'},
+    {f:'Was passiert bei Regen?',
+     ki:'Steht nicht in Ihrem Text, also steht es nicht auf der Seite.',
+     ich:'Genau solche Sätze fehlen fast überall. Sie beantworten die Hälfte der Anrufe, bevor sie kommen.'}
+  ]}
+];
+var BILANZ = [
+  'Öffnen Sie eine Frage. Sie bekommen die Antwort sofort — nicht erst im Angebot.',
+  'Eine Antwort. Genau so läuft ein Erstgespräch, nur dass wir dort bei zwanzig Fragen landen.',
+  'Zwei Antworten. Das ist noch kein Angebot, aber schon mehr, als die meisten Seiten über ihren eigenen Betrieb wissen.',
+  'Drei Antworten, drei Entscheidungen. Genau die stehen am Ende auf Ihrer Startseite — und zwar in dieser Reihenfolge.',
+  'Alle vier. Dann brauchen wir kein Vorgespräch mehr, sondern einen Termin.'
+];
+
+var branchenBox = document.getElementById('branchen');
+var fragenListe = document.getElementById('fragenListe');
+var bilanzZahl = document.getElementById('bilanzZahl');
+var bilanzVon = document.getElementById('bilanzVon');
+var bilanzBalken = document.getElementById('bilanzBalken');
+var bilanzTxt = document.getElementById('bilanzTxt');
+var bilanzMail = document.getElementById('bilanzMail');
+var bilanzReset = document.getElementById('bilanzReset');
+var aktiveBranche = BRANCHEN[0];
+var geoeffnet = [];
+
+BRANCHEN.forEach(function(br, i){
+  var k = document.createElement('button');
+  k.type = 'button'; k.textContent = br.name;
+  k.setAttribute('aria-pressed', String(i === 0));
+  k.addEventListener('click', function(){
+    aktiveBranche = br; geoeffnet = [];
+    [].forEach.call(branchenBox.children, function(x){ x.setAttribute('aria-pressed', String(x === k)); });
+    fragenZeichnen();
+  });
+  branchenBox.appendChild(k);
+});
+
+function fragenZeichnen(){
+  fragenListe.innerHTML = '';
+  aktiveBranche.fragen.forEach(function(q, i){
+    var li = document.createElement('li');
+    li.className = 'qfrage';
+    var kid = 'q-' + aktiveBranche.id + '-' + i;
+
+    var kopf = document.createElement('button');
+    kopf.type = 'button'; kopf.className = 'qfrage-kopf';
+    kopf.setAttribute('aria-expanded','false');
+    kopf.setAttribute('aria-controls', kid);
+    kopf.innerHTML = '<span class="qfrage-nr" aria-hidden="true">0' + (i+1) + '</span>'
+                   + '<span class="qfrage-txt"></span>'
+                   + '<span class="qfrage-plus" aria-hidden="true"></span>';
+    kopf.querySelector('.qfrage-txt').textContent = q.f;
+
+    var koerper = document.createElement('div');
+    koerper.className = 'qfrage-koerper'; koerper.id = kid;
+    var innen = document.createElement('div');
+    var paar = document.createElement('div');
+    paar.className = 'qpaar';
+    paar.innerHTML = '<div class="qantwort qantwort--ki"><b>Was ein Generator daraus macht</b><p></p></div>'
+                   + '<div class="qantwort qantwort--ich"><b>Was ich daraus mache</b><p></p></div>';
+    paar.querySelector('.qantwort--ki p').textContent = q.ki;
+    paar.querySelector('.qantwort--ich p').textContent = q.ich;
+    innen.appendChild(paar); koerper.appendChild(innen);
+
+    kopf.addEventListener('click', function(){
+      var auf = !li.classList.contains('auf');
+      li.classList.toggle('auf', auf);
+      kopf.setAttribute('aria-expanded', String(auf));
+      if(auf) geoeffnet.push(q.f);
+      else geoeffnet = geoeffnet.filter(function(x){ return x !== q.f; });
+      bilanzAktualisieren();
+    });
+
+    li.appendChild(kopf); li.appendChild(koerper);
+    fragenListe.appendChild(li);
+  });
+  bilanzAktualisieren();
+}
+
+function bilanzAktualisieren(){
+  var anz = geoeffnet.length, gesamt = aktiveBranche.fragen.length;
+  bilanzZahl.textContent = anz;
+  bilanzVon.textContent = 'von ' + gesamt + (anz === 1 ? ' Frage geöffnet' : ' Fragen geöffnet');
+  bilanzBalken.style.transform = 'scaleX(' + (anz / gesamt) + ')';
+  bilanzTxt.textContent = BILANZ[Math.min(anz, BILANZ.length - 1)];
+
+  var betreff = anz ? 'Erstgespräch — ' + aktiveBranche.name : 'Erstgespräch';
+  var text = 'Guten Tag,\n\n';
+  if(anz){
+    text += 'auf querstrich.de haben mich diese Fragen getroffen:\n\n'
+          + geoeffnet.map(function(f,i){ return (i+1) + '. ' + f; }).join('\n')
+          + '\n\nBranche: ' + aktiveBranche.name + '\n\n';
+  }
+  text += 'Darüber würde ich gern eine halbe Stunde sprechen.\n\nMit freundlichen Grüßen\n';
+  bilanzMail.href = 'mailto:hallo@querstrich.de?subject=' + encodeURIComponent(betreff) + '&body=' + encodeURIComponent(text);
+}
+
+bilanzReset.addEventListener('click', function(){
+  geoeffnet = [];
+  [].forEach.call(fragenListe.querySelectorAll('.qfrage'), function(li){
+    li.classList.remove('auf');
+    li.querySelector('.qfrage-kopf').setAttribute('aria-expanded','false');
+  });
+  bilanzAktualisieren();
+});
+fragenZeichnen();
+
+/* ═════════ BAUKASTEN ═════════ */
+var bkForm = document.querySelector('.baukasten');
+var bkListe = document.getElementById('bkListe');
+var bkZahl = document.getElementById('bkZahl');
+var bkMonat = document.getElementById('bkMonat');
+var bkWarnung = document.getElementById('bkWarnung');
+var bkExtraZahl = document.getElementById('bkExtraZahl');
+var bkMail = document.getElementById('bkMail');
+var SCHWELLE = 9500;
+
+function bkRechnen(){
+  var posten = [], summe = 0, monat = 0, monatBez = '';
+  ['umfang','design','texte'].forEach(function(name){
+    var f = bkForm.querySelector('input[name="' + name + '"]:checked');
+    if(!f) return;
+    var wert = Number(f.value);
+    summe += wert;
+    posten.push({bez: f.dataset.bez, wert: wert});
+  });
+  var extras = [].slice.call(bkForm.querySelectorAll('input[name="extra"]:checked'));
+  extras.forEach(function(f){
+    var wert = Number(f.value);
+    summe += wert;
+    posten.push({bez: f.dataset.bez, wert: wert});
+  });
+  bkExtraZahl.textContent = extras.length ? extras.length + ' gewählt' : 'keine gewählt';
+
+  var pf = bkForm.querySelector('input[name="pflege"]:checked');
+  if(pf && Number(pf.value) > 0){ monat = Number(pf.value); monatBez = pf.dataset.bez; }
+
+  bkListe.innerHTML = '';
+  posten.forEach(function(p){
+    var li = document.createElement('li');
+    var s = document.createElement('span'); s.textContent = p.bez;
+    var b = document.createElement('b'); b.textContent = p.wert === 0 ? 'inkl.' : eur(p.wert);
+    li.appendChild(s); li.appendChild(b); bkListe.appendChild(li);
+  });
+
+  bkZahl.textContent = eur(summe);
+  if(monat){
+    bkMonat.hidden = false;
+    bkMonat.textContent = '+ ' + eur(monat) + ' im Monat für Betreuung';
+  }else{
+    bkMonat.hidden = true;
+  }
+  bkWarnung.classList.toggle('da', summe >= SCHWELLE);
+
+  var text = 'Guten Tag,\n\nüber den Baukasten auf querstrich.de komme ich auf folgendes Projekt:\n\n'
+           + posten.map(function(p){ return '— ' + p.bez + ': ' + (p.wert === 0 ? 'inklusive' : eur(p.wert)); }).join('\n')
+           + '\n\nRichtwert einmalig: ' + eur(summe)
+           + (monat ? '\nBetreuung: ' + monatBez + ', ' + eur(monat) + ' im Monat' : '\nBetreuung: zunächst keine')
+           + '\n\nPasst das ungefähr? Ich hätte gern ein Erstgespräch.\n\nMit freundlichen Grüßen\n';
+  bkMail.href = 'mailto:hallo@querstrich.de?subject=' + encodeURIComponent('Angebot — Richtwert ' + eur(summe)) + '&body=' + encodeURIComponent(text);
+}
+[].forEach.call(bkForm.querySelectorAll('input'), function(f){ f.addEventListener('change', bkRechnen); });
+bkRechnen();
+
+/* ═════════ FAQ-FENSTER ═════════ */
+var faqFenster = document.getElementById('faqFenster');
+var faqAuf = document.getElementById('faqAuf');
+var faqZu = document.getElementById('faqZu');
+function faqOeffnen(){
+  if(typeof faqFenster.showModal === 'function'){ faqFenster.showModal(); }
+  else{ faqFenster.setAttribute('open',''); }
+  var erstes = faqFenster.querySelector('summary');
+  if(erstes) erstes.focus();
+}
+faqAuf.addEventListener('click', faqOeffnen);
+faqZu.addEventListener('click', function(){ faqFenster.close ? faqFenster.close() : faqFenster.removeAttribute('open'); });
+faqFenster.addEventListener('click', function(e){ if(e.target === faqFenster) faqFenster.close(); });
+if(location.hash === '#fragen-faq') faqOeffnen();
+
+/* ═════════ SCROLL-MASCHINE ═════════ */
+var kopf = document.getElementById('kopf');
+var fortschritt = document.getElementById('fortschritt');
+var glut = document.getElementById('glut');
+var hero = document.querySelector('.hero');
+var schmal = matchMedia('(max-width:52rem)');
+var lagen = [].slice.call(document.querySelectorAll('[data-par],[data-drift],[data-drift-innen],[data-zug]'));
+var schritte = [].slice.call(document.querySelectorAll('.schritt'));
+var schiene = document.getElementById('schiene');
+var schritteListe = document.getElementById('schritte');
+
+/* Die Bühne rechnet nichts aus: sie bekommt eine Zahl, --p, den Fortschritt
+   von 0 bis 1. Welche Schriftebene wie weit wandert, steht im Stylesheet —
+   ein Schreibzugriff pro Bild statt eines Dutzends. */
+function heroTakt(){
+  if(!hero || sanft) return;
+  if(schmal.matches){ hero.style.setProperty('--p','0'); return; }
+  var budget = hero.offsetHeight - innerHeight;
+  var p = budget > 0 ? klemme((-hero.getBoundingClientRect().top) / budget, 0, 1) : 0;
+  hero.style.setProperty('--p', p.toFixed(4));
+}
+
+/* Ebenen außerhalb der Bühne: senkrecht über data-par (absolut) und
+   data-drift (relativ), waagerecht über data-zug. Bezug ist immer das
+   Elternteil — sonst misst das Element seine eigene Verschiebung mit und
+   die Rechnung schaukelt sich auf. Geschrieben wird transform, nie translate:
+   das Zentrieren der Geisterwörter liegt auf translate und bleibt so stehen. */
+function lagenTakt(){
+  if(sanft) return;
+  var y = scrollY, mitte = innerHeight / 2;
+  lagen.forEach(function(el){
+    var d = el.dataset, dx = 0, dy = 0;
+    if(d.par) dy += y * parseFloat(d.par) / 100;
+    if(d.drift || d.driftInnen || d.zug){
+      var r = el.parentElement.getBoundingClientRect();
+      if(r.bottom < -400 || r.top > innerHeight + 400) return;
+      var ab = (r.top + r.height / 2) - mitte;
+      if(d.drift) dy += ab * parseFloat(d.drift) / 100;
+      if(d.driftInnen) dy += ab * parseFloat(d.driftInnen) / 100;
+      if(d.zug) dx += ab * parseFloat(d.zug) / 100;
+    }
+    el.style.transform = 'translate3d(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px,0)';
+  });
+}
+
+function ablaufTakt(){
+  if(!schritteListe) return;
+  var r = schritteListe.getBoundingClientRect();
+  schiene.style.height = (klemme((innerHeight * .62 - r.top) / r.height, 0, 1) * 100).toFixed(2) + '%';
+  var letzter = -1;
+  schritte.forEach(function(s,i){ if(s.getBoundingClientRect().top < innerHeight * .58) letzter = i; });
+  schritte.forEach(function(s,i){ s.classList.toggle('aktiv', i === letzter); });
+}
+
+function kopfTakt(){
+  var y = scrollY;
+  kopf.classList.toggle('fest', y > 40);
+  var hoehe = document.documentElement.scrollHeight - innerHeight;
+  fortschritt.style.width = (hoehe > 0 ? (y/hoehe)*100 : 0).toFixed(2) + '%';
+}
+
+var laeuft = false, letzteY = scrollY, impuls = 0;
+function beiScroll(){
+  var y = scrollY;
+  impuls = klemme((y - letzteY) / 26, -3, 3);
+  letzteY = y;
+  if(laeuft) return;
+  laeuft = true;
+  requestAnimationFrame(function(){
+    kopfTakt(); heroTakt(); lagenTakt(); ablaufTakt();
+    laeuft = false;
+  });
+}
+addEventListener('scroll', beiScroll, {passive:true});
+addEventListener('resize', beiScroll);
+beiScroll();
+
+/* ═════════ ZEIGER & SCHWUNG ═════════ */
+/* Eine einzige Schleife für drei Dinge: die Glut folgt dem Zeiger, die
+   Schriftebenen des Heros kippen gegenläufig dazu (--mx/--my), und der
+   Schwung des Scrollens neigt das Laufband (--v) und klingt wieder ab. */
+if(!sanft){
+  var fein = matchMedia('(pointer:fine)').matches;
+  var gx = 0, gy = 0, zx = 0, zy = 0, neigung = 0, letztV = 99, letztM = 99;
+  if(fein){
+    addEventListener('mousemove', function(e){
+      zx = (e.clientX/innerWidth - .5) * 100;
+      zy = (e.clientY/innerHeight - .5) * 70;
+    }, {passive:true});
+  }
+  (function schleife(){
+    if(fein){
+      gx += (zx-gx)*.05; gy += (zy-gy)*.05;
+      if(glut) glut.style.transform = 'translate3d(' + gx.toFixed(1) + 'px,' + gy.toFixed(1) + 'px,0)';
+      if(hero){
+        var mx = schmal.matches ? 0 : gx * -.18;
+        if(Math.abs(mx - letztM) > .05){
+          hero.style.setProperty('--mx', mx.toFixed(2) + 'px');
+          hero.style.setProperty('--my', (schmal.matches ? 0 : gy * -.14).toFixed(2) + 'px');
+          letztM = mx;
+        }
+      }
+    }
+    neigung += (impuls - neigung) * .16;
+    impuls *= .86;
+    if(hero && Math.abs(neigung - letztV) > .004){
+      hero.style.setProperty('--v', neigung.toFixed(3));
+      letztV = neigung;
+    }
+    requestAnimationFrame(schleife);
+  })();
+}
+
+})();
+
+</script>
+
+</body>
+</html>

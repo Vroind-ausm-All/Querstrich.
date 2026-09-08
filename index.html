@@ -50,7 +50,7 @@
   --linie-s:rgba(13,13,15,.07);
   --akzent:#FF4A0F;
   --akzent-text:#C63A05;
-  --auf-akzent:#FFFFFF;
+  --auf-akzent:#1A0A02;   /* dunkel auf Orange: 5,9:1 statt 3,4:1 bei Weiß */
   --glut:rgba(255,74,15,.07);
   --korn-opa:.04;
   --korn-mix:multiply;
@@ -583,38 +583,56 @@ main,header,footer{position:relative;z-index:2}
 .mk-33 .mk-scan{position:absolute;inset:0;z-index:3;pointer-events:none;background:repeating-linear-gradient(180deg,rgba(240,239,232,.05) 0 1px,transparent 1px 4px);opacity:.5}
 
 /* ═══════════════════════════════════════════════════════════
-   12 — LEISTUNGEN
+   12 — HANDWERK & BRÜCKE (Anschluss ans Portfolio)
    ═══════════════════════════════════════════════════════════ */
-.leistungen{border-top:1px solid var(--linie)}
-.leistung{position:relative;border-bottom:1px solid var(--linie);isolation:isolate}
-.leistung-kopf{
-  width:100%;display:grid;grid-template-columns:4.5rem 1fr auto;gap:1.5rem;align-items:center;
-  padding:clamp(1.4rem,3.4vh,2.4rem) 1rem;text-align:left;position:relative;z-index:2;
-  transition:padding .45s var(--ease),color .35s;
+.handwerk{margin-top:clamp(3rem,7vh,5.5rem);border-top:1px solid var(--linie);padding-top:clamp(2rem,4vh,3rem)}
+.handwerk-kopf{margin-bottom:1.75rem;max-width:46rem}
+.handwerk-kopf .label{margin-bottom:1rem}
+.handwerk-kopf p{color:var(--tinte-2);margin-top:.9rem;max-width:54ch}
+
+.koennen{
+  list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));
+  gap:1px;background:var(--linie);border:1px solid var(--linie);
 }
-.leistung::before{content:"";position:absolute;inset:0;z-index:0;background:var(--akzent);transform:scaleY(0);transform-origin:bottom;transition:transform .5s var(--ease)}
-.leistung:hover::before,.leistung.offen::before{transform:scaleY(1);transform-origin:top}
-.leistung:hover .leistung-kopf,.leistung.offen .leistung-kopf{color:var(--auf-akzent);padding-left:1.75rem}
-.leistung-nr{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;color:var(--tinte-3);transition:color .35s}
-.leistung:hover .leistung-nr,.leistung.offen .leistung-nr{color:color-mix(in srgb,var(--auf-akzent) 65%,transparent)}
-.leistung-name{font-family:var(--display);font-weight:800;font-stretch:84%;text-transform:lowercase;font-size:clamp(1.4rem,3.4vw,2.5rem);line-height:.95;letter-spacing:-.035em}
-.leistung-plus{position:relative;width:1.5rem;height:1.5rem;flex:none}
-.leistung-plus::before,.leistung-plus::after{content:"";position:absolute;background:currentColor;transition:transform .45s var(--ease)}
-.leistung-plus::before{left:0;right:0;top:50%;height:1px;translate:0 -50%}
-.leistung-plus::after{top:0;bottom:0;left:50%;width:1px;translate:-50% 0}
-.leistung.offen .leistung-plus::after{transform:scaleY(0)}
-.leistung-koerper{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease);position:relative;z-index:2}
-.leistung.offen .leistung-koerper{grid-template-rows:1fr}
-.leistung-koerper > div{overflow:hidden;min-height:0}
-.leistung-inhalt{display:grid;grid-template-columns:4.5rem 1fr;gap:1.5rem;padding:0 1rem clamp(1.6rem,3.5vh,2.4rem);color:var(--auf-akzent)}
-.leistung-inhalt p{color:color-mix(in srgb,var(--auf-akzent) 78%,transparent);max-width:52ch}
-.leistung-inhalt ul{list-style:none;display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
-.leistung-inhalt li{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid color-mix(in srgb,var(--auf-akzent) 35%,transparent);padding:.3rem .6rem}
-@media (max-width:52rem){
-  .leistung-kopf{grid-template-columns:2.4rem 1fr auto;gap:.9rem;padding-inline:.25rem}
-  .leistung:hover .leistung-kopf,.leistung.offen .leistung-kopf{padding-left:.75rem}
-  .leistung-inhalt{grid-template-columns:1fr;padding-inline:.25rem}
-  .leistung-inhalt .leer{display:none}
+.koennen li{background:var(--papier);padding:1.15rem 1.2rem;transition:background .35s ease}
+.koennen li:hover{background:var(--papier-2)}
+.koennen b{
+  display:block;font-family:var(--mono);font-weight:400;font-size:.6rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--akzent-text);margin-bottom:.6rem;
+}
+.koennen span{display:block;font-size:.875rem;line-height:1.5;color:var(--tinte-2)}
+
+.bruecke{
+  position:relative;isolation:isolate;overflow:hidden;
+  display:grid;grid-template-columns:1fr auto;gap:clamp(1.25rem,3vw,2.5rem);align-items:center;
+  margin-top:clamp(1.5rem,3vh,2.25rem);padding:clamp(1.5rem,3vw,2.25rem);
+  border:1px solid var(--linie);background:var(--papier-2);
+  transition:border-color .4s ease,transform .5s var(--ease-out),box-shadow .5s ease;
+}
+.bruecke::before{
+  content:"";position:absolute;inset:0;z-index:-1;background:var(--akzent);
+  transform:translateY(101%);transition:transform .55s var(--ease);
+}
+.bruecke:hover{border-color:var(--akzent);transform:translateY(-4px);box-shadow:var(--schatten)}
+.bruecke:hover::before{transform:none}
+.bruecke-label{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--akzent-text);display:block;margin-bottom:.6rem;transition:color .4s ease}
+.bruecke-titel{
+  display:block;font-family:var(--display);font-weight:800;font-stretch:84%;
+  font-size:clamp(1.6rem,3.4vw,2.7rem);line-height:.95;letter-spacing:-.035em;
+  transition:color .4s ease,transform .5s var(--ease-out);
+}
+.bruecke-txt{display:block;margin-top:.7rem;font-size:.9375rem;line-height:1.5;color:var(--tinte-2);max-width:46ch;transition:color .4s ease}
+.bruecke-pfeil{
+  width:3.4rem;height:3.4rem;flex:none;display:grid;place-items:center;
+  border:1px solid var(--linie);font-size:1.1rem;
+  transition:background .4s ease,border-color .4s ease,color .4s ease,transform .5s var(--ease-out);
+}
+.bruecke:hover .bruecke-label,.bruecke:hover .bruecke-titel,.bruecke:hover .bruecke-txt{color:var(--auf-akzent)}
+.bruecke:hover .bruecke-titel{transform:translateX(.4rem)}
+.bruecke:hover .bruecke-pfeil{background:var(--auf-akzent);border-color:var(--auf-akzent);color:var(--akzent);transform:translateX(.35rem)}
+@media (max-width:46rem){
+  .bruecke{grid-template-columns:1fr;gap:1.5rem}
+  .bruecke-pfeil{justify-self:start}
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -803,10 +821,6 @@ main,header,footer{position:relative;z-index:2}
 .paket--top .knopf:hover{color:var(--auf-akzent)}
 @media (max-width:64rem){.pakete{grid-template-columns:1fr}.paket-fuer{min-height:0}}
 
-.betreuung{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:clamp(2rem,4vh,3rem);border-top:1px solid var(--linie);padding-top:2rem}
-.betreuung strong{font-family:var(--display);font-weight:800;font-stretch:88%;font-size:1.5rem;display:block;letter-spacing:-.03em;margin-bottom:.4rem}
-@media (max-width:60rem){.betreuung{grid-template-columns:1fr;gap:1.25rem}}
-
 /* ═══════════════════════════════════════════════════════════
    16 — PERSON (überlappend)
    ═══════════════════════════════════════════════════════════ */
@@ -960,7 +974,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
       <div class="nav-liste" id="navListe">
         <a href="#arbeiten" style="--i:0">arbeiten</a>
         <a href="#fragen" style="--i:1">fragen</a>
-        <a href="#leistungen" style="--i:2">leistungen</a>
+        <a href="#ablauf" style="--i:2">ablauf</a>
         <a href="#preise" style="--i:3">preise</a>
         <a href="#kontakt" style="--i:4">kontakt</a>
       </div>
@@ -1221,6 +1235,33 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
         </article>
 
       </div>
+
+      <!-- ═══════════ HANDWERK & BRÜCKE ═══════════
+           Das Ziel /arbeiten wird noch angelegt — hier den Pfad eintragen. -->
+      <div class="handwerk rev">
+        <div class="handwerk-kopf">
+          <p class="label">Das Handwerk dahinter</p>
+          <h3 class="d3">Drei Projekte, fünf Werkzeuge.</h3>
+          <p>Was in jedem der drei steckt — unabhängig davon, ob es eine Einladung, ein Shop oder ein Coaching-Auftritt war.</p>
+        </div>
+
+        <ul class="koennen">
+          <li><b>Gestaltungssystem</b><span>Farbe, Schrift und Raster für jedes Projekt eigens gebaut — nicht eine Vorlage umgefärbt.</span></li>
+          <li><b>Bewegung mit Absicht</b><span>Scroll-Choreografie, handgeschrieben, ohne Bibliothek. Und vollständig abschaltbar.</span></li>
+          <li><b>Interaktive Module</b><span>Auswahlkarten, Kurskalender, Zusage in drei Schritten — statt eines Formulars für alles.</span></li>
+          <li><b>Struktur &amp; Text</b><span>Vom Leser her gedacht: erst die Situation, dann das Angebot, ein Hauptweg.</span></li>
+          <li><b>Technik &amp; Zugang</b><span>Semantisches Markup, strukturierte Daten, unter zwei Sekunden, mit der Tastatur bedienbar.</span></li>
+        </ul>
+
+        <a class="bruecke" href="/arbeiten">
+          <span>
+            <span class="bruecke-label">Weiter</span>
+            <span class="bruecke-titel">alle arbeiten</span>
+            <span class="bruecke-txt">Die Fallstudien im Detail, Zwischenstände und die Projekte, die hier nicht mehr hinpassen.</span>
+          </span>
+          <span class="bruecke-pfeil" aria-hidden="true">→</span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -1270,82 +1311,6 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
     </div>
   </section>
 
-  <!-- ═══════════ LEISTUNGEN ═══════════ -->
-  <section class="bereich" id="leistungen">
-    <span class="geistwort geistwort--rechts" data-drift="16" aria-hidden="true">leistungen</span>
-    <div class="wrap ueber">
-      <div class="kopfzeile rev">
-        <div>
-          <p class="label">Leistungen</p>
-          <h2 class="d2">Vier Dinge.<br>Richtig.</h2>
-        </div>
-        <p>Ich mache nicht alles. Was ich mache, verantworte ich von der ersten Skizze bis zum Server — deshalb geht zwischen Gestaltung und Umsetzung nichts verloren.</p>
-      </div>
-
-      <div class="leistungen rev">
-        <div class="leistung">
-          <button class="leistung-kopf" type="button" aria-expanded="false" aria-controls="l1">
-            <span class="leistung-nr">01</span>
-            <span class="leistung-name">marke &amp; erscheinungsbild</span>
-            <span class="leistung-plus" aria-hidden="true"></span>
-          </button>
-          <div class="leistung-koerper" id="l1"><div><div class="leistung-inhalt">
-            <span class="leer" aria-hidden="true"></span>
-            <div>
-              <p>Wortmarke, Farbe, Schrift, Bildsprache — und die Regeln, die dafür sorgen, dass es auf dem Transporter, dem Bauschild und im Browser dasselbe sagt. Wiedererkennung entsteht nicht auf der Website, sondern davor.</p>
-              <ul><li>Logo &amp; Wortmarke</li><li>Farb- &amp; Schriftsystem</li><li>Geschäftsausstattung</li><li>Fahrzeug &amp; Druck</li><li>Kurzleitfaden</li></ul>
-            </div>
-          </div></div></div>
-        </div>
-
-        <div class="leistung">
-          <button class="leistung-kopf" type="button" aria-expanded="false" aria-controls="l2">
-            <span class="leistung-nr">02</span>
-            <span class="leistung-name">websites &amp; shops</span>
-            <span class="leistung-plus" aria-hidden="true"></span>
-          </button>
-          <div class="leistung-koerper" id="l2"><div><div class="leistung-inhalt">
-            <span class="leer" aria-hidden="true"></span>
-            <div>
-              <p>Von der einseitigen Visitenkarte bis zum Shop mit Buchungsstrecke. Handgeschrieben statt zusammengeklickt: unter zwei Sekunden am Handy, bedienbar mit der Tastatur, ohne fremde Skripte, die Ihre Besucher an Dritte melden.</p>
-              <ul><li>Struktur &amp; Prototyp</li><li>Individuelle Gestaltung</li><li>Shop &amp; Buchung</li><li>Karriereseite</li><li>Barrierearmut</li><li>Ladezeit</li></ul>
-            </div>
-          </div></div></div>
-        </div>
-
-        <div class="leistung">
-          <button class="leistung-kopf" type="button" aria-expanded="false" aria-controls="l3">
-            <span class="leistung-nr">03</span>
-            <span class="leistung-name">text &amp; struktur</span>
-            <span class="leistung-plus" aria-hidden="true"></span>
-          </button>
-          <div class="leistung-koerper" id="l3"><div><div class="leistung-inhalt">
-            <span class="leer" aria-hidden="true"></span>
-            <div>
-              <p>Die alte Seite erklärt, was das Fachgebiet ist. Die neue erklärt, wann man anruft. Ich komme in den Betrieb, spreche mit den Leuten, die die Arbeit machen, und schreibe daraus die Seite — inklusive der Entscheidung, was wegfällt.</p>
-              <ul><li>Interview im Betrieb</li><li>Seitenstruktur</li><li>Texte</li><li>Auffindbarkeit</li><li>Strukturierte Daten</li></ul>
-            </div>
-          </div></div></div>
-        </div>
-
-        <div class="leistung">
-          <button class="leistung-kopf" type="button" aria-expanded="false" aria-controls="l4">
-            <span class="leistung-nr">04</span>
-            <span class="leistung-name">technik &amp; betreuung</span>
-            <span class="leistung-plus" aria-hidden="true"></span>
-          </button>
-          <div class="leistung-koerper" id="l4"><div><div class="leistung-inhalt">
-            <span class="leer" aria-hidden="true"></span>
-            <div>
-              <p>Hosting in Deutschland, Sicherung, Updates, Überwachung. Ein Monatsbericht, den man in zwei Minuten liest. Und eine Nummer, unter der jemand rangeht, wenn das Formular am Freitagnachmittag nicht mehr ankommt.</p>
-              <ul><li>Umzug &amp; Livegang</li><li>Datenschutz</li><li>Sicherung &amp; Updates</li><li>Monatsbericht</li><li>Schulung</li></ul>
-            </div>
-          </div></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ═══════════ ABLAUF ═══════════ -->
   <section class="bereich" id="ablauf">
     <div class="wrap ablauf-gitter ueber">
@@ -1358,11 +1323,11 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
 
       <ol class="schritte" id="schritte">
         <span class="schienen-fuell" id="schiene" aria-hidden="true"></span>
-        <li class="schritt"><span class="schritt-nr">01</span><h3>Gespräch</h3><p>Dreißig Minuten, telefonisch oder bei Ihnen im Betrieb. Ich frage, was Sie verkaufen, wen Sie suchen und was bisher nicht funktioniert.</p><span class="schritt-dauer">30 Minuten <span aria-hidden="true">\</span> kostenlos</span></li>
-        <li class="schritt"><span class="schritt-nr">02</span><h3>Angebot</h3><p>Festpreis, Terminplan und eine Liste dessen, was Sie liefern müssen. Was nicht drinsteht, ist nicht enthalten — das schützt uns beide.</p><span class="schritt-dauer">Woche 1</span></li>
-        <li class="schritt"><span class="schritt-nr">03</span><h3>Entwurf</h3><p>Sie sehen zuerst die Startseite. Erst nach Ihrer Freigabe baue ich weiter. Zwei Korrekturrunden je Phase sind enthalten.</p><span class="schritt-dauer">Woche 2 bis 3</span></li>
-        <li class="schritt"><span class="schritt-nr">04</span><h3>Umsetzung &amp; Prüfung</h3><p>Aufbau, Test auf echten Geräten, Ladezeit, Formulare, Datenschutz. Sie bekommen jede Woche einen kurzen Stand.</p><span class="schritt-dauer">Woche 3 bis 5</span></li>
-        <li class="schritt"><span class="schritt-nr">05</span><h3>Livegang &amp; danach</h3><p>Freischaltung, eine Stunde Schulung, schriftliche Anleitung. Nach drei Monaten schauen wir gemeinsam auf die Zahlen.</p><span class="schritt-dauer">Woche 6 <span aria-hidden="true">\</span> und danach</span></li>
+        <li class="schritt"><span class="schritt-nr">01</span><h3>Gespräch</h3><p>Dreißig Minuten, telefonisch oder bei Ihnen im Betrieb: was Sie verkaufen, wen Sie suchen, was bisher nicht funktioniert.</p><span class="schritt-dauer">30 Minuten <span aria-hidden="true">\</span> kostenlos</span></li>
+        <li class="schritt"><span class="schritt-nr">02</span><h3>Angebot</h3><p>Festpreis, Terminplan und die Liste dessen, was Sie liefern müssen. Was nicht drinsteht, ist nicht enthalten.</p><span class="schritt-dauer">Woche 1</span></li>
+        <li class="schritt"><span class="schritt-nr">03</span><h3>Entwurf</h3><p>Sie sehen zuerst die Startseite. Erst nach Ihrer Freigabe baue ich weiter — zwei Korrekturrunden je Phase.</p><span class="schritt-dauer">Woche 2 bis 3</span></li>
+        <li class="schritt"><span class="schritt-nr">04</span><h3>Umsetzung &amp; Prüfung</h3><p>Aufbau, Test auf echten Geräten, Ladezeit, Formulare, Datenschutz — mit wöchentlichem Kurzstand.</p><span class="schritt-dauer">Woche 3 bis 5</span></li>
+        <li class="schritt"><span class="schritt-nr">05</span><h3>Livegang &amp; danach</h3><p>Freischaltung, eine Stunde Schulung, schriftliche Anleitung. Nach drei Monaten sehen wir auf die Zahlen.</p><span class="schritt-dauer">Woche 6 <span aria-hidden="true">\</span> und danach</span></li>
       </ol>
     </div>
   </section>
@@ -1554,7 +1519,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
       </div>
       <nav class="fuss-nav" aria-label="Fußzeile">
         <a href="#arbeiten">arbeiten</a>
-        <a href="#leistungen">leistungen</a>
+        <a href="#ablauf">ablauf</a>
         <a href="#preise">preise</a>
         <button type="button" id="faqAuf" class="betont" aria-haspopup="dialog">häufige fragen</button>
         <a href="/impressum">impressum</a>
@@ -1820,21 +1785,6 @@ faelle.forEach(function(f){
   var c = hexRgb(akz), farbe = 'rgba('+c[0]+','+c[1]+','+c[2]+',.18)';
   f.addEventListener('mouseenter', function(){ document.documentElement.style.setProperty('--glut', farbe); });
   f.addEventListener('mouseleave', function(){ document.documentElement.style.removeProperty('--glut'); });
-});
-
-/* ═════════ LEISTUNGEN ═════════ */
-var leistungen = [].slice.call(document.querySelectorAll('.leistung'));
-leistungen.forEach(function(l){
-  var kopf = l.querySelector('.leistung-kopf');
-  kopf.addEventListener('click', function(){
-    var offen = !l.classList.contains('offen');
-    leistungen.forEach(function(x){
-      x.classList.remove('offen');
-      x.querySelector('.leistung-kopf').setAttribute('aria-expanded','false');
-    });
-    l.classList.toggle('offen', offen);
-    kopf.setAttribute('aria-expanded', String(offen));
-  });
 });
 
 /* ═════════ FRAGEN-MODUL ═════════ */

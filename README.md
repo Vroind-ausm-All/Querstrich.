@@ -29,13 +29,24 @@ mit dem Akzent getönt — hell auf hell, dunkel auf dunkel.
 | Kopf | Schwebende Milchglasleiste mit Abstand zum Rand |
 | Manifest | Positionierung, Wort-für-Wort-Aufbau |
 | Arbeiten | Drei Projekte, überlappende Ebenen, aufklappbare Fallakte |
+| Handwerk | Fünf Werkzeuge aus den Projekten + Brücke zur Unterseite |
 | **Fragen** | **Interaktiv: was ein Generator daraus macht — und was ich daraus mache** |
-| Leistungen | Vier Bereiche als Akkordeon |
 | Ablauf | Fünf Schritte mit mitlaufender Schiene |
 | Preise | Baukasten mit Live-Aufstellung, drei Pakete |
 | Person | Porträt und Textkarte überlappend |
 | Kontakt | Abschluss |
 | Fuß | FAQ als Fenster, nur über Klick erreichbar |
+
+## Anschluss ans Portfolio
+
+Unter den drei Projekten steht **„Drei Projekte, fünf Werkzeuge."** — fünf knappe
+Kompetenzen, die in allen drei stecken (Gestaltungssystem, Bewegung mit Absicht,
+interaktive Module, Struktur & Text, Technik & Zugang). Sie belegen den technischen
+Aufwand und die gestalterische Haltung mit dem, was tatsächlich gebaut wurde.
+
+Darunter führt die **Brücke** auf eine eigene Portfolioseite: `.bruecke` verlinkt auf
+`/arbeiten`. Diese Seite existiert noch nicht — **den Pfad im Markup anpassen**, sobald
+sie steht (ein Kommentar im HTML markiert die Stelle).
 
 ## Das Fragen-Modul
 
@@ -66,6 +77,15 @@ getrennt geführt. Ab **9.500 €** springt der Hinweis an, dass es ein *individ
 mit eigener Konzeptphase wird — dieselbe Schwelle wie beim Paketpreis. Die Vorauswahl
 ergibt exakt die 4.900 € des *business*-Pakets. Auch hier trägt der Anfrage-Knopf die
 komplette Konfiguration in die Mail.
+
+## Umfang
+
+Die Landingpage trägt acht Abschnitte. Bewusst **nicht** enthalten:
+
+- Ein eigener Leistungs-Abschnitt. Die Baukasten-Gruppen benennen jede Leistung mit
+  Preis, „Drei Projekte, fünf Werkzeuge" belegt sie mit Arbeit — eine dritte Aufzählung
+  war Wiederholung.
+- Eine separate Betreuungs-Zeile bei den Preisen; Betreuung ist Gruppe 05 im Baukasten.
 
 ## Bewegung und Überlappung
 
@@ -124,6 +144,8 @@ Farben, damit das Symbol auch auf dunklen Browser-Tabs sichtbar bleibt.
   vollständig per Tastatur bedienbar
 - FAQ als echtes `<dialog>` — Escape schließt, Fokus wandert hinein
 - Dekoration durchgehend `aria-hidden`
+- Auf Orangeflächen steht **dunkle** Schrift (`--auf-akzent`). Weiß auf `#FF4A0F` ergibt
+  nur 3,4:1 — zu wenig für Fließtext; dunkel sind es 5,7:1.
 - Ohne JavaScript bleibt die Seite lesbar (`<noscript>`-Rückfall)
 
 ---
@@ -136,7 +158,7 @@ Farben, damit das Symbol auch auf dunklen Browser-Tabs sichtbar bleibt.
    `[Stadt]`, `[telefonnummer]`, `[Porträt]`, das Porträtfoto und die Mailadresse
    `hallo@querstrich.de`.
 3. **Impressum und Datenschutzerklärung** anlegen (`/impressum`, `/datenschutz` sind
-   bereits verlinkt).
+   bereits verlinkt) sowie die Portfolioseite hinter `/arbeiten`.
 4. **`og:image`** ergänzen (Favicon ist eingebaut). Für sehr alte Browser zusätzlich
    ein `favicon.ico` beilegen.
 5. Die Ergebniszeilen der Projekte beschreiben, **was gebaut wurde** — keine erfundenen

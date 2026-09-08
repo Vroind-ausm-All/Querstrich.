@@ -26,6 +26,7 @@ mit dem Akzent getönt — hell auf hell, dunkel auf dunkel.
 | Abschnitt | Inhalt |
 |---|---|
 | Hero | „Querverbindung finden. Strich ziehen. Punkt." mit Wörterbuch-Glossar |
+| Kopf | Schwebende Milchglasleiste mit Abstand zum Rand |
 | Manifest | Positionierung, Wort-für-Wort-Aufbau |
 | Arbeiten | Drei Projekte, überlappende Ebenen, aufklappbare Fallakte |
 | **Fragen** | **Interaktiv: was ein Generator daraus macht — und was ich daraus mache** |
@@ -74,6 +75,11 @@ Ein einziger `requestAnimationFrame`-Takt für alle Scroll-Effekte:
 - **`data-drift`** — Elemente im Fluss, gebunden an ihren Abstand zur Bildschirmmitte.
   Der Bezugspunkt ist immer das **Elternelement**; misst ein Element seine eigene,
   bereits verschobene Position, schaukelt sich die Rechnung auf.
+- Die Werte sind bewusst kräftig (Bild ±9, Textkarte ∓7, Geisterwörter ±15): bei ±3
+  liegt der Versatz unter 20 px und ist auf einer 500 px hohen Karte nicht zu sehen.
+- **Nicht** im Bild selbst parallaxen. Die Mock-Ups sind randvoll komponiert; jede
+  Skalierung schneidet Kopfleiste und Produktkarten ab. Der Versatz zwischen Bild und
+  Textkarte reicht.
 - Überlappende Ebenen in Arbeiten (Textkarte über dem Mock-Up), Person (Porträt und Text),
   Baukasten, Fragenliste und Bilanz — jeweils mit unterschiedlichen Geschwindigkeiten
 - Der Hero blendet beim Scrollen **nicht** aus. Auf dunklem Grund verschwindet fadender
@@ -95,6 +101,22 @@ CSS** — jedes in der eigenen Farb- und Schriftwelt des Projekts:
 
 Beim Überfahren nimmt die Hintergrundglut der Seite die Akzentfarbe des Projekts an.
 
+## Der Kopf
+
+Eine schwebende Leiste mit Abstand zu allen Rändern, Milchglas (`backdrop-filter`),
+feiner Kante und weichem Schatten. Auf Mobilgeräten liegt sie frei über dem Inhalt und
+überlappt nichts — das Menü beginnt unterhalb.
+
+Das Glas liegt auf einer **eigenen Ebene** (`.kopf-glas`), nicht auf `.kopf-inner`:
+`backdrop-filter` macht sein Element zum Bezugsrahmen für `position: fixed`. Läge der
+Filter auf der Leiste selbst, klappte das Vollbildmenü in die Kopfleiste zusammen.
+
+## Icon
+
+Sprechblase mit zwei Querstrichen, als SVG-Data-URI direkt in der Datei — funktioniert
+damit auch über `file://`. Eine eingebettete `prefers-color-scheme`-Regel dreht die
+Farben, damit das Symbol auch auf dunklen Browser-Tabs sichtbar bleibt.
+
 ## Bedienbarkeit
 
 - Sprungmarke zum Inhalt, sichtbarer Fokusrahmen auf allem Bedienbaren
@@ -115,7 +137,8 @@ Beim Überfahren nimmt die Hintergrundglut der Seite die Akzentfarbe des Projekt
    `hallo@querstrich.de`.
 3. **Impressum und Datenschutzerklärung** anlegen (`/impressum`, `/datenschutz` sind
    bereits verlinkt).
-4. **`og:image` und Favicon** ergänzen.
+4. **`og:image`** ergänzen (Favicon ist eingebaut). Für sehr alte Browser zusätzlich
+   ein `favicon.ico` beilegen.
 5. Die Ergebniszeilen der Projekte beschreiben, **was gebaut wurde** — keine erfundenen
    Kennzahlen. Sobald echte Zahlen vorliegen, gehören sie an diese Stelle.
 6. **Preise prüfen.** Baukasten, Pakete und die 9.500-€-Schwelle sind aufeinander

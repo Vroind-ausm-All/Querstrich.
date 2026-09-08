@@ -3,15 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>querstrich — quer denken, Strich ziehen, Punkt.</title>
+<title>querstrich — Querverbindung finden. Strich ziehen. Punkt.</title>
 <meta name="description" content="Marke, Website und Technik aus einer Hand. Ich baue Auftritte, die eine Sache tun: Anfragen und Bewerbungen bringen. Festpreis, sechs Wochen, ein Ansprechpartner.">
 <meta name="theme-color" content="#F5F3EE">
 <meta name="author" content="querstrich">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cstyle%3E.b%7Bfill:%23141416%7D.s%7Bfill:%23F7F5F0%7D@media(prefers-color-scheme:dark)%7B.b%7Bfill:%23F4F3EF%7D.s%7Bfill:%230B0B0D%7D%7D%3C/style%3E%3Cpath class='b' d='M32 4C17 4 6 15.4 6 30.2s11 26.2 26 26.2c3.9 0 7.6-.8 10.9-2.3l7.7 4.4c2.6 1.5 5.6-1.4 4.1-4l-4.1-7.1C55.1 42.6 58 36.8 58 30.2 58 15.4 47 4 32 4Z'/%3E%3Cg class='s' transform='skewX(-14)'%3E%3Crect x='28.5' y='16' width='8.6' height='30' rx='2.4'/%3E%3Crect x='42' y='16' width='8.6' height='30' rx='2.4'/%3E%3C/g%3E%3C/svg%3E">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
 <meta property="og:site_name" content="querstrich">
-<meta property="og:title" content="querstrich — quer denken, Strich ziehen, Punkt.">
+<meta property="og:title" content="querstrich — Querverbindung finden. Strich ziehen. Punkt.">
 <meta property="og:description" content="Marke, Website und Technik aus einer Hand. Festpreis, sechs Wochen, ein Ansprechpartner.">
 
 <!--
@@ -62,6 +63,8 @@
 
   --wrap:80rem;
   --gutter:clamp(1.25rem,4vw,3rem);
+  --kopf-luft:clamp(.7rem,1.6vw,1.15rem);
+  --kopf-hoehe:4.2rem;
   --ease:cubic-bezier(.76,0,.24,1);
   --ease-out:cubic-bezier(.2,.8,.2,1);
 }
@@ -190,12 +193,6 @@ strong{font-weight:600;color:var(--tinte)}
   37.5%{transform:translate(-9px,-8px)}50%{transform:translate(13px,12px)}62.5%{transform:translate(-12px,6px)}
   75%{transform:translate(8px,-11px)}87.5%{transform:translate(-6px,13px)}
 }
-.raster{
-  position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:linear-gradient(90deg,var(--linie-s) 1px,transparent 1px);
-  background-size:calc(100% / 6) 100%;
-  mask-image:linear-gradient(180deg,transparent,#000 16%,#000 84%,transparent);
-}
 main,header,footer{position:relative;z-index:2}
 
 /* Geisterwort hinter Abschnittsköpfen — die Ebene, die überlappt */
@@ -224,20 +221,50 @@ main,header,footer{position:relative;z-index:2}
 #vorhang .marke{font-size:clamp(2rem,6.5vw,4rem);opacity:0;animation:vAuf .7s var(--ease-out) .1s forwards}
 .vorhang-linie{width:min(46vw,22rem);height:2px;background:var(--linie);position:relative;overflow:hidden}
 .vorhang-linie i{position:absolute;inset:0;background:var(--akzent);transform:scaleX(0);transform-origin:left;animation:vLade 1.8s var(--ease) .25s forwards}
-.vorhang-sub{font-family:var(--mono);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--tinte-3);opacity:0;animation:vAuf .6s ease .9s forwards}
+.vorhang-claim{display:flex;flex-direction:column;align-items:center;gap:.15rem;text-align:center;max-width:none}
+.vorhang-claim span{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--tinte-3);
+  opacity:0;animation:vAuf .5s ease forwards;
+}
+.vorhang-claim span:nth-child(1){animation-delay:.75s}
+.vorhang-claim span:nth-child(2){animation-delay:.95s}
+.vorhang-claim span:nth-child(3){animation-delay:1.15s;color:var(--akzent-text)}
 @keyframes vAuf{to{opacity:1}}
 @keyframes vLade{0%{transform:scaleX(0)}70%{transform:scaleX(.72)}100%{transform:scaleX(1)}}
 
 /* ═══════════════════════════════════════════════════════════
    6 — KOPF
    ═══════════════════════════════════════════════════════════ */
-.kopf{position:fixed;top:0;left:0;right:0;z-index:70;transition:background .4s ease}
-.kopf::after{content:"";position:absolute;inset:auto 0 0 0;height:1px;background:transparent;transition:background .4s}
-.kopf.fest{background:color-mix(in srgb,var(--papier) 82%,transparent);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px)}
-.kopf.fest::after{background:var(--linie)}
-.kopf-inner{display:flex;align-items:center;justify-content:space-between;gap:1.25rem;padding:1.15rem 0;transition:padding .4s ease}
-.kopf.fest .kopf-inner{padding:.7rem 0}
-.kopf .marke{font-size:1.35rem;position:relative;z-index:81}
+.kopf{
+  position:fixed;z-index:70;
+  top:var(--kopf-luft);left:var(--kopf-luft);right:var(--kopf-luft);
+  transition:top .4s var(--ease);
+}
+.kopf-inner{
+  position:relative;isolation:isolate;
+  display:flex;align-items:center;justify-content:space-between;gap:1.25rem;
+  padding:.7rem clamp(.85rem,2vw,1.4rem);
+}
+/* Das Milchglas liegt auf einer eigenen Ebene. backdrop-filter macht sein Element
+   zum Bezugsrahmen für position:fixed — läge der Filter auf .kopf-inner, klappte
+   das Mobilmenü in die Kopfleiste zusammen, statt den Bildschirm zu füllen. */
+.kopf-glas{
+  position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:color-mix(in srgb,var(--papier) 62%,transparent);
+  backdrop-filter:blur(20px) saturate(1.6);
+  -webkit-backdrop-filter:blur(20px) saturate(1.6);
+  border:1px solid color-mix(in srgb,var(--tinte) 10%,transparent);
+  box-shadow:0 10px 34px -22px rgba(0,0,0,.5);
+  transition:background .4s ease,box-shadow .4s ease;
+}
+@supports not (backdrop-filter:blur(1px)){
+  .kopf-glas{background:color-mix(in srgb,var(--papier) 95%,transparent)}
+}
+.kopf.fest .kopf-glas{
+  background:color-mix(in srgb,var(--papier) 76%,transparent);
+  box-shadow:0 14px 40px -24px rgba(0,0,0,.6);
+}
+.kopf .marke{font-size:1.25rem;position:relative;z-index:81}
 .nav{display:flex;align-items:center;gap:1.35rem}
 .nav-liste{display:flex;align-items:center;gap:1.5rem}
 .nav-liste a{
@@ -251,7 +278,7 @@ main,header,footer{position:relative;z-index:2}
 .nav-liste a:hover{color:var(--tinte)}
 .nav-liste a:hover::after,.nav-liste a.aktiv::after{transform:scaleX(1);transform-origin:left}
 .nav-liste a.aktiv{color:var(--tinte)}
-.fortschritt{position:absolute;left:0;bottom:0;height:2px;background:var(--akzent);width:0;z-index:1}
+.fortschritt{position:absolute;left:0;bottom:-1px;height:2px;background:var(--akzent);width:0;z-index:1;max-width:100%}
 
 .burger{display:none;width:2.6rem;height:2.6rem;position:relative;z-index:81;flex:none}
 .burger i{position:absolute;left:.55rem;right:.55rem;height:1.5px;background:var(--tinte);transition:transform .4s var(--ease)}
@@ -265,8 +292,10 @@ main,header,footer{position:relative;z-index:2}
   .kopf .knopf--klein,.kopf .schalter-txt{display:none}
   .nav-liste{
     position:fixed;inset:0;z-index:80;background:var(--papier);
-    flex-direction:column;align-items:flex-start;justify-content:center;gap:0;padding:0 var(--gutter);
+    flex-direction:column;align-items:flex-start;justify-content:center;gap:0;
+    padding:calc(var(--kopf-hoehe) + var(--kopf-luft)) var(--gutter) 2rem;
     clip-path:inset(0 0 100% 0);transition:clip-path .7s var(--ease);
+    overflow-y:auto;
   }
   .nav-liste.auf{clip-path:inset(0 0 0 0)}
   .nav-liste a{
@@ -310,7 +339,7 @@ main,header,footer{position:relative;z-index:2}
    8 — HERO: quer. strich. punkt.
    ═══════════════════════════════════════════════════════════ */
 .hero{height:145vh;position:relative}
-.hero-fest{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding-top:4.5rem}
+.hero-fest{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:calc(var(--kopf-hoehe) + var(--kopf-luft) * 2) 0 2rem}
 .hero-geist{
   position:absolute;left:50%;top:50%;translate:-50% -50%;z-index:0;
   font-family:var(--display);font-weight:900;font-stretch:62%;text-transform:lowercase;
@@ -329,7 +358,7 @@ main,header,footer{position:relative;z-index:2}
 .satz-zeile{
   position:relative;display:block;cursor:default;
   font-family:var(--display);font-weight:800;font-stretch:78%;
-  font-size:clamp(1.85rem,7.2vw,7.4rem);line-height:.9;letter-spacing:-.04em;
+  font-size:clamp(2.15rem,7.6vw,7.4rem);line-height:.9;letter-spacing:-.04em;
   transition:transform .5s var(--ease-out);
 }
 .satz-zeile:hover{transform:translateX(.5rem)}
@@ -353,16 +382,22 @@ main,header,footer{position:relative;z-index:2}
 .satz-zeile:hover .satz-punkt{transform:rotate(45deg) scale(1.15)}
 
 /* Wörterbuch-Zeilen unter dem Satz */
-.glossar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem;border-top:1px solid var(--linie);padding-top:1.1rem;max-width:52rem}
-.glossar div{transition:opacity .35s ease}
-.glossar dt{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--akzent-text);margin-bottom:.35rem}
-.glossar dd{font-size:.875rem;line-height:1.45;color:var(--tinte-2)}
-.satz-hover .glossar div{opacity:.32}
-.satz-hover .glossar div.an{opacity:1}
-@media (max-width:52rem){.glossar{grid-template-columns:1fr;gap:.75rem;max-width:34rem}.glossar dd{font-size:.8125rem}}
+.glossar{
+  display:flex;flex-direction:column;gap:.95rem;max-width:46rem;
+  border-top:1px solid var(--linie);padding-top:1.2rem;
+}
+.glossar div{
+  display:flex;flex-direction:column;gap:.2rem;
+  transition:opacity .35s ease,transform .35s var(--ease-out);
+}
+.glossar dt{font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--akzent-text)}
+.glossar dd{font-size:.9375rem;line-height:1.5;color:var(--tinte-2)}
+.satz-hover .glossar div{opacity:.3}
+.satz-hover .glossar div.an{opacity:1;transform:translateX(.3rem)}
+@media (max-width:46rem){.glossar{gap:.8rem}.glossar dd{font-size:.875rem}}
 
-.hero-unten{display:flex;align-items:flex-end;justify-content:space-between;gap:2.5rem;flex-wrap:wrap;margin-top:clamp(1.5rem,4vh,2.5rem)}
-.hero-aktionen{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.5rem}
+.hero-unten{display:flex;align-items:flex-end;justify-content:space-between;gap:1.75rem 2.5rem;flex-wrap:wrap;margin-top:clamp(1.75rem,4.5vh,3rem)}
+.hero-aktionen{display:flex;gap:.75rem;flex-wrap:wrap}
 .hero-zahlen{display:flex;gap:clamp(1.25rem,3.5vw,3rem)}
 .hero-zahlen b{display:block;font-family:var(--display);font-weight:800;font-stretch:88%;font-size:clamp(1.7rem,3.2vw,2.7rem);line-height:1;letter-spacing:-.03em}
 .hero-zahlen span{font-family:var(--mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--tinte-3);display:block;margin-top:.5rem;max-width:14ch;overflow-wrap:anywhere}
@@ -389,10 +424,9 @@ main,header,footer{position:relative;z-index:2}
 /* ═══════════════════════════════════════════════════════════
    9 — ABSCHNITTSKOPF
    ═══════════════════════════════════════════════════════════ */
-.kopfzeile{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:2.5rem;align-items:end;margin-bottom:clamp(2.5rem,6vh,4.5rem)}
+.kopfzeile{margin-bottom:clamp(2.5rem,6vh,4.5rem);max-width:56rem}
 .kopfzeile .label{margin-bottom:1.4rem}
-.kopfzeile p{color:var(--tinte-2);max-width:42ch}
-@media (max-width:60rem){.kopfzeile{grid-template-columns:1fr;gap:1.5rem;align-items:start}}
+.kopfzeile > p{color:var(--tinte-2);max-width:52ch;margin-top:1.5rem}
 
 /* ═══════════════════════════════════════════════════════════
    10 — MANIFEST
@@ -401,10 +435,6 @@ main,header,footer{position:relative;z-index:2}
 .manifest .w{display:inline-block;opacity:.18;transform:translateY(.2em);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
 .manifest.in .w{opacity:1;transform:none}
 .manifest .w.leucht{color:var(--akzent)}
-.manifest-fuss{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem;margin-top:clamp(2.5rem,5vh,4rem);border-top:1px solid var(--linie);padding-top:1.75rem}
-.manifest-fuss strong{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--akzent-text);display:block;margin-bottom:.6rem;font-weight:500}
-@media (max-width:60rem){.manifest-fuss{grid-template-columns:1fr;gap:1.25rem}}
-
 /* ═══════════════════════════════════════════════════════════
    11 — ARBEITEN (überlappende Ebenen)
    ═══════════════════════════════════════════════════════════ */
@@ -435,8 +465,8 @@ main,header,footer{position:relative;z-index:2}
   transition:transform .6s var(--ease-out),border-color .5s,box-shadow .6s;
 }
 .fall-vis:hover .fall-rahmen{transform:translateY(-8px);border-color:var(--akz,var(--akzent));box-shadow:0 34px 80px -34px var(--akz,var(--akzent))}
-.fall-buehne{position:absolute;inset:0;transition:transform .8s var(--ease-out),filter .6s ease;filter:saturate(.68) contrast(.97)}
-.fall-vis:hover .fall-buehne{filter:none;transform:scale(1.025)}
+.fall-buehne{position:absolute;inset:0;transition:filter .6s ease;filter:saturate(.68) contrast(.97)}
+.fall-vis:hover .fall-buehne{filter:none}
 .fall-wisch{
   position:absolute;inset:0;z-index:5;pointer-events:none;
   background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.28) 50%,transparent 62%);
@@ -784,7 +814,7 @@ main,header,footer{position:relative;z-index:2}
 .person-bild{grid-row:1;grid-column:1 / span 5;position:relative;z-index:1;will-change:transform}
 .portrait{position:relative;aspect-ratio:4/5;overflow:hidden;border:1px solid var(--linie);background:var(--papier-3)}
 .portrait-inner{
-  position:absolute;inset:-11%;display:grid;place-items:center;text-align:center;padding:2rem;
+  position:absolute;inset:-14%;display:grid;place-items:center;text-align:center;padding:2rem;
   background-image:repeating-linear-gradient(45deg,var(--linie-s) 0 1px,transparent 1px 12px);
   font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--tinte-3);
   will-change:transform;
@@ -909,13 +939,12 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
   <div class="vorhang-inner">
     <span class="marke"><span class="marke-q">querstrich</span><span class="marke-sq" aria-hidden="true"></span></span>
     <span class="vorhang-linie" aria-hidden="true"><i></i></span>
-    <span class="vorhang-sub">quer denken · Strich ziehen · Punkt</span>
+    <p class="vorhang-claim"><span>Querverbindung finden.</span><span>Strich ziehen.</span><span>Punkt.</span></p>
   </div>
 </div>
 
 <!-- ═══════════ ATMOSPHÄRE ═══════════ -->
 <div class="glut" id="glut" aria-hidden="true"></div>
-<div class="raster" aria-hidden="true"></div>
 <div class="korn" aria-hidden="true"></div>
 
 <a class="nur-sr" href="#inhalt">Zum Inhalt springen</a>
@@ -923,6 +952,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
 <!-- ═══════════ KOPF ═══════════ -->
 <header class="kopf" id="kopf">
   <div class="wrap kopf-inner">
+    <span class="kopf-glas" aria-hidden="true"></span>
     <a class="marke" href="#oben" data-glitch aria-label="querstrich — zur Startseite">
       <span class="marke-q">querstrich</span><span class="marke-sq" aria-hidden="true"></span>
     </a>
@@ -950,38 +980,35 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
   <!-- ═══════════ HERO ═══════════ -->
   <section class="hero" id="inhalt" aria-label="querstrich — quer denken, Strich ziehen, Punkt">
     <div class="hero-fest">
-      <div class="hero-schraeg" data-par="-7" aria-hidden="true"></div>
-      <div class="hero-geist" data-par="15" aria-hidden="true">querstrich</div>
+      <div class="hero-schraeg" data-par="-14" aria-hidden="true"></div>
+      <div class="hero-geist" data-par="26" aria-hidden="true">querstrich</div>
 
       <div class="hero-inhalt">
         <p class="label">Marke <span aria-hidden="true">\</span> Website <span aria-hidden="true">\</span> Technik</p>
 
         <h1 class="satz" id="satz">
-          <span class="satz-zeile" data-teil="quer" data-glitch-ziel><span class="satz-teil">Quer</span><span class="satz-verb"><span class="v-aus" aria-hidden="true">verbindung finden.</span><span class="v-voll" id="fuell0">verbindung finden.</span></span></span>
-          <span class="satz-zeile" data-teil="strich" data-glitch-ziel>
+          <span class="satz-zeile" data-teil="quer"><span class="satz-teil">Quer</span><span class="satz-verb"><span class="v-aus" aria-hidden="true">verbindung finden.</span><span class="v-voll" id="fuell0">verbindung finden.</span></span></span>
+          <span class="satz-zeile" data-teil="strich">
             <span class="satz-teil">Strich</span>
             <span class="satz-verb"><span class="v-aus" aria-hidden="true">ziehen.</span><span class="v-voll" id="fuell1">ziehen.</span></span>
           </span>
-          <span class="satz-zeile" data-teil="punkt" data-glitch-ziel>
+          <span class="satz-zeile" data-teil="punkt">
             <span class="satz-teil" id="fuell2">Punkt</span><span class="satz-punkt" id="punktSq" aria-hidden="true"></span><span class="nur-sr">.</span>
           </span>
         </h1>
 
         <dl class="glossar" id="glossar">
-          <div data-teil="quer"><dt>quer <span aria-hidden="true">—</span> Verbindung</dt><dd>Zwischen dem, was Sie können, und dem, was Ihr Kunde sucht. Die Verbindung ist selten die naheliegende.</dd></div>
-          <div data-teil="strich"><dt>strich <span aria-hidden="true">—</span> Auswahl</dt><dd>Der Strich unter dem, was weg kann. Das ist der teure Teil, nicht das Bauen.</dd></div>
-          <div data-teil="punkt"><dt>punkt <span aria-hidden="true">—</span> Ende</dt><dd>Eine Seite, die eine Sache tut. Kein „und außerdem“. Punkt.</dd></div>
+          <div data-teil="quer"><dt>quer <span aria-hidden="true">—</span> Verbindung</dt><dd>Zwischen dem, was Sie können, und dem, was Ihr Kunde sucht.</dd></div>
+          <div data-teil="strich"><dt>strich <span aria-hidden="true">—</span> Auswahl</dt><dd>Unter dem, was weg kann. Der teure Teil — nicht das Bauen.</dd></div>
+          <div data-teil="punkt"><dt>punkt <span aria-hidden="true">—</span> Ende</dt><dd>Eine Seite, die eine Sache tut. Kein „und außerdem“.</dd></div>
         </dl>
 
         <div class="hero-unten">
-          <div>
-            <p class="lead">Marke, Website und Technik aus einer Hand — für Betriebe, die Anfragen und Bewerbungen brauchen, nicht nur eine <span class="strich an">hübsche Seite</span>.</p>
-            <div class="hero-aktionen">
-              <a class="knopf knopf--voll" href="#arbeiten">arbeiten ansehen <span class="pfeil" aria-hidden="true">→</span></a>
-              <a class="knopf" href="#fragen">was ich Sie frage</a>
-            </div>
+          <div class="hero-aktionen">
+            <a class="knopf knopf--voll" href="#arbeiten">arbeiten ansehen <span class="pfeil" aria-hidden="true">→</span></a>
+            <a class="knopf" href="#fragen">was ich Sie frage</a>
           </div>
-          <div class="hero-zahlen">
+          <div class="hero-zahlen" data-par="-5">
             <div><b data-zahl="10" data-suffix=" J">0</b><span>Jahre Gestaltung</span></div>
             <div><b data-zahl="6" data-suffix=" W">0</b><span>Wochen bis Livegang</span></div>
             <div><b data-zahl="1" data-suffix="">0</b><span>Ansprech&shy;partner</span></div>
@@ -995,11 +1022,12 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
 
   <!-- ═══════════ MANIFEST ═══════════ -->
   <section class="bereich">
-    <span class="geistwort geistwort--links" data-drift="-9" aria-hidden="true">problem</span>
+    <span class="geistwort geistwort--links" data-drift="-16" aria-hidden="true">problem</span>
     <div class="wrap ueber">
       <div class="kopfzeile rev">
         <div>
           <p class="label">Das eigentliche Problem</p>
+          <p class="lead" style="margin:1.25rem 0 1.75rem">Marke, Website und Technik aus einer Hand — für Betriebe, die Anfragen und Bewerbungen brauchen, nicht nur eine <span class="strich">hübsche Seite</span>.</p>
           <p class="manifest" data-worte>Die meisten Websites scheitern nicht am Aussehen. Sie scheitern daran, dass niemand entschieden hat, <em class="leucht">was sie tun sollen</em>.</p>
         </div>
         <div>
@@ -1008,17 +1036,12 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
         </div>
       </div>
 
-      <div class="manifest-fuss">
-        <div class="rev" data-verzoegern style="--v:0"><strong>quer <span aria-hidden="true">\</span> entscheiden</strong><p class="klein">Was auf die Startseite gehört und was weg kann. Vor dem ersten Entwurf, nicht danach.</p></div>
-        <div class="rev" data-verzoegern style="--v:1"><strong>strich <span aria-hidden="true">\</span> gestalten</strong><p class="klein">Ein Erscheinungsbild, das auf dem Transporter, dem Bauschild und im Browser dasselbe sagt.</p></div>
-        <div class="rev" data-verzoegern style="--v:2"><strong>punkt <span aria-hidden="true">\</span> bauen</strong><p class="klein">Handgeschrieben, schnell, datenschutzfest. Kein Baukasten, den in zwei Jahren niemand mehr anfassen will.</p></div>
-      </div>
     </div>
   </section>
 
   <!-- ═══════════ ARBEITEN ═══════════ -->
   <section class="bereich" id="arbeiten">
-    <span class="geistwort geistwort--rechts" data-drift="7" aria-hidden="true">arbeiten</span>
+    <span class="geistwort geistwort--rechts" data-drift="15" aria-hidden="true">arbeiten</span>
     <div class="wrap ueber">
       <div class="kopfzeile rev">
         <div>
@@ -1039,7 +1062,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
 
         <!-- ── 01 Coaching with Maria ── -->
         <article class="fall rev" data-kat="website" style="--akz:#E4503C">
-          <div class="fall-vis" data-drift="4" data-akte-schalter role="button" tabindex="0" aria-expanded="false" aria-controls="akte-maria" aria-label="Fallakte Coaching with Maria öffnen">
+          <div class="fall-vis" data-drift="9" data-akte-schalter role="button" tabindex="0" aria-expanded="false" aria-controls="akte-maria" aria-label="Fallakte Coaching with Maria öffnen">
             <span class="fall-nr">01</span>
             <div class="fall-rahmen">
               <div class="fall-buehne">
@@ -1064,7 +1087,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
             </div>
           </div>
 
-          <div class="fall-txt" data-drift="-3">
+          <div class="fall-txt" data-drift="-7">
             <div class="fall-meta"><span>Coaching</span><span>Website</span><span>SEO &amp; Struktur</span></div>
             <h3 class="fall-titel">coaching with maria</h3>
             <p class="fall-sub">Amsterdam &amp; Stuttgart <span aria-hidden="true">\</span> coaching-withmaria.com</p>
@@ -1091,7 +1114,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
 
         <!-- ── 02 Sharemics ── -->
         <article class="fall rev" data-kat="website shop" style="--akz:#CD714E">
-          <div class="fall-vis" data-drift="4" data-akte-schalter role="button" tabindex="0" aria-expanded="false" aria-controls="akte-share" aria-label="Fallakte Sharemics öffnen">
+          <div class="fall-vis" data-drift="9" data-akte-schalter role="button" tabindex="0" aria-expanded="false" aria-controls="akte-share" aria-label="Fallakte Sharemics öffnen">
             <span class="fall-nr">02</span>
             <div class="fall-rahmen">
               <div class="fall-buehne">
@@ -1122,7 +1145,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
             </div>
           </div>
 
-          <div class="fall-txt" data-drift="-3">
+          <div class="fall-txt" data-drift="-7">
             <div class="fall-meta"><span>Keramik</span><span>Shop</span><span>Kursbuchung</span></div>
             <h3 class="fall-titel">sharemics</h3>
             <p class="fall-sub">Sunrise Edition <span aria-hidden="true">\</span> Label, Shop &amp; Atelier</p>
@@ -1149,7 +1172,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
 
         <!-- ── 03 33ter Sonnenstrahl ── -->
         <article class="fall rev" data-kat="event website" style="--akz:#8E9122">
-          <div class="fall-vis" data-drift="4" data-akte-schalter role="button" tabindex="0" aria-expanded="false" aria-controls="akte-33" aria-label="Fallakte 33ter Sonnenstrahl öffnen">
+          <div class="fall-vis" data-drift="9" data-akte-schalter role="button" tabindex="0" aria-expanded="false" aria-controls="akte-33" aria-label="Fallakte 33ter Sonnenstrahl öffnen">
             <span class="fall-nr">03</span>
             <div class="fall-rahmen">
               <div class="fall-buehne">
@@ -1172,7 +1195,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
             </div>
           </div>
 
-          <div class="fall-txt" data-drift="-3">
+          <div class="fall-txt" data-drift="-7">
             <div class="fall-meta"><span>Event</span><span>Einladung</span><span>RSVP</span></div>
             <h3 class="fall-titel">33ter sonnenstrahl</h3>
             <p class="fall-sub">Gronau <span aria-hidden="true">\</span> 11.09.2026, bis zum ersten Strahl</p>
@@ -1203,7 +1226,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
 
   <!-- ═══════════ FRAGEN-MODUL ═══════════ -->
   <section class="bereich getoent fragen" id="fragen">
-    <span class="geistwort geistwort--links" data-drift="-6" aria-hidden="true">fragen</span>
+    <span class="geistwort geistwort--links" data-drift="-14" aria-hidden="true">fragen</span>
     <div class="wrap ueber">
       <div class="kopfzeile rev">
         <div>
@@ -1216,9 +1239,9 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
       <div class="branchen rev" role="group" aria-label="Branche wählen" id="branchen"></div>
 
       <div class="fragen-gitter">
-        <ol class="fragenliste rev" id="fragenListe" data-drift="1"></ol>
+        <ol class="fragenliste rev" id="fragenListe" data-drift="4"></ol>
 
-        <aside class="bilanz rev" data-drift="-1">
+        <aside class="bilanz rev" data-drift="-4">
           <p class="bilanz-kopf">Ihre Bilanz</p>
           <p class="bilanz-zahl"><b id="bilanzZahl">0</b><span id="bilanzVon">von 4 Fragen geöffnet</span></p>
           <span class="bilanz-balken" aria-hidden="true"><i id="bilanzBalken"></i></span>
@@ -1249,7 +1272,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
 
   <!-- ═══════════ LEISTUNGEN ═══════════ -->
   <section class="bereich" id="leistungen">
-    <span class="geistwort geistwort--rechts" data-drift="8" aria-hidden="true">leistungen</span>
+    <span class="geistwort geistwort--rechts" data-drift="16" aria-hidden="true">leistungen</span>
     <div class="wrap ueber">
       <div class="kopfzeile rev">
         <div>
@@ -1346,7 +1369,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
 
   <!-- ═══════════ PREISE ═══════════ -->
   <section class="bereich" id="preise">
-    <span class="geistwort geistwort--links" data-drift="-7" aria-hidden="true">preise</span>
+    <span class="geistwort geistwort--links" data-drift="-15" aria-hidden="true">preise</span>
     <div class="wrap ueber">
       <div class="kopfzeile rev">
         <div>
@@ -1356,7 +1379,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
         <p>Alle Preise netto, Festpreis statt Stundenzettel. Stellen Sie sich Ihr Projekt zusammen — der Baukasten rechnet mit denselben Zahlen, mit denen ich das Angebot schreibe.</p>
       </div>
 
-      <div class="baukasten rev" data-drift="-2">
+      <div class="baukasten rev" data-drift="-5">
         <div class="baukasten-felder">
 
           <div class="bk-gruppe">
@@ -1477,12 +1500,12 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
   <!-- ═══════════ PERSON ═══════════ -->
   <section class="bereich" id="person">
     <div class="wrap person ueber">
-      <div class="person-bild rev" data-drift="6">
+      <div class="person-bild rev" data-drift="11">
         <div class="portrait">
-          <div class="portrait-inner" data-drift-innen="5">[Porträtfoto einsetzen — Werkstatt oder Arbeitsplatz, kein Studiohintergrund]</div>
+          <div class="portrait-inner" data-drift-innen="9">[Porträtfoto einsetzen — Werkstatt oder Arbeitsplatz, kein Studiohintergrund]</div>
         </div>
       </div>
-      <div class="person-txt rev" data-drift="-3">
+      <div class="person-txt rev" data-drift="-6">
         <p class="label">Wer hier arbeitet</p>
         <p class="person-zitat" style="margin-top:1.25rem">Ich gestalte nichts, das jemand anderes irgendwie umsetzen muss — und baue nichts, das gestalterisch niemand verantwortet hat.</p>
         <p>Gelernter Grafikdesigner, seit zehn Jahren in der Gestaltung, dazu eine Weiterbildung zum Webentwickler. Selbstständig in [Stadt], als <strong>querstrich</strong>.</p>
@@ -1499,7 +1522,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
 
   <!-- ═══════════ ABSCHLUSS ═══════════ -->
   <section class="abschluss" id="kontakt">
-    <span class="geistwort" data-drift="5" aria-hidden="true">punkt.</span>
+    <span class="geistwort" data-drift="13" aria-hidden="true">punkt.</span>
     <div class="wrap ueber">
       <p class="label label--nackt rev" style="justify-content:center">Der erste Schritt</p>
       <h2 class="d1 rev">Reden wir<br>eine halbe<br>Stunde.</h2>
@@ -1739,18 +1762,6 @@ function glitch(el, text){
   var wort = el.querySelector('.marke-q') || el;
   el.addEventListener('mouseenter', function(){ glitch(wort); });
 });
-var satzZeilen = [].slice.call(document.querySelectorAll('[data-glitch-ziel]'));
-if(!sanft && satzZeilen.length){
-  (function heroGlitch(){
-    if(scrollY < innerHeight * 2 && !document.hidden){
-      var z = satzZeilen[Math.floor(Math.random() * satzZeilen.length)];
-      var t = z.querySelector('.satz-teil');
-      if(t) glitch(t, t.textContent);
-    }
-    setTimeout(heroGlitch, 2800 + Math.random()*4200);
-  })();
-}
-
 /* ═════════ HERO — Glossar folgt der Zeile ═════════ */
 var satz = document.getElementById('satz');
 var glossar = document.getElementById('glossar');
@@ -2130,7 +2141,7 @@ function parallaxTakt(){
     var r = el.parentElement.getBoundingClientRect();
     if(r.bottom < -320 || r.top > innerHeight + 320) return;
     var d = ((r.top + r.height/2) - mitte) * (parseFloat(el.dataset.driftInnen) / 100);
-    el.style.transform = 'translate3d(0,' + d.toFixed(1) + 'px,0)';
+    el.style.translate = '0 ' + d.toFixed(1) + 'px';
   });
 }
 

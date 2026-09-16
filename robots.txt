@@ -1,0 +1,6 @@
+# querstrich — alles offen, nichts zu verbergen
+User-agent: *
+Allow: /
+Disallow: /kontakt.php
+
+Sitemap: https://www.querstrich.de/sitemap.xml

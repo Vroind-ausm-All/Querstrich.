@@ -1,0 +1,127 @@
+/* ════════════════════════════════════════════════════════════════
+   Textseiten (Datenschutz, Impressum)
+   Dieselben Token wie index.html, nur der Teil, den eine Textseite
+   braucht. Schriften liegen lokal unter assets/fonts/.
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── Schriften ────────────────────────────────────────────────── */
+@font-face{font-family:'Archivo';font-style:normal;font-weight:400 900;font-stretch:62% 125%;font-display:swap;
+  src:url(fonts/archivo-latin.woff2) format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Archivo';font-style:normal;font-weight:400 900;font-stretch:62% 125%;font-display:swap;
+  src:url(fonts/archivo-latin-ext.woff2) format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400 600;font-display:swap;
+  src:url(fonts/instrument-sans-latin.woff2) format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400 600;font-display:swap;
+  src:url(fonts/instrument-sans-latin-ext.woff2) format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'DM Mono';font-style:normal;font-weight:400;font-display:swap;
+  src:url(fonts/dm-mono-latin.woff2) format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+
+/* ── Token ────────────────────────────────────────────────────── */
+:root{
+  --papier:#F5F3EE; --papier-2:#FFFFFF; --papier-3:#EBE8E0;
+  --tinte:#0D0D0F; --tinte-2:#46453F; --tinte-3:#7C7B72;
+  --linie:rgba(13,13,15,.16); --linie-s:rgba(13,13,15,.07);
+  --akzent:#FF4A0F; --akzent-text:#C63A05; --auf-akzent:#1A0A02;
+  --display:"Archivo","Arial Narrow",Impact,sans-serif;
+  --sans:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"DM Mono",ui-monospace,Menlo,monospace;
+  --gutter:clamp(1.25rem,4vw,3rem);
+  --ease:cubic-bezier(.76,0,.24,1);
+}
+[data-thema="dunkel"]{
+  --papier:#0B0B0D; --papier-2:#131317; --papier-3:#1B1B21;
+  --tinte:#F4F3EF; --tinte-2:#A8A79E; --tinte-3:#78776F;
+  --linie:rgba(244,243,239,.15); --linie-s:rgba(244,243,239,.07);
+  --akzent:#FF5A22; --akzent-text:#FF7C4A; --auf-akzent:#0B0B0D;
+}
+
+/* ── Grundgerüst ──────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;background:var(--papier)}
+body{
+  background:var(--papier);color:var(--tinte);font-family:var(--sans);
+  font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased;
+  transition:background .5s ease,color .5s ease;
+}
+a{color:inherit;text-decoration:none}
+button{background:none;border:0;cursor:pointer;font:inherit;color:inherit}
+::selection{background:var(--akzent);color:var(--auf-akzent)}
+:focus-visible{outline:2px solid var(--akzent);outline-offset:4px}
+.wrap{width:min(48rem,100% - var(--gutter)*2);margin-inline:auto}
+.nur-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ── Marke & Kopf ─────────────────────────────────────────────── */
+.marke{
+  display:inline-flex;align-items:flex-start;gap:.08em;font-family:var(--display);
+  font-weight:800;letter-spacing:-.04em;line-height:1;text-transform:lowercase;font-size:1.25rem;
+}
+.marke-sq{display:block;width:.23em;height:.23em;background:var(--akzent);flex:none;margin-top:.05em;
+  transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.marke:hover .marke-sq{transform:translateY(-.14em) rotate(45deg)}
+.kopf{border-bottom:1px solid var(--linie);position:sticky;top:0;z-index:10;
+  background:color-mix(in srgb,var(--papier) 88%,transparent);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.kopf-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 0}
+.zurueck{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--tinte-3);display:inline-flex;align-items:center;gap:.5rem;transition:color .3s}
+.zurueck:hover{color:var(--akzent-text)}
+
+.schalter{display:inline-flex;align-items:center;gap:.5rem;padding:.3rem;border:1px solid var(--linie)}
+.schalter-spur{position:relative;width:2.6rem;height:1.15rem;background:var(--papier-3);flex:none}
+.schalter-knopf{position:absolute;top:.15rem;left:.15rem;width:.85rem;height:.85rem;background:var(--akzent);
+  transition:transform .38s var(--ease)}
+[data-thema="dunkel"] .schalter-knopf{transform:translateX(1.45rem)}
+
+/* ── Typografie ───────────────────────────────────────────────── */
+main{padding:clamp(3rem,8vh,5.5rem) 0 clamp(4rem,10vh,7rem)}
+.label{font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--tinte-3);display:inline-flex;align-items:center;gap:.65rem;margin-bottom:1.25rem}
+.label::before{content:"";width:1.7rem;height:2px;background:var(--akzent);flex:none}
+h1{font-family:var(--display);font-weight:800;font-stretch:84%;font-size:clamp(2.2rem,6vw,3.6rem);
+  line-height:.92;letter-spacing:-.035em;margin-bottom:1.25rem}
+h2{font-family:var(--display);font-weight:800;font-stretch:88%;font-size:clamp(1.25rem,2.4vw,1.6rem);
+  line-height:1.1;letter-spacing:-.025em;margin:2.75rem 0 .9rem;scroll-margin-top:5rem}
+h3{font-weight:600;font-size:1.0625rem;margin:1.6rem 0 .5rem}
+p,li{color:var(--tinte-2);margin-bottom:1em;max-width:70ch}
+strong{color:var(--tinte);font-weight:600}
+main ul,main ol{padding-left:1.1rem;margin-bottom:1.25em}
+main li{margin-bottom:.4em}
+.vorspann{font-size:1.1875rem;line-height:1.55;color:var(--tinte-2);margin-bottom:2rem;max-width:56ch}
+a.link{border-bottom:1px solid var(--akzent);color:var(--tinte)}
+a.link:hover{background:color-mix(in srgb,var(--akzent) 14%,transparent)}
+.stand{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tinte-3)}
+
+/* Platzhalter, die vor dem Livegang ersetzt werden müssen */
+.pl{background:color-mix(in srgb,var(--akzent) 18%,transparent);
+  padding:.05em .3em;font-family:var(--mono);font-size:.9em;color:var(--tinte)}
+
+/* Hinweiskasten */
+.kasten{border:1px solid var(--linie);background:var(--papier-2);padding:1.25rem 1.4rem;margin:2rem 0}
+.kasten p:last-child{margin-bottom:0}
+.kasten--warn{border-color:var(--akzent);background:color-mix(in srgb,var(--akzent) 7%,transparent)}
+
+/* Inhaltsverzeichnis */
+.inhalt{border-top:1px solid var(--linie);border-bottom:1px solid var(--linie);padding:1.25rem 0;margin:2rem 0 2.5rem}
+.inhalt ol{list-style:none;padding:0;margin:0;columns:2;column-gap:2rem}
+.inhalt li{margin-bottom:.35em;max-width:none}
+.inhalt a{font-size:.9375rem;color:var(--tinte-2);border-bottom:1px solid transparent;transition:.25s}
+.inhalt a:hover{color:var(--tinte);border-bottom-color:var(--akzent)}
+@media (max-width:40rem){.inhalt ol{columns:1}}
+
+/* ── Fuß ──────────────────────────────────────────────────────── */
+.fuss{border-top:1px solid var(--linie);padding:2rem 0 2.5rem;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tinte-3)}
+.fuss-inner{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.fuss a{transition:color .3s}
+.fuss a:hover{color:var(--akzent-text)}
+.fuss nav{display:flex;gap:1.25rem;flex-wrap:wrap}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:.001ms!important;animation-duration:.001ms!important}
+}

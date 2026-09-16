@@ -6,6 +6,8 @@
 <title>querstrich — Querverbindung finden. Strich ziehen. Punkt.</title>
 <meta name="description" content="Marke, Website und Technik aus einer Hand. Ich baue Auftritte, die eine Sache tun: Anfragen und Bewerbungen bringen. Festpreis, sechs Wochen, ein Ansprechpartner.">
 <meta name="theme-color" content="#F5F3EE">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://www.querstrich.de/">
 <meta name="author" content="querstrich">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cstyle%3E.b%7Bfill:%23141416%7D.s%7Bfill:%23F7F5F0%7D@media(prefers-color-scheme:dark)%7B.b%7Bfill:%23F4F3EF%7D.s%7Bfill:%230B0B0D%7D%7D%3C/style%3E%3Cpath class='b' d='M32 4C17 4 6 15.4 6 30.2s11 26.2 26 26.2c3.9 0 7.6-.8 10.9-2.3l7.7 4.4c2.6 1.5 5.6-1.4 4.1-4l-4.1-7.1C55.1 42.6 58 36.8 58 30.2 58 15.4 47 4 32 4Z'/%3E%3Cg class='s' transform='skewX(-14)'%3E%3Crect x='28.5' y='16' width='8.6' height='30' rx='2.4'/%3E%3Crect x='42' y='16' width='8.6' height='30' rx='2.4'/%3E%3C/g%3E%3C/svg%3E">
 
@@ -14,6 +16,15 @@
 <meta property="og:site_name" content="querstrich">
 <meta property="og:title" content="querstrich — Querverbindung finden. Strich ziehen. Punkt.">
 <meta property="og:description" content="Marke, Website und Technik aus einer Hand. Festpreis, sechs Wochen, ein Ansprechpartner.">
+<meta property="og:url" content="https://www.querstrich.de/">
+<meta property="og:image" content="https://www.querstrich.de/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="querstrich — Querverbindung finden. Strich ziehen. Punkt.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="querstrich — Querverbindung finden. Strich ziehen. Punkt.">
+<meta name="twitter:description" content="Marke, Website und Technik aus einer Hand. Festpreis, sechs Wochen, ein Ansprechpartner.">
+<meta name="twitter:image" content="https://www.querstrich.de/assets/og-image.png">
 
 <!--
   ────────────────────────────────────────────────────────────
@@ -24,16 +35,205 @@
   4. og:image und Favicon ergänzen.
   ────────────────────────────────────────────────────────────
 -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://www.querstrich.de/#betrieb",
+      "name": "querstrich",
+      "description": "Marke, Website und Technik aus einer Hand. Markenauftritte und Websites für Betriebe, die Anfragen und Bewerbungen brauchen.",
+      "url": "https://www.querstrich.de/",
+      "email": "hallo@querstrich.de",
+      "telephone": "[+49 TELEFONNUMMER]",
+      "image": "https://www.querstrich.de/assets/og-image.png",
+      "priceRange": "€€",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "[Straße Hausnummer]",
+        "postalCode": "[PLZ]",
+        "addressLocality": "[Stadt]",
+        "addressCountry": "DE"
+      },
+      "areaServed": { "@type": "Country", "name": "Deutschland" },
+      "founder": { "@id": "https://www.querstrich.de/#person" },
+      "knowsAbout": [
+        "Markenauftritt", "Webdesign", "Webentwicklung",
+        "Barrierearmut", "Suchmaschinenoptimierung", "Datenschutz"
+      ],
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "08:00", "closes": "17:00"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Pakete",
+        "itemListElement": [
+          { "@type": "Offer", "name": "check",      "price": "390",  "priceCurrency": "EUR",
+            "description": "Prüfung von Ladezeit, Mobilbedienung, Auffindbarkeit und Datenschutzrisiken." },
+          { "@type": "Offer", "name": "business",   "price": "4900", "priceCurrency": "EUR",
+            "description": "8 bis 12 Seiten, individuell gestaltet, Texte nach einem Gespräch im Betrieb." },
+          { "@type": "Offer", "name": "individuell","price": "9500", "priceCurrency": "EUR",
+            "description": "Shop, Buchung oder Anbindung an Ihre Software, mit eigener Konzeptphase.",
+            "priceSpecification": { "@type": "PriceSpecification", "minPrice": "9500", "priceCurrency": "EUR" } }
+        ]
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.querstrich.de/#person",
+      "name": "[Vorname Nachname]",
+      "jobTitle": "Grafikdesigner und Webentwickler",
+      "worksFor": { "@id": "https://www.querstrich.de/#betrieb" }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.querstrich.de/#website",
+      "url": "https://www.querstrich.de/",
+      "name": "querstrich",
+      "inLanguage": "de-DE",
+      "publisher": { "@id": "https://www.querstrich.de/#betrieb" }
+    }
+  ]
+}
+</script>
+
 <script>
 /* Ansicht vor dem ersten Anstrich setzen — kein Aufblitzen der falschen Fassung. */
 (function(){try{var t=localStorage.getItem('qs-thema');if(t==='hell'||t==='dunkel')document.documentElement.dataset.thema=t;}catch(e){}})();
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Schriften liegen auf dem eigenen Server. Keine Verbindung zu Dritten,
+     keine IP-Übertragung, kein Einwilligungsbedarf. SIL Open Font License. -->
+<!-- Kein Font-Preload: Das Stylesheet steht inline im Dokument, der Browser
+     findet die @font-face-Regeln also schon beim ersten Parsen. Ein Preload
+     brächte hier nichts und schlüge beim lokalen Öffnen über file:// an der
+     CORS-Regel für Schriften fehl. -->
 
 <style>
+/* ═══════════════════════════════════════════════════════════
+   0 — SCHRIFTEN (lokal, DSGVO)
+   ═══════════════════════════════════════════════════════════ */
+/* latin-ext */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 400 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  src: url(assets/fonts/archivo-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 400 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  src: url(assets/fonts/archivo-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/dm-mono-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/dm-mono-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(assets/fonts/dm-mono-latin-ext-2.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(assets/fonts/dm-mono-latin-2.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(assets/fonts/instrument-sans-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(assets/fonts/instrument-sans-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(assets/fonts/instrument-sans-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(assets/fonts/instrument-sans-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(assets/fonts/instrument-sans-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(assets/fonts/instrument-sans-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* ═══════════════════════════════════════════════════════════
    1 — TOKEN & ANSICHTEN
    ═══════════════════════════════════════════════════════════ */
@@ -103,7 +303,7 @@ body{
 body.gesperrt{overflow:hidden}
 img,svg{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
-button,input,select{font:inherit;color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
 button{background:none;border:0;cursor:pointer}
 ::selection{background:var(--akzent);color:var(--auf-akzent)}
 :focus-visible{outline:2px solid var(--akzent);outline-offset:4px;border-radius:2px}
@@ -132,6 +332,13 @@ p{max-width:64ch}
 }
 .label::before{content:"";width:1.7rem;height:2px;background:var(--akzent);flex:none}
 .label--nackt::before{display:none}
+/* Abschnittsmarke: das Piktogramm ersetzt den Strich, trägt ihn aber
+   als Akzentelement in sich weiter. */
+.sprite{position:absolute;width:0;height:0;overflow:hidden}
+.label--ic::before{display:none}
+.ic{width:1.45rem;height:1.45rem;flex:none;color:var(--tinte-3);transition:color .35s ease}
+.label--ic{gap:.55rem}
+.label--ic:hover .ic,section:hover .ic{color:var(--tinte-2)}
 .o{color:var(--akzent-text)}
 strong{font-weight:600;color:var(--tinte)}
 
@@ -853,6 +1060,74 @@ main,header,footer{position:relative;z-index:2}
 @media (max-width:36rem){.person-txt{margin:-1.5rem 0 0 0}}
 
 /* ═══════════════════════════════════════════════════════════
+   16b — KONTAKTFORMULAR
+   ═══════════════════════════════════════════════════════════ */
+.kontakt-gitter{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:clamp(2rem,5vw,4rem);align-items:start;text-align:left}
+@media (max-width:64rem){.kontakt-gitter{grid-template-columns:1fr}}
+
+.formular{border:1px solid var(--linie);background:var(--papier-2);padding:clamp(1.5rem,3vw,2.25rem);box-shadow:var(--schatten)}
+.feldreihe{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media (max-width:46rem){.feldreihe{grid-template-columns:1fr}}
+.feld-gross{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.feld-gross label{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--tinte-3)}
+.feld-gross label .pflicht{color:var(--akzent-text)}
+.feld-zusatz{font-family:var(--sans);font-size:.75rem;letter-spacing:0;text-transform:none;color:var(--tinte-3)}
+.feld-gross input,.feld-gross textarea,.feld-gross select{
+  width:100%;border:0;border-bottom:1px solid var(--linie);background:transparent;
+  padding:.6rem 0;font-size:1rem;color:var(--tinte);border-radius:0;
+  transition:border-color .3s ease;
+}
+.feld-gross textarea{min-height:7rem;resize:vertical;line-height:1.55}
+.feld-gross input:focus,.feld-gross textarea:focus,.feld-gross select:focus{outline:0;border-bottom-color:var(--akzent)}
+.feld-gross input:focus-visible,.feld-gross textarea:focus-visible{outline:2px solid var(--akzent);outline-offset:3px}
+.feld-gross input::placeholder,.feld-gross textarea::placeholder{color:var(--tinte-3);opacity:.7}
+.honig{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+.zustimmung{display:grid;grid-template-columns:1.1rem 1fr;gap:.75rem;align-items:start;margin:1.25rem 0;font-size:.8125rem;line-height:1.55;color:var(--tinte-2)}
+.zustimmung input{
+  appearance:none;width:1.1rem;height:1.1rem;border:1px solid var(--tinte);position:relative;
+  cursor:pointer;margin-top:.15rem;transition:background .25s,border-color .25s;
+}
+.zustimmung input:checked{background:var(--akzent);border-color:var(--akzent)}
+.zustimmung input:checked::after{content:"";position:absolute;left:.3rem;top:.08rem;width:.28rem;height:.55rem;border:solid var(--auf-akzent);border-width:0 1.5px 1.5px 0;transform:rotate(45deg)}
+.zustimmung a{border-bottom:1px solid var(--akzent)}
+.formular-fuss{font-size:.75rem;color:var(--tinte-3);margin-top:1rem;line-height:1.5}
+.formular-hinweis{border:1px solid var(--akzent);background:color-mix(in srgb,var(--akzent) 8%,transparent);padding:.85rem 1rem;font-size:.875rem;margin-bottom:1.5rem}
+
+.kontakt-neben{display:flex;flex-direction:column;gap:1.5rem}
+.kontakt-karte{border:1px solid var(--linie);padding:1.35rem}
+.kontakt-karte dt{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--akzent-text);margin-bottom:.5rem}
+.kontakt-karte dd{font-size:.9375rem;line-height:1.55;color:var(--tinte-2)}
+.kontakt-karte dd a{border-bottom:1px solid var(--linie)}
+.kontakt-karte dd a:hover{border-bottom-color:var(--akzent)}
+.kontakt-karte + .kontakt-karte{margin-top:0}
+
+/* ═══════════════════════════════════════════════════════════
+   16c — SPEICHER-HINWEIS (Cookies)
+   ═══════════════════════════════════════════════════════════ */
+.speicher{
+  position:fixed;left:var(--kopf-luft);right:var(--kopf-luft);bottom:var(--kopf-luft);z-index:95;
+  display:none;grid-template-columns:auto 1fr auto;gap:1.25rem;align-items:center;
+  padding:1rem clamp(1rem,2vw,1.5rem);
+  background:color-mix(in srgb,var(--papier) 80%,transparent);
+  backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);
+  border:1px solid color-mix(in srgb,var(--tinte) 14%,transparent);
+  box-shadow:0 18px 50px -26px rgba(0,0,0,.6);
+  transform:translateY(120%);transition:transform .6s var(--ease);
+}
+@supports not (backdrop-filter:blur(1px)){.speicher{background:var(--papier)}}
+.speicher.da{display:grid}
+.speicher.hoch{transform:none}
+.speicher .ic{width:1.6rem;height:1.6rem;color:var(--akzent-text)}
+.speicher p{font-size:.875rem;line-height:1.5;color:var(--tinte-2);max-width:none;margin:0}
+.speicher p b{color:var(--tinte);font-weight:600}
+.speicher-aktionen{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+@media (max-width:60rem){
+  .speicher{grid-template-columns:1fr;gap:.85rem}
+  .speicher .ic{display:none}
+}
+
+/* ═══════════════════════════════════════════════════════════
    17 — ABSCHLUSS & FUSS
    ═══════════════════════════════════════════════════════════ */
 .abschluss{position:relative;overflow:hidden;text-align:center;padding:clamp(5rem,15vh,10rem) 0}
@@ -961,6 +1236,64 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
 <div class="glut" id="glut" aria-hidden="true"></div>
 <div class="korn" aria-hidden="true"></div>
 
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <g id="g-basis" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></g>
+  </defs>
+
+  <symbol id="ic-problem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+    <circle cx="12" cy="12" r="8.25"/><path d="M6.2 17.8 17.8 6.2" stroke="var(--akzent)"/>
+  </symbol>
+
+  <symbol id="ic-arbeiten" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+    <path d="M8.5 4.5h11v11"/><rect x="3.5" y="8.5" width="12" height="11"/>
+    <path d="M6.5 14h6" stroke="var(--akzent)"/>
+  </symbol>
+
+  <symbol id="ic-handwerk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+    <path d="M4.5 3.5v17h16"/><path d="M8.5 20.5 20.5 8.5" stroke="var(--akzent)"/>
+    <path d="M4.5 8.5h2M4.5 13h2M9 20.5v-2M13.5 20.5v-2"/>
+  </symbol>
+
+  <symbol id="ic-fragen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+    <path d="M3.5 4.5h17v11h-9l-5 4.5v-4.5h-3z"/>
+    <path d="M10.5 7.8 8.4 12.6M14.7 7.8l-2.1 4.8" stroke="var(--akzent)"/>
+  </symbol>
+
+  <symbol id="ic-ablauf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+    <path d="M2.5 12h19"/><rect x="3.5" y="9.5" width="5" height="5"/>
+    <rect x="15.5" y="9.5" width="5" height="5" stroke="var(--akzent)"/>
+  </symbol>
+
+  <symbol id="ic-preise" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+    <path d="M3.5 20.5h17"/><rect x="4.5" y="13.5" width="4" height="6"/>
+    <rect x="10.5" y="9.5" width="4" height="10"/>
+    <rect x="16.5" y="4.5" width="4" height="15" stroke="var(--akzent)"/>
+  </symbol>
+
+  <symbol id="ic-person" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+    <rect x="3.5" y="3.5" width="17" height="17"/><circle cx="12" cy="10" r="2.75"/>
+    <path d="M6.75 20.5c.9-3 2.8-4.5 5.25-4.5s4.35 1.5 5.25 4.5"/>
+    <path d="M15.5 6.5h3" stroke="var(--akzent)"/>
+  </symbol>
+
+  <symbol id="ic-kontakt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+    <path d="M11.5 3.5h-8v17h17v-8"/><path d="M13 11 20.5 3.5" stroke="var(--akzent)"/>
+    <path d="M14.5 3.5h6v6" stroke="var(--akzent)"/>
+  </symbol>
+
+  <symbol id="ic-faq" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+    <path d="M2.5 3.5h13v9h-7l-4 3.5v-3.5h-2z"/>
+    <path d="M8.5 15.5h13v-9" stroke="var(--akzent)"/>
+    <path d="M21.5 6.5v11l-4-3.5h-9" stroke="var(--akzent)"/>
+  </symbol>
+
+  <symbol id="ic-schutz" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+    <path d="M12 2.8 20 5.6v6.2c0 4.6-3.3 8-8 9.4-4.7-1.4-8-4.8-8-9.4V5.6z"/>
+    <path d="M8 11.5h8" stroke="var(--akzent)"/>
+  </symbol>
+</svg>
+
 <a class="nur-sr" href="#inhalt">Zum Inhalt springen</a>
 
 <!-- ═══════════ KOPF ═══════════ -->
@@ -1040,7 +1373,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
     <div class="wrap ueber">
       <div class="kopfzeile rev">
         <div>
-          <p class="label">Das eigentliche Problem</p>
+          <p class="label label--ic"><svg class="ic" aria-hidden="true"><use href="#ic-problem"/></svg>Das eigentliche Problem</p>
           <p class="lead" style="margin:1.25rem 0 1.75rem">Marke, Website und Technik aus einer Hand — für Betriebe, die Anfragen und Bewerbungen brauchen, nicht nur eine <span class="strich">hübsche Seite</span>.</p>
           <p class="manifest" data-worte>Die meisten Websites scheitern nicht am Aussehen. Sie scheitern daran, dass niemand entschieden hat, <em class="leucht">was sie tun sollen</em>.</p>
         </div>
@@ -1059,7 +1392,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
     <div class="wrap ueber">
       <div class="kopfzeile rev">
         <div>
-          <p class="label">Ausgewählte Arbeiten</p>
+          <p class="label label--ic"><svg class="ic" aria-hidden="true"><use href="#ic-arbeiten"/></svg>Ausgewählte Arbeiten</p>
           <h2 class="d2">Drei Projekte,<br>drei Tonlagen.</h2>
         </div>
         <p>Ein Coaching-Auftritt, ein Keramiklabel mit Shop und Kursen, eine Einladung, die wie eine Nacht funktioniert. Jedes mit dem Ergebnis, das dahintersteht — nicht mit dem Adjektiv, das dazu passt.</p>
@@ -1240,7 +1573,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
            Das Ziel /arbeiten wird noch angelegt — hier den Pfad eintragen. -->
       <div class="handwerk rev">
         <div class="handwerk-kopf">
-          <p class="label">Das Handwerk dahinter</p>
+          <p class="label label--ic"><svg class="ic" aria-hidden="true"><use href="#ic-handwerk"/></svg>Das Handwerk dahinter</p>
           <h3 class="d3">Drei Projekte, fünf Werkzeuge.</h3>
           <p>Was in jedem der drei steckt — unabhängig davon, ob es eine Einladung, ein Shop oder ein Coaching-Auftritt war.</p>
         </div>
@@ -1271,7 +1604,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
     <div class="wrap ueber">
       <div class="kopfzeile rev">
         <div>
-          <p class="label">Warum nicht einfach KI?</p>
+          <p class="label label--ic"><svg class="ic" aria-hidden="true"><use href="#ic-fragen"/></svg>Warum nicht einfach KI?</p>
           <h2 class="d2">Die Fragen, die kein<br>Generator stellt.</h2>
         </div>
         <p>Eine KI baut die Seite — ich arbeite selbst mit diesen Werkzeugen. Sie entscheidet nur nicht, was draufkommt. Wählen Sie Ihre Branche, öffnen Sie eine Frage: Sie sehen sofort, was ein Generator daraus macht und was ich daraus mache.</p>
@@ -1315,7 +1648,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
   <section class="bereich" id="ablauf">
     <div class="wrap ablauf-gitter ueber">
       <div class="ablauf-fest rev">
-        <p class="label">Ablauf</p>
+        <p class="label label--ic"><svg class="ic" aria-hidden="true"><use href="#ic-ablauf"/></svg>Ablauf</p>
         <h2 class="d2" style="margin:1.25rem 0 1.5rem">So läuft es ab.</h2>
         <p class="klein" style="max-width:34ch">Fünf Schritte, sechs Wochen. Der einzige Punkt, an dem Projekte regelmäßig kippen, sind Ihre Inhalte — deshalb steht er im Angebot mit Datum.</p>
         <a class="knopf knopf--voll" href="#kontakt" style="margin-top:2rem">gespräch anfragen <span class="pfeil" aria-hidden="true">→</span></a>
@@ -1338,7 +1671,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
     <div class="wrap ueber">
       <div class="kopfzeile rev">
         <div>
-          <p class="label">Preise</p>
+          <p class="label label--ic"><svg class="ic" aria-hidden="true"><use href="#ic-preise"/></svg>Preise</p>
           <h2 class="d2">Sie wissen vorher,<br>was es kostet.</h2>
         </div>
         <p>Alle Preise netto, Festpreis statt Stundenzettel. Stellen Sie sich Ihr Projekt zusammen — der Baukasten rechnet mit denselben Zahlen, mit denen ich das Angebot schreibe.</p>
@@ -1471,7 +1804,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
         </div>
       </div>
       <div class="person-txt rev" data-drift="-6">
-        <p class="label">Wer hier arbeitet</p>
+        <p class="label label--ic"><svg class="ic" aria-hidden="true"><use href="#ic-person"/></svg>Wer hier arbeitet</p>
         <p class="person-zitat" style="margin-top:1.25rem">Ich gestalte nichts, das jemand anderes irgendwie umsetzen muss — und baue nichts, das gestalterisch niemand verantwortet hat.</p>
         <p>Gelernter Grafikdesigner, seit zehn Jahren in der Gestaltung, dazu eine Weiterbildung zum Webentwickler. Selbstständig in [Stadt], als <strong>querstrich</strong>.</p>
         <p>Sie arbeiten mit mir. Nicht mit einem Projektleiter, der Ihre Frage weitergibt und in vier Tagen zurückruft.</p>
@@ -1489,19 +1822,103 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
   <section class="abschluss" id="kontakt">
     <span class="geistwort" data-drift="13" aria-hidden="true">punkt.</span>
     <div class="wrap ueber">
-      <p class="label label--nackt rev" style="justify-content:center">Der erste Schritt</p>
+      <p class="label label--ic label--nackt rev" style="justify-content:center"><svg class="ic" aria-hidden="true"><use href="#ic-kontakt"/></svg>Der erste Schritt</p>
       <h2 class="d1 rev">Reden wir<br>eine halbe<br>Stunde.</h2>
       <p class="lead rev">Kein Verkaufsgespräch. Ich höre zu, stelle Fragen und sage Ihnen ehrlich, ob ich der Richtige bin. Wenn nicht, empfehle ich Ihnen jemanden.</p>
 
-      <p class="rev" style="margin-top:2.25rem">
-        <a class="knopf knopf--voll" href="mailto:hallo@querstrich.de?subject=Erstgespr%C3%A4ch">gespräch anfragen <span class="pfeil" aria-hidden="true">→</span></a>
-      </p>
+      <div class="kontakt-gitter rev" style="margin-top:clamp(2.5rem,5vh,4rem)">
+        <!-- Das Formular sendet an das eigene Skript auf dem eigenen Server.
+             Kein Formulardienst, keine Drittübermittlung. -->
+        <form class="formular" id="kontaktFormular" action="kontakt.php" method="post" novalidate>
+          <p class="formular-hinweis" id="formularHinweis" role="status" hidden></p>
 
-      <div class="kontaktzeile rev">
-        <a href="mailto:hallo@querstrich.de">hallo@querstrich.de</a>
-        <a href="tel:+49">[telefonnummer]</a>
+          <div class="feldreihe">
+            <div class="feld-gross">
+              <label for="k-name">Name <span class="pflicht" aria-hidden="true">*</span></label>
+              <input type="text" id="k-name" name="name" required autocomplete="name" maxlength="120">
+            </div>
+            <div class="feld-gross">
+              <label for="k-betrieb">Betrieb</label>
+              <input type="text" id="k-betrieb" name="betrieb" autocomplete="organization" maxlength="120">
+            </div>
+          </div>
+
+          <div class="feldreihe">
+            <div class="feld-gross">
+              <label for="k-mail">E-Mail <span class="pflicht" aria-hidden="true">*</span></label>
+              <input type="email" id="k-mail" name="email" required autocomplete="email" maxlength="160">
+            </div>
+            <div class="feld-gross">
+              <label for="k-tel">Telefon <span class="feld-zusatz">für den Rückruf</span></label>
+              <input type="tel" id="k-tel" name="telefon" autocomplete="tel" maxlength="40">
+            </div>
+          </div>
+
+          <div class="feldreihe">
+            <div class="feld-gross">
+              <label for="k-wann">Wann passt Ihnen ein Gespräch?</label>
+              <select id="k-wann" name="wunschzeit">
+                <option value="">bitte wählen</option>
+                <option>Vormittags, 8 bis 12 Uhr</option>
+                <option>Mittags, 12 bis 14 Uhr</option>
+                <option>Nachmittags, 14 bis 17 Uhr</option>
+                <option>Rufen Sie an, wann es passt</option>
+              </select>
+            </div>
+            <div class="feld-gross">
+              <label for="k-thema">Worum geht es?</label>
+              <select id="k-thema" name="thema">
+                <option value="">bitte wählen</option>
+                <option>Neue Website</option>
+                <option>Relaunch einer bestehenden Seite</option>
+                <option>Marke &amp; Erscheinungsbild</option>
+                <option>Shop oder Buchung</option>
+                <option>Website-Check (390 €)</option>
+                <option>Etwas anderes</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="feld-gross">
+            <label for="k-text">Nachricht <span class="pflicht" aria-hidden="true">*</span></label>
+            <textarea id="k-text" name="nachricht" required maxlength="4000" placeholder="Was soll die Seite können — und was funktioniert gerade nicht?"></textarea>
+          </div>
+
+          <!-- Spamfalle: für Menschen unsichtbar, Bots füllen sie aus -->
+          <div class="honig" aria-hidden="true">
+            <label for="k-web">Bitte nicht ausfüllen</label>
+            <input type="text" id="k-web" name="website" tabindex="-1" autocomplete="off">
+          </div>
+          <input type="hidden" name="gestartet" id="k-gestartet" value="">
+
+          <label class="zustimmung">
+            <input type="checkbox" name="einwilligung" value="ja" required>
+            <span>Ich bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verarbeitet werden. Sie werden nicht weitergegeben. Widerruf jederzeit per E-Mail. <a href="datenschutz.html">Datenschutzerklärung</a></span>
+          </label>
+
+          <button class="knopf knopf--voll knopf--breit" type="submit">anfrage senden <span class="pfeil" aria-hidden="true">→</span></button>
+          <p class="formular-fuss">Antwort spätestens am nächsten Werktag. Keine Newsletter, keine Weitergabe.</p>
+        </form>
+
+        <div class="kontakt-neben">
+          <dl class="kontakt-karte">
+            <dt>Lieber direkt</dt>
+            <dd>
+              <a href="mailto:hallo@querstrich.de?subject=Erstgespr%C3%A4ch">hallo@querstrich.de</a><br>
+              <a href="tel:+49">[telefonnummer]</a><br>
+              <span class="klein">Montag bis Freitag, 8 bis 17 Uhr</span>
+            </dd>
+          </dl>
+          <dl class="kontakt-karte">
+            <dt>Was danach passiert</dt>
+            <dd>Ich melde mich mit zwei, drei Rückfragen und einem Terminvorschlag. Das Gespräch dauert dreißig Minuten und kostet nichts.</dd>
+          </dl>
+          <dl class="kontakt-karte">
+            <dt>Ihre Daten</dt>
+            <dd>Gehen direkt an mich, auf einen Server in Deutschland. Keine Analysedienste, keine Weitergabe, Löschung auf Zuruf.</dd>
+          </dl>
+        </div>
       </div>
-      <p class="klein rev" style="margin-top:1.75rem">Montag bis Freitag, 8 bis 17 Uhr <span aria-hidden="true">\</span> Rückruf am selben Werktag</p>
     </div>
   </section>
 
@@ -1515,15 +1932,16 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
         <a class="marke" href="#oben" data-glitch aria-label="querstrich — nach oben">
           <span class="marke-q">querstrich</span><span class="marke-sq" aria-hidden="true"></span>
         </a>
-        <p class="klein" style="margin-top:1rem;max-width:28ch">quer denken, Strich ziehen, Punkt. [Vorname Nachname] <span aria-hidden="true">\</span> [Straße] <span aria-hidden="true">\</span> [PLZ Stadt]</p>
+        <p class="klein" style="margin-top:1rem;max-width:28ch">Querverbindung finden. Strich ziehen. Punkt. <br>[Vorname Nachname] <span aria-hidden="true">\</span> [Straße] <span aria-hidden="true">\</span> [PLZ Stadt]</p>
       </div>
       <nav class="fuss-nav" aria-label="Fußzeile">
         <a href="#arbeiten">arbeiten</a>
         <a href="#ablauf">ablauf</a>
         <a href="#preise">preise</a>
         <button type="button" id="faqAuf" class="betont" aria-haspopup="dialog">häufige fragen</button>
-        <a href="/impressum">impressum</a>
-        <a href="/datenschutz">datenschutz</a>
+        <a href="impressum.html">impressum</a>
+        <a href="datenschutz.html">datenschutz</a>
+        <button type="button" id="speicherAuf">cookies &amp; speicherung</button>
       </nav>
     </div>
     <div class="fuss-unten">
@@ -1533,11 +1951,25 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:.9375rem
   </div>
 </footer>
 
+<!-- ═══════════ SPEICHER-HINWEIS ═══════════
+     Kein Einwilligungsbanner: Die Seite lädt nichts von Dritten und setzt
+     keine Cookies. Gespeichert wird allein die selbst gewählte Ansicht —
+     das ist eine vom Nutzer angeforderte Funktion (§ 25 Abs. 2 Nr. 2 TDDDG).
+     Der Hinweis informiert darüber und lässt sich abräumen. -->
+<div class="speicher" id="speicher" role="region" aria-label="Hinweis zu Cookies und Speicherung">
+  <svg class="ic" aria-hidden="true"><use href="#ic-schutz"/></svg>
+  <p><b>Keine Cookies, keine Tracker.</b> Diese Seite lädt nichts von fremden Servern und misst nichts. Gespeichert wird nur, ob Sie die helle oder dunkle Ansicht gewählt haben — im Browser, auf Ihrem Gerät.</p>
+  <span class="speicher-aktionen">
+    <a class="tlink" href="datenschutz.html">Datenschutz</a>
+    <button class="knopf knopf--voll knopf--klein" type="button" id="speicherOk">verstanden</button>
+  </span>
+</div>
+
 <!-- ═══════════ FAQ-FENSTER ═══════════ -->
 <dialog class="faq" id="faqFenster" aria-labelledby="faqTitel">
   <div class="faq-kopf">
     <div>
-      <p class="label label--nackt">Damit Sie nicht fragen müssen</p>
+      <p class="label label--ic label--nackt"><svg class="ic" aria-hidden="true"><use href="#ic-faq"/></svg>Damit Sie nicht fragen müssen</p>
       <h2 class="d3" id="faqTitel" style="margin-top:.6rem">Häufige Fragen.</h2>
     </div>
     <button class="faq-zu" type="button" id="faqZu" aria-label="Fragen schließen"></button>
@@ -2033,6 +2465,59 @@ function bkRechnen(){
 }
 [].forEach.call(bkForm.querySelectorAll('input'), function(f){ f.addEventListener('change', bkRechnen); });
 bkRechnen();
+
+/* ═════════ SPEICHER-HINWEIS ═════════ */
+var speicher = document.getElementById('speicher');
+var speicherOk = document.getElementById('speicherOk');
+var speicherAuf = document.getElementById('speicherAuf');
+function speicherZeigen(){
+  speicher.classList.add('da');
+  requestAnimationFrame(function(){ speicher.classList.add('hoch'); });
+}
+function speicherWeg(merken){
+  speicher.classList.remove('hoch');
+  setTimeout(function(){ speicher.classList.remove('da'); }, 600);
+  if(merken){ try{ localStorage.setItem('qs-hinweis','gelesen'); }catch(e){} }
+}
+try{
+  if(localStorage.getItem('qs-hinweis') !== 'gelesen') setTimeout(speicherZeigen, 1400);
+}catch(e){ /* Speicher gesperrt: dann gibt es auch nichts zu erklären */ }
+speicherOk.addEventListener('click', function(){ speicherWeg(true); });
+speicherAuf.addEventListener('click', function(){
+  if(speicher.classList.contains('hoch')) speicherWeg(false);
+  else speicherZeigen();
+});
+
+/* ═════════ KONTAKTFORMULAR ═════════ */
+var kontaktFormular = document.getElementById('kontaktFormular');
+if(kontaktFormular){
+  /* Zeitstempel: Bots senden in Sekundenbruchteilen ab, Menschen nicht. */
+  document.getElementById('k-gestartet').value = String(Date.now());
+
+  var hinweis = document.getElementById('formularHinweis');
+  function melden(text, fehler){
+    hinweis.textContent = text;
+    hinweis.hidden = false;
+    hinweis.style.borderColor = fehler ? 'var(--akzent)' : 'var(--linie)';
+    hinweis.scrollIntoView({block:'nearest', behavior: sanft ? 'auto' : 'smooth'});
+  }
+  kontaktFormular.addEventListener('submit', function(e){
+    var fehlend = [].slice.call(kontaktFormular.querySelectorAll('[required]'))
+      .filter(function(f){ return f.type === 'checkbox' ? !f.checked : !f.value.trim(); });
+    var mail = document.getElementById('k-mail');
+    if(mail.value && mail.value.indexOf('@') < 1) fehlend.push(mail);
+    if(fehlend.length){
+      e.preventDefault();
+      melden('Bitte füllen Sie die Pflichtfelder aus und stimmen Sie der Verarbeitung zu.', true);
+      fehlend[0].focus();
+    }
+  });
+
+  /* Rückmeldung nach dem Absenden, aus der Adresszeile gelesen */
+  var stand = new URLSearchParams(location.search).get('gesendet');
+  if(stand === 'ja') melden('Danke — Ihre Anfrage ist da. Ich melde mich spätestens am nächsten Werktag.', false);
+  else if(stand === 'fehler') melden('Da ist etwas schiefgegangen. Schreiben Sie mir bitte direkt an hallo@querstrich.de.', true);
+}
 
 /* ═════════ FAQ-FENSTER ═════════ */
 var faqFenster = document.getElementById('faqFenster');

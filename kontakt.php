@@ -1,0 +1,110 @@
+<?php
+/**
+ * Empfänger für das Kontaktformular auf querstrich.de
+ *
+ * Die Anfrage bleibt auf dem eigenen Server: keine Formulardienste, keine
+ * Weitergabe an Dritte, keine Speicherung über den Mailversand hinaus.
+ *
+ * VOR DEM LIVEGANG ANPASSEN — die vier Werte darunter.
+ */
+
+declare(strict_types=1);
+
+// ─── Einstellungen ────────────────────────────────────────────────────
+$empfaenger   = 'hallo@querstrich.de';          // wohin die Anfrage geht
+$absender     = 'website@querstrich.de';        // Postfach auf DERSELBEN Domain,
+                                                //  sonst wirft SPF/DMARC die Mail weg
+$seite        = 'https://www.querstrich.de/';   // für die Rückleitung
+$mindestdauer = 3;                              // Sekunden; darunter war es ein Bot
+
+// ─── Nur POST ─────────────────────────────────────────────────────────
+if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
+    header('Location: ' . $seite . '#kontakt', true, 303);
+    exit;
+}
+
+function feld(string $name, int $max = 500): string {
+    $wert = trim((string)($_POST[$name] ?? ''));
+    $wert = str_replace(["\r\n", "\r"], "\n", $wert);
+    return mb_substr($wert, 0, $max);
+}
+
+function zurueck(string $seite, string $stand): never {
+    header('Location: ' . $seite . '?gesendet=' . $stand . '#kontakt', true, 303);
+    exit;
+}
+
+// ─── Spamabwehr ───────────────────────────────────────────────────────
+// 1) Honigtopf: das Feld ist für Menschen unsichtbar und bleibt leer.
+if (feld('website') !== '') {
+    zurueck($seite, 'ja');   // Bots bekommen Erfolg gemeldet, nichts wird gesendet
+}
+// 2) Tempo: wer in unter drei Sekunden absendet, hat nicht getippt.
+$gestartet = (int)(feld('gestartet') ?: 0);
+if ($gestartet > 0 && (microtime(true) * 1000 - $gestartet) < $mindestdauer * 1000) {
+    zurueck($seite, 'ja');
+}
+
+// ─── Pflichtfelder ────────────────────────────────────────────────────
+$name      = feld('name', 120);
+$email     = feld('email', 160);
+$nachricht = feld('nachricht', 4000);
+$einwilligung = feld('einwilligung', 10) === 'ja';
+
+if ($name === '' || $nachricht === '' || !$einwilligung
+    || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    zurueck($seite, 'fehler');
+}
+
+// ─── Kopfzeilen-Einschleusung verhindern ──────────────────────────────
+// Zeilenumbrüche in Name oder Adresse könnten sonst eigene Header erzeugen.
+if (preg_match('/[\r\n]/', $name . $email)) {
+    zurueck($seite, 'fehler');
+}
+
+$betrieb    = feld('betrieb', 120);
+$telefon    = feld('telefon', 40);
+$wunschzeit = feld('wunschzeit', 60);
+$thema      = feld('thema', 60);
+
+// ─── Nachricht bauen ──────────────────────────────────────────────────
+$zeilen = [
+    'Neue Anfrage über querstrich.de',
+    str_repeat('=', 40),
+    '',
+    'Name:        ' . $name,
+    'Betrieb:     ' . ($betrieb ?: '—'),
+    'E-Mail:      ' . $email,
+    'Telefon:     ' . ($telefon ?: '—'),
+    'Wunschzeit:  ' . ($wunschzeit ?: '—'),
+    'Thema:       ' . ($thema ?: '—'),
+    '',
+    'Nachricht:',
+    str_repeat('-', 40),
+    $nachricht,
+    str_repeat('-', 40),
+    '',
+    'Eingegangen: ' . date('d.m.Y, H:i') . ' Uhr',
+    'Einwilligung zur Verarbeitung: erteilt',
+];
+$text = implode("\n", $zeilen);
+
+$betreff = '[querstrich] Anfrage von ' . $name . ($thema ? ' — ' . $thema : '');
+
+$header = [
+    'From: querstrich Website <' . $absender . '>',
+    'Reply-To: ' . $name . ' <' . $email . '>',
+    'Content-Type: text/plain; charset=UTF-8',
+    'Content-Transfer-Encoding: 8bit',
+    'X-Mailer: querstrich',
+];
+
+$ok = mail(
+    $empfaenger,
+    '=?UTF-8?B?' . base64_encode($betreff) . '?=',
+    $text,
+    implode("\r\n", $header),
+    '-f' . $absender
+);
+
+zurueck($seite, $ok ? 'ja' : 'fehler');

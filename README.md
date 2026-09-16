@@ -4,11 +4,43 @@
 
 Webauftritt der Einzelagentur **querstrich** — Marke, Website und Technik aus einer Hand.
 
-Eine einzelne Datei: [`index.html`](index.html). Kein Build, kein Framework, keine
-Abhängigkeit außer den Schriften. Im Browser öffnen oder auf einen beliebigen Webspace
-legen.
+Kein Build, kein Framework, **keine einzige Verbindung nach außen**. Auf einen Webspace
+mit PHP legen, fertig.
+
+```
+index.html          Startseite (Stil und Skript inline)
+datenschutz.html    Datenschutzerklärung
+impressum.html      Gerüst, noch auszufüllen
+kontakt.php         Empfänger des Formulars
+robots.txt          sitemap.xml
+assets/
+  recht.css         Stil der Textseiten
+  fonts/*.woff2     8 Dateien, 280 KB
+  og-image.png      Vorschaubild für geteilte Links
+```
 
 ---
+
+## Datenschutz
+
+Die Seite ruft **nichts** von fremden Servern ab — geprüft über den Netzwerkmitschnitt
+des Browsers: null externe Requests.
+
+- **Schriften liegen lokal** unter `assets/fonts/`. Nur die Latin-Schnitte, nach Inhalt
+  entdoppelt (die Variable Fonts waren bei Google dreifach referenziert): 12 `@font-face`,
+  8 Dateien, 280 KB. SIL Open Font License.
+- **Kein Font-Preload.** Das Stylesheet steht inline, der Browser findet `@font-face`
+  schon beim ersten Parsen — ein Preload bringt hier nichts und scheitert beim lokalen
+  Öffnen an der CORS-Regel für Schriften.
+- **Keine Cookies.** Gespeichert wird nur `qs-thema` (helle oder dunkle Ansicht) und
+  `qs-hinweis` (Hinweis weggeklickt) im `localStorage` — beides vom Nutzer selbst
+  ausgelöst und damit nach § 25 Abs. 2 Nr. 2 TDDDG einwilligungsfrei.
+- **Kein Einwilligungsbanner**, weil es nichts einzuwilligen gibt. Stattdessen eine
+  Hinweisleiste, die genau das sagt, sich merken lässt und über den Fußzeilen-Link
+  „cookies & speicherung" jederzeit wieder aufgeht.
+- **Das Formular** sendet an `kontakt.php` auf dem eigenen Server. Kein Formulardienst,
+  keine Drittübermittlung. Spamabwehr über Honigtopf-Feld und Mindest-Ausfülldauer,
+  ohne zusätzliche Datenerhebung.
 
 ## Zwei Ansichten
 
@@ -131,11 +163,29 @@ Das Glas liegt auf einer **eigenen Ebene** (`.kopf-glas`), nicht auf `.kopf-inne
 `backdrop-filter` macht sein Element zum Bezugsrahmen für `position: fixed`. Läge der
 Filter auf der Leiste selbst, klappte das Vollbildmenü in die Kopfleiste zusammen.
 
-## Icon
+## Icons
 
-Sprechblase mit zwei Querstrichen, als SVG-Data-URI direkt in der Datei — funktioniert
-damit auch über `file://`. Eine eingebettete `prefers-color-scheme`-Regel dreht die
-Farben, damit das Symbol auch auf dunklen Browser-Tabs sichtbar bleibt.
+**Favicon:** Sprechblase mit zwei Querstrichen, als SVG-Data-URI direkt in der Datei —
+funktioniert damit auch über `file://`. Eine eingebettete `prefers-color-scheme`-Regel
+dreht die Farben, damit das Symbol auf dunklen Browser-Tabs sichtbar bleibt.
+
+**Abschnittsmarken:** zehn Piktogramme als `<symbol>`-Sprite am Anfang des `<body>`,
+per `<use href="#ic-…">` eingesetzt. Monoline, 24×24, 1,5 px Kontur, eckige Enden — und
+jedes trägt **ein Element in Akzentfarbe**, meist einen Querstrich. Damit ersetzt das
+Piktogramm den orangen Strich vor dem Abschnittslabel, ohne das Markenmotiv aufzugeben.
+
+Die Akzentteile stehen als `stroke="var(--akzent)"` direkt im `<symbol>`: Klassen von
+außen greifen nicht in den Shadow-DOM eines `<use>`, vererbbare Eigenschaften und Custom
+Properties dagegen schon.
+
+## Suchmaschinen
+
+`canonical`, `robots`, Open Graph mit echtem `og-image.png` (1200 × 630, aus der Seite
+selbst gerendert), Twitter-Card, `sitemap.xml`, `robots.txt`.
+
+Dazu **JSON-LD** — `ProfessionalService` mit Angebotskatalog (check / business /
+individuell), `Person` und `WebSite`. Das schließt die Lücke zwischen Anspruch und Beleg:
+„strukturierte Daten" steht als Kompetenz auf der Seite, jetzt hat sie selbst welche.
 
 ## Bedienbarkeit
 
@@ -152,9 +202,16 @@ Farben, damit das Symbol auch auf dunklen Browser-Tabs sichtbar bleibt.
 
 ## Vor dem Livegang
 
-1. **Schriften lokal einbinden** statt von Google laden (DSGVO). Archivo, Instrument Sans
-   und DM Mono stehen unter der SIL Open Font License.
-2. **Platzhalter ersetzen:** `[Vorname Nachname]`, `[Vorname]`, `[Straße]`, `[PLZ Stadt]`,
+1. **Domain eintragen.** `https://www.querstrich.de` steht als Platzhalter in
+   `canonical`, Open Graph, JSON-LD, `robots.txt`, `sitemap.xml` und `kontakt.php`.
+2. **`kontakt.php` einstellen:** Empfänger, Absender (Postfach auf *derselben* Domain,
+   sonst verwirft SPF/DMARC die Mail) und Seiten-URL. Braucht PHP 8.1 oder neuer.
+3. **Impressum ausfüllen** (`impressum.html`) und dort `robots` von `noindex` auf
+   `index, follow` stellen. Eine unfertige Pflichtseite gehört nicht in den Index.
+4. **Datenschutzerklärung prüfen lassen** und die Hinweiskästen in beiden Rechtsseiten
+   entfernen. Die Vorlage beschreibt den tatsächlichen technischen Stand, ersetzt aber
+   keine Rechtsberatung.
+5. **Platzhalter ersetzen:** `[Vorname Nachname]`, `[Vorname]`, `[Straße]`, `[PLZ Stadt]`,
    `[Stadt]`, `[telefonnummer]`, `[Porträt]`, das Porträtfoto und die Mailadresse
    `hallo@querstrich.de`.
 3. **Impressum und Datenschutzerklärung** anlegen (`/impressum`, `/datenschutz` sind

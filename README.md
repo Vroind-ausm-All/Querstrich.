@@ -53,9 +53,12 @@ des Browsers: null externe Requests.
 - **Schriften liegen lokal** unter `assets/fonts/`. Nur die Latin-Schnitte, nach Inhalt
   entdoppelt (die Variable Fonts waren bei Google dreifach referenziert): 12 `@font-face`,
   8 Dateien, 280 KB. SIL Open Font License.
-- **Kein Font-Preload.** Das Stylesheet steht inline, der Browser findet `@font-face`
-  schon beim ersten Parsen — ein Preload bringt hier nichts und scheitert beim lokalen
-  Öffnen an der CORS-Regel für Schriften.
+- **Ein Preload**, auf `archivo-latin.woff2`. Die Displayschrift trägt die Überschrift
+  und damit das LCP-Element; unter `font-display: optional` hat der Browser nur ein
+  kurzes Zeitfenster, sie zu nutzen. Die übrigen Schnitte bleiben ohne Preload — das
+  Stylesheet steht inline, der Browser findet `@font-face` schon beim ersten Parsen.
+  Beim Öffnen per `file://` greift der Preload wegen der CORS-Regel für Schriften nicht;
+  über HTTP, also überall dort, wo die Seite wirklich liegt, schon.
 - **Keine Cookies.** Gespeichert wird nur `qs-thema` (helle oder dunkle Ansicht) und
   `qs-hinweis` (Hinweis weggeklickt) im `localStorage` — beides vom Nutzer selbst
   ausgelöst und damit nach § 25 Abs. 2 Nr. 2 TDDDG einwilligungsfrei.
@@ -63,8 +66,10 @@ des Browsers: null externe Requests.
   Hinweisleiste, die genau das sagt, sich merken lässt und über den Fußzeilen-Link
   „cookies & speicherung" jederzeit wieder aufgeht.
 - **Das Formular** sendet an `kontakt.php` auf dem eigenen Server. Kein Formulardienst,
-  keine Drittübermittlung. Spamabwehr über Honigtopf-Feld und Mindest-Ausfülldauer,
-  ohne zusätzliche Datenerhebung.
+  keine Drittübermittlung. Spamabwehr über Honigtopf-Feld, Mindest-Ausfülldauer und eine
+  Ratenbegrenzung, deren Kennung ein SHA-256 über IP und Stunde ist — die IP selbst wird
+  nicht gespeichert, der Eintrag verfällt nach zwei Stunden. In der
+  Datenschutzerklärung unter „Kontaktformular" benannt.
 
 ## Zwei Ansichten
 
@@ -224,6 +229,66 @@ individuell), `Person` und `WebSite`. Das schließt die Lücke zwischen Anspruch
 
 ---
 
+---
+
+## Geprüft, nicht behauptet
+
+Die folgenden Zahlen stammen aus Messläufen gegen einen lokalen Server, der die Seite
+unter demselben Unterpfad ausliefert wie GitHub Pages. Reproduzierbar mit Chromium und
+axe-core; die Werte gelten unkomprimiert und ohne CDN, über HTTPS mit Brotli fallen die
+Übertragungsgrößen deutlich kleiner aus.
+
+**Barrierefreiheit — axe-core 4.13.0, WCAG 2.0/2.1 A + AA**
+
+| Seite | vorher | nachher |
+| --- | --- | --- |
+| Startseite hell | 29 Verstöße (`color-contrast`, serious) | **0** |
+| Startseite dunkel | 8 Verstöße (`color-contrast`, serious) | **0** |
+| Datenschutz | 0 | **0** |
+| Arbeiten | 0 | **0** |
+
+Zwei Ursachen, zwei verschiedene Korrekturen:
+
+- `--tinte-3` war mit 3,84:1 (hell) und 4,37:1 (dunkel) unter der Schwelle von 4,5:1.
+  Jetzt `#6F6E65` (4,63:1) und `#7C7B73` (4,62:1) — rechnerisch bestimmt, nicht geschätzt.
+- Die Ablaufschritte wurden per `opacity` abgedunkelt. Bei 0,4 bleiben von 11,9:1 noch
+  2,02:1 übrig; selbst 0,7 reicht mit 3,92:1 nicht. Statt zu dimmen hebt der aktive
+  Schritt sich jetzt **positiv** hervor: inaktive Schritte tragen `--tinte-2`/`--tinte-3`,
+  der aktive `--tinte` und eine akzentfarbene Ziffer. Gleiche Wirkung, lesbarer Ruhezustand.
+
+**Ladeverhalten — Chromium, 1440×900**
+
+| Messwert | vorher | nachher |
+| --- | --- | --- |
+| LCP | 316 ms | 320 ms |
+| CLS | 0,0867 | **0,0000** |
+| Ressourcen | 4 | 4 |
+| Summe | 289 KB | 291 KB |
+
+Zum CLS gehört ein Irrweg, der hier stehen bleibt, weil er die Regel zeigt: geratene
+`ascent-override`/`descent-override`-Werte für die Ersatzschrift haben den Sprung von
+0,0867 auf 0,0907 **vergrößert**. Der Messbericht wies einen vertikalen Versatz von 6 px
+aus — also stimmten die Höhen, nicht die Breiten. Geblieben ist deshalb nur ein gegen
+Arial gemessener `size-adjust: 84.1%`; den Sprung selbst schließt `font-display: optional`
+auf der Displayschrift aus, flankiert von einem `preload` auf `archivo-latin.woff2`, damit
+das kurze Zeitfenster von `optional` auch auf langsamen Verbindungen reicht.
+
+**Sicherheit**
+
+- **CSP** in allen vier Seiten: `default-src 'self'`, `connect-src 'none'`,
+  `object-src 'none'`, `base-uri 'none'`. Die Seite kann per Bauart nichts nachladen —
+  die Richtlinie macht das für den Browser überprüfbar.
+- **`.htaccess`** für den PHP-Webspace: dieselbe CSP als echter Header, dazu HSTS,
+  `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, HTTPS-Umleitung,
+  ein Jahr Cache auf Schriften, kein Cache auf HTML, `Options -Indexes`.
+  Auf GitHub Pages greift die Datei nicht — dort trägt das `<meta>`-Pendant.
+- **`kontakt.php`** hatte Honigtopf und Zeitprüfung, aber keine Bremse. Jetzt: 60 s
+  zwischen zwei Anfragen, höchstens 5 pro Stunde je Absender. Die Kennung ist ein
+  SHA-256 über IP und Stunde — die IP selbst wird nie geschrieben, Spuren älter als
+  zwei Stunden werden beim nächsten Aufruf gelöscht.
+
+---
+
 ## Vor dem Livegang
 
 1. **Domain eintragen.** `https://www.querstrich.de` steht als Platzhalter in
@@ -238,11 +303,9 @@ individuell), `Person` und `WebSite`. Das schließt die Lücke zwischen Anspruch
 5. **Platzhalter ersetzen:** `[Vorname Nachname]`, `[Vorname]`, `[Straße]`, `[PLZ Stadt]`,
    `[Stadt]`, `[telefonnummer]`, `[Porträt]`, das Porträtfoto und die Mailadresse
    `hallo@querstrich.de`.
-3. **Impressum und Datenschutzerklärung** anlegen (`/impressum`, `/datenschutz` sind
-   bereits verlinkt) sowie die Portfolioseite hinter `/arbeiten`.
-4. **`og:image`** ergänzen (Favicon ist eingebaut). Für sehr alte Browser zusätzlich
-   ein `favicon.ico` beilegen.
-5. Die Ergebniszeilen der Projekte beschreiben, **was gebaut wurde** — keine erfundenen
+6. **Portfolioseite füllen.** `arbeiten.html` ist bislang ein Gerüst, damit der Link
+   unter dem Portfolio nicht ins Leere führt.
+7. Die Ergebniszeilen der Projekte beschreiben, **was gebaut wurde** — keine erfundenen
    Kennzahlen. Sobald echte Zahlen vorliegen, gehören sie an diese Stelle.
-6. **Preise prüfen.** Baukasten, Pakete und die 9.500-€-Schwelle sind aufeinander
+8. **Preise prüfen.** Baukasten, Pakete und die 9.500-€-Schwelle sind aufeinander
    abgestimmt — wer eine Zahl ändert, sollte die anderen mitziehen.

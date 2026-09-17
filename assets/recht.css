@@ -5,10 +5,10 @@
    ════════════════════════════════════════════════════════════════ */
 
 /* ── Schriften ────────────────────────────────────────────────── */
-@font-face{font-family:'Archivo';font-style:normal;font-weight:400 900;font-stretch:62% 125%;font-display:swap;
+@font-face{font-family:'Archivo';font-style:normal;font-weight:400 900;font-stretch:62% 125%;font-display:optional;
   src:url(fonts/archivo-latin.woff2) format('woff2');
   unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
-@font-face{font-family:'Archivo';font-style:normal;font-weight:400 900;font-stretch:62% 125%;font-display:swap;
+@font-face{font-family:'Archivo';font-style:normal;font-weight:400 900;font-stretch:62% 125%;font-display:optional;
   src:url(fonts/archivo-latin-ext.woff2) format('woff2');
   unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
 @font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400 600;font-display:swap;
@@ -21,13 +21,18 @@
   src:url(fonts/dm-mono-latin.woff2) format('woff2');
   unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
 
+/* Breitenangleich wie in index.html: 84,1 % gemessen gegen Arial. Hoehen-
+   Overrides bleiben weg — geratene Werte vergroessern den Sprung. */
+@font-face{font-family:'Archivo Fallback';src:local('Arial'),local('Helvetica'),local('Liberation Sans');
+  size-adjust:84.1%}
+
 /* ── Token ────────────────────────────────────────────────────── */
 :root{
   --papier:#F5F3EE; --papier-2:#FFFFFF; --papier-3:#EBE8E0;
-  --tinte:#0D0D0F; --tinte-2:#46453F; --tinte-3:#7C7B72;
+  --tinte:#0D0D0F; --tinte-2:#46453F; --tinte-3:#6F6E65;
   --linie:rgba(13,13,15,.16); --linie-s:rgba(13,13,15,.07);
   --akzent:#FF4A0F; --akzent-text:#C63A05; --auf-akzent:#1A0A02;
-  --display:"Archivo","Arial Narrow",Impact,sans-serif;
+  --display:"Archivo","Archivo Fallback",Arial,Impact,sans-serif;
   --sans:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   --mono:"DM Mono",ui-monospace,Menlo,monospace;
   --gutter:clamp(1.25rem,4vw,3rem);
@@ -35,7 +40,7 @@
 }
 [data-thema="dunkel"]{
   --papier:#0B0B0D; --papier-2:#131317; --papier-3:#1B1B21;
-  --tinte:#F4F3EF; --tinte-2:#A8A79E; --tinte-3:#78776F;
+  --tinte:#F4F3EF; --tinte-2:#A8A79E; --tinte-3:#7C7B73;
   --linie:rgba(244,243,239,.15); --linie-s:rgba(244,243,239,.07);
   --akzent:#FF5A22; --akzent-text:#FF7C4A; --auf-akzent:#0B0B0D;
 }

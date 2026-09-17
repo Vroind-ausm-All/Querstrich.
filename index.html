@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>querstrich — Querverbindung finden. Strich ziehen. Punkt.</title>
-<meta name="description" content="Marke, Website und Technik aus einer Hand. Ich baue Auftritte, die eine Sache tun: Anfragen und Bewerbungen bringen. Festpreis, sechs Wochen, ein Ansprechpartner.">
+<meta name="description" content="Marke, Website und Technik aus einer Hand — für Betriebe, die Anfragen und Bewerbungen brauchen. Festpreis, sechs Wochen, ein Ansprechpartner.">
 <!-- ────────────────────────────────────────────────────────────
      ADRESSE DER SEITE
      Aktuell: Vorschau auf GitHub Pages, bewusst auf "noindex" —
@@ -19,8 +19,16 @@
      ──────────────────────────────────────────────────────────── -->
 <meta name="theme-color" content="#F5F3EE">
 <meta name="robots" content="noindex, follow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'self'; base-uri 'none'; object-src 'none'; frame-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://vroind-ausm-all.github.io/Querstrich.media/">
 <meta name="author" content="querstrich">
+<!-- Die Displayschrift traegt die Ueberschrift und damit das LCP-Element. Mit
+     font-display:optional hat der Browser nur ein kurzes Zeitfenster, sie zu
+     nutzen — ohne Preload verpasst er es auf langsamen Verbindungen und die
+     Seite bleibt bei der Ersatzschrift. Nur der Latin-Schnitt, latin-ext wird
+     auf dieser Seite nicht gebraucht. -->
+<link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cstyle%3E.b%7Bfill:%23141416%7D.s%7Bfill:%23F7F5F0%7D@media(prefers-color-scheme:dark)%7B.b%7Bfill:%23F4F3EF%7D.s%7Bfill:%230B0B0D%7D%7D%3C/style%3E%3Cpath class='b' d='M32 4C17 4 6 15.4 6 30.2s11 26.2 26 26.2c3.9 0 7.6-.8 10.9-2.3l7.7 4.4c2.6 1.5 5.6-1.4 4.1-4l-4.1-7.1C55.1 42.6 58 36.8 58 30.2 58 15.4 47 4 32 4Z'/%3E%3Cg class='s' transform='skewX(-14)'%3E%3Crect x='28.5' y='16' width='8.6' height='30' rx='2.4'/%3E%3Crect x='42' y='16' width='8.6' height='30' rx='2.4'/%3E%3C/g%3E%3C/svg%3E">
 
 <meta property="og:type" content="website">
@@ -135,7 +143,7 @@
   font-style: normal;
   font-weight: 400 900;
   font-stretch: 62% 125%;
-  font-display: swap;
+  font-display: optional;
   src: url(assets/fonts/archivo-latin-ext.woff2) format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
@@ -145,7 +153,7 @@
   font-style: normal;
   font-weight: 400 900;
   font-stretch: 62% 125%;
-  font-display: swap;
+  font-display: optional;
   src: url(assets/fonts/archivo-latin.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
@@ -246,6 +254,17 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+/* Fallback der Displayschrift in der Breite angeglichen: Archivo rendert bei
+   gleicher Groesse 84,1 % der Arial-Breite (gemessen gegen die Schrift, die
+   tatsaechlich aufgeloest wird). Hoehen-Overrides sind bewusst weggelassen —
+   geratene Werte haben den Layout-Sprung vergroessert statt verkleinert. Den
+   Sprung selbst schliesst font-display:optional bei Archivo aus. */
+@font-face{
+  font-family:'Archivo Fallback';
+  src:local('Arial'), local('Helvetica'), local('Liberation Sans');
+  size-adjust:84.1%;
+}
+
 /* ═══════════════════════════════════════════════════════════
    1 — TOKEN & ANSICHTEN
    ═══════════════════════════════════════════════════════════ */
@@ -257,7 +276,7 @@
   --papier-3:#EBE8E0;
   --tinte:#0D0D0F;
   --tinte-2:#46453F;
-  --tinte-3:#7C7B72;
+  --tinte-3:#6F6E65;   /* 4,63:1 auf --papier */
   --linie:rgba(13,13,15,.16);
   --linie-s:rgba(13,13,15,.07);
   --akzent:#FF4A0F;
@@ -269,9 +288,9 @@
   --schatten:0 26px 64px -34px rgba(17,17,19,.45);
   --schatten-s:0 10px 30px -18px rgba(17,17,19,.4);
 
-  --display:"Archivo","Arial Narrow",Impact,sans-serif;
+  --display:"Archivo","Archivo Fallback",Arial,Impact,sans-serif;
   --sans:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  --mono:"DM Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --mono:"DM Mono",ui-monospace,Menlo,monospace;
 
   --wrap:80rem;
   --gutter:clamp(1.25rem,4vw,3rem);
@@ -288,7 +307,7 @@
   --papier-3:#1B1B21;
   --tinte:#F4F3EF;
   --tinte-2:#A8A79E;
-  --tinte-3:#78776F;
+  --tinte-3:#7C7B73;   /* 4,62:1 auf --papier */
   --linie:rgba(244,243,239,.15);
   --linie-s:rgba(244,243,239,.07);
   --akzent:#FF5A22;
@@ -955,8 +974,13 @@ main,header,footer{position:relative;z-index:2}
 .schritte{list-style:none;position:relative;padding-left:clamp(1.5rem,4vw,3rem)}
 .schritte::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--linie)}
 .schienen-fuell{position:absolute;left:0;top:0;width:2px;background:var(--akzent);height:0;transition:height .2s linear}
-.schritt{position:relative;padding:clamp(1.4rem,3vh,2.2rem) 0;opacity:.4;transition:opacity .5s ease}
-.schritt.aktiv{opacity:1}
+.schritt{position:relative;padding:clamp(1.4rem,3vh,2.2rem) 0}
+.schritt h3,.schritt p{transition:color .5s ease}
+.schritt:not(.aktiv) h3{color:var(--tinte-2)}
+.schritt:not(.aktiv) p{color:var(--tinte-3)}
+.schritt:not(.aktiv) .schritt-nr{color:var(--tinte-3)}
+.schritt.aktiv h3{color:var(--tinte)}
+.schritt.aktiv .schritt-nr{color:var(--akzent-text)}
 .schritt::before{
   content:"";position:absolute;left:calc(clamp(1.5rem,4vw,3rem) * -1);top:calc(clamp(1.4rem,3vh,2.2rem) + .55em);
   width:10px;height:10px;background:var(--papier);border:1px solid var(--linie);translate:-4px 0;
@@ -2552,6 +2576,8 @@ if(kontaktFormular){
   var stand = new URLSearchParams(location.search).get('gesendet');
   if(stand === 'ja') melden('Danke — Ihre Anfrage ist da. Ich melde mich spätestens am nächsten Werktag.', false);
   else if(stand === 'fehler') melden('Da ist etwas schiefgegangen. Schreiben Sie mir bitte direkt an hallo@querstrich.de.', true);
+  else if(stand === 'zuschnell') melden('Ihre Anfrage ist gerade eben schon eingegangen — einen Moment bitte, bevor Sie erneut senden.', true);
+  else if(stand === 'zuviele') melden('Es sind schon mehrere Anfragen von Ihnen da. Schreiben Sie mir bitte direkt an hallo@querstrich.de.', true);
 }
 
 /* ═════════ FAQ-FENSTER ═════════ */

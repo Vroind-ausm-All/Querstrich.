@@ -16,6 +16,8 @@ $absender     = 'website@querstrich.de';        // Postfach auf DERSELBEN Domain
                                                 //  sonst wirft SPF/DMARC die Mail weg
 $seite        = 'https://www.querstrich.de/';   // für die Rückleitung
 $mindestdauer = 3;                              // Sekunden; darunter war es ein Bot
+$sperrzeit    = 60;                             // Sekunden zwischen zwei Anfragen je Absender
+$maxProStunde = 5;                              // Anfragen je Absender und Stunde
 
 // ─── Nur POST ─────────────────────────────────────────────────────────
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
@@ -43,6 +45,31 @@ if (feld('website') !== '') {
 $gestartet = (int)(feld('gestartet') ?: 0);
 if ($gestartet > 0 && (microtime(true) * 1000 - $gestartet) < $mindestdauer * 1000) {
     zurueck($seite, 'ja');
+}
+
+// ─── Ratenbegrenzung ──────────────────────────────────────────────────
+// Ohne Bremse taugt das Skript als Spam-Schleuder gegen das eigene Postfach.
+// Gespeichert wird nur ein Zeitstempel je anonymisiertem Absender, keine IP.
+$ordner = sys_get_temp_dir() . '/qs-anfragen';
+if (!is_dir($ordner)) { @mkdir($ordner, 0700, true); }
+if (is_dir($ordner)) {
+    // IP wird nur gehasht abgelegt und ist nicht rueckrechenbar
+    $kennung = hash('sha256', ($_SERVER['REMOTE_ADDR'] ?? '') . '|' . date('Y-m-d-H'));
+    $spur    = $ordner . '/' . $kennung;
+
+    // Alte Spuren aufraeumen, damit der Ordner nicht waechst
+    foreach (glob($ordner . '/*') ?: [] as $alt) {
+        if (is_file($alt) && filemtime($alt) < time() - 7200) { @unlink($alt); }
+    }
+
+    $zeiten = is_file($spur) ? array_filter(explode(',', (string)file_get_contents($spur))) : [];
+    $zeiten = array_values(array_filter($zeiten, fn($t) => (int)$t > time() - 3600));
+
+    if ($zeiten && (time() - (int)end($zeiten)) < $sperrzeit) { zurueck($seite, 'zuschnell'); }
+    if (count($zeiten) >= $maxProStunde)                      { zurueck($seite, 'zuviele'); }
+
+    $zeiten[] = time();
+    @file_put_contents($spur, implode(',', $zeiten), LOCK_EX);
 }
 
 // ─── Pflichtfelder ────────────────────────────────────────────────────

@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 Disallow: /kontakt.php
 
-Sitemap: https://www.querstrich.de/sitemap.xml
+Sitemap: https://vroind-ausm-all.github.io/Querstrich.media/sitemap.xml

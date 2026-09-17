@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de" data-thema="hell">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arbeiten — querstrich</title>
+<meta name="description" content="Fallstudien im Detail, Zwischenstände und Projekte, die nicht auf die Startseite passen.">
+<!-- Solange die Seite nur ein Gerüst ist, gehört sie nicht in den Suchindex.
+     Nach dem Füllen auf "index, follow" stellen. -->
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#F5F3EE">
+<script>
+(function(){try{var t=localStorage.getItem('qs-thema');if(t==='hell'||t==='dunkel')document.documentElement.dataset.thema=t;}catch(e){}})();
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cstyle%3E.b%7Bfill:%23141416%7D.s%7Bfill:%23F7F5F0%7D@media(prefers-color-scheme:dark)%7B.b%7Bfill:%23F4F3EF%7D.s%7Bfill:%230B0B0D%7D%7D%3C/style%3E%3Cpath class='b' d='M32 4C17 4 6 15.4 6 30.2s11 26.2 26 26.2c3.9 0 7.6-.8 10.9-2.3l7.7 4.4c2.6 1.5 5.6-1.4 4.1-4l-4.1-7.1C55.1 42.6 58 36.8 58 30.2 58 15.4 47 4 32 4Z'/%3E%3Cg class='s' transform='skewX(-14)'%3E%3Crect x='28.5' y='16' width='8.6' height='30' rx='2.4'/%3E%3Crect x='42' y='16' width='8.6' height='30' rx='2.4'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/recht.css">
+<style>
+  .platz{border:1px solid var(--linie);background:var(--papier-2);padding:clamp(1.5rem,3vw,2.25rem);margin:2.5rem 0}
+  .platz h2{margin-top:0}
+  .geruest{list-style:none;padding:0;display:grid;gap:1px;background:var(--linie);
+    border:1px solid var(--linie);margin:2rem 0}
+  .geruest li{background:var(--papier);padding:1.15rem 1.25rem;margin:0;max-width:none;
+    display:grid;grid-template-columns:2.5rem 1fr;gap:1rem;align-items:baseline}
+  .geruest b{font-family:var(--mono);font-weight:400;font-size:.66rem;letter-spacing:.14em;color:var(--akzent-text)}
+  .geruest span{color:var(--tinte-2);font-size:.9375rem;line-height:1.5}
+  .geruest strong{display:block;font-family:var(--display);font-weight:800;font-stretch:88%;
+    font-size:1.125rem;letter-spacing:-.02em;color:var(--tinte);margin-bottom:.25rem}
+  .knopf{display:inline-flex;align-items:center;gap:.75rem;padding:.95rem 1.6rem;
+    border:1px solid var(--akzent);background:var(--akzent);color:var(--auf-akzent);
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+    transition:background .3s,color .3s}
+  .knopf:hover{background:transparent;color:var(--akzent-text)}
+</style>
+</head>
+<body>
+
+<a class="nur-sr" href="#inhalt">Zum Inhalt springen</a>
+
+<header class="kopf">
+  <div class="wrap kopf-inner">
+    <a class="marke" href="index.html" aria-label="querstrich — zur Startseite">
+      querstrich<span class="marke-sq" aria-hidden="true"></span>
+    </a>
+    <a class="zurueck" href="index.html"><span aria-hidden="true">←</span> zurück zur Startseite</a>
+    <button class="schalter" id="schalter" type="button" aria-pressed="false" aria-label="Auf dunkle Ansicht wechseln">
+      <span class="schalter-spur" aria-hidden="true"><span class="schalter-knopf"></span></span>
+    </button>
+  </div>
+</header>
+
+<main id="inhalt">
+  <div class="wrap">
+    <p class="label">Arbeiten</p>
+    <h1>Hier entsteht<br>mehr.</h1>
+
+    <p class="vorspann">Die drei Projekte auf der Startseite sind der Anfang. Diese Seite nimmt die Fallstudien im Detail auf — was vorher war, was entschieden wurde und was danach messbar anders lief.</p>
+
+    <div class="platz">
+      <h2>Noch im Aufbau</h2>
+      <p>Bis dahin finden Sie die drei ausgewählten Projekte mit ihren Fallakten auf der Startseite. Wenn Sie etwas Bestimmtes sehen wollen — Handwerk, Praxis, Shop oder Event — fragen Sie einfach, ich zeige es Ihnen im Gespräch.</p>
+      <p style="margin-bottom:0"><a class="knopf" href="index.html#kontakt">gespräch anfragen <span aria-hidden="true">→</span></a></p>
+    </div>
+
+    <h2>Was hier stehen wird</h2>
+    <ol class="geruest">
+      <li><b>01</b><span><strong>Die Fallstudien im Detail</strong>Ausgangslage, Entscheidung, Umsetzung und Ergebnis — je Projekt auf einer eigenen Seite statt in vier Sätzen.</span></li>
+      <li><b>02</b><span><strong>Zwischenstände</strong>Entwürfe, verworfene Richtungen und der Grund, warum sie verworfen wurden. Der interessantere Teil der Arbeit.</span></li>
+      <li><b>03</b><span><strong>Kleinere Projekte</strong>Geschäftsausstattung, Fahrzeugbeschriftung, einzelne Landingpages — Arbeiten, die auf der Startseite den Blick verstellen würden.</span></li>
+      <li><b>04</b><span><strong>Stimmen der Auftraggeber</strong>Was die Leute sagen, für die ich gebaut habe. Mit Namen, sobald sie freigegeben sind.</span></li>
+    </ol>
+
+    <p class="stand">Diese Seite ist ein Gerüst. Inhalte folgen.</p>
+  </div>
+</main>
+
+<footer class="fuss">
+  <div class="wrap fuss-inner">
+    <span>© <span id="jahr">2026</span> querstrich</span>
+    <nav aria-label="Rechtliches">
+      <a href="index.html">startseite</a>
+      <a href="impressum.html">impressum</a>
+      <a href="datenschutz.html">datenschutz</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var schalter = document.getElementById('schalter');
+  function setzen(t, merken){
+    document.documentElement.dataset.thema = t;
+    var dunkel = t === 'dunkel';
+    schalter.setAttribute('aria-pressed', String(dunkel));
+    schalter.setAttribute('aria-label', dunkel ? 'Auf helle Ansicht wechseln' : 'Auf dunkle Ansicht wechseln');
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if(meta) meta.setAttribute('content', dunkel ? '#0B0B0D' : '#F5F3EE');
+    if(merken){ try{ localStorage.setItem('qs-thema', t); }catch(e){} }
+  }
+  setzen(document.documentElement.dataset.thema === 'dunkel' ? 'dunkel' : 'hell', false);
+  schalter.addEventListener('click', function(){
+    setzen(document.documentElement.dataset.thema === 'dunkel' ? 'hell' : 'dunkel', true);
+  });
+  document.getElementById('jahr').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

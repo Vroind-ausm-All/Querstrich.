@@ -7,17 +7,41 @@ Webauftritt der Einzelagentur **querstrich** — Marke, Website und Technik aus 
 Kein Build, kein Framework, **keine einzige Verbindung nach außen**. Auf einen Webspace
 mit PHP legen, fertig.
 
+**Vorschau:** https://vroind-ausm-all.github.io/Querstrich.media/
+
 ```
 index.html          Startseite (Stil und Skript inline)
+arbeiten.html       Portfolioseite, noch zu füllen
 datenschutz.html    Datenschutzerklärung
 impressum.html      Gerüst, noch auszufüllen
 kontakt.php         Empfänger des Formulars
 robots.txt          sitemap.xml
+.nojekyll           schaltet Jekyll auf GitHub Pages ab
+.github/workflows/  Pages-Veröffentlichung
 assets/
   recht.css         Stil der Textseiten
   fonts/*.woff2     8 Dateien, 280 KB
   og-image.png      Vorschaubild für geteilte Links
 ```
+
+## Veröffentlichung
+
+Die Seite liegt doppelt: als **Vorschau auf GitHub Pages** (zum Herzeigen) und später auf
+dem eigenen Webspace (produktiv). Der Unterschied ist bewusst:
+
+| | GitHub Pages | Eigener Webspace |
+|---|---|---|
+| Kontaktformular | öffnet das Mailprogramm mit fertiger Nachricht | `kontakt.php` verschickt die Mail |
+| Suchmaschinen | `noindex` — konkurriert nicht mit der echten Domain | `index, follow` |
+| Adressen | `vroind-ausm-all.github.io/Querstrich.media` | `www.querstrich.de` |
+
+`.github/workflows/pages.yml` veröffentlicht bei jedem Push auf `main`. Dafür muss unter
+**Settings → Pages → Source** einmalig *GitHub Actions* ausgewählt sein.
+
+**Beim Umzug auf die eigene Domain** die Pages-Adresse in `index.html`,
+`datenschutz.html`, `impressum.html`, `arbeiten.html`, `sitemap.xml` und `robots.txt`
+ersetzen und `noindex, follow` auf `index, follow` stellen. Ein Kommentarblock im Kopf
+von `index.html` benennt alle Stellen.
 
 ---
 
@@ -76,9 +100,9 @@ Kompetenzen, die in allen drei stecken (Gestaltungssystem, Bewegung mit Absicht,
 interaktive Module, Struktur & Text, Technik & Zugang). Sie belegen den technischen
 Aufwand und die gestalterische Haltung mit dem, was tatsächlich gebaut wurde.
 
-Darunter führt die **Brücke** auf eine eigene Portfolioseite: `.bruecke` verlinkt auf
-`/arbeiten`. Diese Seite existiert noch nicht — **den Pfad im Markup anpassen**, sobald
-sie steht (ein Kommentar im HTML markiert die Stelle).
+Darunter führt die **Brücke** auf `arbeiten.html` — eine Gerüstseite, die benennt, was
+dort entstehen wird. Der Pfad ist bewusst relativ: ein führender Schrägstrich hätte unter
+dem Pages-Unterpfad ins Leere geführt.
 
 ## Das Fragen-Modul
 

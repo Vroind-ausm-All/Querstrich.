@@ -19,6 +19,9 @@ robots.txt          sitemap.xml
 .nojekyll           schaltet Jekyll auf GitHub Pages ab
 .github/workflows/  Pages-Veröffentlichung
 assets/
+  consent.js        Einwilligung, Consent Mode, Werkzeug-Lader
+  consent.css       Einwilligungsbanner
+  attribution.js    Herkunft der Anfrage, ohne Speicherung
   recht.css         Stil der Textseiten
   fonts/*.woff2     8 Dateien, 280 KB
   og-image.png      Vorschaubild für geteilte Links
@@ -69,7 +72,9 @@ des Browsers: null externe Requests.
   ausgelöst und damit nach § 25 Abs. 2 Nr. 2 TDDDG einwilligungsfrei.
 - **Kein Einwilligungsbanner**, weil es nichts einzuwilligen gibt. Stattdessen eine
   Hinweisleiste, die genau das sagt, sich merken lässt und über den Fußzeilen-Link
-  „cookies & speicherung" jederzeit wieder aufgeht.
+  „cookies & speicherung" jederzeit wieder aufgeht. Sobald in `assets/consent.js` ein
+  Werkzeug eingeschaltet wird, das eine Einwilligung braucht, tritt die Hinweisleiste
+  zurück und das Banner übernimmt — siehe „Einwilligung, Messung und Werbung".
 - **Das Formular** sendet an `kontakt.php` auf dem eigenen Server. Kein Formulardienst,
   keine Drittübermittlung. Spamabwehr über Honigtopf-Feld, Mindest-Ausfülldauer und eine
   Ratenbegrenzung, deren Kennung ein SHA-256 über IP und Stunde ist — die IP selbst wird
@@ -422,6 +427,183 @@ Im Stylesheet steht je Schnitt ein `@font-face`, das auf die lokale Datei zeigt:
   demselben Server wie die Seite — das ist der ganze Punkt.
 - **Cache.** Die `.htaccess` setzt ein Jahr Cache-Dauer auf `assets/fonts/`. Schriftdateien
   ändern sich nicht; ein neuer Dateiname erzwingt bei Bedarf das Neuladen.
+
+---
+
+## Einwilligung, Messung und Werbung
+
+Die Seite ist für Messung vorbereitet, aber **im Auslieferungszustand ist nichts
+eingeschaltet**. In `assets/consent.js` steht eine Liste von Werkzeugen mit leeren
+Kennungsfeldern. Leer heißt aus. Solange dort nichts steht, setzt die Seite weiterhin keine
+Cookies, zeigt kein Banner und lädt nichts von fremden Servern — nachgemessen: null externe
+Anfragen. Sobald die erste Kennung eingetragen ist, schaltet die Seite von allein auf das
+Einwilligungsbanner um.
+
+### Was eine Einwilligung tatsächlich ändert
+
+Sie hebelt keine Regel aus. Einwilligung ist eine von sechs Rechtsgrundlagen des Art. 6
+DSGVO und bringt eigene Bedingungen mit: freiwillig, informiert, vorher, so leicht
+widerruflich wie erteilt. Was sie freischaltet, sind **Einbettungen** — und die kosten
+dafür an anderer Stelle:
+
+| Bisher nicht möglich | Mit Einwilligung möglich | Preis |
+| --- | --- | --- |
+| Video im Layout | YouTube/Vimeo direkt eingebettet | Banner vor dem ersten Bild |
+| Karte zum Standort | Google Maps interaktiv | dito |
+| Terminbuchung auf der Seite | Calendly, Cal.com eingebettet | dito |
+| Instagram-Feed | Feed-Widget | dito |
+| Live-Chat | Chat-Widget | dito |
+
+Alle fünf gehen **auch ohne** Einwilligung, nur anders gebaut: Vorschaubild mit
+Klick-zum-Laden (die sogenannte Zwei-Klick-Lösung), statische Karte mit Link, Link statt
+Einbettung. Das ist ein bis zwei Klicks unbequemer und gestalterisch kein Verlust.
+
+Und der Punkt, der in der Frage steckt: **Ein Einwilligungsbanner macht das Design nicht
+schöner, sondern schlechter.** Es ist das Erste, was jeder Besucher sieht, es verdeckt den
+Einstieg, und es kostet erfahrungsgemäß einen guten Teil der Besucher, bevor sie die erste
+Zeile gelesen haben. Gewonnen wird nicht Gestaltung, sondern **Daten**. Das ist ein
+legitimer Tausch — aber er läuft in die andere Richtung als die Frage vermutet.
+
+### Dunkle Muster sind nicht eingebaut, und das ist eine Entscheidung
+
+Im Banner stehen „Nur notwendige" und „Alle annehmen" gleich groß, gleich kontrastreich und
+nebeneinander. Das ist kein Übereifer. Eine Einwilligung, die durch Gestaltung erschlichen
+wurde, ist nach Art. 4 Nr. 11 und Art. 7 DSGVO keine wirksame Einwilligung — und damit ist
+auch die Verarbeitung rechtswidrig, die darauf aufbaut. Die EDSA-Leitlinien 03/2022 zu
+irreführenden Gestaltungsmustern beschreiben genau die Variante mit dem blassen
+Ablehnen-Link. Praktisch heißt das: Wer sich die Zustimmungsquote hochgestaltet, baut seine
+Auswertung auf Daten, die im Streitfall nicht tragen. Für eine Agenturseite, die
+Handwerkskunst verkauft, wäre das zudem die falsche Visitenkarte.
+
+### Aufbau
+
+```
+assets/consent.js       Einwilligung, Consent Mode, Werkzeug-Lader
+assets/consent.css      Banner (nutzt die Token der Seite)
+assets/attribution.js   Herkunft der Anfrage, ohne Speicherung
+```
+
+Der Ablauf bei jedem Seitenaufruf:
+
+1. `consent.js` setzt **Google Consent Mode v2** auf „alles verweigert" — vor allem
+   anderen. Seit März 2024 Pflicht für Ads und GA4 im EWR; ohne diese Vorgabe wertet Google
+   den ersten Aufruf als fehlende Einwilligung und modelliert nicht nach.
+2. Es prüft, ob überhaupt eine Kennung eingetragen ist, die eine Einwilligung braucht.
+   Wenn nein: kein Banner, der bisherige ehrliche Hinweis bleibt stehen.
+3. Wenn ja: Banner. Vorher lädt **nichts**.
+4. Nach der Entscheidung wird der Consent Mode aktualisiert, die freigegebenen Werkzeuge
+   werden nachgeladen, und die Wahl wird mit Zeitpunkt und Fassungsnummer abgelegt
+   (Nachweispflicht, Art. 7 Abs. 1 DSGVO).
+5. Widerruf über „cookies & speicherung" in der Fußzeile — derselbe Knopf wie bisher.
+
+Wer ein Werkzeug ergänzt oder entfernt, zählt `FASSUNG` in `consent.js` hoch. Dann wird
+jeder Besucher neu gefragt, statt auf einer Einwilligung zu sitzen, die etwas anderes meinte.
+
+### Ein Werkzeug einschalten — drei Schritte
+
+1. **Kennung eintragen** in `assets/consent.js`, Abschnitt 1.
+2. **CSP erweitern.** Die Richtlinie erlaubt nichts von außen. Über dem
+   `Content-Security-Policy`-Block in `index.html` steht die vollständige Liste, welche
+   Zeile welches Werkzeug braucht; dieselbe Änderung gehört in die `.htaccess` und die drei
+   anderen HTML-Seiten. **Das ist der Schritt, der übersehen wird:** Der Browser blockiert
+   sonst lautlos. In der Konsole steht es, im Analytics-Konto kommen einfach keine Daten an
+   — und man sucht die Ursache tagelang beim Tag.
+3. **Datenschutzerklärung aktivieren.** Abschnitt 5 ist vorbereitet, aber mit einem
+   Warnkasten versehen. Absatz prüfen, nicht genutzte Dienste streichen, Kasten entfernen.
+
+Nachgemessen mit Testkennungen für GTM, GA4, Meta und Plausible:
+
+| Zustand | Fremde Anfragen | Consent Mode |
+| --- | --- | --- |
+| vor der Entscheidung | keine (alles von der CSP blockiert) | `default`: alles `denied` |
+| „Nur notwendige" | keine | `update`: alles `denied` |
+| „Alle annehmen" | GTM, GA4, Meta angefordert | `update`: alles `granted` |
+
+### Zur Liste der Werkzeuge
+
+**Plausible oder Matomo — die eigentliche Empfehlung.** Beide setzen richtig konfiguriert
+keine Cookies und lesen nichts vom Gerät. Damit greift § 25 TDDDG nicht, und sie dürfen
+**ohne** Einwilligung laufen. Das ist der Grund, sie zu wählen: Sie messen *alle* Besucher,
+während GA4 nur die misst, die zugestimmt haben — je nach Seite ein Drittel bis die Hälfte.
+Für die Frage „welche Inhalte werden gelesen, woher kommen die Leute" sind sie damit
+**genauer** als GA4, nicht ungenauer. In `consent.js` steht bei beiden
+`ohneEinwilligung: true`; wer strenger fahren will, setzt es auf `false`.
+
+**GA4** lohnt sich, wenn Google-Ads-Kampagnen laufen — dort ist die Verzahnung der Grund,
+nicht die Analyse. Ohne Anzeigen bringt GA4 gegenüber Plausible vor allem Komplexität.
+
+**Microsoft Clarity** zeichnet Sitzungen auf, inklusive Mausbewegung und Scrollverhalten.
+Das ist die datenintensivste Position der ganzen Liste. Im Clarity-Konto muss die Maskierung
+zusätzlich auf **„Mask all"** stehen — die Voreinstellung maskiert weniger, und dann landen
+Formulareingaben in der Aufzeichnung. Empfehlung: befristet einschalten, Frage beantworten,
+wieder ausschalten. Ein dauerhaft mitlaufender Session-Recorder auf einer Seite mit fünf
+Unterseiten steht in keinem Verhältnis.
+
+**Meta Conversions API, HubSpot, Pipedrive, Brevo-Automationen** sind **keine Website-Skripte**,
+sondern serverseitige Anbindungen. Sie brauchen einen Server, der Ereignisse
+entgegennimmt, Zugangsdaten verwahrt und weiterleitet — auf einer statischen Seite gibt es
+den nicht. Der Pixel und der Brevo-Tracker sind eingebaut; die API-Hälfte ist ein eigenes
+Projekt. Wichtig dabei: Die Conversions API darf die Einwilligung **nicht umgehen**. Wer
+serverseitig sendet, was der Besucher im Banner abgelehnt hat, verstößt genauso — das
+Einwilligungssignal muss mitgereicht werden.
+
+**Google Search Console und Bing Webmaster Tools** brauchen gar nichts davon. Sie messen
+nichts auf der Seite, sondern lesen aus dem Index. Der Nachweis läuft über einen
+DNS-Eintrag oder eine Datei — kein Skript, kein Cookie, keine Einwilligung. **Das sind die
+beiden, die sofort und ohne jede Nebenwirkung eingerichtet gehören.** Die `sitemap.xml`
+liegt bereit.
+
+**A/B-Tests (GrowthBook, VWO, Optimizely)** sind für eine Seite mit dieser Besucherzahl
+verfrüht. Ein belastbarer Test braucht je Variante einige hundert Conversions; bei einer
+Handvoll Anfragen im Monat dauert das Jahre, und was vorher herauskommt, ist Rauschen. Die
+ehrlichere Reihenfolge: erst messen, was überhaupt passiert, dann testen.
+
+### Consent-Werkzeug: eigenes oder Usercentrics?
+
+Eingebaut ist ein eigenes, weil es für diese Seite schlicht besser passt:
+
+| | eingebaut | Usercentrics |
+| --- | --- | --- |
+| Kosten | keine | ab rund 50 €/Monat für die brauchbaren Stufen |
+| Externe Verbindung vor der Einwilligung | keine | lädt vom eigenen CDN |
+| Gestaltung | die Token der Seite | Baukasten, nur teilweise anpassbar |
+| Ladezeit | rund 12 KB | deutlich mehr |
+| Nachweisprotokoll | lokal im Browser | serverseitig, revisionssicher |
+| Pflege der Dienstebeschreibungen | von Hand | automatisch gepflegt |
+
+Die letzten beiden Zeilen sind das Argument für Usercentrics, und sie zählen ab dem Moment,
+in dem viele Dienste laufen oder jemand einen Nachweis verlangt. Für eine Seite mit
+Plausible und vielleicht Google Ads ist das eingebaute die richtige Wahl. Der Tausch ist
+später eine überschaubare Sache: Die Ereignisschnittstelle (`qs:consent`, `window.qsConsent`)
+bleibt, nur die Oberfläche wird ersetzt.
+
+### Herkunft einer Anfrage — ohne Einwilligung
+
+`attribution.js` liest UTM-Parameter und Klick-Kennungen (`gclid`, `fbclid`, `msclkid` …)
+aus der Adresszeile, dazu die verweisende Seite, und legt sie in ein verborgenes Feld des
+Kontaktformulars. In der Anfrage-Mail steht damit, welche Kampagne sie gebracht hat.
+
+Der entscheidende Punkt ist, was dabei **nicht** passiert: Es wird nichts auf dem Gerät
+abgelegt — kein Cookie, kein `localStorage`, kein `sessionStorage`. § 25 TDDDG regelt den
+Zugriff auf das Endgerät; findet keiner statt, ist auch keine Einwilligung nötig. Die
+Angaben leben im Seitenspeicher und reisen mit dem Formular mit.
+
+Der Preis: Die Herkunft überlebt keinen Seitenwechsel. Wer über eine Anzeige kommt, zur
+Datenschutzerklärung abbiegt und erst danach absendet, erscheint als Direktzugriff. Auf
+einer einseitigen Website ist das der seltene Fall — und ihn zu schließen kostet
+`sessionStorage` und damit genau die Einwilligung, die man gerade vermieden hat.
+
+### Empfohlene Reihenfolge
+
+1. **Sofort, ohne Nebenwirkung:** Search Console, Bing Webmaster Tools, Plausible oder
+   Matomo. Damit läuft die Messung ab Tag eins und über alle Besucher.
+2. **Wenn Anzeigen starten:** GTM, Google Ads Conversion Tracking, GA4. Ab hier braucht es
+   das Banner — vorher nicht.
+3. **Wenn genug Verkehr da ist:** Clarity befristet für eine konkrete Frage.
+4. **Zuletzt, wenn Volumen da ist:** CRM-Anbindung, Conversions API, A/B-Tests.
+
+Der Fehler, den die meisten machen, ist Stufe 2 vor Stufe 1 — Banner und Datenverlust
+einkaufen, bevor überhaupt etwas zu messen ist.
 
 ---
 

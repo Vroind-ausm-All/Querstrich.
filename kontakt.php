@@ -94,6 +94,11 @@ $telefon    = feld('telefon', 40);
 $wunschzeit = feld('wunschzeit', 60);
 $thema      = feld('thema', 60);
 
+// Herkunft der Anfrage (UTM-Parameter, Klick-IDs, verweisende Seite).
+// Kommt aus attribution.js, wird dort schon gefiltert — hier ein
+// zweites Mal, weil Eingaben aus dem Browser nie vertrauenswuerdig sind.
+$herkunft = preg_replace('/[^\w.\-|=:+% ]/u', '', feld('herkunft', 500));
+
 // ─── Nachricht bauen ──────────────────────────────────────────────────
 $zeilen = [
     'Neue Anfrage über querstrich.de',
@@ -113,6 +118,7 @@ $zeilen = [
     '',
     'Eingegangen: ' . date('d.m.Y, H:i') . ' Uhr',
     'Einwilligung zur Verarbeitung: erteilt',
+    'Herkunft:    ' . ($herkunft ?: 'direkt / unbekannt'),
 ];
 $text = implode("\n", $zeilen);
 

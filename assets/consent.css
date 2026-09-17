@@ -1,0 +1,112 @@
+/* ════════════════════════════════════════════════════════════════
+   Einwilligungsbanner
+   Nutzt die Token der Seite (--papier, --tinte, --akzent …), damit es
+   Teil der Gestaltung ist und nicht wie ein eingekaufter Fremdkörper
+   wirkt. Erscheint nur, wenn in consent.js tatsächlich ein Werkzeug
+   eingetragen ist, das eine Einwilligung braucht.
+   ════════════════════════════════════════════════════════════════ */
+
+.cmp{
+  display:none;
+  position:fixed;
+  left:var(--gutter,1.25rem); right:var(--gutter,1.25rem);
+  bottom:calc(var(--gutter,1.25rem) + env(safe-area-inset-bottom,0px));
+  z-index:9000;
+  background:var(--papier-2,#fff);
+  border:1px solid var(--linie,rgba(13,13,15,.16));
+  box-shadow:var(--schatten,0 26px 64px -34px rgba(17,17,19,.45));
+  transform:translateY(1.5rem);
+  opacity:0;
+  transition:transform .55s var(--ease,cubic-bezier(.76,0,.24,1)),opacity .45s ease;
+}
+.cmp.da{display:block}
+.cmp.hoch{transform:none;opacity:1}
+
+.cmp-innen{
+  width:min(52rem,100%);
+  margin-inline:auto;
+  padding:clamp(1.2rem,3vw,1.75rem);
+}
+
+.cmp-titel{
+  font-family:var(--display,sans-serif);font-weight:800;
+  font-stretch:var(--breite,86%);
+  font-size:clamp(1.15rem,2.2vw,1.5rem);
+  line-height:var(--lh-eng,1.15);letter-spacing:var(--sp-eng,-.015em);
+  color:var(--tinte,#0D0D0F);
+  margin:0 0 .55rem;
+}
+.cmp-text{
+  font-size:var(--t-m,.9375rem);line-height:var(--lh-text,1.6);
+  color:var(--tinte-2,#46453F);max-width:62ch;margin:0 0 1.15rem;
+}
+.cmp-text a{color:var(--tinte,#0D0D0F);border-bottom:1px solid var(--akzent,#FF4A0F)}
+.cmp-text a:hover{background:color-mix(in srgb,var(--akzent,#FF4A0F) 14%,transparent)}
+
+/* ── Kategorien ───────────────────────────────────────────────── */
+.cmp-kats{
+  border-top:1px solid var(--linie-s,rgba(13,13,15,.07));
+  margin-bottom:1.15rem;
+}
+.cmp-kat{
+  display:flex;gap:.8rem;align-items:flex-start;
+  padding:.95rem 0;
+  border-bottom:1px solid var(--linie-s,rgba(13,13,15,.07));
+  cursor:pointer;
+}
+.cmp-kat input{
+  appearance:none;-webkit-appearance:none;
+  width:1.15rem;height:1.15rem;flex:none;margin-top:.15rem;
+  border:1px solid var(--linie,rgba(13,13,15,.16));
+  background:var(--papier,#F5F3EE);
+  cursor:pointer;transition:background .25s ease,border-color .25s ease;
+}
+.cmp-kat input:checked{background:var(--akzent,#FF4A0F);border-color:var(--akzent,#FF4A0F)}
+.cmp-kat input:checked::after{
+  content:"";display:block;width:.34rem;height:.62rem;margin:.07rem auto 0;
+  border:solid var(--auf-akzent,#1A0A02);border-width:0 2px 2px 0;transform:rotate(42deg);
+}
+.cmp-kat input:disabled{opacity:.55;cursor:default}
+.cmp-kat input:focus-visible{outline:2px solid var(--akzent,#FF4A0F);outline-offset:3px}
+.cmp-kat b{
+  display:block;font-family:var(--sans,sans-serif);font-weight:600;
+  font-size:var(--t-s,.875rem);color:var(--tinte,#0D0D0F);margin-bottom:.2rem;
+}
+.cmp-kat b i{
+  font-style:normal;font-weight:500;font-size:var(--t-3xs,.6875rem);
+  letter-spacing:var(--sp-versal,.1em);text-transform:uppercase;
+  color:var(--tinte-3,#6F6E65);margin-left:.4rem;
+}
+.cmp-kat em{
+  display:block;font-style:normal;
+  font-size:var(--t-xs,.8125rem);line-height:var(--lh-text,1.6);
+  color:var(--tinte-2,#46453F);max-width:64ch;
+}
+
+/* ── Knöpfe ───────────────────────────────────────────────────────
+   „Nur notwendige" und „Alle annehmen" sind bewusst gleich gross,
+   gleich kontrastreich und gleich weit vorn. Ein hervorgehobener
+   Zustimmungsknopf neben einem blassen Ablehnen-Link waere ein
+   irrefuehrendes Gestaltungsmuster — und eine so eingesammelte
+   Einwilligung traegt die Daten nicht, die auf ihr aufbauen.     */
+.cmp-knoepfe{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center}
+.cmp-knoepfe .knopf{flex:1 1 13rem;justify-content:center}
+.cmp-mehr{
+  flex:0 0 auto;
+  font-family:var(--sans,sans-serif);font-weight:500;
+  font-size:var(--t-2xs,.75rem);letter-spacing:var(--sp-versal,.1em);
+  text-transform:uppercase;color:var(--tinte-3,#6F6E65);
+  border-bottom:1px solid var(--linie,rgba(13,13,15,.16));
+  padding-bottom:.15rem;transition:color .3s ease,border-color .3s ease;
+}
+.cmp-mehr:hover{color:var(--tinte,#0D0D0F);border-bottom-color:var(--akzent,#FF4A0F)}
+.cmp-knoepfe--wahl{margin-top:.8rem}
+.cmp-knoepfe--wahl .knopf{flex:0 1 16rem}
+
+@media (max-width:34rem){
+  .cmp-knoepfe .knopf{flex:1 1 100%}
+  .cmp-mehr{flex:1 1 100%;text-align:center;border-bottom:0;padding-top:.35rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .cmp{transition-duration:.001ms}
+}

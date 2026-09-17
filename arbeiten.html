@@ -39,6 +39,20 @@
     transition:background .3s,color .3s}
   .knopf:hover{background:transparent;color:var(--akzent-text)}
 </style>
+
+<!-- Einwilligung. consent.js setzt die Consent-Mode-Vorgaben (alles
+     "denied") und entscheidet danach, was ueberhaupt laden darf.
+
+     ACHTUNG bei Aenderungen: defer ist hier nur deshalb unbedenklich,
+     weil consent.js die Google-Tags SELBST nachlaedt — die Vorgabe
+     steht damit zwangslaeufig vor ihnen im dataLayer. Wer spaeter ein
+     GTM- oder gtag-Snippet von Hand in den Kopf setzt, kehrt diese
+     Reihenfolge um: Google wertet den ersten Aufruf dann als fehlende
+     Einwilligung. In dem Fall gehoert dieses Script wieder blockierend
+     davor, oder besser: das Snippet bleibt weg und die Kennung kommt
+     in consent.js. -->
+<link rel="stylesheet" href="assets/consent.css">
+<script src="assets/consent.js" defer></script>
 </head>
 <body>
 

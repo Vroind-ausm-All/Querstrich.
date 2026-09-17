@@ -21,6 +21,20 @@
 <link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cstyle%3E.b%7Bfill:%23141416%7D.s%7Bfill:%23F7F5F0%7D@media(prefers-color-scheme:dark)%7B.b%7Bfill:%23F4F3EF%7D.s%7Bfill:%230B0B0D%7D%7D%3C/style%3E%3Cpath class='b' d='M32 4C17 4 6 15.4 6 30.2s11 26.2 26 26.2c3.9 0 7.6-.8 10.9-2.3l7.7 4.4c2.6 1.5 5.6-1.4 4.1-4l-4.1-7.1C55.1 42.6 58 36.8 58 30.2 58 15.4 47 4 32 4Z'/%3E%3Cg class='s' transform='skewX(-14)'%3E%3Crect x='28.5' y='16' width='8.6' height='30' rx='2.4'/%3E%3Crect x='42' y='16' width='8.6' height='30' rx='2.4'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/recht.css">
+
+<!-- Einwilligung. consent.js setzt die Consent-Mode-Vorgaben (alles
+     "denied") und entscheidet danach, was ueberhaupt laden darf.
+
+     ACHTUNG bei Aenderungen: defer ist hier nur deshalb unbedenklich,
+     weil consent.js die Google-Tags SELBST nachlaedt — die Vorgabe
+     steht damit zwangslaeufig vor ihnen im dataLayer. Wer spaeter ein
+     GTM- oder gtag-Snippet von Hand in den Kopf setzt, kehrt diese
+     Reihenfolge um: Google wertet den ersten Aufruf dann als fehlende
+     Einwilligung. In dem Fall gehoert dieses Script wieder blockierend
+     davor, oder besser: das Snippet bleibt weg und die Kennung kommt
+     in consent.js. -->
+<link rel="stylesheet" href="assets/consent.css">
+<script src="assets/consent.js" defer></script>
 </head>
 <body>
 
@@ -55,15 +69,16 @@
         <li><a href="#grundsatz">2. Grundsatz</a></li>
         <li><a href="#server">3. Server-Protokolle</a></li>
         <li><a href="#speicherung">4. Cookies und lokale Speicherung</a></li>
-        <li><a href="#formular">5. Kontaktformular</a></li>
-        <li><a href="#mail">6. E-Mail und Telefon</a></li>
-        <li><a href="#schriften">7. Schriften</a></li>
-        <li><a href="#empfaenger">8. Empfänger und Auftragsverarbeitung</a></li>
-        <li><a href="#dauer">9. Speicherdauer</a></li>
-        <li><a href="#rechte">10. Ihre Rechte</a></li>
-        <li><a href="#beschwerde">11. Beschwerderecht</a></li>
-        <li><a href="#sicherheit">12. Sicherheit</a></li>
-        <li><a href="#aenderung">13. Änderungen</a></li>
+        <li><a href="#analyse">5. Reichweitenmessung und Analyse</a></li>
+        <li><a href="#formular">6. Kontaktformular</a></li>
+        <li><a href="#mail">7. E-Mail und Telefon</a></li>
+        <li><a href="#schriften">8. Schriften</a></li>
+        <li><a href="#empfaenger">9. Empfänger und Auftragsverarbeitung</a></li>
+        <li><a href="#dauer">10. Speicherdauer</a></li>
+        <li><a href="#rechte">11. Ihre Rechte</a></li>
+        <li><a href="#beschwerde">12. Beschwerderecht</a></li>
+        <li><a href="#sicherheit">13. Sicherheit</a></li>
+        <li><a href="#aenderung">14. Änderungen</a></li>
       </ol>
     </nav>
 
@@ -96,7 +111,11 @@
       <strong>Dauer:</strong> Die Protokolle werden nach spätestens <span class="pl">[7 / 14 / 30]</span> Tagen gelöscht. Eine Zusammenführung mit anderen Daten findet nicht statt.</p>
 
     <h2 id="speicherung">4. Cookies und lokale Speicherung</h2>
-    <p><strong>Diese Website setzt keine Cookies.</strong> Weder eigene noch fremde, weder zu Analyse- noch zu Werbezwecken. Ein Einwilligungsbanner ist deshalb nicht erforderlich.</p>
+    <p><strong>Im derzeitigen Stand setzt diese Website keine Cookies.</strong> Weder eigene noch fremde, weder zu Analyse- noch zu Werbezwecken. Ein Einwilligungsbanner ist deshalb nicht erforderlich — es gäbe nichts, worin einzuwilligen wäre.</p>
+    <p>Die technische Grundlage dafür, dass das so bleibt, ist eingebaut: Alle Mess- und Werbewerkzeuge laufen über eine Einwilligungsschicht, die standardmäßig <em>alles</em> blockiert. Wird später ein Werkzeug aktiviert, erscheint vor dessen erstem Laden ein Banner mit gleichwertigen Schaltflächen für Annehmen und Ablehnen. Ihre Entscheidung gilt, bis Sie sie ändern; über „cookies &amp; speicherung" in der Fußzeile können Sie sie jederzeit widerrufen — so einfach, wie Sie sie erteilt haben (Art. 7 Abs. 3 DSGVO). Gespeichert wird dann zusätzlich:</p>
+    <ul>
+      <li><strong>qs-consent</strong> — Ihre Auswahl, der Zeitpunkt und die Fassung der Werkzeugliste. Diese Angabe dient dem Nachweis der Einwilligung nach Art. 7 Abs. 1 DSGVO und ist deshalb erforderlich.</li>
+    </ul>
     <p>Gespeichert wird ausschließlich im lokalen Speicher Ihres Browsers (<em>localStorage</em>), und zwar nur dann, wenn Sie selbst eine Einstellung vornehmen:</p>
     <ul>
       <li><strong>qs-thema</strong> — ob Sie die helle oder die dunkle Ansicht gewählt haben.</li>
@@ -104,32 +123,59 @@
     </ul>
     <p>Diese Angaben verlassen Ihr Gerät nicht und werden nicht an mich übertragen. Sie dienen allein einer von Ihnen selbst angeforderten Funktion und sind deshalb nach § 25 Abs. 2 Nr. 2 TDDDG einwilligungsfrei. Sie können sie jederzeit löschen, indem Sie die Websitedaten in Ihrem Browser entfernen.</p>
 
-    <h2 id="formular">5. Kontaktformular</h2>
+    <h2 id="analyse">5. Reichweitenmessung, Analyse und Werbung</h2>
+    <div class="kasten kasten--warn">
+      <p><strong>Derzeit ist keines der unten beschriebenen Werkzeuge aktiv.</strong> Dieser Abschnitt ist vorbereitet und beschreibt, was gelten wird, sobald eines eingeschaltet wird. <em>Vor</em> der Aktivierung eines Werkzeugs ist der jeweilige Absatz zu prüfen, zu ergänzen und dieser Kasten zu entfernen; nicht genutzte Absätze gehören gelöscht. Eine Datenschutzerklärung, die mehr beschreibt als stattfindet, ist genauso falsch wie eine, die zu wenig beschreibt.</p>
+    </div>
+
+    <h3>Messung ohne Zugriff auf Ihr Gerät</h3>
+    <p>Für die Reichweitenmessung sind Werkzeuge vorgesehen, die ohne Cookies arbeiten und nichts auf Ihrem Gerät ablegen oder auslesen — vorgesehen sind <strong>Plausible Analytics</strong> (Plausible Insights OÜ, Estland, Server in der EU) beziehungsweise ein selbst betriebenes <strong>Matomo</strong>. Erfasst werden aufgerufene Seiten, ungefähre Herkunftsregion, verweisende Seite sowie Gerätetyp und Browser in gröbster Form. Es entsteht keine geräteübergreifende Kennung und kein Profil; einzelne Personen sind daraus nicht bestimmbar.</p>
+    <p><strong>Zweck:</strong> zu erkennen, welche Inhalte gelesen werden, um die Seite zu verbessern.<br>
+      <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO, berechtigtes Interesse an einer datensparsamen Reichweitenmessung. Da kein Zugriff auf Ihr Endgerät erfolgt, greift § 25 TDDDG nicht und es ist keine Einwilligung erforderlich.<br>
+      <strong>Widerspruch:</strong> Sie können der Verarbeitung nach Art. 21 DSGVO jederzeit formlos widersprechen.</p>
+
+    <h3>Werkzeuge, die nur mit Ihrer Einwilligung laufen</h3>
+    <p>Die folgenden Dienste setzen Cookies oder lesen Angaben von Ihrem Gerät. Sie werden erst geladen, nachdem Sie im Banner zugestimmt haben — vorher findet keine Verbindung zu ihren Servern statt. <strong>Rechtsgrundlage</strong> ist jeweils Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG.</p>
+    <ul>
+      <li><strong>Google Tag Manager</strong> (Google Ireland Ltd.) — verwaltet die übrigen Tags. Der Tag Manager selbst erhebt keine Daten, lädt aber die Dienste, die es tun.</li>
+      <li><strong>Google Analytics 4</strong> (Google Ireland Ltd.) — Besuchsstatistik mit Cookies, gekürzte IP-Adresse. Erstellt Nutzungsprofile unter einer Pseudonym-Kennung.</li>
+      <li><strong>Microsoft Clarity</strong> (Microsoft Ireland Operations Ltd.) — <strong>zeichnet Ihre Sitzung auf</strong>: Mausbewegungen, Scrollen, Klicks, daraus Heatmaps und abspielbare Aufzeichnungen. Eingaben in Formularfelder werden maskiert und nicht übertragen.</li>
+      <li><strong>Google Ads Conversion Tracking</strong> (Google Ireland Ltd.) — misst, ob eine Anfrage auf eine Anzeige zurückgeht.</li>
+      <li><strong>Meta-Pixel</strong> (Meta Platforms Ireland Ltd.) — misst Anzeigenerfolg und ermöglicht es, Ihnen auf Facebook und Instagram erneut Anzeigen zu zeigen. Meta verarbeitet die Daten auch für eigene Zwecke; insoweit besteht eine gemeinsame Verantwortlichkeit nach Art. 26 DSGVO.</li>
+      <li><strong>LinkedIn Insight Tag</strong> (LinkedIn Ireland Unlimited Company) — dasselbe für LinkedIn.</li>
+    </ul>
+    <p><strong>Übermittlung in die USA:</strong> Die Mutterkonzerne von Google, Microsoft, Meta und LinkedIn sitzen in den USA, und die Daten werden dorthin übermittelt. Die Unternehmen sind unter dem EU-US Data Privacy Framework zertifiziert, für das die EU-Kommission am 10.07.2023 einen Angemessenheitsbeschluss gefasst hat; ergänzend gelten Standardvertragsklauseln. Trotz dieser Grundlagen lässt sich nicht ausschließen, dass US-Behörden auf die Daten zugreifen und dass Ihnen dagegen keine mit der EU vergleichbaren Rechtsbehelfe offenstehen. Mit Ihrer Einwilligung willigen Sie auch in diese Übermittlung ein (Art. 49 Abs. 1 lit. a DSGVO).</p>
+    <p><strong>Speicherdauer:</strong> Die Cookies dieser Dienste haben je nach Anbieter Laufzeiten von wenigen Tagen bis zu zwei Jahren; die genauen Angaben stehen in den Datenschutzhinweisen der jeweiligen Anbieter. Sie können sie jederzeit in Ihrem Browser löschen und Ihre Einwilligung über die Fußzeile widerrufen.</p>
+
+    <h2 id="formular">6. Kontaktformular</h2>
     <p>Wenn Sie das Kontaktformular nutzen, werden die von Ihnen eingetragenen Angaben an mich übermittelt: Name, E-Mail-Adresse sowie freiwillig Betrieb, Telefonnummer, gewünschte Gesprächszeit, Thema und Ihre Nachricht. Die Übertragung erfolgt verschlüsselt (TLS) an ein Skript auf meinem eigenen Server, das die Angaben unmittelbar als E-Mail an mich weiterleitet. Ein Formulardienst eines Dritten kommt nicht zum Einsatz.</p>
     <p><strong>Zweck:</strong> Bearbeitung und Beantwortung Ihrer Anfrage.<br>
       <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Ihre Einwilligung, die Sie mit dem Ankreuzfeld erteilen) sowie Art. 6 Abs. 1 lit. b DSGVO, soweit Ihre Anfrage auf den Abschluss eines Vertrags gerichtet ist.<br>
       <strong>Widerruf:</strong> Sie können Ihre Einwilligung jederzeit formlos per E-Mail widerrufen. Die Rechtmäßigkeit der bis dahin erfolgten Verarbeitung bleibt davon unberührt.</p>
     <p>Zur Abwehr automatisierter Eintragungen enthält das Formular ein für Menschen unsichtbares Zusatzfeld und prüft, wie schnell abgesendet wurde. Zusätzlich begrenzt der Server, wie viele Anfragen ein Absender in kurzer Zeit stellen kann. Dafür wird aus Ihrer IP-Adresse und der laufenden Stunde ein <strong>Prüfwert</strong> gebildet (SHA-256) und zusammen mit dem Zeitpunkt des Absendens gespeichert. Die IP-Adresse selbst wird dabei nicht abgelegt und lässt sich aus dem Prüfwert nicht zurückrechnen; der Eintrag wird spätestens nach zwei Stunden gelöscht. Dienste Dritter kommen nicht zum Einsatz.</p>
     <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO — berechtigtes Interesse am Schutz des Formulars vor Missbrauch und am störungsfreien Betrieb.</p>
+    <p>Mit der Anfrage übermittelt wird außerdem, <strong>worüber Sie auf die Seite gekommen sind</strong>: die Kampagnenangaben aus der Adresszeile (die üblichen <em>utm_</em>-Parameter und Klick-Kennungen wie <em>gclid</em>), die verweisende Seite und der Abschnitt, in dem Sie das Formular geöffnet haben. Diese Angaben werden ausschließlich aus der aufgerufenen Adresse gelesen und im Seitenspeicher gehalten — es wird dafür <strong>nichts auf Ihrem Gerät abgelegt oder ausgelesen</strong>, weshalb § 25 TDDDG nicht greift. Sie stehen in der Anfrage-Mail und werden mit dieser gelöscht.<br>
+      <strong>Zweck:</strong> zu erkennen, welche Kanäle Anfragen bringen.<br>
+      <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO, berechtigtes Interesse an der Erfolgskontrolle eigener Veröffentlichungen.</p>
 
-    <h2 id="mail">6. E-Mail und Telefon</h2>
+    <h2 id="mail">7. E-Mail und Telefon</h2>
     <p>Wenn Sie mir schreiben oder anrufen, verarbeite ich Ihre Angaben zur Bearbeitung des Anliegens. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO bei vertragsbezogenen Anfragen, sonst Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Beantwortung).</p>
     <p>Bitte beachten Sie: Unverschlüsselte E-Mails sind auf dem Transportweg nicht vollständig gegen Kenntnisnahme geschützt. Für vertrauliche Inhalte vereinbaren Sie gern einen anderen Weg.</p>
 
-    <h2 id="schriften">7. Schriften</h2>
+    <h2 id="schriften">8. Schriften</h2>
     <p>Die verwendeten Schriften (Archivo, Instrument Sans, DM Mono) liegen auf demselben Server wie diese Website und werden von dort ausgeliefert. Es besteht <strong>keine Verbindung zu Google Fonts</strong> oder einem anderen fremden Anbieter; Ihre IP-Adresse wird dabei an niemanden übertragen. Die Schriften stehen unter der SIL Open Font License.</p>
 
-    <h2 id="empfaenger">8. Empfänger und Auftragsverarbeitung</h2>
+    <h2 id="empfaenger">9. Empfänger und Auftragsverarbeitung</h2>
     <p>Eine Weitergabe Ihrer Daten an Dritte findet nicht statt, außer an folgende Stellen, die für den Betrieb notwendig sind:</p>
     <ul>
       <li><strong>Hosting und E-Mail:</strong> <span class="pl">[Name des Hosters, Anschrift]</span>. Der Anbieter verarbeitet Daten in meinem Auftrag auf Grundlage eines Vertrags zur Auftragsverarbeitung nach Art. 28 DSGVO. Die Server stehen in <span class="pl">[Deutschland / EU]</span>.</li>
     </ul>
     <p>Eine Übermittlung in Länder außerhalb der EU beziehungsweise des EWR findet nicht statt.</p>
 
-    <h2 id="dauer">9. Speicherdauer</h2>
+    <h2 id="dauer">10. Speicherdauer</h2>
     <p>Ich lösche personenbezogene Daten, sobald der Zweck der Verarbeitung entfällt und keine gesetzlichen Aufbewahrungspflichten entgegenstehen. Anfragen, aus denen kein Auftrag entsteht, lösche ich spätestens <span class="pl">[6 / 12]</span> Monate nach dem letzten Kontakt. Für Unterlagen, die handels- oder steuerrechtlichen Aufbewahrungsfristen unterliegen, gelten die gesetzlichen Fristen von sechs beziehungsweise zehn Jahren.</p>
 
-    <h2 id="rechte">10. Ihre Rechte</h2>
+    <h2 id="rechte">11. Ihre Rechte</h2>
     <p>Ihnen stehen gegenüber mir folgende Rechte hinsichtlich Ihrer personenbezogenen Daten zu:</p>
     <ul>
       <li><strong>Auskunft</strong> (Art. 15 DSGVO) — welche Daten ich zu Ihnen verarbeite</li>
@@ -142,14 +188,14 @@
     </ul>
     <p>Eine formlose E-Mail an <a class="link" href="mailto:hallo@querstrich.de">hallo@querstrich.de</a> genügt. Die Bearbeitung ist für Sie kostenlos.</p>
 
-    <h2 id="beschwerde">11. Beschwerderecht bei der Aufsichtsbehörde</h2>
+    <h2 id="beschwerde">12. Beschwerderecht bei der Aufsichtsbehörde</h2>
     <p>Sind Sie der Ansicht, dass die Verarbeitung Ihrer Daten gegen die DSGVO verstößt, können Sie sich nach Art. 77 DSGVO bei einer Aufsichtsbehörde beschweren. Zuständig ist die Behörde Ihres gewöhnlichen Aufenthaltsorts, Ihres Arbeitsplatzes oder des mutmaßlichen Verstoßes. Für mich zuständig ist:</p>
     <p><span class="pl">[Zuständige Landesdatenschutzbehörde, Anschrift und Web-Adresse]</span></p>
 
-    <h2 id="sicherheit">12. Sicherheit der Übertragung</h2>
+    <h2 id="sicherheit">13. Sicherheit der Übertragung</h2>
     <p>Diese Website wird ausschließlich über eine verschlüsselte Verbindung (TLS/HTTPS) ausgeliefert. Sie erkennen das am Schlosssymbol in der Adresszeile Ihres Browsers. Inhalte, die Sie an mich übermitteln, können dadurch von Dritten nicht ohne Weiteres mitgelesen werden.</p>
 
-    <h2 id="aenderung">13. Änderungen dieser Erklärung</h2>
+    <h2 id="aenderung">14. Änderungen dieser Erklärung</h2>
     <p>Ich passe diese Erklärung an, wenn sich die Website oder die Rechtslage ändert. Maßgeblich ist die jeweils hier veröffentlichte Fassung.</p>
 
     <p class="stand" style="margin-top:2.5rem">Stand: <span class="pl">[Monat Jahr]</span></p>

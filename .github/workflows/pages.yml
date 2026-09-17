@@ -1,5 +1,8 @@
 # Veröffentlicht den Inhalt des Repos als GitHub Pages.
-# Voraussetzung: Settings → Pages → Source auf "GitHub Actions" stellen.
+#
+# enablement: true schaltet Pages beim ersten Lauf selbst ein — der Weg über
+# Settings → Pages entfällt damit. Voraussetzung ist ein öffentliches Repo
+# (oder GitHub Pro), sonst verweigert die API den Zugriff.
 name: Seite veröffentlichen
 
 on:
@@ -25,6 +28,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .

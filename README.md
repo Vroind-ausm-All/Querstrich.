@@ -7,7 +7,7 @@ Webauftritt der Einzelagentur **querstrich** — Marke, Website und Technik aus 
 Kein Build, kein Framework, **keine einzige Verbindung nach außen**. Auf einen Webspace
 mit PHP legen, fertig.
 
-**Vorschau:** https://vroind-ausm-all.github.io/Querstrich.media/
+**Vorschau:** https://vroind-ausm-all.github.io/Querstrich./
 
 ```
 index.html          Startseite (Stil und Skript inline)
@@ -33,10 +33,15 @@ dem eigenen Webspace (produktiv). Der Unterschied ist bewusst:
 |---|---|---|
 | Kontaktformular | öffnet das Mailprogramm mit fertiger Nachricht | `kontakt.php` verschickt die Mail |
 | Suchmaschinen | `noindex` — konkurriert nicht mit der echten Domain | `index, follow` |
-| Adressen | `vroind-ausm-all.github.io/Querstrich.media` | `www.querstrich.de` |
+| Adressen | `vroind-ausm-all.github.io/Querstrich.` | `www.querstrich.de` |
 
 `.github/workflows/pages.yml` veröffentlicht bei jedem Push auf `main`. Dafür muss unter
 **Settings → Pages → Source** einmalig *GitHub Actions* ausgewählt sein.
+
+**Wenn das Repository umbenannt wird**, ändert sich die Pages-Adresse mit — sie besteht
+aus Kontoname und Repositoryname. Dieselben Stellen wie beim Domainumzug sind dann
+anzupassen; ein `sed -i 's|Querstrich\.|NeuerName|g'` über die unten genannten Dateien
+erledigt es in einem Zug.
 
 **Beim Umzug auf die eigene Domain** die Pages-Adresse in `index.html`,
 `datenschutz.html`, `impressum.html`, `arbeiten.html`, `sitemap.xml` und `robots.txt`

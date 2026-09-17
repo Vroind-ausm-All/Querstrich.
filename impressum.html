@@ -36,6 +36,9 @@
      Einwilligung. In dem Fall gehoert dieses Script wieder blockierend
      davor, oder besser: das Snippet bleibt weg und die Kennung kommt
      in consent.js. -->
+<!-- Setzt die E-Mail-Adresse erst im Browser zusammen. Ohne JavaScript
+     bleibt sie als "hallo(at)querstrich.de" lesbar stehen. -->
+<script src="assets/mailschutz.js" defer></script>
 <link rel="stylesheet" href="assets/consent.css">
 <script src="assets/consent.js" defer></script>
 </head>
@@ -59,24 +62,27 @@
   <div class="wrap">
     <p class="label">Rechtliches</p>
     <h1>Impressum</h1>
-
-    <div class="kasten kasten--warn">
-      <p><strong>Diese Seite ist ein Gerüst und noch nicht ausgefüllt.</strong> Die Anbieterkennzeichnung nach § 5 DDG ist für geschäftsmäßige Websites verpflichtend; ein Verstoß ist eine Ordnungswidrigkeit. Ersetzen Sie alle <span class="pl">[markierten Stellen]</span>, setzen Sie <code>robots</code> im Kopf auf <code>index, follow</code> und entfernen Sie diesen Kasten, bevor die Seite online geht. Prüfen lassen sollten Sie die Angaben trotzdem.</p>
+    <div class="kasten">
+      <p>Noch offen vor dem Livegang: Telefonnummer, Umsatzsteuer-Angabe und das Datum unten.
+      Sobald sie stehen, gehört <code>robots</code> im Kopf dieser Seite von <code>noindex</code>
+      auf <code>index, follow</code> — oder bewusst auf <code>noindex</code> belassen, wenn die
+      Anschrift nicht in Suchmaschinen erscheinen soll. Beides ist zulässig; § 5 DDG verlangt
+      Erreichbarkeit auf der Website, keine Auffindbarkeit über Google.</p>
     </div>
 
     <h2>Angaben gemäß § 5 DDG</h2>
     <p>
-      <span class="pl">[Vorname Nachname]</span><br>
-      querstrich — <span class="pl">[Rechtsform, z. B. Einzelunternehmen]</span><br>
-      <span class="pl">[Straße Hausnummer]</span><br>
-      <span class="pl">[PLZ Stadt]</span><br>
+      Vasco Rieker<br>
+      querstrich — Einzelunternehmen<br>
+      Mönchstraße 5<br>
+      70191 Stuttgart<br>
       Deutschland
     </p>
 
     <h2>Kontakt</h2>
     <p>
       Telefon: <span class="pl">[+49 …]</span><br>
-      E-Mail: <a class="link" href="mailto:hallo@querstrich.de">hallo@querstrich.de</a>
+      E-Mail: <span class="link mailto" data-b="hallo" data-h="querstrich.de">hallo(at)querstrich.de</span>
     </p>
 
     <h2>Umsatzsteuer</h2>
@@ -91,7 +97,7 @@
 
     <h2>Verantwortlich für den Inhalt</h2>
     <p>
-      <span class="pl">[Vorname Nachname]</span><br>
+      Vasco Rieker<br>
       Anschrift wie oben
     </p>
 

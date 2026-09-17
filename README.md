@@ -607,6 +607,97 @@ einkaufen, bevor überhaupt etwas zu messen ist.
 
 ---
 
+## Anbieterkennzeichnung und Schutz vor Absammlern
+
+Eingetragen sind Vasco Rieker, Mönchstraße 5, 70191 Stuttgart — im Impressum (§ 5 DDG) und
+als Verantwortlicher in der Datenschutzerklärung. Daraus ergibt sich die zuständige
+Aufsichtsbehörde: der Landesbeauftragte für den Datenschutz und die Informationsfreiheit
+Baden-Württemberg, Lautenschlagerstraße 20, 70173 Stuttgart.
+
+### Wo Verschleierung wirkt — und wo sie schadet
+
+Die beiden Angaben sind unterschiedlich zu behandeln, weil sie unterschiedlich bedroht und
+unterschiedlich geschützt sind.
+
+**Die E-Mail-Adresse ist verschleiert.** Im ausgelieferten Quelltext steht kein einziges
+`hallo@querstrich.de` und kein einziges `href="mailto:"` — nachgemessen über alle vier
+Seiten. Die Adresse liegt in zwei Attributen und wird erst im Browser zusammengesetzt.
+Sichtbar steht im HTML `hallo(at)querstrich.de`: Ohne JavaScript liest ein Mensch sie und
+kann sie abtippen, ein Screenreader liest sie vor, und § 5 DDG ist gewahrt — die Angabe ist
+ständig verfügbar. Mit JavaScript entsteht ein normaler klickbarer Link, samt der
+vorausgefüllten Mails aus Baukasten und Bilanz.
+
+**Die Anschrift steht im Klartext, und das ist Absicht.** Sie zu verstecken wäre der Fehler,
+den die Frage nahelegt:
+
+- **JavaScript-only oder als Bild** — dann fehlt sie ohne JavaScript ganz. Genau das
+  verlangt § 5 DDG aber: leicht erkennbar, unmittelbar erreichbar, ständig verfügbar. Eine
+  Anbieterkennzeichnung, die an einer Browsereinstellung hängt, erfüllt das nicht, und ein
+  unvollständiges Impressum ist eine Ordnungswidrigkeit und abmahnfähig.
+- **CSS-Tricks** (Zeichen umdrehen, in Fragmente zerlegen) — der Text steht trotzdem im
+  DOM. Wer ihn absammeln will, liest ihn. Das kostet Barrierefreiheit und bringt nichts.
+
+Dazu kommt: Das reale Absammeln zielt auf E-Mail-Adressen, nicht auf Postanschriften. Der
+Aufwand, sich für die Anschrift ein rechtliches Risiko einzuhandeln, steht in keinem
+Verhältnis zum Gewinn.
+
+### Was stattdessen wirkt
+
+Drei Maßnahmen, die die Anschrift aus den Datenbanken halten, ohne die Pflicht zu verletzen:
+
+1. **Kein Suchindex.** `impressum.html` trägt `noindex, follow` im Kopf und zusätzlich
+   `X-Robots-Tag: noindex, follow, noarchive, nosnippet` aus der `.htaccess`. Die Seite ist
+   auf der Website erreichbar, taucht aber nicht in Suchergebnissen auf — und über
+   Suchmaschinen laufen die meisten Adress-Aggregatoren.
+   Wichtig dabei: Das Impressum ist **nicht** per `robots.txt` gesperrt, obwohl das
+   naheliegt. Wer es sperrt, verhindert, dass der Crawler das `noindex` überhaupt liest;
+   die URL landet dann nackt im Index und geht nicht mehr heraus. Crawlen erlaubt,
+   indexieren verboten — in dieser Reihenfolge.
+   Aus demselben Grund steht das Impressum nicht mehr in der `sitemap.xml`: Eine Seite
+   anzumelden und gleichzeitig auf `noindex` zu setzen, sind widersprüchliche Signale.
+2. **Keine strukturierten Daten zur Person.** Aus dem JSON-LD sind `address`, `telephone`
+   und `email` entfernt. Das war die maschinenlesbarste Form der Angaben überhaupt — ein
+   `PostalAddress`-Block ist für einen Aggregator geschenkt.
+3. **Absammler abgewiesen.** Die `.htaccess` weist bekannte Harvester und Datenbank-Crawler
+   ab (EmailCollector, ExtractorPro, HTTrack, MJ12bot, AhrefsBot, SemrushBot, DataForSeoBot
+   …); die `robots.txt` sperrt zusätzlich die KI-Crawler (GPTBot, CCBot, ClaudeBot,
+   Google-Extended, PerplexityBot, Bytespider …). Suchmaschinen sind bewusst **nicht**
+   dabei — die Seite soll gefunden werden.
+
+### Der Preis, den Punkt 2 kostet
+
+Ein gefüllter `PostalAddress`-Block im JSON-LD ist eines der stärksten Signale für lokale
+Suchergebnisse — „Webdesign Stuttgart" und Ähnliches. Den gibt die Seite jetzt bewusst nicht
+mehr ab. Als Ausgleich steht im JSON-LD `areaServed: Stuttgart`, was ortsbezogen wirkt, ohne
+eine Anschrift zu veröffentlichen.
+
+Der saubere Weg, beides zu bekommen: **ein Google-Unternehmensprofil**. Dort hinterlegt man
+die Anschrift zur Verifizierung und stellt das Profil als *Dienstleistung vor Ort* ein —
+dann prüft Google die Adresse, zeigt sie aber öffentlich nicht an. Lokale Sichtbarkeit ohne
+veröffentlichte Anschrift, und die Website bleibt außen vor. Für ein Einzelunternehmen im
+Homeoffice ist das ohnehin die richtige Einstellung.
+
+Wer die Local-SEO-Wirkung doch auf der Seite haben will, sagt Bescheid — der JSON-LD-Block
+ist in zwei Minuten wieder drin.
+
+### Nachgemessen
+
+| | Ergebnis |
+| --- | --- |
+| `hallo@querstrich.de` im Quelltext, alle vier Seiten | **0×** |
+| `href="mailto:"` im Quelltext | **0×** |
+| Adresse ohne JavaScript lesbar | **ja** (`hallo(at)querstrich.de`) |
+| Klickbare `mailto:`-Links mit JavaScript | ja, inklusive der vorausgefüllten Mails |
+| Anschrift ohne JavaScript im Impressum | **ja** |
+| Kontaktfelder im JSON-LD | keine |
+| axe-core | weiterhin 0 Verstöße auf allen vier Seiten |
+
+Zur Ehrlichkeit gehört die Grenze: Ein Absammler, der die Seite in einem echten Browser
+rendert, sieht die E-Mail-Adresse. Das lässt sich nicht verhindern, solange ein Mensch sie
+auch sehen soll. Gegen die große Mehrheit, die nur den Quelltext durchsucht, wirkt es.
+
+---
+
 ## Vor dem Livegang
 
 1. **Domain eintragen.** `https://www.querstrich.de` steht als Platzhalter in
@@ -618,9 +709,10 @@ einkaufen, bevor überhaupt etwas zu messen ist.
 4. **Datenschutzerklärung prüfen lassen** und die Hinweiskästen in beiden Rechtsseiten
    entfernen. Die Vorlage beschreibt den tatsächlichen technischen Stand, ersetzt aber
    keine Rechtsberatung.
-5. **Platzhalter ersetzen:** `[Vorname Nachname]`, `[Vorname]`, `[Straße]`, `[PLZ Stadt]`,
-   `[Stadt]`, `[telefonnummer]`, `[Porträt]`, das Porträtfoto und die Mailadresse
-   `hallo@querstrich.de`.
+5. **Verbliebene Platzhalter ersetzen.** Name, Anschrift und Aufsichtsbehörde stehen;
+   offen sind noch Telefonnummer, Umsatzsteuer-Angabe beziehungsweise Kleinunternehmer-Hinweis,
+   Hoster mit Anschrift und Serverstandort, die Löschfristen (Server-Protokolle, Anfragen),
+   das Stand-Datum, `[Vorname]` und das Porträtfoto.
 6. **Portfolioseite füllen.** `arbeiten.html` ist bislang ein Gerüst, damit der Link
    unter dem Portfolio nicht ins Leere führt.
 7. Die Ergebniszeilen der Projekte beschreiben, **was gebaut wurde** — keine erfundenen

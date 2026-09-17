@@ -111,18 +111,12 @@
       "name": "querstrich",
       "description": "Marke, Website und Technik aus einer Hand. Markenauftritte und Websites für Betriebe, die Anfragen und Bewerbungen brauchen.",
       "url": "https://vroind-ausm-all.github.io/Querstrich./",
-      "email": "hallo@querstrich.de",
-      "telephone": "[+49 TELEFONNUMMER]",
       "image": "https://vroind-ausm-all.github.io/Querstrich./assets/og-image.png",
       "priceRange": "€€",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "[Straße Hausnummer]",
-        "postalCode": "[PLZ]",
-        "addressLocality": "[Stadt]",
-        "addressCountry": "DE"
-      },
-      "areaServed": { "@type": "Country", "name": "Deutschland" },
+      "areaServed": [
+        { "@type": "Country", "name": "Deutschland" },
+        { "@type": "City", "name": "Stuttgart" }
+      ],
       "founder": { "@id": "https://vroind-ausm-all.github.io/Querstrich./#person" },
       "knowsAbout": [
         "Markenauftritt", "Webdesign", "Webentwicklung",
@@ -150,7 +144,7 @@
     {
       "@type": "Person",
       "@id": "https://vroind-ausm-all.github.io/Querstrich./#person",
-      "name": "[Vorname Nachname]",
+      "name": "Vasco Rieker",
       "jobTitle": "Grafikdesigner und Webentwickler",
       "worksFor": { "@id": "https://vroind-ausm-all.github.io/Querstrich./#betrieb" }
     },
@@ -1368,6 +1362,9 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:var(--t-
      Einwilligung. In dem Fall gehoert dieses Script wieder blockierend
      davor, oder besser: das Snippet bleibt weg und die Kennung kommt
      in consent.js. -->
+<!-- Setzt die E-Mail-Adresse erst im Browser zusammen. Ohne JavaScript
+     bleibt sie als "hallo(at)querstrich.de" lesbar stehen. -->
+<script src="assets/mailschutz.js" defer></script>
 <link rel="stylesheet" href="assets/consent.css">
 <script src="assets/consent.js" defer></script>
 <!-- Herkunft der Anfrage, ohne jede Speicherung im Geraet. -->
@@ -1776,7 +1773,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:var(--t-
             <span>[Vorname]<br>querstrich</span>
           </div>
           <div class="bilanz-aktionen">
-            <a class="knopf knopf--voll knopf--klein knopf--breit" id="bilanzMail" href="mailto:hallo@querstrich.de?subject=Erstgespr%C3%A4ch">gespräch anfragen <span class="pfeil" aria-hidden="true">→</span></a>
+            <a class="knopf knopf--voll knopf--klein knopf--breit" id="bilanzMail" href="#kontakt">gespräch anfragen <span class="pfeil" aria-hidden="true">→</span></a>
             <button class="tlink" type="button" id="bilanzReset">alle schließen</button>
           </div>
         </aside>
@@ -2055,7 +2052,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:var(--t-
           <dl class="kontakt-karte">
             <dt>Lieber direkt</dt>
             <dd>
-              <a href="mailto:hallo@querstrich.de?subject=Erstgespr%C3%A4ch">hallo@querstrich.de</a><br>
+              <span class="mailto" data-b="hallo" data-h="querstrich.de" data-q="?subject=Erstgespr%C3%A4ch">hallo(at)querstrich.de</span><br>
               <a href="tel:+49">[telefonnummer]</a><br>
               <span class="klein">Montag bis Freitag, 8 bis 17 Uhr</span>
             </dd>
@@ -2083,7 +2080,7 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:var(--t-
         <a class="marke" href="#oben" data-glitch aria-label="querstrich — nach oben">
           <span class="marke-q">querstrich</span><span class="marke-sq" aria-hidden="true"></span>
         </a>
-        <p class="klein" style="margin-top:1rem;max-width:28ch">Querverbindung finden. Strich ziehen. Punkt. <br>[Vorname Nachname] <span aria-hidden="true">\</span> [Straße] <span aria-hidden="true">\</span> [PLZ Stadt]</p>
+        <p class="klein" style="margin-top:1rem;max-width:28ch">Querverbindung finden. Strich ziehen. Punkt. <br>Vasco Rieker <span aria-hidden="true">\</span> Stuttgart</p>
       </div>
       <nav class="fuss-nav" aria-label="Fußzeile">
         <a href="#arbeiten">arbeiten</a>
@@ -2163,6 +2160,11 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:var(--t-
 
 <script>
 (function(){
+/* Die Adresse steht bewusst nicht als zusammenhaengende Zeichenkette im
+   Quelltext — Harvester suchen genau danach. Zusammengesetzt wird sie
+   erst zur Laufzeit. */
+var QS_MAIL = 'hallo' + String.fromCharCode(64) + 'querstrich.de';
+
 "use strict";
 
 var sanft = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -2547,7 +2549,7 @@ function bilanzAktualisieren(){
           + '\n\nBranche: ' + aktiveBranche.name + '\n\n';
   }
   text += 'Darüber würde ich gern eine halbe Stunde sprechen.\n\nMit freundlichen Grüßen\n';
-  bilanzMail.href = 'mailto:hallo@querstrich.de?subject=' + encodeURIComponent(betreff) + '&body=' + encodeURIComponent(text);
+  bilanzMail.href = 'mailto:' + QS_MAIL + '?subject=' + encodeURIComponent(betreff) + '&body=' + encodeURIComponent(text);
 }
 
 bilanzReset.addEventListener('click', function(){
@@ -2612,7 +2614,7 @@ function bkRechnen(){
            + '\n\nRichtwert einmalig: ' + eur(summe)
            + (monat ? '\nBetreuung: ' + monatBez + ', ' + eur(monat) + ' im Monat' : '\nBetreuung: zunächst keine')
            + '\n\nPasst das ungefähr? Ich hätte gern ein Erstgespräch.\n\nMit freundlichen Grüßen\n';
-  bkMail.href = 'mailto:hallo@querstrich.de?subject=' + encodeURIComponent('Angebot — Richtwert ' + eur(summe)) + '&body=' + encodeURIComponent(text);
+  bkMail.href = 'mailto:' + QS_MAIL + '?subject=' + encodeURIComponent('Angebot — Richtwert ' + eur(summe)) + '&body=' + encodeURIComponent(text);
 }
 [].forEach.call(bkForm.querySelectorAll('input'), function(f){ f.addEventListener('change', bkRechnen); });
 bkRechnen();
@@ -2705,7 +2707,7 @@ if(kontaktFormular){
         + 'Wunschzeit: ' + (hol('wunschzeit') || '—') + '\n'
         + 'Thema:      ' + (hol('thema') || '—') + '\n\n'
         + hol('nachricht') + '\n\nMit freundlichen Grüßen\n' + hol('name') + '\n';
-      location.href = 'mailto:hallo@querstrich.de'
+      location.href = 'mailto:' + QS_MAIL
         + '?subject=' + encodeURIComponent('Anfrage über querstrich.de')
         + '&body=' + encodeURIComponent(text);
       melden('Diese Vorschau hat keinen Server im Rücken — Ihr E-Mail-Programm öffnet sich mit der fertigen Nachricht.', false);
@@ -2715,9 +2717,9 @@ if(kontaktFormular){
   /* Rückmeldung nach dem Absenden, aus der Adresszeile gelesen */
   var stand = new URLSearchParams(location.search).get('gesendet');
   if(stand === 'ja') melden('Danke — Ihre Anfrage ist da. Ich melde mich spätestens am nächsten Werktag.', false);
-  else if(stand === 'fehler') melden('Da ist etwas schiefgegangen. Schreiben Sie mir bitte direkt an hallo@querstrich.de.', true);
+  else if(stand === 'fehler') melden('Da ist etwas schiefgegangen. Schreiben Sie mir bitte direkt an ' + QS_MAIL + '.', true);
   else if(stand === 'zuschnell') melden('Ihre Anfrage ist gerade eben schon eingegangen — einen Moment bitte, bevor Sie erneut senden.', true);
-  else if(stand === 'zuviele') melden('Es sind schon mehrere Anfragen von Ihnen da. Schreiben Sie mir bitte direkt an hallo@querstrich.de.', true);
+  else if(stand === 'zuviele') melden('Es sind schon mehrere Anfragen von Ihnen da. Schreiben Sie mir bitte direkt an ' + QS_MAIL + '.', true);
 }
 
 /* ═════════ FAQ-FENSTER ═════════ */

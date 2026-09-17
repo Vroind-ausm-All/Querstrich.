@@ -33,6 +33,9 @@
      Einwilligung. In dem Fall gehoert dieses Script wieder blockierend
      davor, oder besser: das Snippet bleibt weg und die Kennung kommt
      in consent.js. -->
+<!-- Setzt die E-Mail-Adresse erst im Browser zusammen. Ohne JavaScript
+     bleibt sie als "hallo(at)querstrich.de" lesbar stehen. -->
+<script src="assets/mailschutz.js" defer></script>
 <link rel="stylesheet" href="assets/consent.css">
 <script src="assets/consent.js" defer></script>
 </head>
@@ -85,10 +88,10 @@
     <h2 id="verantwortlich">1. Verantwortlich für die Datenverarbeitung</h2>
     <p>
       Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:<br>
-      <span class="pl">[Vorname Nachname]</span> — querstrich<br>
-      <span class="pl">[Straße Hausnummer]</span><br>
-      <span class="pl">[PLZ Stadt]</span><br>
-      E-Mail: <a class="link" href="mailto:hallo@querstrich.de">hallo@querstrich.de</a><br>
+      Vasco Rieker — querstrich<br>
+      Mönchstraße 5<br>
+      70191 Stuttgart<br>
+      E-Mail: <span class="link mailto" data-b="hallo" data-h="querstrich.de">hallo(at)querstrich.de</span><br>
       Telefon: <span class="pl">[Telefonnummer]</span>
     </p>
     <p>Ein Datenschutzbeauftragter ist gesetzlich nicht erforderlich und nicht bestellt. Bei Fragen zum Datenschutz wenden Sie sich direkt an die oben genannte Adresse.</p>
@@ -186,11 +189,15 @@
       <li><strong>Widerspruch</strong> (Art. 21 DSGVO) gegen Verarbeitungen, die auf berechtigtem Interesse beruhen</li>
       <li><strong>Widerruf einer Einwilligung</strong> (Art. 7 Abs. 3 DSGVO), mit Wirkung für die Zukunft</li>
     </ul>
-    <p>Eine formlose E-Mail an <a class="link" href="mailto:hallo@querstrich.de">hallo@querstrich.de</a> genügt. Die Bearbeitung ist für Sie kostenlos.</p>
+    <p>Eine formlose E-Mail an <span class="link mailto" data-b="hallo" data-h="querstrich.de">hallo(at)querstrich.de</span> genügt. Die Bearbeitung ist für Sie kostenlos.</p>
 
     <h2 id="beschwerde">12. Beschwerderecht bei der Aufsichtsbehörde</h2>
     <p>Sind Sie der Ansicht, dass die Verarbeitung Ihrer Daten gegen die DSGVO verstößt, können Sie sich nach Art. 77 DSGVO bei einer Aufsichtsbehörde beschweren. Zuständig ist die Behörde Ihres gewöhnlichen Aufenthaltsorts, Ihres Arbeitsplatzes oder des mutmaßlichen Verstoßes. Für mich zuständig ist:</p>
-    <p><span class="pl">[Zuständige Landesdatenschutzbehörde, Anschrift und Web-Adresse]</span></p>
+    <p>
+      Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg<br>
+      Lautenschlagerstraße 20, 70173 Stuttgart<br>
+      <a class="link" href="https://www.baden-wuerttemberg.datenschutz.de" rel="noopener">www.baden-wuerttemberg.datenschutz.de</a>
+    </p>
 
     <h2 id="sicherheit">13. Sicherheit der Übertragung</h2>
     <p>Diese Website wird ausschließlich über eine verschlüsselte Verbindung (TLS/HTTPS) ausgeliefert. Sie erkennen das am Schlosssymbol in der Adresszeile Ihres Browsers. Inhalte, die Sie an mich übermitteln, können dadurch von Dritten nicht ohne Weiteres mitgelesen werden.</p>

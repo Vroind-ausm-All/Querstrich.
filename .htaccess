@@ -34,3 +34,47 @@
 Options -Indexes
 
 ErrorDocument 404 /index.html
+
+# ═══ Schutz der Anbieterkennzeichnung ══════════════════════════════════
+# Die Anschrift im Impressum muss auf der Website stehen (§ 5 DDG), aber
+# sie muss nicht in Suchindizes und Adressdatenbanken landen. Das ist der
+# Unterschied zwischen "verfuegbar" und "abgesammelt" — und die Stelle,
+# an der sich wirksam etwas machen laesst, ohne die Pflicht zu verletzen.
+
+# 1) Impressum aus den Suchindizes halten. Der Meta-Tag in der Seite sagt
+#    dasselbe; als Header wirkt es zusaetzlich fuer Crawler, die den
+#    Seiteninhalt gar nicht erst parsen.
+<Files "impressum.html">
+  Header set X-Robots-Tag "noindex, follow, noarchive, nosnippet"
+</Files>
+
+# 2) Bekannte Absammler und KI-Crawler abweisen. Das ersetzt keine
+#    robots.txt — es ergaenzt sie um die, die sich nicht daran halten.
+#    Suchmaschinen sind bewusst NICHT dabei: Die Seite soll gefunden
+#    werden, nur das Impressum nicht ausgewertet.
+<IfModule mod_setenvif.c>
+  SetEnvIfNoCase User-Agent "EmailCollector"      absammler
+  SetEnvIfNoCase User-Agent "EmailSiphon"         absammler
+  SetEnvIfNoCase User-Agent "EmailWolf"           absammler
+  SetEnvIfNoCase User-Agent "ExtractorPro"        absammler
+  SetEnvIfNoCase User-Agent "Harvest"             absammler
+  SetEnvIfNoCase User-Agent "WebBandit"           absammler
+  SetEnvIfNoCase User-Agent "WebCopier"           absammler
+  SetEnvIfNoCase User-Agent "HTTrack"             absammler
+  SetEnvIfNoCase User-Agent "SiteSnagger"         absammler
+  SetEnvIfNoCase User-Agent "Zeus"                absammler
+  SetEnvIfNoCase User-Agent "MJ12bot"             absammler
+  SetEnvIfNoCase User-Agent "AhrefsBot"           absammler
+  SetEnvIfNoCase User-Agent "SemrushBot"          absammler
+  SetEnvIfNoCase User-Agent "DotBot"              absammler
+  SetEnvIfNoCase User-Agent "DataForSeoBot"       absammler
+  SetEnvIfNoCase User-Agent "PetalBot"            absammler
+  SetEnvIfNoCase User-Agent "^$"                  absammler
+
+  <IfModule mod_authz_core.c>
+    <RequireAll>
+      Require all granted
+      Require not env absammler
+    </RequireAll>
+  </IfModule>
+</IfModule>

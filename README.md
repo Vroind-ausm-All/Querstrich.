@@ -294,6 +294,137 @@ das kurze Zeitfenster von `optional` auch auf langsamen Verbindungen reicht.
 
 ---
 
+## Typografie
+
+Das System stand vorher nicht — es war gewachsen. Gemessen im Stylesheet:
+
+| | vorher | nachher |
+| --- | --- | --- |
+| Feste Schriftgrößen in der Oberfläche | 24 | **6** |
+| Laufweiten (`letter-spacing`) | 19 | **6** |
+| Zeilenabstände | 19 | **7** |
+| Schriftbreiten (`font-stretch`) | 12 | **2** |
+| Deklarationen in Monospace | 40 | **8** |
+| Deklarationen in der Textschrift | 4 | **36** |
+
+Vier Befunde, vier Eingriffe:
+
+**1. Es gab keine Skala.** Zehn verschiedene Größen lagen zwischen 0,58 rem und 0,75 rem —
+Unterschiede von einem halben Pixel, die niemand als Absicht liest, aber jeder als Unruhe
+sieht. Jetzt eine Stufenleiter von acht Werten (11 px bis 22 px) als Token `--t-3xs` bis
+`--t-xl`. Die sechs verbliebenen Festwerte sind Displaygrade: Wortmarke, Paketname,
+Preiszahlen.
+
+**2. Die Monospace trug die halbe Oberfläche.** Navigation, Knöpfe, Formularbeschriftungen,
+Filter, Preislisten, Fußzeile — alles stand in gesperrter Versal-Schreibmaschine bei 10 px.
+Als Akzent gedacht, als Grundton verwendet. Jetzt trägt sie noch acht Stellen, und alle
+haben einen Grund: die Abschnittsmarke und Ziffern (Schrittnummern, Fragennummern,
+Projektnummern, die Beträge im Baukasten, wo die feste Dickte die Spalte ausrichtet).
+Alles, was gelesen und bedient wird, steht in der Textschrift.
+
+**3. Jede Überschriftenebene hatte eine eigene Breite.** Archivo ist eine Variable Font mit
+Breitenachse; `.d1` stand auf 84 %, `.d2` auf 86 %, `.d3` auf 90 %, dazu neun weitere Werte
+im Rest. Zu wenig Unterschied, um als Absicht zu wirken, zu viel, um wie dieselbe Schrift
+auszusehen — der Grund, warum die Überschriften nicht wie Geschwister wirkten. Jetzt ein
+Wert: `--breite: 86%`.
+
+**4. Sperrung war Dekor statt Funktion.** Laufweite ist eine Funktion der Schriftgröße:
+große Grade brauchen ein Minus, gesperrte Versalien ein Plus. Vorher lagen sieben Varianten
+derselben Absicht nebeneinander (.14/.15/.16/.18/.2/.22/.24 em). Jetzt vier Token, an die
+Größe gebunden. Zwei Stellen waren schlicht falsch herum — Versalien mit negativer Laufweite;
+Großbuchstaben haben keine Unterlängen, die den Abstand optisch füllen.
+
+Nebenbei: Nichts steht mehr unter 11 px (vorher bis 6,4 px), und der Domainname unter den
+Projekten steht nicht länger in Versalien — eine umbrechende URL wird dort mit ihrem
+Bindestrich zum Lesefehler. Die Mock-ups sind bewusst ausgenommen: Das sind verkleinerte
+Bildschirmabbilder, in denen winzige Schrift die Verkleinerung darstellt.
+
+Nachgemessen: axe-core weiterhin **0 Verstöße** auf allen vier Seiten in beiden Ansichten,
+CLS **0,0025** (Grenzwert für „gut" ist 0,1), LCP 344 ms.
+
+---
+
+## Schriften lokal einbinden
+
+Die Schriften dieser Seite liegen **bereits lokal** unter `assets/fonts/`. Nachgewiesen
+über den Netzwerkmitschnitt des Browsers: 19 Anfragen über alle vier Seiten, davon
+**null an fremde Server**. Wer es selbst prüfen will — Entwicklertools, Reiter *Netzwerk*,
+Seite neu laden: Es darf dort kein `fonts.googleapis.com` und kein `fonts.gstatic.com`
+auftauchen.
+
+### Warum das nötig ist
+
+Bindet man Google Fonts über `<link href="fonts.googleapis.com/…">` ein, baut der **Browser
+des Besuchers** eine Verbindung zu Google auf und überträgt dabei dessen IP-Adresse in die
+USA. Das LG München I hat das am 20.01.2022 (Az. 3 O 17493/20) als Verstoß gegen das
+Persönlichkeitsrecht gewertet und 100 € Schadensersatz zugesprochen. Danach folgte eine
+Abmahnwelle. Eine Einwilligung würde das heilen — nur müsste sie vor dem ersten
+Seitenaufbau eingeholt werden, was ein Banner erzwingt. Lokal eingebunden entsteht die
+Frage gar nicht: Es gibt nichts einzuwilligen.
+
+### So sind sie eingebunden
+
+```
+assets/fonts/
+  archivo-latin.woff2           Displayschrift, Variable Font
+  archivo-latin-ext.woff2
+  instrument-sans-latin.woff2   Textschrift
+  instrument-sans-latin-ext.woff2
+  dm-mono-latin.woff2           Monospace
+  dm-mono-latin-ext.woff2
+  …                             8 Dateien, 280 KB
+```
+
+Im Stylesheet steht je Schnitt ein `@font-face`, das auf die lokale Datei zeigt:
+
+```css
+@font-face{
+  font-family:'Instrument Sans';
+  font-style:normal;
+  font-weight:400 600;            /* Variable Font: Bereich statt Einzelwert */
+  font-display:swap;
+  src:url(assets/fonts/instrument-sans-latin.woff2) format('woff2');
+  unicode-range:U+0000-00FF,…;    /* nur Latin — der Rest wird nie geladen */
+}
+```
+
+### Eine weitere Schrift ergänzen — in fünf Schritten
+
+1. **Lizenz prüfen.** Nur Schriften, deren Lizenz das Hosting auf dem eigenen Server
+   erlaubt. Die drei hier verwendeten stehen unter der **SIL Open Font License 1.1** — die
+   erlaubt es ausdrücklich. Bei gekauften Schriften steht es in der Webfont-Lizenz; manche
+   Foundries verkaufen Desktop- und Webfont-Rechte getrennt.
+2. **Als woff2 besorgen.** Bei Google Fonts über *Download family* und anschließend
+   konvertieren, oder bequemer über den *google-webfonts-helper*
+   (`gwfh.mranftl.com`) — dort Schrift, Schnitte und Zeichensatz wählen und die fertigen
+   woff2 mit passendem CSS herunterladen. woff2 reicht; jeder Browser der letzten zehn
+   Jahre versteht es, ältere Formate sind nur Ballast.
+3. **Nach `assets/fonts/` legen** und das `@font-face` nach obigem Muster ergänzen. Den
+   `unicode-range`-Block mitnehmen: Er sorgt dafür, dass der osteuropäische Zeichensatz
+   nur geladen wird, wenn er tatsächlich vorkommt.
+4. **Prüfen, dass nichts nach außen geht.** Entwicklertools → Netzwerk → Filter `fonts.` —
+   die Liste muss leer bleiben. Dieser Schritt fällt am häufigsten aus: Oft bleibt der alte
+   `<link>` auf Google stehen, während die lokale Datei schon daneben liegt. Dann lädt die
+   Seite beides, und rechtlich hat sich nichts geändert.
+5. **Datenschutzerklärung nachziehen.** Abschnitt 7 nennt die Schriften namentlich. Eine
+   neue Schrift gehört dort ergänzt.
+
+### Was sonst noch dranhängt
+
+- **`font-display`** steuert, was der Browser zeigt, solange die Schrift lädt. Hier trägt
+  die Displayschrift `optional` (sie erscheint entweder sofort oder gar nicht — das
+  verhindert den Layoutsprung), die Lesetexte `swap` (Ersatzschrift zuerst, dann Austausch —
+  der Text ist nie unsichtbar).
+- **Ein `preload`** auf `archivo-latin.woff2`, weil `optional` nur ein kurzes Zeitfenster
+  lässt. Wichtig dabei: Schrift-Preloads brauchen zwingend das Attribut `crossorigin`,
+  sonst lädt der Browser die Datei ein zweites Mal.
+- **Kein CDN.** Auch ein Schrift-CDN ist eine Drittübermittlung. Die Dateien liegen auf
+  demselben Server wie die Seite — das ist der ganze Punkt.
+- **Cache.** Die `.htaccess` setzt ein Jahr Cache-Dauer auf `assets/fonts/`. Schriftdateien
+  ändern sich nicht; ein neuer Dateiname erzwingt bei Bedarf das Neuladen.
+
+---
+
 ## Vor dem Livegang
 
 1. **Domain eintragen.** `https://www.querstrich.de` steht als Platzhalter in

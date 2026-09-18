@@ -30,7 +30,7 @@
 
 .cmp-titel{
   font-family:var(--display,sans-serif);font-weight:800;
-  font-stretch:var(--breite,86%);
+  font-optical-sizing:auto;font-variation-settings:var(--wonk,normal);
   font-size:clamp(1.15rem,2.2vw,1.5rem);
   line-height:var(--lh-eng,1.15);letter-spacing:var(--sp-eng,-.015em);
   color:var(--tinte,#0D0D0F);

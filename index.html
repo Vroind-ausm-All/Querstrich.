@@ -73,7 +73,7 @@
      nutzen — ohne Preload verpasst er es auf langsamen Verbindungen und die
      Seite bleibt bei der Ersatzschrift. Nur der Latin-Schnitt, latin-ext wird
      auf dieser Seite nicht gebraucht. -->
-<link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cstyle%3E.b%7Bfill:%23141416%7D.s%7Bfill:%23F7F5F0%7D@media(prefers-color-scheme:dark)%7B.b%7Bfill:%23F4F3EF%7D.s%7Bfill:%230B0B0D%7D%7D%3C/style%3E%3Cpath class='b' d='M32 4C17 4 6 15.4 6 30.2s11 26.2 26 26.2c3.9 0 7.6-.8 10.9-2.3l7.7 4.4c2.6 1.5 5.6-1.4 4.1-4l-4.1-7.1C55.1 42.6 58 36.8 58 30.2 58 15.4 47 4 32 4Z'/%3E%3Cg class='s' transform='skewX(-14)'%3E%3Crect x='28.5' y='16' width='8.6' height='30' rx='2.4'/%3E%3Crect x='42' y='16' width='8.6' height='30' rx='2.4'/%3E%3C/g%3E%3C/svg%3E">
 
 <meta property="og:type" content="website">
@@ -175,133 +175,80 @@
 <style>
 /* ═══════════════════════════════════════════════════════════
    0 — SCHRIFTEN (lokal, DSGVO)
+   ═══════════════════════════════════════════════════════════
+   Fraunces traegt die Ueberschriften: eine Serifenschrift mit
+   optischer Groessenachse und zwei Achsen, die es sonst kaum gibt —
+   SOFT rundet die Ecken, WONK schaltet schraege, handgeschnittene
+   Alternativformen. Genau das macht sie warm statt technisch, und es
+   passt zur Aussage der Seite: hier hat ein Mensch gearbeitet, kein
+   Generator. Figtree daneben ist eine humanistische Grotesk mit
+   offenen Formen und freundlichen Rundungen.
+
+   Beide liegen lokal. Sie stammen von Google Fonts, werden aber NICHT
+   von dort geladen — siehe README, "Schriften lokal einbinden".
    ═══════════════════════════════════════════════════════════ */
-/* latin-ext */
 @font-face {
-  font-family: 'Archivo';
+  font-family: 'Fraunces';
   font-style: normal;
-  font-weight: 400 900;
-  font-stretch: 62% 125%;
+  font-weight: 300 900;
   font-display: optional;
-  src: url(assets/fonts/archivo-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  src: url(assets/fonts/fraunces-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
-/* latin */
 @font-face {
-  font-family: 'Archivo';
+  font-family: 'Fraunces';
   font-style: normal;
-  font-weight: 400 900;
-  font-stretch: 62% 125%;
+  font-weight: 300 900;
   font-display: optional;
-  src: url(assets/fonts/archivo-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  src: url(assets/fonts/fraunces-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
-/* latin-ext */
 @font-face {
-  font-family: 'DM Mono';
+  font-family: 'Figtree';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300 900;
   font-display: swap;
-  src: url(assets/fonts/dm-mono-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  src: url(assets/fonts/figtree-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
-/* latin */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url(assets/fonts/figtree-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
 @font-face {
   font-family: 'DM Mono';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
   src: url(assets/fonts/dm-mono-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
-/* latin-ext */
 @font-face {
   font-family: 'DM Mono';
   font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(assets/fonts/dm-mono-latin-ext-2.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'DM Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(assets/fonts/dm-mono-latin-2.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Instrument Sans';
-  font-style: normal;
   font-weight: 400;
-  font-stretch:var(--breite);
   font-display: swap;
-  src: url(assets/fonts/instrument-sans-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Instrument Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch:var(--breite);
-  font-display: swap;
-  src: url(assets/fonts/instrument-sans-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Instrument Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch:var(--breite);
-  font-display: swap;
-  src: url(assets/fonts/instrument-sans-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Instrument Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch:var(--breite);
-  font-display: swap;
-  src: url(assets/fonts/instrument-sans-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Instrument Sans';
-  font-style: normal;
-  font-weight: 600;
-  font-stretch:var(--breite);
-  font-display: swap;
-  src: url(assets/fonts/instrument-sans-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Instrument Sans';
-  font-style: normal;
-  font-weight: 600;
-  font-stretch:var(--breite);
-  font-display: swap;
-  src: url(assets/fonts/instrument-sans-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  src: url(assets/fonts/dm-mono-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
 
-/* Fallback der Displayschrift in der Breite angeglichen: Archivo rendert bei
-   gleicher Groesse 84,1 % der Arial-Breite (gemessen gegen die Schrift, die
-   tatsaechlich aufgeloest wird). Hoehen-Overrides sind bewusst weggelassen —
-   geratene Werte haben den Layout-Sprung vergroessert statt verkleinert. Den
-   Sprung selbst schliesst font-display:optional bei Archivo aus. */
+/* Ersatzschriften in der Breite angeglichen. Die Werte sind gegen die
+   Schrift gemessen, die auf dem Testsystem tatsaechlich aufgeloest
+   wird — nicht geschaetzt. Hoehen-Overrides bleiben bewusst weg:
+   geratene Werte hatten den Layout-Sprung frueher vergroessert. */
 @font-face{
-  font-family:'Archivo Fallback';
+  font-family:'Fraunces Fallback';
+  src:local('Georgia'), local('Times New Roman'), local('Liberation Serif');
+  size-adjust:100%;
+}
+@font-face{
+  font-family:'Figtree Fallback';
   src:local('Arial'), local('Helvetica'), local('Liberation Sans');
-  size-adjust:84.1%;
+  size-adjust:100%;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -315,21 +262,35 @@
   --papier-3:#EBE8E0;
   --tinte:#0D0D0F;
   --tinte-2:#46453F;
-  --tinte-3:#6F6E65;   /* 4,63:1 auf --papier */
+  --tinte-3:#66655D;   /* 5,27:1 auf --papier, 4,52:1 auf dem waermsten Punkt des Grundes */
   --linie:rgba(13,13,15,.16);
   --linie-s:rgba(13,13,15,.07);
   --akzent:#FF4A0F;
-  --akzent-text:#C63A05;
+  --akzent-text:#B83605;  /* 5,30:1 auf --papier, 4,55:1 auf dem waermsten Punkt */
   --auf-akzent:#1A0A02;   /* dunkel auf Orange: 5,9:1 statt 3,4:1 bei Weiß */
   --glut:rgba(255,74,15,.07);
   --korn-opa:.04;
   --korn-mix:multiply;
+  /* Warmer Grund. Der reine Papierton wirkte karg — drei sehr flache
+     Farbfelder geben ihm Tiefe, ohne dass irgendwo eine Kante entsteht.
+     Die Werte sind bewusst niedrig: Sie sollen den Untergrund waermen,
+     nicht den Text bedraengen. Der Kontrast bleibt nachgemessen gleich. */
+  --grund-1:rgba(255,168,110,.22);
+  --grund-2:rgba(255,120,60,.10);
+  --grund-3:rgba(120,150,190,.10);
+  --licht-farbe:rgba(255,142,70,.20);
   --schatten:0 26px 64px -34px rgba(17,17,19,.45);
   --schatten-s:0 10px 30px -18px rgba(17,17,19,.4);
 
-  --display:"Archivo","Archivo Fallback",Arial,Impact,sans-serif;
-  --sans:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --display:"Fraunces","Fraunces Fallback",Georgia,"Times New Roman",serif;
+  --sans:"Figtree","Figtree Fallback",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   --mono:"DM Mono",ui-monospace,Menlo,monospace;
+
+  /* Fraunces' eigene Achsen statt einer Breitenachse: SOFT rundet die
+     Ecken ab, WONK schaltet die schraegen, handgeschnittenen
+     Alternativformen. Zusammen nehmen sie der Serifenschrift das
+     Steife, ohne sie verspielt zu machen. */
+  --wonk:"SOFT" 40, "WONK" 1;
 
   /* ── Typografische Skala ──────────────────────────────────────────
      Eine Stufenleiter statt frei gewaehlter Werte. Vorher waren 48
@@ -354,26 +315,24 @@
      brauchen Minus, gesperrte Versalien ein Plus. Vorher 19 Werte,
      darunter .14/.15/.16/.18/.2/.22/.24em — sieben Varianten
      derselben Absicht.                                               */
-  --sp-display:-.03em;
-  --sp-eng:-.015em;
+  --sp-display:-.02em;
+  --sp-eng:-.01em;
   --sp-ui:0;
   --sp-versal:.1em;   /* gesperrte Versalien ab 11px       */
   --sp-versal-s:.06em;/* gesperrte Versalien ab 13px       */
 
   /* ── Zeilenabstand ────────────────────────────────────────────────
      Vier Werte statt 19.                                             */
-  --lh-display:.9;
+  --lh-display:.96;
   --lh-eins:1;      /* einzeilige Marken und Zahlen */
   --lh-eng:1.15;
   --lh-ui:1.3;
   --lh-text:1.6;
 
-  /* ── Schriftbreite ────────────────────────────────────────────────
-     Archivo ist eine Variable Font mit Breitenachse. Vorher trug jede
-     Ueberschriftenebene eine andere Breite (84/86/90 %) — zu wenig
-     Unterschied, um als Absicht zu wirken, zu viel, um wie dieselbe
-     Schrift auszusehen. Jetzt ein einziger Wert fuer alle Grade.      */
-  --breite:86%;
+  /* Fraunces hat keine Breitenachse — font-stretch waere hier
+     wirkungslos oder wuerde vom Browser synthetisiert. Der Token
+     bleibt auf "normal", damit keine Regel ins Leere greift. */
+  --breite:normal;
 
   --wrap:80rem;
   --gutter:clamp(1.25rem,4vw,3rem);
@@ -390,7 +349,7 @@
   --papier-3:#1B1B21;
   --tinte:#F4F3EF;
   --tinte-2:#A8A79E;
-  --tinte-3:#7C7B73;   /* 4,62:1 auf --papier */
+  --tinte-3:#88877F;   /* 5,47:1 auf --papier, 4,54:1 auf dem waermsten Punkt des Grundes */
   --linie:rgba(244,243,239,.15);
   --linie-s:rgba(244,243,239,.07);
   --akzent:#FF5A22;
@@ -399,6 +358,10 @@
   --glut:rgba(255,74,15,.17);
   --korn-opa:.05;
   --korn-mix:screen;
+  --grund-1:rgba(255,110,50,.10);
+  --grund-2:rgba(255,80,30,.07);
+  --grund-3:rgba(80,120,190,.09);
+  --licht-farbe:rgba(255,120,55,.14);
   --schatten:0 26px 70px -30px rgba(0,0,0,.85);
   --schatten-s:0 10px 34px -18px rgba(0,0,0,.8);
 }
@@ -436,12 +399,13 @@ section{position:relative;scroll-margin-top:5.5rem;overflow-x:clip}
    verwandte Schriften. Nur der Zeilenabstand oeffnet sich nach unten:
    je kleiner der Grad, desto mehr Luft braucht die Zeile. */
 .d1,.d2,.d3{
-  font-family:var(--display);font-weight:800;font-stretch:var(--breite);
+  font-family:var(--display);font-weight:700;
+  font-optical-sizing:auto;font-variation-settings:var(--wonk);
   letter-spacing:var(--sp-display);
 }
-.d1{font-size:clamp(2.6rem,8.5vw,7.5rem);line-height:var(--lh-display)}
-.d2{font-size:clamp(2.1rem,5.6vw,4.6rem);line-height:var(--lh-display)}
-.d3{font-size:clamp(1.5rem,2.8vw,2.3rem);line-height:var(--lh-eng);letter-spacing:var(--sp-eng)}
+.d1{font-size:clamp(2.25rem,6.6vw,5.6rem);line-height:var(--lh-display)}
+.d2{font-size:clamp(1.85rem,4.4vw,3.6rem);line-height:var(--lh-display)}
+.d3{font-size:clamp(1.35rem,2.3vw,1.95rem);line-height:var(--lh-eng);letter-spacing:var(--sp-eng)}
 h3{font-family:var(--sans);font-weight:600;font-size:var(--t-l);line-height:var(--lh-ui);letter-spacing:var(--sp-eng)}
 p{max-width:64ch}
 .lead{font-size:clamp(1.0625rem,1.45vw,1.3125rem);line-height:var(--lh-text);color:var(--tinte-2);max-width:48ch}
@@ -480,7 +444,7 @@ strong{font-weight:600;color:var(--tinte)}
    ═══════════════════════════════════════════════════════════ */
 .marke{
   display:inline-flex;align-items:flex-start;gap:.08em;
-  font-family:var(--display);font-weight:800;font-stretch:var(--breite);
+  font-family:var(--display);font-weight:700;font-optical-sizing:auto;font-variation-settings:var(--wonk);
   letter-spacing:var(--sp-display);line-height:var(--lh-eins);text-transform:lowercase;
 }
 .marke-q{display:block;position:relative}
@@ -513,6 +477,34 @@ strong{font-weight:600;color:var(--tinte)}
   background:radial-gradient(closest-side,var(--glut),transparent 70%);
   transition:background .9s ease;
 }
+/* ── Grund und Licht ─────────────────────────────────────────────
+   .grund liegt unbeweglich hinter allem und nimmt dem Papierton die
+   Leere. .licht ist der wandernde Schein: am Rechner folgt er dem
+   Zeiger, auf dem Telefon — wo es keinen Zeiger gibt — dem Scrollen.
+   Beide liegen hinter dem Inhalt (z-index 0) und fangen keine Klicks.  */
+.grund{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(60rem 45rem at 78% -8%,  var(--grund-1), transparent 60%),
+    radial-gradient(52rem 40rem at 8% 12%,   var(--grund-2), transparent 62%),
+    radial-gradient(56rem 46rem at 92% 82%,  var(--grund-3), transparent 62%);
+  transition:background .5s ease;
+}
+.licht{
+  position:fixed;top:0;left:0;z-index:0;pointer-events:none;
+  width:44rem;height:44rem;margin:-22rem 0 0 -22rem;border-radius:50%;
+  background:radial-gradient(circle closest-side, var(--licht-farbe), transparent 72%);
+  transform:translate3d(50vw,42vh,0);
+  will-change:transform;
+  opacity:0;transition:opacity .9s ease;
+}
+.licht.da{opacity:1}
+/* Wer Bewegung reduziert haben will, bekommt den Schein ruhig stehend —
+   die Waerme bleibt, das Wandern entfaellt. */
+@media (prefers-reduced-motion:reduce){
+  .licht{transition:none}
+}
+
 .korn{
   position:fixed;inset:-140px;z-index:6;pointer-events:none;
   opacity:var(--korn-opa);mix-blend-mode:var(--korn-mix);
@@ -529,7 +521,7 @@ main,header,footer{position:relative;z-index:2}
 /* Geisterwort hinter Abschnittsköpfen — die Ebene, die überlappt */
 .geistwort{
   position:absolute;left:50%;top:0;translate:-50% -46%;z-index:0;
-  font-family:var(--display);font-weight:900;font-stretch:var(--breite);text-transform:lowercase;
+  font-family:var(--display);font-weight:900;text-transform:lowercase;
   font-size:min(21vw,17rem);line-height:var(--lh-display);letter-spacing:var(--sp-display);white-space:nowrap;
   color:transparent;-webkit-text-stroke:1px var(--geist-linie);
   pointer-events:none;user-select:none;will-change:transform;
@@ -630,7 +622,7 @@ main,header,footer{position:relative;z-index:2}
   }
   .nav-liste.auf{clip-path:inset(0 0 0 0)}
   .nav-liste a{
-    font-family:var(--display);font-weight:800;font-stretch:var(--breite);text-transform:lowercase;
+    font-family:var(--display);font-weight:700;font-optical-sizing:auto;font-variation-settings:var(--wonk);text-transform:lowercase;
     font-size:clamp(2.2rem,11vw,4rem);letter-spacing:var(--sp-display);color:var(--tinte);
     width:100%;padding:.5rem 0;border-bottom:1px solid var(--linie-s);
     opacity:0;transform:translateY(1rem);transition:opacity .5s,transform .5s,color .3s;
@@ -673,7 +665,7 @@ main,header,footer{position:relative;z-index:2}
 .hero-fest{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:calc(var(--kopf-hoehe) + var(--kopf-luft) * 2) 0 2rem}
 .hero-geist{
   position:absolute;left:50%;top:50%;translate:-50% -50%;z-index:0;
-  font-family:var(--display);font-weight:900;font-stretch:var(--breite);text-transform:lowercase;
+  font-family:var(--display);font-weight:900;text-transform:lowercase;
   font-size:min(29vw,25rem);line-height:var(--lh-display);letter-spacing:var(--sp-display);white-space:nowrap;
   color:transparent;-webkit-text-stroke:1px var(--geist-linie);pointer-events:none;user-select:none;
 }
@@ -686,10 +678,17 @@ main,header,footer{position:relative;z-index:2}
 .hero .label{margin-bottom:clamp(1rem,3.5vh,2.2rem)}
 
 .satz{margin:0 0 clamp(1.2rem,3vh,2rem);display:flex;flex-direction:column;align-items:flex-start}
+/* Die Zeile bricht nicht mehr. Vorher trennte das Telefon mitten im
+   Wort — "Quer" stand allein, "verbindung finden." darunter, was wie
+   ein Trennfehler aussieht. Der Grad haengt jetzt an der Fensterbreite,
+   sodass die laengste Zeile ("Querverbindung finden.", 11,4 em) bei
+   jeder Breite hineinpasst: unten 1,5rem fuer 320px-Geraete, oben
+   6,9rem, weil 11,4 x 110px noch unter die 80rem des Satzspiegels
+   passt. Die Werte sind ausgemessen, nicht gegriffen. */
 .satz-zeile{
-  position:relative;display:block;cursor:default;
-  font-family:var(--display);font-weight:800;font-stretch:var(--breite);
-  font-size:clamp(2.15rem,7.6vw,7.4rem);line-height:var(--lh-display);letter-spacing:var(--sp-display);
+  position:relative;display:block;cursor:default;white-space:nowrap;
+  font-family:var(--display);font-weight:700;font-optical-sizing:auto;font-variation-settings:var(--wonk);
+  font-size:clamp(1.5rem,7.5vw,6.9rem);line-height:var(--lh-display);letter-spacing:var(--sp-display);
   transition:transform .5s var(--ease-out);
 }
 .satz-zeile:hover{transform:translateX(.5rem)}
@@ -730,7 +729,7 @@ main,header,footer{position:relative;z-index:2}
 .hero-unten{display:flex;align-items:flex-end;justify-content:space-between;gap:1.75rem 2.5rem;flex-wrap:wrap;margin-top:clamp(1.75rem,4.5vh,3rem)}
 .hero-aktionen{display:flex;gap:.75rem;flex-wrap:wrap}
 .hero-zahlen{display:flex;gap:clamp(1.25rem,3.5vw,3rem)}
-.hero-zahlen b{display:block;font-family:var(--display);font-weight:800;font-stretch:var(--breite);font-size:clamp(1.7rem,3.2vw,2.7rem);line-height:var(--lh-eins);letter-spacing:var(--sp-display)}
+.hero-zahlen b{display:block;font-family:var(--display);font-weight:700;font-optical-sizing:auto;font-variation-settings:var(--wonk);font-size:clamp(1.7rem,3.2vw,2.7rem);line-height:var(--lh-eins);letter-spacing:var(--sp-display)}
 .hero-zahlen span{font-family:var(--sans);font-weight:500;font-size:var(--t-3xs);letter-spacing:var(--sp-versal);text-transform:uppercase;color:var(--tinte-3);display:block;margin-top:.5rem;max-width:14ch;overflow-wrap:anywhere}
 .hero-hinweis{
   position:absolute;left:50%;bottom:1.5rem;translate:-50% 0;z-index:3;display:flex;align-items:center;gap:.6rem;
@@ -762,7 +761,7 @@ main,header,footer{position:relative;z-index:2}
 /* ═══════════════════════════════════════════════════════════
    10 — MANIFEST
    ═══════════════════════════════════════════════════════════ */
-.manifest{font-family:var(--display);font-weight:700;font-stretch:var(--breite);font-size:clamp(1.5rem,3.4vw,2.9rem);line-height:var(--lh-eng);letter-spacing:var(--sp-display);max-width:22ch}
+.manifest{font-family:var(--display);font-weight:600;font-optical-sizing:auto;font-variation-settings:var(--wonk);font-size:clamp(1.5rem,3.4vw,2.9rem);line-height:var(--lh-eng);letter-spacing:var(--sp-display);max-width:22ch}
 .manifest .w{display:inline-block;opacity:.18;transform:translateY(.2em);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
 .manifest.in .w{opacity:1;transform:none}
 .manifest .w.leucht{color:var(--akzent)}
@@ -815,7 +814,7 @@ main,header,footer{position:relative;z-index:2}
 .fall-meta span{font-family:var(--sans);font-weight:500;font-size:var(--t-3xs);letter-spacing:var(--sp-versal);text-transform:uppercase;color:var(--tinte-3);border:1px solid var(--linie);padding:.28rem .55rem}
 .fall-titel{
   position:relative;display:inline-block;
-  font-family:var(--display);font-weight:800;font-stretch:var(--breite);text-transform:lowercase;
+  font-family:var(--display);font-weight:700;font-optical-sizing:auto;font-variation-settings:var(--wonk);text-transform:lowercase;
   font-size:clamp(1.7rem,3.4vw,2.9rem);line-height:var(--lh-display);letter-spacing:var(--sp-display);margin-bottom:.35rem;
   transition:transform .5s var(--ease-out);
 }
@@ -826,7 +825,7 @@ main,header,footer{position:relative;z-index:2}
 .fall-txt p{color:var(--tinte-2);font-size:var(--t-m);max-width:46ch}
 .fall-ergebnis{
   margin-top:1.3rem;padding-left:.9rem;border-left:3px solid var(--akz,var(--akzent));
-  font-family:var(--display);font-weight:700;font-stretch:var(--breite);font-size:clamp(1rem,1.5vw,1.25rem);
+  font-family:var(--display);font-weight:600;font-optical-sizing:auto;font-variation-settings:var(--wonk);font-size:clamp(1rem,1.5vw,1.25rem);
   line-height:var(--lh-eng);text-transform:uppercase;letter-spacing:var(--sp-versal-s);color:var(--tinte);
 }
 .fall-aktionen{display:flex;align-items:center;gap:1.35rem;flex-wrap:wrap;margin-top:1.5rem}
@@ -908,7 +907,7 @@ main,header,footer{position:relative;z-index:2}
 .mk-33 .mk-logo{font-size:.5rem;letter-spacing:var(--sp-versal);text-transform:uppercase;color:#f0efe8}
 .mk-33 .mk-datum{margin-left:auto;font-family:var(--mono);font-size:.5rem;letter-spacing:var(--sp-versal);color:#b8bc3a}
 .mk-33 .mk-body{position:relative;z-index:2;align-content:center;gap:.1rem}
-.mk-33 .mk-t{font-family:var(--display);font-weight:800;font-stretch:var(--breite);text-transform:uppercase;font-size:clamp(1.1rem,5.4cqw,2.7rem);line-height:.84;letter-spacing:var(--sp-display)}
+.mk-33 .mk-t{font-family:var(--display);font-weight:700;font-optical-sizing:auto;font-variation-settings:var(--wonk);text-transform:uppercase;font-size:clamp(1.1rem,5.4cqw,2.7rem);line-height:.84;letter-spacing:var(--sp-display)}
 .mk-33 .mk-t.hohl{color:transparent;-webkit-text-stroke:1px rgba(240,239,232,.55)}
 .mk-33 .mk-fuss{display:flex;gap:.7rem;margin-top:.7rem;font-family:var(--mono);font-size:.46rem;letter-spacing:var(--sp-versal);text-transform:uppercase;color:#8a8b7e}
 .mk-33 .mk-scan{position:absolute;inset:0;z-index:3;pointer-events:none;background:repeating-linear-gradient(180deg,rgba(240,239,232,.05) 0 1px,transparent 1px 4px);opacity:.5}
@@ -948,7 +947,7 @@ main,header,footer{position:relative;z-index:2}
 .bruecke:hover::before{transform:none}
 .bruecke-label{font-family:var(--sans);font-weight:500;font-size:var(--t-3xs);letter-spacing:var(--sp-versal);text-transform:uppercase;color:var(--akzent-text);display:block;margin-bottom:.6rem;transition:color .4s ease}
 .bruecke-titel{
-  display:block;font-family:var(--display);font-weight:800;font-stretch:var(--breite);
+  display:block;font-family:var(--display);font-weight:700;font-optical-sizing:auto;font-variation-settings:var(--wonk);
   font-size:clamp(1.6rem,3.4vw,2.7rem);line-height:var(--lh-display);letter-spacing:var(--sp-display);
   transition:color .4s ease,transform .5s var(--ease-out);
 }
@@ -998,7 +997,7 @@ main,header,footer{position:relative;z-index:2}
 }
 .qfrage-kopf:hover{padding-left:.75rem;color:var(--akzent-text)}
 .qfrage-nr{font-family:var(--mono);font-size:var(--t-2xs);letter-spacing:var(--sp-versal);color:var(--akzent-text);padding-top:.28rem}
-.qfrage-txt{font-family:var(--display);font-weight:700;font-stretch:var(--breite);font-size:clamp(1.05rem,1.7vw,1.3rem);line-height:var(--lh-eng);letter-spacing:var(--sp-eng)}
+.qfrage-txt{font-family:var(--display);font-weight:600;font-optical-sizing:auto;font-variation-settings:var(--wonk);font-size:clamp(1.05rem,1.7vw,1.3rem);line-height:var(--lh-eng);letter-spacing:var(--sp-eng)}
 .qfrage-plus{position:relative;width:1.15rem;height:1.15rem;margin-top:.35rem;justify-self:end}
 .qfrage-plus::before,.qfrage-plus::after{content:"";position:absolute;background:var(--akzent);transition:transform .4s var(--ease)}
 .qfrage-plus::before{left:0;right:0;top:50%;height:2px;translate:0 -50%}
@@ -1028,7 +1027,7 @@ main,header,footer{position:relative;z-index:2}
 }
 .bilanz-kopf{font-family:var(--sans);font-weight:500;font-size:var(--t-3xs);letter-spacing:var(--sp-versal);text-transform:uppercase;color:var(--tinte-3);margin-bottom:1rem}
 .bilanz-zahl{display:flex;align-items:baseline;gap:.5rem;margin-bottom:.85rem}
-.bilanz-zahl b{font-family:var(--display);font-weight:800;font-stretch:var(--breite);font-size:2.6rem;line-height:var(--lh-eins);letter-spacing:var(--sp-display)}
+.bilanz-zahl b{font-family:var(--display);font-weight:700;font-optical-sizing:auto;font-variation-settings:var(--wonk);font-size:2.6rem;line-height:var(--lh-eins);letter-spacing:var(--sp-display)}
 .bilanz-zahl span{font-size:var(--t-s);color:var(--tinte-2)}
 .bilanz-balken{height:2px;background:var(--linie);position:relative;overflow:hidden;margin-bottom:1.25rem}
 .bilanz-balken i{position:absolute;inset:0;background:var(--akzent);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
@@ -1053,7 +1052,7 @@ main,header,footer{position:relative;z-index:2}
 .mehrwert div{background:var(--papier);padding:clamp(1.25rem,2.2vw,1.75rem);transition:background .35s ease}
 .mehrwert div:hover{background:var(--papier-2)}
 .mehrwert h3{
-  font-family:var(--display);font-weight:800;font-stretch:var(--breite);font-size:var(--t-l);line-height:var(--lh-eng);
+  font-family:var(--display);font-weight:700;font-optical-sizing:auto;font-variation-settings:var(--wonk);font-size:var(--t-l);line-height:var(--lh-eng);
   letter-spacing:var(--sp-display);margin-bottom:.7rem;
 }
 .mehrwert h3 em{font-style:normal;color:var(--akzent-text);display:block;font-family:var(--sans);font-weight:500;font-size:var(--t-3xs);letter-spacing:var(--sp-versal);text-transform:uppercase;margin-bottom:.5rem}
@@ -1123,7 +1122,7 @@ main,header,footer{position:relative;z-index:2}
 .bk-liste li{display:flex;justify-content:space-between;gap:1rem;font-size:var(--t-xs);color:var(--tinte-2);padding-bottom:.4rem;border-bottom:1px solid var(--linie-s);animation:bkAuf .35s var(--ease-out) both}
 .bk-liste li b{font-family:var(--mono);font-weight:400;color:var(--tinte);white-space:nowrap}
 @keyframes bkAuf{from{opacity:0;transform:translateY(-.25rem)}}
-.bk-zahl{font-family:var(--display);font-weight:800;font-stretch:var(--breite);font-size:clamp(2.2rem,5vw,3.2rem);line-height:var(--lh-eins);letter-spacing:var(--sp-display);display:block;margin-top:auto}
+.bk-zahl{font-family:var(--display);font-weight:700;font-optical-sizing:auto;font-variation-settings:var(--wonk);font-size:clamp(2.2rem,5vw,3.2rem);line-height:var(--lh-eins);letter-spacing:var(--sp-display);display:block;margin-top:auto}
 .bk-monat{font-family:var(--sans);font-weight:500;font-size:var(--t-3xs);letter-spacing:var(--sp-versal);color:var(--akzent-text);margin-top:.5rem;display:block}
 .bk-fuss{font-size:var(--t-xs);color:var(--tinte-3);margin:.7rem 0 1.25rem;line-height:var(--lh-text)}
 .bk-warnung{border:1px solid var(--akzent);padding:.7rem .85rem;font-size:var(--t-xs);line-height:var(--lh-text);color:var(--tinte);margin-bottom:1.1rem;display:none}
@@ -1145,8 +1144,8 @@ main,header,footer{position:relative;z-index:2}
 .paket--top .paket-fuer,.paket--top li{color:color-mix(in srgb,var(--papier) 72%,transparent)}
 .paket-fahne{font-family:var(--sans);font-weight:500;font-size:var(--t-3xs);letter-spacing:var(--sp-versal);text-transform:uppercase;color:var(--akzent-text);margin-bottom:.8rem}
 .paket--top .paket-fahne{color:var(--akzent)}
-.paket-name{font-family:var(--display);font-weight:800;font-stretch:var(--breite);text-transform:lowercase;font-size:1.75rem;line-height:var(--lh-eins);letter-spacing:var(--sp-eng)}
-.paket-preis{font-family:var(--display);font-weight:800;font-stretch:var(--breite);font-size:2.5rem;line-height:var(--lh-eng);letter-spacing:var(--sp-display);margin:.7rem 0 .3rem}
+.paket-name{font-family:var(--display);font-weight:700;font-optical-sizing:auto;font-variation-settings:var(--wonk);text-transform:lowercase;font-size:1.75rem;line-height:var(--lh-eins);letter-spacing:var(--sp-eng)}
+.paket-preis{font-family:var(--display);font-weight:700;font-optical-sizing:auto;font-variation-settings:var(--wonk);font-size:2.5rem;line-height:var(--lh-eng);letter-spacing:var(--sp-display);margin:.7rem 0 .3rem}
 .paket-fuer{font-size:var(--t-m);color:var(--tinte-2);margin-bottom:1.5rem;min-height:3em}
 .paket ul{list-style:none;margin-bottom:2rem;display:flex;flex-direction:column;gap:.7rem}
 .paket li{display:grid;grid-template-columns:1rem 1fr;gap:.6rem;font-size:var(--t-m);line-height:var(--lh-text);color:var(--tinte-2)}
@@ -1175,7 +1174,7 @@ main,header,footer{position:relative;z-index:2}
   background:var(--papier-2);border:1px solid var(--linie);box-shadow:var(--schatten);
   padding:clamp(1.5rem,3vw,2.75rem);will-change:transform;
 }
-.person-zitat{font-family:var(--display);font-weight:700;font-stretch:var(--breite);font-size:clamp(1.25rem,2.4vw,1.9rem);line-height:var(--lh-eng);letter-spacing:var(--sp-eng);margin-bottom:1.6rem}
+.person-zitat{font-family:var(--display);font-weight:600;font-optical-sizing:auto;font-variation-settings:var(--wonk);font-size:clamp(1.25rem,2.4vw,1.9rem);line-height:var(--lh-eng);letter-spacing:var(--sp-eng);margin-bottom:1.6rem}
 .person-txt p{color:var(--tinte-2);margin-bottom:1.05em;font-size:var(--t-m)}
 .person-liste{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.65rem 1.5rem;margin-top:1.6rem;border-top:1px solid var(--linie);padding-top:1.4rem}
 .person-liste li{display:grid;grid-template-columns:1rem 1fr;gap:.6rem;font-size:var(--t-s);color:var(--tinte-2)}
@@ -1269,7 +1268,7 @@ main,header,footer{position:relative;z-index:2}
 .abschluss p{margin-inline:auto}
 .abschluss .d1{margin:1.4rem 0}
 .kontaktzeile{display:flex;flex-direction:column;gap:.4rem;align-items:center;margin-top:2.25rem}
-.kontaktzeile a{font-family:var(--display);font-weight:700;font-stretch:var(--breite);font-size:clamp(1.05rem,2.4vw,1.8rem);letter-spacing:var(--sp-eng);position:relative;padding-bottom:.15rem}
+.kontaktzeile a{font-family:var(--display);font-weight:600;font-optical-sizing:auto;font-variation-settings:var(--wonk);font-size:clamp(1.05rem,2.4vw,1.8rem);letter-spacing:var(--sp-eng);position:relative;padding-bottom:.15rem}
 .kontaktzeile a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--akzent);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
 .kontaktzeile a:hover::after{transform:scaleX(1)}
 
@@ -1365,12 +1364,15 @@ dialog.faq details p{padding:0 0 1.35rem;color:var(--tinte-2);font-size:var(--t-
 <!-- Setzt die E-Mail-Adresse erst im Browser zusammen. Ohne JavaScript
      bleibt sie als "hallo(at)querstrich.de" lesbar stehen. -->
 <script src="assets/mailschutz.js" defer></script>
+<script src="assets/licht.js" defer></script>
 <link rel="stylesheet" href="assets/consent.css">
 <script src="assets/consent.js" defer></script>
 <!-- Herkunft der Anfrage, ohne jede Speicherung im Geraet. -->
 <script src="assets/attribution.js" defer></script>
 </head>
 <body>
+<div class="grund" aria-hidden="true"></div>
+<div class="licht" id="licht" aria-hidden="true"></div>
 <!-- ═══════════ VORHANG ═══════════ -->
 <div id="vorhang" role="button" tabindex="0" aria-label="Intro überspringen">
   <div class="vorhang-inner">

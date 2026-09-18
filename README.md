@@ -20,10 +20,12 @@ robots.txt          sitemap.xml
 .github/workflows/  Pages-Veröffentlichung
 assets/
   consent.js        Einwilligung, Consent Mode, Werkzeug-Lader
+  licht.js          wandernder Lichtschein (Maus / Scrollen)
+  mailschutz.js     E-Mail erst im Browser zusammensetzen
   consent.css       Einwilligungsbanner
   attribution.js    Herkunft der Anfrage, ohne Speicherung
   recht.css         Stil der Textseiten
-  fonts/*.woff2     8 Dateien, 280 KB
+  fonts/*.woff2     6 Dateien, 288 KB
   og-image.png      Vorschaubild für geteilte Links
 ```
 
@@ -327,11 +329,12 @@ haben einen Grund: die Abschnittsmarke und Ziffern (Schrittnummern, Fragennummer
 Projektnummern, die Beträge im Baukasten, wo die feste Dickte die Spalte ausrichtet).
 Alles, was gelesen und bedient wird, steht in der Textschrift.
 
-**3. Jede Überschriftenebene hatte eine eigene Breite.** Archivo ist eine Variable Font mit
-Breitenachse; `.d1` stand auf 84 %, `.d2` auf 86 %, `.d3` auf 90 %, dazu neun weitere Werte
-im Rest. Zu wenig Unterschied, um als Absicht zu wirken, zu viel, um wie dieselbe Schrift
-auszusehen — der Grund, warum die Überschriften nicht wie Geschwister wirkten. Jetzt ein
-Wert: `--breite: 86%`.
+**3. Jede Überschriftenebene hatte eine eigene Breite.** Die damalige Displayschrift Archivo
+hatte eine Breitenachse; `.d1` stand auf 84 %, `.d2` auf 86 %, `.d3` auf 90 %, dazu neun
+weitere Werte im Rest. Zu wenig Unterschied, um als Absicht zu wirken, zu viel, um wie
+dieselbe Schrift auszusehen — der Grund, warum die Überschriften nicht wie Geschwister
+wirkten. Erst auf einen Wert vereinheitlicht; mit dem Wechsel auf Fraunces entfällt die
+Achse ganz (siehe „Schriftwechsel" unten).
 
 **4. Sperrung war Dekor statt Funktion.** Laufweite ist eine Funktion der Schriftgröße:
 große Grade brauchen ein Minus, gesperrte Versalien ein Plus. Vorher lagen sieben Varianten
@@ -384,11 +387,11 @@ Im Stylesheet steht je Schnitt ein `@font-face`, das auf die lokale Datei zeigt:
 
 ```css
 @font-face{
-  font-family:'Instrument Sans';
+  font-family:'Figtree';
   font-style:normal;
-  font-weight:400 600;            /* Variable Font: Bereich statt Einzelwert */
+  font-weight:300 900;            /* Variable Font: Bereich statt Einzelwert */
   font-display:swap;
-  src:url(assets/fonts/instrument-sans-latin.woff2) format('woff2');
+  src:url(assets/fonts/figtree-latin.woff2) format('woff2');
   unicode-range:U+0000-00FF,…;    /* nur Latin — der Rest wird nie geladen */
 }
 ```
@@ -695,6 +698,102 @@ ist in zwei Minuten wieder drin.
 Zur Ehrlichkeit gehört die Grenze: Ein Absammler, der die Seite in einem echten Browser
 rendert, sieht die E-Mail-Adresse. Das lässt sich nicht verhindern, solange ein Mensch sie
 auch sehen soll. Gegen die große Mehrheit, die nur den Quelltext durchsucht, wirkt es.
+
+---
+
+## Schriftwechsel, Grund und Licht
+
+### Die Schriften
+
+| | vorher | jetzt |
+| --- | --- | --- |
+| Überschriften | Archivo — enge Grotesk, 86 % Breite, Gewicht 800 | **Fraunces** — Serif mit optischer Größenachse |
+| Fließtext | Instrument Sans | **Figtree** — humanistische Grotesk |
+| Kleinbeschriftung | DM Mono | DM Mono (unverändert) |
+
+Fraunces bringt zwei Achsen mit, die es sonst kaum gibt: **SOFT** rundet die Ecken ab,
+**WONK** schaltet schräge, handgeschnittene Alternativformen. Beide stehen auf `--wonk:
+"SOFT" 40, "WONK" 1`. Genau das nimmt der Schrift das Technische — und es passt zu dem, was
+die Seite behauptet: Hier hat ein Mensch gearbeitet, kein Generator. Eine enge Grotesk in
+Gewicht 800 sagt das Gegenteil.
+
+Mit dem Wechsel entfällt die Breitenachse: Fraunces hat keine. `--breite` steht deshalb auf
+`normal` und die Regeln arbeiten stattdessen mit `font-optical-sizing` und
+`font-variation-settings`. Die Displaygrade mussten mit: Eine normalbreite Serifenschrift
+braucht bei gleicher Punktgröße rund ein Fünftel mehr Platz als die auf 86 % gestauchte
+Grotesk. `.d1` steht jetzt bei `clamp(2.25rem, 6.6vw, 5.6rem)` statt
+`clamp(2.6rem, 8.5vw, 7.5rem)`, Laufweite und Zeilenabstand entsprechend
+(`--sp-display` von −.03 auf −.02 em, `--lh-display` von .9 auf .96) — Serifen vertragen
+weniger Enge.
+
+**Die Hero-Zeile bricht nicht mehr.** Auf dem Telefon trennte sie vorher mitten im Wort:
+„Quer" allein, „verbindung finden." darunter — das liest sich wie ein Trennfehler. Die
+längste Zeile braucht 11,4 em; der Grad hängt jetzt an der Fensterbreite
+(`clamp(1.5rem, 7.5vw, 6.9rem)` bei `white-space: nowrap`). Nachgemessen bei 320, 360, 390,
+430, 768, 1024, 1440 und 1920 px: passt überall, kein Querscrollen.
+
+### Warum die Schriften weiterhin lokal liegen
+
+Der Wunsch war, sie „beim Cookie-Fenster einzubetten", also von Google zu laden und hinter
+die Einwilligung zu hängen. Beides ist gebaut — die Einwilligungsschicht könnte es
+tragen — aber es würde dem eigentlichen Ziel entgegenarbeiten:
+
+- **Es sind dieselben Schriften.** Fraunces und Figtree *sind* Google Fonts. Ob sie von
+  Googles Servern oder aus `assets/fonts/` kommen, ändert am Aussehen exakt nichts. Der
+  Gewinn wäre null.
+- **Vor der Einwilligung gäbe es keine.** Gated hinter das Banner sähe jeder Erstbesucher
+  die Seite zunächst in Arial und Georgia — und wer ablehnt, dauerhaft. Das ist das
+  Gegenteil von „schön und einladend".
+- **Es gäbe überhaupt erst ein Banner.** Ohne fremde Verbindung braucht die Seite keins.
+  Schriften von Google einzubinden erzwingt eins, mit allem, was daran hängt.
+
+Lokal bekommt man also dasselbe Aussehen, immer, ohne Banner und ohne das Risiko aus dem
+Urteil des LG München I. Wenn Sie es trotzdem umgestellt haben wollen: Die Werkzeugliste in
+`assets/consent.js` nimmt eine Schrift-Position auf, und die CSP-Zeilen dafür stehen
+bereits im Kopf von `index.html`.
+
+### Der Grund — gegen das Karge
+
+Der helle Modus stand vorher auf reinem Papierton. Jetzt liegen drei sehr flache Farbfelder
+darunter (`.grund`), warm oben rechts, kühl unten rechts, ohne sichtbare Kanten. Dazu das
+bestehende Korn.
+
+### Der Lichtschein
+
+`.licht` ist ein weicher warmer Kreis, der hinter dem Inhalt liegt und nichts anklickbar
+macht. Am Rechner folgt er dem Mauszeiger — **träge nachlaufend**, jeweils 7,5 % der
+Restdistanz pro Bild, damit es wie Licht wirkt und nicht wie ein angehefteter Punkt.
+
+Auf dem Telefon gibt es keinen Zeiger, dort übernimmt das Scrollen: Der Schein wandert mit
+dem Seitenfortschritt quer durchs Bild und reagiert zusätzlich auf das **Tempo** — schnelles
+Wischen zieht ihn aus der Ruhelage, beim Anhalten sinkt er zurück. Nachgemessen bei 390 px:
+Position bei Scrollstand 0, 2400 und 6000 jeweils verschieden.
+
+Bewegt wird ausschließlich per `transform`, also auf der Grafikkarte — kein Layout, kein
+Neuzeichnen. Die Schleife hält an, sobald nichts mehr nachzuholen ist; ein Dauerlauf im
+Leerlauf kostet auf dem Telefon Akku. `prefers-reduced-motion` lässt den Schein stehen: Die
+Wärme bleibt, das Wandern entfällt.
+
+### Der Kontrastfehler, den axe nicht finden konnte
+
+Der warme Grund hat zwei Farben unter die Schwelle gedrückt — und axe-core meldete trotzdem
+**0 Verstöße**, weil es über Verläufen und mehreren Ebenen keinen Hintergrundwert berechnen
+kann (es meldet das als „unvollständig", nicht als Fehler). Gemessen wurde deshalb selbst:
+Inhalt ausblenden, den gerenderten Grund als Pixel abtasten, den ungünstigsten Punkt suchen,
+Kontrast gegen die tatsächlich gesetzten Token rechnen.
+
+| | ungünstigster Grund | vorher | jetzt |
+| --- | --- | --- | --- |
+| `--tinte-3` hell | `#F6DECC` | 3,97:1 ✗ | `#66655D` → **4,53:1** |
+| `--akzent-text` hell | `#F6DECC` | 4,05:1 ✗ | `#B83605` → **4,55:1** |
+| `--tinte-3` dunkel | `#36170D` | 3,84:1 ✗ | `#88877F` → **4,53:1** |
+
+Die Wärme blieb unangetastet; korrigiert wurden die Textfarben, um 92, 93 und 110 Prozent.
+Das ist mit bloßem Auge nicht zu sehen und trägt die Schwelle.
+
+**Lehre daraus, fürs nächste Mal:** Ein grüner axe-Lauf beweist keinen ausreichenden
+Kontrast, sobald hinter dem Text ein Verlauf, ein Bild oder mehrere Ebenen liegen. Die
+„unvollständig"-Zeile im Bericht ist genau diese Lücke — sie gehört von Hand geschlossen.
 
 ---
 

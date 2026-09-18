@@ -5,49 +5,43 @@
    ════════════════════════════════════════════════════════════════ */
 
 /* ── Schriften ────────────────────────────────────────────────── */
-@font-face{font-family:'Archivo';font-style:normal;font-weight:400 900;font-stretch:62% 125%;font-display:optional;
-  src:url(fonts/archivo-latin.woff2) format('woff2');
-  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
-@font-face{font-family:'Archivo';font-style:normal;font-weight:400 900;font-stretch:62% 125%;font-display:optional;
-  src:url(fonts/archivo-latin-ext.woff2) format('woff2');
-  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
-@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400 600;font-display:swap;
-  src:url(fonts/instrument-sans-latin.woff2) format('woff2');
-  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
-@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400 600;font-display:swap;
-  src:url(fonts/instrument-sans-latin-ext.woff2) format('woff2');
-  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:300 900;font-display:optional;
+  src:url(fonts/fraunces-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:300 900;font-display:optional;
+  src:url(fonts/fraunces-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Figtree';font-style:normal;font-weight:300 900;font-display:swap;
+  src:url(fonts/figtree-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Figtree';font-style:normal;font-weight:300 900;font-display:swap;
+  src:url(fonts/figtree-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
 @font-face{font-family:'DM Mono';font-style:normal;font-weight:400;font-display:swap;
-  src:url(fonts/dm-mono-latin.woff2) format('woff2');
-  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  src:url(fonts/dm-mono-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
 
-/* Breitenangleich wie in index.html: 84,1 % gemessen gegen Arial. Hoehen-
-   Overrides bleiben weg — geratene Werte vergroessern den Sprung. */
-@font-face{font-family:'Archivo Fallback';src:local('Arial'),local('Helvetica'),local('Liberation Sans');
-  size-adjust:84.1%}
+@font-face{font-family:'Fraunces Fallback';src:local('Georgia'),local('Times New Roman'),local('Liberation Serif');size-adjust:100%}
+@font-face{font-family:'Figtree Fallback';src:local('Arial'),local('Helvetica'),local('Liberation Sans');size-adjust:100%}
 
 /* ── Token ────────────────────────────────────────────────────── */
 :root{
   --papier:#F5F3EE; --papier-2:#FFFFFF; --papier-3:#EBE8E0;
-  --tinte:#0D0D0F; --tinte-2:#46453F; --tinte-3:#6F6E65;
+  --tinte:#0D0D0F; --tinte-2:#46453F; --tinte-3:#66655D;
   --linie:rgba(13,13,15,.16); --linie-s:rgba(13,13,15,.07);
-  --akzent:#FF4A0F; --akzent-text:#C63A05; --auf-akzent:#1A0A02;
-  --display:"Archivo","Archivo Fallback",Arial,Impact,sans-serif;
-  --sans:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --akzent:#FF4A0F; --akzent-text:#B83605; --auf-akzent:#1A0A02;
+  --display:"Fraunces","Fraunces Fallback",Georgia,serif;
+  --wonk:"SOFT" 40, "WONK" 1;
+  --sans:"Figtree","Figtree Fallback",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   --mono:"DM Mono",ui-monospace,Menlo,monospace;
   /* Dieselbe Skala wie index.html — die Rechtsseiten sollen nicht wie
      ein anderes Projekt aussehen. */
   --t-3xs:.6875rem; --t-2xs:.75rem; --t-xs:.8125rem; --t-s:.875rem;
   --t-m:.9375rem; --t-base:1.0625rem; --t-l:1.1875rem; --t-xl:1.375rem;
-  --sp-display:-.03em; --sp-eng:-.015em; --sp-ui:0; --sp-versal:.1em;
-  --lh-display:.9; --lh-eins:1; --lh-eng:1.15; --lh-ui:1.3; --lh-text:1.6;
-  --breite:86%;
+  --sp-display:-.02em; --sp-eng:-.01em; --sp-ui:0; --sp-versal:.1em;
+  --lh-display:.96; --lh-eins:1; --lh-eng:1.15; --lh-ui:1.3; --lh-text:1.6;
+  --breite:normal;
   --gutter:clamp(1.25rem,4vw,3rem);
   --ease:cubic-bezier(.76,0,.24,1);
 }
 [data-thema="dunkel"]{
   --papier:#0B0B0D; --papier-2:#131317; --papier-3:#1B1B21;
-  --tinte:#F4F3EF; --tinte-2:#A8A79E; --tinte-3:#7C7B73;
+  --tinte:#F4F3EF; --tinte-2:#A8A79E; --tinte-3:#88877F;
   --linie:rgba(244,243,239,.15); --linie-s:rgba(244,243,239,.07);
   --akzent:#FF5A22; --akzent-text:#FF7C4A; --auf-akzent:#0B0B0D;
 }
@@ -70,7 +64,7 @@ button{background:none;border:0;cursor:pointer;font:inherit;color:inherit}
 /* ── Marke & Kopf ─────────────────────────────────────────────── */
 .marke{
   display:inline-flex;align-items:flex-start;gap:.08em;font-family:var(--display);
-  font-weight:800;font-stretch:var(--breite);letter-spacing:var(--sp-display);
+  font-weight:700;font-optical-sizing:auto;font-variation-settings:var(--wonk);letter-spacing:var(--sp-display);
   line-height:var(--lh-eins);text-transform:lowercase;font-size:1.25rem;
 }
 .marke-sq{display:block;width:.23em;height:.23em;background:var(--akzent);flex:none;margin-top:.05em;
@@ -95,9 +89,9 @@ main{padding:clamp(3rem,8vh,5.5rem) 0 clamp(4rem,10vh,7rem)}
 .label{font-family:var(--mono);font-size:var(--t-3xs);letter-spacing:var(--sp-versal);text-transform:uppercase;
   color:var(--tinte-3);display:inline-flex;align-items:center;gap:.65rem;margin-bottom:1.25rem}
 .label::before{content:"";width:1.7rem;height:2px;background:var(--akzent);flex:none}
-h1{font-family:var(--display);font-weight:800;font-stretch:var(--breite);font-size:clamp(2.2rem,6vw,3.6rem);
+h1{font-family:var(--display);font-weight:700;font-optical-sizing:auto;font-variation-settings:var(--wonk);font-size:clamp(2.2rem,6vw,3.6rem);
   line-height:var(--lh-display);letter-spacing:var(--sp-display);margin-bottom:1.25rem}
-h2{font-family:var(--display);font-weight:800;font-stretch:var(--breite);font-size:clamp(1.25rem,2.4vw,1.6rem);
+h2{font-family:var(--display);font-weight:700;font-optical-sizing:auto;font-variation-settings:var(--wonk);font-size:clamp(1.25rem,2.4vw,1.6rem);
   line-height:var(--lh-eng);letter-spacing:var(--sp-eng);margin:2.75rem 0 .9rem;scroll-margin-top:5rem}
 h3{font-weight:600;font-size:var(--t-l);line-height:var(--lh-ui);letter-spacing:var(--sp-eng);margin:1.6rem 0 .5rem}
 p,li{color:var(--tinte-2);margin-bottom:1em;max-width:70ch}

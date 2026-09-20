@@ -774,6 +774,41 @@ Neuzeichnen. Die Schleife hält an, sobald nichts mehr nachzuholen ist; ein Daue
 Leerlauf kostet auf dem Telefon Akku. `prefers-reduced-motion` lässt den Schein stehen: Die
 Wärme bleibt, das Wandern entfällt.
 
+### Die Hintergrundschrift
+
+Zwei Eingriffe, einer davon aus einer Messung heraus:
+
+**Kontur 15 % durchsichtiger** — `--geist-linie` von `.05` auf `.0425` (hell) und von `.07`
+auf `.0595` (dunkel).
+
+**Konturgewicht an die Buchstabengröße gebunden.** Die Kontur stand überall fest auf 1 px.
+Weil die Geisterbuchstaben je nach Stelle zwischen 82 und 400 px groß sind, schwankte ihr
+Gewicht im Verhältnis zur Größe um das **Fünffache**:
+
+| | vorher | jetzt |
+| --- | --- | --- |
+| Hero, 1440 px (400 px Grad) | 2,50 ‰ | 3,50 ‰ |
+| Geisterwort, 1440 px (272 px) | 3,68 ‰ | 3,50 ‰ |
+| Hero, 390 px (179 px) | 5,57 ‰ | 3,50 ‰ |
+| Geisterwort, 390 px (82 px) | 12,21 ‰ | 7,33 ‰ |
+
+Dieselbe Gestaltung wirkte dadurch mal zart, mal plump — am Telefon war die Kontur relativ
+fast fünfmal schwerer als im Hero am Rechner. Jetzt `max(.6px, .0035em)`: proportional, mit
+einer Untergrenze, weil eine Kontur unter einem halben Pixel nur noch flimmert. Die letzte
+Zeile bleibt deshalb bewusst über dem Zielwert.
+
+### Die abgeschnittene Unterlänge
+
+In „Querverbindung finden." war das **g** hohl: Statt der vollen Farbe zeigte es nur die
+blasse Ersatzkontur. Ursache war der Füll-Effekt der Überschrift. Die gefüllte Ebene liegt
+mit `inset: 0` genau auf dem Kasten und wurde per `clip-path: inset(0)` darauf beschnitten —
+die Unterlänge des g ragt aber **14 px darunter hinaus** (Glyphenkasten 174–308 px,
+Beschnittkasten 190–294 px) und fiel weg. Darunter kam die Konturebene zum Vorschein.
+
+Korrigiert über einen negativen Beschnitt, `inset(-35% 0 -35% 0)`, samt passender
+Endposition in der Füll-Animation. Die Textlage bleibt unverändert; nur die Schnittkante
+wandert nach außen.
+
 ### Der Kontrastfehler, den axe nicht finden konnte
 
 Der warme Grund hat zwei Farben unter die Schwelle gedrückt — und axe-core meldete trotzdem

@@ -255,7 +255,15 @@
    1 — TOKEN & ANSICHTEN
    ═══════════════════════════════════════════════════════════ */
 :root{
-  --geist-linie:rgba(17,17,19,.05);
+  --geist-linie:rgba(17,17,19,.0425);   /* 15 % durchsichtiger als zuvor (.05) */
+  /* Die Kontur stand ueberall fest auf 1px. Weil die Buchstaben je nach
+     Stelle 82 bis 400 px gross sind, schwankte ihr Gewicht um das
+     Fuenffache: 2,5 ‰ der Buchstabengroesse im Hero am Rechner,
+     12,2 ‰ bei den kleinen Woertern am Telefon. Dieselbe Sache wirkte
+     dadurch mal zart, mal plump. Jetzt haengt sie an der Groesse —
+     mit einer Untergrenze, weil eine Kontur unter einem halben Pixel
+     nur noch flimmert. */
+  --geist-strich:max(.6px, .0035em);
   /* helle Fassung (Standard) */
   --papier:#F5F3EE;
   --papier-2:#FFFFFF;
@@ -343,7 +351,7 @@
 }
 /* dunkle Fassung */
 [data-thema="dunkel"]{
-  --geist-linie:rgba(244,243,239,.07);
+  --geist-linie:rgba(244,243,239,.0595); /* 15 % durchsichtiger als zuvor (.07) */
   --papier:#0B0B0D;
   --papier-2:#131317;
   --papier-3:#1B1B21;
@@ -523,7 +531,7 @@ main,header,footer{position:relative;z-index:2}
   position:absolute;left:50%;top:0;translate:-50% -46%;z-index:0;
   font-family:var(--display);font-weight:900;text-transform:lowercase;
   font-size:min(21vw,17rem);line-height:var(--lh-display);letter-spacing:var(--sp-display);white-space:nowrap;
-  color:transparent;-webkit-text-stroke:1px var(--geist-linie);
+  color:transparent;-webkit-text-stroke:var(--geist-strich) var(--geist-linie);
   pointer-events:none;user-select:none;will-change:transform;
 }
 .geistwort--rechts{left:auto;right:-6vw;translate:0 -46%}
@@ -667,7 +675,7 @@ main,header,footer{position:relative;z-index:2}
   position:absolute;left:50%;top:50%;translate:-50% -50%;z-index:0;
   font-family:var(--display);font-weight:900;text-transform:lowercase;
   font-size:min(29vw,25rem);line-height:var(--lh-display);letter-spacing:var(--sp-display);white-space:nowrap;
-  color:transparent;-webkit-text-stroke:1px var(--geist-linie);pointer-events:none;user-select:none;
+  color:transparent;-webkit-text-stroke:var(--geist-strich) var(--geist-linie);pointer-events:none;user-select:none;
 }
 .hero-schraeg{
   position:absolute;inset:-20% -30%;z-index:0;pointer-events:none;
@@ -695,12 +703,19 @@ main,header,footer{position:relative;z-index:2}
 .satz-teil{color:var(--akzent);position:relative;display:inline-block}
 .satz-verb{position:relative;display:inline-block}
 .satz-verb .v-aus{color:transparent;-webkit-text-stroke:1px var(--linie)}
-.satz-verb .v-voll{position:absolute;inset:0;color:var(--tinte);clip-path:inset(0 0 0 0);-webkit-text-stroke:0}
+/* Der Beschnitt reicht bewusst UEBER den Kasten hinaus. Mit inset(0)
+   endete er genau an der Grundlinie des Kastens — die Unterlaenge des
+   "g" in "verbindung" ragt aber 14 px darunter und wurde abgeschnitten.
+   Sichtbar war dann nur die blasse Kontur der Ersatzebene darunter: ein
+   hohles g. Die negativen Werte weiten den Beschnitt nach oben und
+   unten, ohne die Textlage zu veraendern — inset:0 bleibt, nur die
+   Schnittkante wandert nach aussen. */
+.satz-verb .v-voll{position:absolute;inset:0;color:var(--tinte);clip-path:inset(-35% 0 -35% 0);-webkit-text-stroke:0}
 .los .satz-zeile:nth-child(1) .v-voll{animation:fuellen .85s var(--ease) .05s backwards}
 .los .satz-zeile:nth-child(2) .v-voll{animation:fuellen .85s var(--ease) .32s backwards}
 .los .satz-zeile:nth-child(3) .satz-teil{animation:wischen .7s var(--ease) .6s backwards}
 .los .satz-punkt{animation:punktRein .55s var(--ease-out) 1.2s backwards}
-@keyframes fuellen{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes fuellen{from{clip-path:inset(100% 0 -35% 0)}to{clip-path:inset(-35% 0 -35% 0)}}
 @keyframes wischen{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
 @keyframes punktRein{from{transform:scale(0) rotate(90deg)}to{transform:none}}
 /* der Punkt ist das Quadrat aus der Wortmarke */
